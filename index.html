@@ -1,9 +1,12 @@
-<!DOCTYPE html><html>
-<head><title>Mohd Faij | Data Analyst</title><meta name="viewport" content="width=device-width, initial-scale=1"><style>
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mohd Faij | Data Analyst</title><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"><style>
 
 body{
 margin:0;
-font-family:system-ui;
+font-family:'Poppins',sans-serif;
 background:#0f172a;
 color:white;
 }
@@ -81,7 +84,31 @@ font-size:34px;
 margin-bottom:30px;
 }
 
-/* PROJECT CARDS */
+/* SKILLS */
+
+.skills{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+gap:25px;
+}
+
+.skill{
+background:rgba(255,255,255,0.05);
+padding:25px;
+border-radius:14px;
+transition:0.3s;
+}
+
+.skill:hover{
+transform:translateY(-6px);
+}
+
+.skill img{
+width:50px;
+margin-bottom:10px;
+}
+
+/* PROJECTS */
 
 .projects{
 display:grid;
@@ -136,6 +163,7 @@ margin-top:60px;
 
 </style></head><body><nav>
 <a href="#">Home</a>
+<a href="#skills">Skills</a>
 <a href="#projects">Projects</a>
 <a href="#contact">Contact</a>
 </nav><div class="hero"><img src="photo.jpeg"><h1>Mohd Faij</h1><p>Data Analyst | SQL | Excel | Power BI | Python</p><a href="resume.pdf" download class="button">Download Resume</a>
@@ -145,7 +173,19 @@ I am a B.Com graduate and aspiring Data Analyst skilled in SQL,
 Excel, Power BI and Python. I enjoy transforming raw data into
 meaningful insights and building dashboards that support better
 business decisions.
-</p></section><section id="projects"><h2>Projects</h2><div class="projects"><div class="card">
+</p></section><section id="skills"><h2>Skills</h2><div class="skills"><div class="skill">
+<img src="https://cdn-icons-png.flaticon.com/512/5968/5968364.png">
+<p>SQL</p>
+</div><div class="skill">
+<img src="https://cdn-icons-png.flaticon.com/512/5968/5968292.png">
+<p>Python</p>
+</div><div class="skill">
+<img src="https://cdn-icons-png.flaticon.com/512/732/732220.png">
+<p>Excel</p>
+</div><div class="skill">
+<img src="https://cdn-icons-png.flaticon.com/512/732/732221.png">
+<p>Power BI</p>
+</div></div></section><section id="projects"><h2>Projects</h2><div class="projects"><div class="card">
 <h3>SQL Sales Analysis</h3>
 <p>Analyzed sales data to identify trends and top-performing products.</p>
 <a href="#">View Project</a>
