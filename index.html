@@ -160,8 +160,13 @@ box-shadow:0 10px 25px rgba(0,0,0,0.08);
 transition:0.3s;
 }
 
-.card:hover{
-transform:translateY(-8px);
+.button{
+  transition: all 0.3s ease;
+}
+
+.button:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(99,102,241,0.4);
 }
 
 .card img{
@@ -218,6 +223,18 @@ box-shadow:0 25px 50px rgba(99,102,241,0.3);
 .value-card{
   position:relative;
   overflow:hidden;
+}
+
+/* 🔘 Button Hover Effect */
+.primary-btn{
+  transition: all 0.3s ease;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.primary-btn:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(99,102,241,0.4);
 }
 
 /* ✨ Glow Border Effect */
@@ -323,8 +340,9 @@ color:#64748b;
 <a href="https://wa.me/+916387151848" target="_blank"><i class="fab fa-whatsapp"></i></a>
 </div>
 
-<a href="resume.pdf" class="button">Download Resume</a>
-<a href="#projects" class="button secondary-btn">View Projects</a>
+<a href="resume.pdf" class="primary-btn">Download Resume</a>
+
+<a href="#projects" class="primary-btn">View Projects</a>
 </div>
 
 <section id="about" class="reveal">
