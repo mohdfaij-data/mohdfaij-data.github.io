@@ -250,11 +250,38 @@ border-top:1px solid #e2e8f0;
 color:#64748b;
 }
 
+/* 👇 PASTE HERE */
+
+.modal {
+display: none;  /* ✅ FIXED */
+position: fixed;
+z-index: 1000;
+left: 0;
+top: 0;
+width: 100%;
+height: 100%;
+background: rgba(0,0,0,0.7);
+backdrop-filter: blur(8px);
+
+justify-content: center;
+align-items: center;
+}
+.modal iframe {
+width: 90%;
+height: 80%;
+border-radius: 12px;
+}
+
+.close {
+position: absolute;
+top: 20px;
+right: 40px;
+color: white;
+font-size: 30px;
+cursor: pointer;
+}
+
 </style>
-
-</head>
-
-<body>
 
 <!-- NAVBAR -->
 
@@ -349,15 +376,13 @@ I am a B.Com graduate and a results-driven Data Analyst skilled in SQL, Excel, P
 </section>
 
 <!-- MODAL -->
-
-<div id="dashboardModal" class="modal">
-<span class="close" onclick="closeModal()">&times;</span>
-
 <div id="dashboardModal" class="modal">
   <span class="close" onclick="closeModal()">&times;</span>  <iframe 
-  src="https://app.powerbi.com/view?r=eyJrIjoiNGM0OGMxN2UtMjdjYy00YzRkLWE5NTMtNzRhMDAyZjJkODZkIiwidCI6IjNkMGE5Y2FiLTQzYzYtNDlkNi1iODZjLTFiMTZjNGQwMjYzNSJ9&pageName=40ed3e03483196c0b5e2"
-  width="90%" 
-  height="80%">
+    src="https://app.powerbi.com/view?r=eyJrIjoiNGM0OGMxN2UtMjdjYy00YzRkLWE5NTMtNzRhMDAyZjJkODZkIiwidCI6IjNkMGE5Y2FiLTQzYzYtNDlkNi1iODZjLTFiMTZjNGQwMjYzNSJ9&pageName=40ed3e03483196c0b5e2"
+    width="90%" 
+    height="80%" 
+    frameborder="0"
+    allowfullscreen="true">
   </iframe></div>
 
 <!-- VIDEO -->
@@ -373,7 +398,7 @@ I am a B.Com graduate and a results-driven Data Analyst skilled in SQL, Excel, P
 © 2026 Mohd Faij
 </footer><!-- JS HERE 👇 --><script>
 function openModal(){
-  document.getElementById("dashboardModal").style.display = "block";
+  document.getElementById("dashboardModal").style.display = "flex";
 }
 
 function closeModal(){
