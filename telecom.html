@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Telecom Project | Mohd Faij</title>
+
+<style>
+
+/* RESET */
+*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui;}
+
+/* BODY */
+body{
+background:linear-gradient(135deg,#0f172a,#1e293b);
+color:white;
+}
+
+/* NAV */
+.nav{
+display:flex;
+justify-content:space-between;
+padding:15px 25px;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(10px);
+}
+
+.nav a{
+color:white;
+text-decoration:none;
+}
+
+/* TITLE */
+.title{
+text-align:center;
+padding:20px;
+}
+
+/* TABS */
+.tabs{
+display:flex;
+justify-content:center;
+gap:10px;
+flex-wrap:wrap;
+padding:10px;
+}
+
+.tab{
+padding:8px 16px;
+border-radius:20px;
+background:rgba(255,255,255,0.08);
+cursor:pointer;
+}
+
+.tab.active{
+background:#6366f1;
+}
+
+/* IMAGE */
+.container{
+max-width:1000px;
+margin:auto;
+padding:20px;
+text-align:center;
+}
+
+.container img{
+width:100%;
+border-radius:12px;
+transition:0.3s;
+}
+
+.container img:hover{
+transform:scale(1.02);
+}
+
+/* BUTTON */
+.btn{
+display:inline-block;
+margin-top:15px;
+padding:12px 25px;
+border-radius:25px;
+background:#6366f1;
+color:white;
+text-decoration:none;
+}
+
+/* FADE */
+.fade{
+animation:fade 0.4s ease;
+}
+
+@keyframes fade{
+from{opacity:0;}
+to{opacity:1;}
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<div class="nav">
+<h3>📊 Telecom Project</h3>
+<a href="index.html">⬅ Back</a>
+</div>
+
+<!-- TITLE -->
+<div class="title">
+<h2>Customer Churn Dashboard</h2>
+<p>Explore insights across different analytics views</p>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+
+<div class="tab active" onclick="switchTab('overview', this)">Overview</div>
+<div class="tab" onclick="switchTab('insights', this)">Insights</div>
+<div class="tab" onclick="switchTab('churn', this)">Churn</div>
+<div class="tab" onclick="switchTab('strategy', this)">Strategy</div>
+
+</div>
+
+<!-- CONTENT -->
+<div class="container">
+
+<img id="preview" src="executive-overview.png" class="fade">
+
+<br>
+
+<a id="liveBtn" href="https://app.powerbi.com/view?r=eyJrIjoiNGM0OGMxN2UtMjdjYy00YzRkLWE5NTMtNzRhMDAyZjJkODZkIiwidCI6IjNkMGE5Y2FiLTQzYzYtNDlkNi1iODZjLTFiMTZjNGQwMjYzNSJ9&pageName=40ed3e03483196c0b5e2" target="_blank" class="btn">
+🚀 Open Live Dashboard
+</a>
+
+</div>
+
+<script>
+
+/* IMAGES */
+const images = {
+overview: "executive-overview.png",
+insights: "customer-insights.png",
+churn: "churn-analysis.png",
+strategy: "retention-strategy.png"
+};
+
+/* SWITCH TAB */
+function switchTab(page, el){
+
+document.getElementById("preview").src = images[page];
+document.getElementById("preview").classList.add("fade");
+
+/* ACTIVE TAB */
+document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
+el.classList.add("active");
+
+}
+
+</script>
+
+</body>
+</html>
