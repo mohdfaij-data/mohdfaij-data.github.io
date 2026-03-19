@@ -103,7 +103,7 @@ font-weight:500;
 
 /* SECTIONS */
 section{
-max-width:1000px;
+max-width:1100px;
 margin:auto;
 padding:80px 20px;
 text-align:center;
@@ -136,7 +136,7 @@ box-shadow:0 10px 25px rgba(0,0,0,0.1);
 /* PROJECTS */
 .projects{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
 gap:25px;
 }
 
@@ -154,18 +154,21 @@ box-shadow:0 10px 25px rgba(0,0,0,0.1);
 }
 
 .card a{
-display:inline-block;
-margin-top:15px;
-padding:10px 20px;
+display:block;
+margin-top:10px;
+padding:10px;
 background:#6366f1;
 border-radius:8px;
 color:white;
 text-decoration:none;
+text-align:center;
+font-size:14px;
 transition:0.3s;
 }
 
 .card a:hover{
 background:#4f46e5;
+transform:scale(1.03);
 }
 
 /* VIDEO */
@@ -204,21 +207,19 @@ color:#64748b;
 
 <div class="contact-icons">
 <a href="mailto:mohdfaij.data@gmail.com"><i class="fa-solid fa-envelope"></i></a>
-<a href="tel:+919876543210"><i class="fa-solid fa-phone"></i></a>
+<a href="+916387151848"><i class="fa-solid fa-phone"></i></a>
 <a href="https://linkedin.com/in/mohdfaij-data" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
 <a href="https://github.com/mohdfaij-data" target="_blank"><i class="fa-brands fa-github"></i></a>
-<a href="https://wa.me/6387151848" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
 </div>
 
 <a href="resume.pdf" download class="button">Download Resume</a>
-
 </div>
 
 <!-- ABOUT -->
 <section>
 <h2>About Me</h2>
 <p>
-I am a B.Com graduate and a results-driven Data Analyst skilled in SQL, Excel, Power BI, and Python. I have delivered multiple end-to-end analytics projects involving data cleaning, transformation, and visualization—turning complex datasets into actionable insights and building interactive dashboards that drive strategic business decisions.
+Results-driven Data Analyst skilled in SQL, Excel, Power BI, and Python. I specialize in transforming raw data into actionable insights through dashboards, analysis, and data modeling.
 </p>
 </section>
 
@@ -239,20 +240,39 @@ I am a B.Com graduate and a results-driven Data Analyst skilled in SQL, Excel, P
 
 <div class="projects">
 
+<!-- PROJECT 1 -->
 <div class="card">
-<h3>SQL Sales Analysis</h3>
-<p>Analyze sales data using SQL queries to identify trends.</p>
-<a href="#">View Project</a>
+<h3>Telecom Customer Analytics</h3>
+<p>End-to-end telecom churn analysis with insights, trends, and retention strategies.</p>
+
+<a href="executive-overview.png">📄 View Project</a>
+
+<a href="executive-overview.png" target="_blank">📊 Executive Overview</a>
+<a href="customer-insights.png" target="_blank">📊 Insights & Revenue</a>
+<a href="churn-analysis.png" target="_blank">📊 Churn Analysis</a>
+<a href="retention-strategy.png" target="_blank">📊 Retention Strategy</a>
+
 </div>
 
+<!-- PROJECT 2 -->
 <div class="card">
-<h3>Power BI Dashboard</h3>
-<p>Interactive dashboard showing business performance metrics.</p>
+<h3>Enterprise Sales Dashboard</h3>
+<p>Dashboard analyzing revenue, profitability, and sales performance.</p>
 
-<!-- ✅ FINAL LIVE DASHBOARD BUTTON -->
-<a href="https://app.powerbi.com/view?r=eyJrIjoiNGM0OGMxN2UtMjdjYy00YzRkLWE5NTMtNzRhMDAyZjJkODZkIiwidCI6IjNkMGE5Y2FiLTQzYzYtNDlkNi1iODZjLTFiMTZjNGQwMjYzNSJ9&pageName=40ed3e03483196c0b5e2" target="_blank">
-🚀 View Live Dashboard
-</a>
+<a href="<iframe title="Telecom-Project" width="600" height="373.5" src="https://app.powerbi.com/view?r=eyJrIjoiNGM0OGMxN2UtMjdjYy00YzRkLWE5NTMtNzRhMDAyZjJkODZkIiwidCI6IjNkMGE5Y2FiLTQzYzYtNDlkNi1iODZjLTFiMTZjNGQwMjYzNSJ9&pageName=40ed3e03483196c0b5e2" frameborder="0" allowFullScreen="true">
+</iframe>" target="_blank">🚀 View Live Dashboard</a>
+
+</div>
+
+<!-- PROJECT 3 -->
+<div class="card">
+<h3>Data Modeling (SQL)</h3>
+<p>Designed relational and transactional data models for business analysis.</p>
+
+<a href="#">📄 View Project</a>
+
+<a href="PASTE_LINK_6" target="_blank">🗂 Customers & Orders Model</a>
+<a href="PASTE_LINK_7" target="_blank">🗂 Transactions Model</a>
 
 </div>
 
