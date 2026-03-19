@@ -8,35 +8,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-/* SOCIAL ICONS */
 
-.social-icons{
-display:flex;
-justify-content:center;
-gap:20px;
-margin:15px 0;
-}
-
-.social-icons a{
-width:40px;
-height:40px;
-display:flex;
-align-items:center;
-justify-content:center;
-border-radius:50%;
-background:white;
-color:#111;
-font-size:18px;
-transition:0.3s;
-box-shadow:0 5px 15px rgba(0,0,0,0.1);
-}
-
-.social-icons a:hover{
-transform:translateY(-5px) scale(1.1);
-background:#6366f1;
-color:white;
-box-shadow:0 10px 25px rgba(99,102,241,0.4);
-}
 /* RESET */
 *{margin:0;padding:0;box-sizing:border-box;font-family:system-ui;}
 
@@ -52,70 +24,113 @@ nav{
 display:flex;
 justify-content:center;
 gap:30px;
-padding:18px;
+padding:15px;
 background:rgba(255,255,255,0.7);
 backdrop-filter:blur(10px);
 position:sticky;
 top:0;
 z-index:100;
 }
-
-nav a{
-text-decoration:none;
-color:#334155;
-}
-
+nav a{text-decoration:none;color:#334155;}
 nav a:hover{color:#6366f1;}
 
 /* HERO */
 .hero{
 text-align:center;
-padding:70px 20px;
+padding:50px 20px 20px;
+animation:fade 1s ease;
 }
 
 .hero img{
-width:130px;
+width:120px;
 border-radius:50%;
-box-shadow:0 15px 35px rgba(0,0,0,0.2);
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
+margin-bottom:10px;
 }
 
-.hero h1{font-size:30px;margin-top:20px;}
+.hero h1{
+font-size:42px;
+margin:5px 0;
+}
 
+.hero .headline{
+font-size:16px;
+color:#6366f1;
+margin-bottom:10px;
+font-weight:500;
+}
+
+.hero p{
+color:#64748b;
+margin-bottom:10px;
+}
+
+/* BUTTONS */
 .button{
 display:inline-block;
-margin-top:20px;
-padding:12px 30px;
+margin:10px;
+padding:12px 28px;
 border-radius:30px;
 background:linear-gradient(135deg,#6366f1,#8b5cf6);
 color:white;
 text-decoration:none;
+transition:0.3s;
 }
 
+.button:hover{
+transform:translateY(-3px);
+box-shadow:0 10px 20px rgba(99,102,241,0.3);
+}
+
+.secondary-btn{
+background:white;
+color:#6366f1;
+border:1px solid #6366f1;
+}
+
+/* SOCIAL */
+.social-icons{
+display:flex;
+justify-content:center;
+gap:15px;
+margin:10px 0;
+}
+
+.social-icons a{
+width:38px;
+height:38px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:50%;
+background:white;
+color:#111;
+transition:0.3s;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.social-icons a:hover{
+background:#6366f1;
+color:white;
+transform:translateY(-4px);
+}
 
 /* SECTION */
 section{
 max-width:1100px;
 margin:auto;
-padding:70px 20px;
+padding:60px 20px;
 text-align:center;
 }
 
-#about{
-  max-width:700px;
-  margin:60px auto;
-  padding:20px;
-}
-
+/* ABOUT */
 #about p{
-  color:#64748b;
-  line-height:1.6;
-  font-size:15px;
+color:#64748b;
+line-height:1.6;
+max-width:700px;
+margin:auto;
 }
 
-#about h2{
-  font-size:28px;
-  margin-bottom:10px;
-}
 /* SKILLS */
 .skills{
 display:grid;
@@ -126,53 +141,47 @@ margin-top:30px;
 
 .skill{
 background:white;
-padding:25px;
-border-radius:15px;
+padding:20px;
+border-radius:12px;
+box-shadow:0 5px 15px rgba(0,0,0,0.08);
 transition:0.3s;
 }
 
 .skill:hover{
 transform:translateY(-6px);
-box-shadow:0 10px 25px rgba(0,0,0,0.1);
 }
 
-/* PROJECT */
+/* PROJECTS */
 .projects{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
 gap:25px;
 margin-top:30px;
 }
-  
+
 .card{
-background:rgba(255,255,255,0.6);
-padding:25px;
-border-radius:20px;
-backdrop-filter:blur(12px);
+background:white;
+padding:20px;
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,0.08);
 transition:0.3s;
 }
 
 .card:hover{
 transform:translateY(-8px);
-box-shadow:0 15px 35px rgba(0,0,0,0.1);
 }
 
 .card img{
 width:100%;
-border-radius:12px;
+border-radius:10px;
 margin-top:10px;
 cursor:pointer;
-transition:0.3s;
 }
 
-.card img:hover{
-transform:scale(1.05);
-}
-
-/* BUTTON */
+/* PRIMARY BUTTON */
 .primary-btn{
 display:block;
-margin-top:15px;
+margin-top:12px;
 padding:12px;
 border-radius:25px;
 background:linear-gradient(135deg,#6366f1,#8b5cf6);
@@ -180,11 +189,38 @@ color:white;
 text-decoration:none;
 }
 
-/* GRID */
-.dashboard-grid{
+/* VALUE */
+.value-section{
+padding:60px 20px;
+}
+
+.value-grid{
 display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:10px;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:20px;
+margin-top:30px;
+}
+
+.value-card{
+background:white;
+padding:20px;
+border-radius:15px;
+box-shadow:0 5px 20px rgba(0,0,0,0.08);
+transition:0.3s;
+}
+
+.value-card:hover{
+transform:translateY(-8px);
+}
+
+/* OPEN TO WORK */
+.hire{
+background:linear-gradient(135deg,#6366f1,#8b5cf6);
+color:white;
+padding:40px 20px;
+border-radius:20px;
+margin:40px auto;
+max-width:900px;
 }
 
 /* MODAL */
@@ -206,119 +242,17 @@ width:80%;
 border-radius:10px;
 }
 
-.close{
-position:absolute;
-top:20px;
-right:30px;
-font-size:30px;
-color:white;
-cursor:pointer;
-}
-
-.value-section{
-  text-align:center;
-  padding:90px 20px;
-}
-
-/* 🔥 Premium Heading */
-.value-section h2{
-  font-size:34px;
-  margin-bottom:15px;
-  background:linear-gradient(135deg,#6366f1,#8b5cf6);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-
-/* Subtitle (optional but powerful) */
-.value-section p.section-subtitle{
-  color:#64748b;
-  max-width:600px;
-  margin:0 auto 40px;
-  font-size:15px;
-}
-
-/* Grid */
-.value-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(240px,1fr));
-  gap:25px;
-  max-width:1100px;
-  margin:auto;
-}
-
-/* 🔥 Card Design Upgrade */
-.value-card{
-  background:rgba(255,255,255,0.7);
-  backdrop-filter:blur(12px);
-  padding:25px;
-  border-radius:16px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.08);
-  transition:all 0.35s ease;
-  border:1px solid rgba(255,255,255,0.3);
-  position:relative;
-  overflow:hidden;
-}
-
-/* ✨ Shine Effect */
-.value-card::before{
-  content:"";
-  position:absolute;
-  width:100%;
-  height:100%;
-  top:0;
-  left:0;
-  background:linear-gradient(120deg, transparent, rgba(99,102,241,0.15), transparent);
-  opacity:0;
-  transition:0.5s;
-}
-
-.value-card:hover::before{
-  opacity:1;
-}
-
-/* Title with icon */
-.value-card h3{
-  font-size:18px;
-  margin-bottom:10px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
-}
-
-/* Icon style */
-.value-card h3 span{
-  font-size:22px;
-}
-
-/* Description */
-.value-card p{
-  font-size:14px;
-  color:#64748b;
-  line-height:1.6;
-}
-
-/* 🔥 Hover Effect */
-.value-card:hover{
-  transform:translateY(-12px) scale(1.04);
-  box-shadow:0 25px 50px rgba(99,102,241,0.3);
-  border:1px solid rgba(99,102,241,0.4);
-}
-/* FADE */
-.fade{
-animation:fade 1s ease;
-}
-
-@keyframes fade{
-from{opacity:0;}
-to{opacity:1;}
-}
-
 /* FOOTER */
 footer{
 text-align:center;
-padding:30px;
+padding:20px;
 color:#64748b;
+}
+
+/* ANIMATION */
+@keyframes fade{
+from{opacity:0;}
+to{opacity:1;}
 }
 
 </style>
@@ -326,48 +260,36 @@ color:#64748b;
 
 <body>
 
-<!-- NAV -->
 <nav>
 <a href="#">Home</a>
 <a href="#skills">Skills</a>
 <a href="#projects">Projects</a>
 </nav>
 
-<!-- HERO -->
-<div class="hero fade">
+<div class="hero">
 <img src="photo.jpeg">
 <h1>Mohd Faij</h1>
+<p class="headline">Turning Data into Business Insights</p>
 <p>Data Analyst | SQL | Excel | Power BI | Python</p>
+
 <div class="social-icons">
-
 <a href="mailto:mohdfaij.data@email.com"><i class="fas fa-envelope"></i></a>
-
-<a href="https://linkedin.com/in/mohdfaij-data"target="_blank">
-<i class="fab fa-linkedin"></i>
-</a>
-
-<a href="https://github.com/mohdfaij-data"target="_blank">
-<i class="fab fa-github"></i>
-</a>
-
-<a href="https://wa.me/+916387151848"target="_blank">
-<i class="fab fa-whatsapp"></i>
-</a>
-
+<a href="https://linkedin.com/in/mohdfaij-data" target="_blank"><i class="fab fa-linkedin"></i></a>
+<a href="https://github.com/mohdfaij-data" target="_blank"><i class="fab fa-github"></i></a>
+<a href="https://wa.me/+916387151848" target="_blank"><i class="fab fa-whatsapp"></i></a>
 </div>
+
 <a href="resume.pdf" class="button">Download Resume</a>
+<a href="#projects" class="button secondary-btn">View Projects</a>
 </div>
+
 <section id="about">
-  <h2>About Me</h2>
-  <p>
- I am a B.Com graduate and a results-driven Data Analyst skilled in SQL, Excel, Power BI, and Python. 
-My academic background in Statistics, Finance, and Business Analytics has given me a strong foundation in data interpretation, financial analysis, and evaluating business performance. 
-This enables me to not only analyze data but also translate insights into meaningful business decisions. 
-I have built end-to-end analytics projects involving data cleaning, transformation, and visualization—turning complex datasets into actionable insights and creating interactive dashboards that support data-driven decision-making.
-  </p>
+<h2>About Me</h2>
+<p>
+I am a B.Com graduate and a results-driven Data Analyst skilled in SQL, Excel, Power BI, and Python. I specialize in transforming raw data into actionable insights that help businesses make smarter decisions.
+</p>
 </section>
-  
-<!-- SKILLS -->
+
 <section id="skills">
 <h2>Skills</h2>
 <div class="skills">
@@ -378,112 +300,61 @@ I have built end-to-end analytics projects involving data cleaning, transformati
 </div>
 </section>
 
-<!-- PROJECTS -->
 <section id="projects">
 <h2>Projects</h2>
 
 <div class="projects">
 
-<!-- TELECOM -->
 <div class="card">
-
 <h3>Telecom Customer Churn Analysis</h3>
-
-<p>Key Insight: High churn among low tenure customers.</p>
-
-<p style="font-size:13px; color:#64748b;">
-📊 Cleaned 7K+ records • Built interactive dashboards • Identified churn drivers
-</p>
-
-<a href="telecom.html">
-  <img src="executive-overview.png" class="main-preview">
-</a>
-
-<p style="margin-top:10px; font-weight:500;">
-👉 Includes 4 dashboards: Overview • Insights • Churn • Strategy
-</p>
-
-<a href="https://app.powerbi.com/view?r=eyJrIjoiNGM0OGMxN2UtMjdjYy00YzRkLWE5NTMtNzRhMDAyZjJkODZkIiwidCI6IjNkMGE5Y2FiLTQzYzYtNDlkNi1iODZjLTFiMTZjNGQwMjYzNSJ9&pageName=40ed3e03483196c0b5e2"
-target="_blank"
-class="primary-btn">
-🚀 View Live Dashboard
-</a>
-
-<a href="telecom.html" class="primary-btn" style="background:#0f172a;">
-📊 Explore Project
-</a>
-
+<p>Identified key churn drivers and built dashboards for insights.</p>
+<img src="executive-overview.png" onclick="openModal(this)">
+<a href="#" class="primary-btn">View Dashboard</a>
 </div>
 
-<!-- ENTERPRISE -->
 <div class="card">
 <h3>Enterprise Sales Dashboard</h3>
-<p>Key Insight: Premium segment drives highest revenue.</p>
-
+<p>Analyzed revenue trends and business performance.</p>
 <img src="Enterprise-Dashboard.png" onclick="openModal(this)">
-
-<a href="PASTE_ENTERPRISE_LI" target="_blank" class="primary-btn">
-🚀 View Live Dashboard
-</a>
-
+<a href="#" class="primary-btn">View Dashboard</a>
 </div>
 
 </div>
 
 </section>
 
-<!-- MODAL -->
+<section class="value-section">
+<h2>What I Bring</h2>
+
+<div class="value-grid">
+<div class="value-card">📊 Data Cleaning</div>
+<div class="value-card">📈 Dashboards</div>
+<div class="value-card">🔍 Insights</div>
+<div class="value-card">💡 Decision Support</div>
+</div>
+</section>
+
+<section class="hire">
+<h2>🚀 Open to Opportunities</h2>
+<p>I am actively looking for Data Analyst roles.</p>
+</section>
+
 <div id="modal" class="modal" onclick="closeModal()">
-<span class="close">&times;</span>
 <img id="modalImg">
 </div>
 
-<!-- FOOTER -->
-<section class="value-section">
-  <h2>What I Bring to the Table</h2>
-
-  <p style="color:#64748b; max-width:600px; margin:auto; margin-bottom:30px;">
-    Delivering impactful data solutions that drive business growth and smarter decisions.
-  </p>
-
-  <div class="value-grid">
-
-<div class="value-card">
-  <h3>📊 Data Cleaning & Transformation</h3>
-  <p>Cleaning and preparing raw data for accurate analysis</p>
-</div>
-
-<div class="value-card">
-  <h3>📈 Interactive Dashboards</h3>
-  <p>Building dynamic dashboards using Power BI</p>
-</div>
-
-<div class="value-card">
-  <h3>🔍 Business Insights & Trends</h3>
-  <p>Identifying patterns to improve business performance</p>
-</div>
-
-<div class="value-card">
-  <h3>💡 Data-Driven Decision Support</h3>
-  <p>Helping businesses make informed decisions using data</p>
-</div>
-
-  </div>
-</section>
-<footer class="footer">
-  <p>&copy; 2026 Mohd Faij • All Rights Reserved</p>
+<footer>
+<p>© 2026 Mohd Faij • All Rights Reserved</p>
 </footer>
-<script>
 
+<script>
 function openModal(img){
 document.getElementById("modal").style.display="flex";
 document.getElementById("modalImg").src=img.src;
 }
-
 function closeModal(){
 document.getElementById("modal").style.display="none";
 }
-
 </script>
 
 </body>
