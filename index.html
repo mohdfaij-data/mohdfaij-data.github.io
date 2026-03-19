@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mohd Faij | Data Analyst</title>
 
-<title>Dashboard | Mohd Faij</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
 
@@ -13,88 +14,175 @@
 
 /* BODY */
 body{
-background:linear-gradient(135deg,#0f172a,#1e293b);
-color:white;
+background:linear-gradient(135deg,#eef2ff,#f8fafc);
+color:#0f172a;
+scroll-behavior:smooth;
 }
 
 /* NAV */
-.nav{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:15px 25px;
-background:rgba(255,255,255,0.05);
-backdrop-filter:blur(10px);
-}
-
-.nav h2{font-size:18px;}
-.nav a{color:white;text-decoration:none;}
-
-/* PROJECT SWITCH */
-.project-switch{
+nav{
 display:flex;
 justify-content:center;
-gap:15px;
-padding:15px;
+gap:30px;
+padding:18px;
+background:rgba(255,255,255,0.7);
+backdrop-filter:blur(10px);
+position:sticky;
+top:0;
+z-index:100;
 }
 
-.switch-btn{
-padding:10px 20px;
+nav a{
+text-decoration:none;
+color:#334155;
+}
+
+nav a:hover{color:#6366f1;}
+
+/* HERO */
+.hero{
+text-align:center;
+padding:90px 20px;
+}
+
+.hero img{
+width:130px;
+border-radius:50%;
+box-shadow:0 15px 35px rgba(0,0,0,0.2);
+}
+
+.hero h1{font-size:42px;margin-top:20px;}
+
+.button{
+display:inline-block;
+margin-top:20px;
+padding:12px 30px;
+border-radius:30px;
+background:linear-gradient(135deg,#6366f1,#8b5cf6);
+color:white;
+text-decoration:none;
+}
+
+/* SECTION */
+section{
+max-width:1100px;
+margin:auto;
+padding:70px 20px;
+text-align:center;
+}
+
+/* SKILLS */
+.skills{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+}
+
+.skill{
+background:white;
+padding:25px;
+border-radius:15px;
+transition:0.3s;
+}
+
+.skill:hover{
+transform:translateY(-6px);
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* PROJECT */
+.projects{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:25px;
+}
+
+.card{
+background:rgba(255,255,255,0.6);
+padding:25px;
 border-radius:20px;
-background:rgba(255,255,255,0.08);
+backdrop-filter:blur(12px);
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-8px);
+box-shadow:0 15px 35px rgba(0,0,0,0.1);
+}
+
+.card img{
+width:100%;
+border-radius:12px;
+margin-top:10px;
 cursor:pointer;
 transition:0.3s;
 }
 
-.switch-btn:hover{background:#6366f1;}
-.active-switch{background:#6366f1;}
-
-/* TABS */
-.tabs{
-display:flex;
-justify-content:center;
-gap:10px;
-padding:10px;
-flex-wrap:wrap;
-}
-
-.tab{
-padding:8px 16px;
-border-radius:15px;
-background:rgba(255,255,255,0.08);
-cursor:pointer;
-}
-
-.tab.active{background:#8b5cf6;}
-
-/* CONTAINER */
-.container{padding:15px;}
-
-iframe{
-width:100%;
-height:80vh;
-border:none;
-border-radius:12px;
-animation:fade 0.4s ease;
-}
-
-@keyframes fade{
-from{opacity:0;transform:scale(0.98);}
-to{opacity:1;}
+.card img:hover{
+transform:scale(1.05);
 }
 
 /* BUTTON */
-.fallback{
-text-align:center;
-margin-top:10px;
-}
-
-.fallback a{
-background:#6366f1;
-padding:10px 20px;
-border-radius:20px;
+.primary-btn{
+display:block;
+margin-top:15px;
+padding:12px;
+border-radius:25px;
+background:linear-gradient(135deg,#6366f1,#8b5cf6);
 color:white;
 text-decoration:none;
+}
+
+/* GRID */
+.dashboard-grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:10px;
+}
+
+/* MODAL */
+.modal{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.8);
+justify-content:center;
+align-items:center;
+z-index:1000;
+}
+
+.modal img{
+width:80%;
+border-radius:10px;
+}
+
+.close{
+position:absolute;
+top:20px;
+right:30px;
+font-size:30px;
+color:white;
+cursor:pointer;
+}
+
+/* FADE */
+.fade{
+animation:fade 1s ease;
+}
+
+@keyframes fade{
+from{opacity:0;}
+to{opacity:1;}
+}
+
+/* FOOTER */
+footer{
+text-align:center;
+padding:30px;
+color:#64748b;
 }
 
 </style>
@@ -103,92 +191,96 @@ text-decoration:none;
 <body>
 
 <!-- NAV -->
-<div class="nav">
-<h2>📊 Dashboard Viewer</h2>
-<a href="index.html">⬅ Back</a>
+<nav>
+<a href="#">Home</a>
+<a href="#skills">Skills</a>
+<a href="#projects">Projects</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero fade">
+<img src="photo.jpeg">
+<h1>Mohd Faij</h1>
+<p>Data Analyst | SQL | Excel | Power BI | Python</p>
+<a href="resume.pdf" class="button">Download Resume</a>
 </div>
 
-<!-- PROJECT SWITCH -->
-<div class="project-switch">
+<!-- SKILLS -->
+<section id="skills">
+<h2>Skills</h2>
+<div class="skills">
+<div class="skill">SQL</div>
+<div class="skill">Excel</div>
+<div class="skill">Power BI</div>
+<div class="skill">Python</div>
+</div>
+</section>
 
-<div class="switch-btn active-switch" onclick="switchProject('telecom', this)">
-Telecom Project
+<!-- PROJECTS -->
+<section id="projects">
+<h2>Projects</h2>
+
+<div class="projects">
+
+<!-- TELECOM -->
+<div class="card">
+<h3>Telecom Customer Churn Analysis</h3>
+<p>Key Insight: High churn among low tenure customers.</p>
+
+<div class="dashboard-grid">
+
+<img src="executive-overview.png" onclick="openModal(this)">
+<img src="customer-insights.png" onclick="openModal(this)">
+<img src="churn-analysis.png" onclick="openModal(this)">
+<img src="retention-strategy.png" onclick="openModal(this)">
+
 </div>
 
-<div class="switch-btn" onclick="switchProject('enterprise', this)">
-Enterprise Project
+<a href="https://app.powerbi.com/view?r=eyJrIjoiNGM0OGMxN2UtMjdjYy00YzRkLWE5NTMtNzRhMDAyZjJkODZkIiwidCI6IjNkMGE5Y2FiLTQzYzYtNDlkNi1iODZjLTFiMTZjNGQwMjYzNSJ9&pageName=40ed3e03483196c0b5e2" target="_blank" class="primary-btn">
+🚀 View Live Dashboard
+</a>
+
+<a href="telecom.html" class="primary-btn" style="background:#0f172a;">
+📊 Explore Project
+</a>
+
+</div>
+
+<!-- ENTERPRISE -->
+<div class="card">
+<h3>Enterprise Sales Dashboard</h3>
+<p>Key Insight: Premium segment drives highest revenue.</p>
+
+<img src="Enterprise-Dashboard.png" onclick="openModal(this)">
+
+<a href="PASTE_ENTERPRISE_LI" target="_blank" class="primary-btn">
+🚀 View Live Dashboard
+</a>
+
 </div>
 
 </div>
 
-<!-- TELECOM TABS -->
-<div id="telecomTabs" class="tabs">
+</section>
 
-<div class="tab active" onclick="loadTelecom('overview', this)">Overview</div>
-<div class="tab" onclick="loadTelecom('insights', this)">Insights</div>
-<div class="tab" onclick="loadTelecom('churn', this)">Churn</div>
-<div class="tab" onclick="loadTelecom('strategy', this)">Strategy</div>
-
+<!-- MODAL -->
+<div id="modal" class="modal" onclick="closeModal()">
+<span class="close">&times;</span>
+<img id="modalImg">
 </div>
 
-<!-- DASHBOARD -->
-<div class="container">
-<iframe id="frame"></iframe>
-
-<div class="fallback">
-<a id="openLink" target="_blank">🔗 Open in New Tab</a>
-</div>
-</div>
+<!-- FOOTER -->
+<footer>© 2026 Mohd Faij</footer>
 
 <script>
 
-/* 🖼️ TELECOM IMAGES (4 PAGES) */
-const telecomImages = {
-overview: "executive-overview.png",
-insights: "customer-insights.png",
-churn: "churn-analysis.png",
-strategy: "retention-strategy.png"
-};
-
-/* 🔗 LINKS (ONLY 1 PER PROJECT) */
-const telecomLink = "PASTE_TELECOM_LINK";
-const enterpriseLink = "PASTE_ENTERPRISE_LINK";
-
-/* 🖼️ ENTERPRISE IMAGE */
-const enterpriseImage = "enterprise-dashboard.png";
-
-/* DEFAULT LOAD */
-loadTelecom('overview', document.querySelector('.tab'));
-
-/* SWITCH PROJECT */
-function switchProject(type, el){
-
-document.querySelectorAll(".switch-btn").forEach(b=>b.classList.remove("active-switch"));
-el.classList.add("active-switch");
-
-if(type === "telecom"){
-document.getElementById("telecomTabs").style.display="flex";
-loadTelecom('overview', document.querySelector('.tab'));
-}
-else{
-document.getElementById("telecomTabs").style.display="none";
-
-document.getElementById("previewImg").src = enterpriseImage;
-document.getElementById("openLink").href = enterpriseLink;
+function openModal(img){
+document.getElementById("modal").style.display="flex";
+document.getElementById("modalImg").src=img.src;
 }
 
-}
-
-/* TELECOM TAB SWITCH */
-function loadTelecom(page, el){
-
-document.getElementById("previewImg").src = telecomImages[page];
-document.getElementById("openLink").href = telecomLink;
-
-/* ACTIVE TAB */
-document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
-el.classList.add("active");
-
+function closeModal(){
+document.getElementById("modal").style.display="none";
 }
 
 </script>
