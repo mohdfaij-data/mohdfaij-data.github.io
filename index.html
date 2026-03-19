@@ -6,110 +6,182 @@
 
 <title>Mohd Faij | Data Analyst</title>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 <style>
 
-/* RESET */
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:system-ui;
-}
-
+/* BODY */
 body{
-  background:#f8fafc;
-  color:#0f172a;
+margin:0;
+font-family:system-ui;
+background:#f8fafc;
+color:#0f172a;
+scroll-behavior:smooth;
 }
 
 /* NAVBAR */
 nav{
-  display:flex;
-  justify-content:center;
-  gap:40px;
-  padding:20px;
-  background:white;
-  border-bottom:1px solid #e2e8f0;
-  position:sticky;
-  top:0;
+display:flex;
+justify-content:center;
+gap:40px;
+padding:18px;
+background:#ffffff;
+border-bottom:1px solid #e2e8f0;
+position:sticky;
+top:0;
 }
 
 nav a{
-  text-decoration:none;
-  color:#334155;
-  font-weight:500;
+text-decoration:none;
+color:#334155;
+font-weight:500;
+}
+
+nav a:hover{
+color:#6366f1;
 }
 
 /* HERO */
 .hero{
-  text-align:center;
-  padding:80px 20px;
-  background:linear-gradient(135deg,#f1f5f9,#e2e8f0);
+text-align:center;
+padding:100px 20px;
+background:linear-gradient(135deg,#f1f5f9,#e2e8f0);
+}
+
+.hero img{
+width:140px;
+height:140px;
+border-radius:50%;
+border:4px solid white;
+box-shadow:0 10px 25px rgba(0,0,0,0.15);
 }
 
 .hero h1{
-  font-size:36px;
+font-size:42px;
+margin-top:20px;
 }
 
 .hero p{
-  margin-top:10px;
-  color:#64748b;
+color:#475569;
 }
 
-/* PROJECT SECTION */
-.projects{
-  padding:60px 20px;
-  text-align:center;
+/* CONTACT ICONS */
+.contact-icons{
+display:flex;
+justify-content:center;
+gap:15px;
+margin-top:20px;
 }
 
-.projects h2{
-  margin-bottom:30px;
+.contact-icons a{
+font-size:18px;
+padding:12px;
+border-radius:50%;
+background:white;
+color:#0f172a;
+border:1px solid #e2e8f0;
+transition:0.3s;
 }
 
-/* CARD */
-.card{
-  background:white;
-  padding:20px;
-  border-radius:16px;
-  box-shadow:0 10px 25px rgba(0,0,0,0.05);
-  max-width:500px;
-  margin:auto;
-  transition:0.3s;
-}
-
-.card:hover{
-  transform:translateY(-5px);
-}
-
-.card img{
-  width:100%;
-  border-radius:10px;
+.contact-icons a:hover{
+background:#0f172a;
+color:white;
+transform:scale(1.1);
 }
 
 /* BUTTON */
-.btn{
-  display:inline-block;
-  margin-top:15px;
-  padding:12px 20px;
-  border:none;
-  border-radius:8px;
-  background:#6366f1;
-  color:white;
-  cursor:pointer;
-  text-decoration:none;
-  transition:0.3s;
+.button{
+display:inline-block;
+margin-top:25px;
+padding:12px 30px;
+border-radius:30px;
+background:linear-gradient(135deg,#6366f1,#8b5cf6);
+color:white;
+text-decoration:none;
+font-weight:500;
 }
 
-.btn:hover{
-  background:#4f46e5;
+/* SECTIONS */
+section{
+max-width:1000px;
+margin:auto;
+padding:80px 20px;
+text-align:center;
+}
+
+h2{
+margin-bottom:30px;
+}
+
+/* SKILLS */
+.skills{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+}
+
+.skill{
+background:white;
+border:1px solid #e2e8f0;
+border-radius:12px;
+padding:25px;
+transition:0.3s;
+}
+
+.skill:hover{
+transform:translateY(-5px);
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* PROJECTS */
+.projects{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:25px;
+}
+
+.card{
+background:white;
+border:1px solid #e2e8f0;
+padding:25px;
+border-radius:15px;
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-6px);
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
+
+.card a{
+display:inline-block;
+margin-top:15px;
+padding:10px 20px;
+background:#6366f1;
+border-radius:8px;
+color:white;
+text-decoration:none;
+transition:0.3s;
+}
+
+.card a:hover{
+background:#4f46e5;
+}
+
+/* VIDEO */
+video{
+width:100%;
+border-radius:12px;
+margin-top:20px;
 }
 
 /* FOOTER */
 footer{
-  text-align:center;
-  padding:30px;
-  background:white;
-  border-top:1px solid #e2e8f0;
-  color:#64748b;
+text-align:center;
+padding:30px;
+background:white;
+border-top:1px solid #e2e8f0;
+color:#64748b;
 }
 
 </style>
@@ -119,42 +191,85 @@ footer{
 
 <!-- NAVBAR -->
 <nav>
-  <a href="#">Home</a>
-  <a href="#projects">Projects</a>
+<a href="#">Home</a>
+<a href="#skills">Skills</a>
+<a href="#projects">Projects</a>
 </nav>
 
 <!-- HERO -->
-<section class="hero">
-  <h1>Mohd Faij</h1>
-  <p>Aspiring Data Analyst | SQL • Excel • Power BI</p>
+<div class="hero">
+<img src="photo.jpeg">
+<h1>Mohd Faij</h1>
+<p>Data Analyst | SQL | Excel | Power BI | Python</p>
+
+<div class="contact-icons">
+<a href="mailto:mohdfaij.data@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+<a href="tel:+919876543210"><i class="fa-solid fa-phone"></i></a>
+<a href="https://linkedin.com/in/mohdfaij-data" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+<a href="https://github.com/mohdfaij-data" target="_blank"><i class="fa-brands fa-github"></i></a>
+<a href="https://wa.me/6387151848" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+</div>
+
+<a href="resume.pdf" download class="button">Download Resume</a>
+
+</div>
+
+<!-- ABOUT -->
+<section>
+<h2>About Me</h2>
+<p>
+I am a B.Com graduate and a results-driven Data Analyst skilled in SQL, Excel, Power BI, and Python. I have delivered multiple end-to-end analytics projects involving data cleaning, transformation, and visualization—turning complex datasets into actionable insights and building interactive dashboards that drive strategic business decisions.
+</p>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+<h2>Skills</h2>
+<div class="skills">
+<div class="skill">SQL</div>
+<div class="skill">Excel</div>
+<div class="skill">Power BI</div>
+<div class="skill">Python</div>
+</div>
 </section>
 
 <!-- PROJECTS -->
-<section id="projects" class="projects">
+<section id="projects">
+<h2>Projects</h2>
 
-  <h2>Projects</h2>
+<div class="projects">
 
-  <div class="card">
-    <h3>Telecom Customer Churn Analysis</h3>
-    <p style="color:#64748b; margin:10px 0;">
-      Built an interactive Power BI dashboard to analyze churn patterns and identify key risk factors.
-    </p>
+<div class="card">
+<h3>SQL Sales Analysis</h3>
+<p>Analyze sales data using SQL queries to identify trends.</p>
+<a href="#">View Project</a>
+</div>
 
-    <!-- Replace with your screenshot -->
-    <img src="https://via.placeholder.com/500x250">
+<div class="card">
+<h3>Power BI Dashboard</h3>
+<p>Interactive dashboard showing business performance metrics.</p>
 
-    <!-- LIVE BUTTON -->
-    <a href="https://app.powerbi.com/view?r=eyJrIjoiNGM0OGMxN2UtMjdjYy00YzRkLWE5NTMtNzRhMDAyZjJkODZkIiwidCI6IjNkMGE5Y2FiLTQzYzYtNDlkNi1iODZjLTFiMTZjNGQwMjYzNSJ9&pageName=40ed3e03483196c0b5e2" target="_blank" class="btn">
-      View Live Dashboard
-    </a>
+<!-- ✅ FINAL LIVE DASHBOARD BUTTON -->
+<a href="https://app.powerbi.com/view?r=eyJrIjoiNGM0OGMxN2UtMjdjYy00YzRkLWE5NTMtNzRhMDAyZjJkODZkIiwidCI6IjNkMGE5Y2FiLTQzYzYtNDlkNi1iODZjLTFiMTZjNGQwMjYzNSJ9&pageName=40ed3e03483196c0b5e2" target="_blank">
+🚀 View Live Dashboard
+</a>
 
-  </div>
+</div>
 
+</div>
+</section>
+
+<!-- VIDEO -->
+<section>
+<h2>Dashboard Demo</h2>
+<video controls>
+<source src="dashboard.mp4" type="video/mp4">
+</video>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  © 2026 Mohd Faij
+© 2026 Mohd Faij
 </footer>
 
 </body>
