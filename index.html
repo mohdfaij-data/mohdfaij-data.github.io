@@ -17,18 +17,14 @@
   <meta property="og:description" content="Data Analyst specializing in SQL, Excel, Power BI, and Python">
   <meta property="og:image" content="photo.jpeg">
   
-  <!-- Font Awesome (optimized with subset) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all'">
-  
-  <!-- Preload hero image for better LCP -->
-  <link rel="preload" as="image" href="photo.jpeg">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   
   <style>
-    /* CSS Variables for consistent theming */
+    /* CSS Variables */
     :root {
       --primary: #6366f1;
       --primary-dark: #4f46e5;
-      --primary-light: #818cf8;
       --secondary: #8b5cf6;
       --text-dark: #0f172a;
       --text-light: #64748b;
@@ -40,7 +36,7 @@
       --transition: all 0.3s ease;
     }
 
-    /* Reset & Base Styles */
+    /* Reset */
     * {
       margin: 0;
       padding: 0;
@@ -146,9 +142,15 @@
       color: white;
     }
 
-    .btn-dark {
-      background: var(--text-dark);
-      color: white;
+    .btn-outline {
+      background: transparent;
+      color: var(--text-dark);
+      border: 2px solid var(--text-light);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--primary);
+      color: var(--primary);
     }
 
     /* Social Icons */
@@ -180,9 +182,12 @@
 
     /* Sections */
     section {
-      max-width: 1100px;
+      max-width: 1200px;
       margin: 0 auto;
       padding: 4rem 1.5rem;
+    }
+
+    #about, #skills, .value-section {
       text-align: center;
     }
 
@@ -233,9 +238,6 @@
       border-radius: 1rem;
       box-shadow: var(--shadow-sm);
       transition: var(--transition);
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
     }
 
     .project-card:hover {
@@ -243,120 +245,77 @@
       box-shadow: var(--shadow-lg);
     }
 
-    .project-card h3 {
-      color: var(--primary-dark);
-    }
-
-    /* Image Gallery for 4 Pages */
-    .image-gallery {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 8px;
-      margin: 15px 0;
-    }
-
-    .gallery-img {
+    .project-image {
       width: 100%;
-      border-radius: 8px;
+      border-radius: 0.75rem;
+      margin: 1rem 0;
       cursor: pointer;
       transition: transform 0.3s ease;
-      aspect-ratio: 16/9;
-      object-fit: cover;
       border: 2px solid white;
     }
 
-    .gallery-img:hover {
-      transform: scale(1.05);
-      box-shadow: var(--shadow-md);
-    }
-
-    .page-badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      justify-content: center;
-      margin: 10px 0;
-    }
-
-    .badge {
-      background: var(--primary);
-      color: white;
-      padding: 4px 12px;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      font-weight: 500;
+    .project-image:hover {
+      transform: scale(1.02);
     }
 
     .project-links {
       display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      margin-top: 10px;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
     }
 
-    /* Telecom Pages Detail Section */
-    .telecom-pages {
+    /* Telecom Analysis Section */
+    .analysis-section {
       background: rgba(255, 255, 255, 0.5);
       border-radius: 2rem;
-      padding: 3rem 1.5rem;
-      margin-top: -1rem;
+      padding: 2rem;
+      margin: 2rem 0;
     }
 
-    .pages-grid {
+    .analysis-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 1.5rem;
       margin: 2rem 0;
     }
 
-    .page-card {
+    .analysis-card {
       background: white;
       padding: 1.5rem;
       border-radius: 1rem;
       text-align: left;
       box-shadow: var(--shadow-sm);
-      transition: var(--transition);
     }
 
-    .page-card:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-md);
-    }
-
-    .page-card h3 {
+    .analysis-card h3 {
       color: var(--primary);
-      margin-bottom: 0.75rem;
+      margin-bottom: 1rem;
       font-size: 1.2rem;
     }
 
-    .page-card p {
-      color: var(--text-light);
-      font-size: 0.95rem;
-      line-height: 1.5;
+    .chart-placeholder {
+      background: #f1f5f9;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      margin: 1rem 0;
+      font-family: monospace;
     }
 
-    .insights-box {
-      margin-top: 2rem;
-      padding: 2rem;
-      background: white;
-      border-radius: 1rem;
-      text-align: left;
-    }
-
-    .insights-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
-      margin-top: 1rem;
-    }
-
-    .insight-item {
+    .data-point {
       display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      padding: 0.75rem;
-      background: #f8fafc;
-      border-radius: 0.75rem;
+      justify-content: space-between;
+      padding: 0.25rem 0;
+      border-bottom: 1px dashed #e2e8f0;
+    }
+
+    .metric-highlight {
+      background: #eef2ff;
+      color: var(--primary);
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.25rem;
+      font-weight: 600;
     }
 
     /* Value Grid */
@@ -390,7 +349,12 @@
       padding: 3rem 2rem;
       border-radius: 1.5rem;
       margin: 2rem auto;
+      text-align: center;
       max-width: 900px;
+    }
+
+    .open-section h2 {
+      margin-bottom: 0.75rem;
     }
 
     .open-section p {
@@ -417,7 +381,6 @@
       max-width: 90%;
       max-height: 90%;
       border-radius: 0.5rem;
-      box-shadow: var(--shadow-lg);
     }
 
     /* Footer */
@@ -426,21 +389,11 @@
       padding: 2rem;
       color: var(--text-light);
     }
-
-    /* Utility Classes */
-    .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-    }
   </style>
 </head>
 <body>
-  <nav aria-label="Main navigation">
-    <a href="#home" aria-current="page">Home</a>
+  <nav>
+    <a href="#home">Home</a>
     <a href="#skills">Skills</a>
     <a href="#projects">Projects</a>
   </nav>
@@ -448,24 +401,16 @@
   <main>
     <!-- Hero Section -->
     <section id="home" class="hero">
-      <img src="photo.jpeg" alt="Mohd Faij - Data Analyst">
+      <img src="photo.jpeg" alt="Mohd Faij">
       <h1>Mohd Faij</h1>
       <p class="headline">Turning Data into Business Insights</p>
       <p>Data Analyst | SQL | Excel | Power BI | Python</p>
       
       <div class="social-icons">
-        <a href="mailto:mohdfaij.data@email.com" aria-label="Email">
-          <i class="fas fa-envelope" aria-hidden="true"></i>
-        </a>
-        <a href="https://linkedin.com/in/mohdfaij-data" target="_blank" rel="noopener" aria-label="LinkedIn">
-          <i class="fab fa-linkedin" aria-hidden="true"></i>
-        </a>
-        <a href="https://github.com/mohdfaij-data" target="_blank" rel="noopener" aria-label="GitHub">
-          <i class="fab fa-github" aria-hidden="true"></i>
-        </a>
-        <a href="https://wa.me/+916387151848" target="_blank" rel="noopener" aria-label="WhatsApp">
-          <i class="fab fa-whatsapp" aria-hidden="true"></i>
-        </a>
+        <a href="mailto:mohdfaij.data@email.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+        <a href="https://linkedin.com/in/mohdfaij-data" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/mohdfaij-data" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://wa.me/+916387151848" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
       </div>
 
       <div>
@@ -475,8 +420,8 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" aria-labelledby="about-heading">
-      <h2 id="about-heading">About Me</h2>
+    <section id="about">
+      <h2>About Me</h2>
       <p>
         I am a B.Com graduate and a results-driven Data Analyst skilled in SQL, Excel, Power BI, and Python.
         My academic background in Statistics, Finance, and Business Analytics has given me a strong foundation 
@@ -485,8 +430,8 @@
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" aria-labelledby="skills-heading">
-      <h2 id="skills-heading">Technical Skills</h2>
+    <section id="skills">
+      <h2>Technical Skills</h2>
       <div class="skills-grid">
         <div class="skill-card">📊 SQL</div>
         <div class="skill-card">📈 Excel</div>
@@ -496,112 +441,131 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" aria-labelledby="projects-heading">
-      <h2 id="projects-heading">Featured Projects</h2>
+    <section id="projects">
+      <h2>Featured Projects</h2>
       <div class="projects-grid">
-        <!-- Project 1: Telecom Churn Analysis (4 Pages) -->
-        <article class="project-card">
+        <!-- Project 1: Telecom Churn Analysis -->
+        <div class="project-card">
           <h3>📱 Telecom Customer Churn Analysis</h3>
-          <p>Complete churn analysis with 4 comprehensive dashboard pages</p>
+          <p>Complete end-to-end churn analysis with revenue impact and retention strategies</p>
           
-          <!-- 4 Page Previews -->
-          <div class="image-gallery">
-            <img src="executive-overview.png" alt="Page 1: Executive Overview" class="gallery-img" onclick="openModal(this)" loading="lazy">
-            <img src="customer-insights.png" alt="Page 2: Customer Insights" class="gallery-img" onclick="openModal(this)" loading="lazy">
-            <img src="revenue-analysis.png" alt="Page 3: Revenue Analysis" class="gallery-img" onclick="openModal(this)" loading="lazy">
-            <img src="retention-strategies.png" alt="Page 4: Retention Strategies" class="gallery-img" onclick="openModal(this)" loading="lazy">
-          </div>
+          <img src="executive-overview.png" alt="Telecom Churn Dashboard" class="project-image" onclick="openModal(this)">
           
-          <!-- Page Badges -->
-          <div class="page-badges">
-            <span class="badge">📋 Executive Overview</span>
-            <span class="badge">👥 Customer Insights</span>
-            <span class="badge">💰 Revenue Analysis</span>
-            <span class="badge">🎯 Retention Strategies</span>
+          <!-- Quick Analysis Preview -->
+          <div class="analysis-section">
+            <h4>Key Metrics:</h4>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin: 1rem 0;">
+              <span class="metric-highlight">Churn Rate: 26.8%</span>
+              <span class="metric-highlight">At-Risk Revenue: $158.24K</span>
+              <span class="metric-highlight">Retention Rate: 73.2%</span>
+            </div>
+            
+            <!-- Page 3: Revenue Analysis Preview -->
+            <div class="analysis-card">
+              <h3>📊 Revenue Analysis (Page 3)</h3>
+              <div class="chart-placeholder">
+                <div class="data-point"><span>Jan</span> <span>2,466 customers</span></div>
+                <div class="data-point"><span>Feb</span> <span>14.55% growth</span></div>
+                <div class="data-point"><span>Mar</span> <span>380 new</span></div>
+                <div class="data-point"><span>Apr</span> <span>1.56x revenue</span></div>
+                <div class="data-point"><span>May</span> <span>$158.24K at-risk</span></div>
+                <div class="data-point"><span>Jun</span> <span>1.54% churn</span></div>
+              </div>
+            </div>
+            
+            <!-- Page 4: Retention Strategies Preview -->
+            <div class="analysis-card">
+              <h3>🎯 Retention Strategies (Page 4)</h3>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-top: 0.5rem;">
+                <div style="background: #eef2ff; padding: 0.5rem; border-radius: 0.5rem;">
+                  <div style="color: var(--primary); font-weight: bold;">2023</div>
+                  <div>$5.53M</div>
+                </div>
+                <div style="background: #eef2ff; padding: 0.5rem; border-radius: 0.5rem;">
+                  <div style="color: var(--primary); font-weight: bold;">2024</div>
+                  <div>$21.42M</div>
+                </div>
+                <div style="background: #eef2ff; padding: 0.5rem; border-radius: 0.5rem;">
+                  <div style="color: var(--primary); font-weight: bold;">2025</div>
+                  <div>$5.53M</div>
+                </div>
+                <div style="background: #eef2ff; padding: 0.5rem; border-radius: 0.5rem;">
+                  <div style="color: var(--primary); font-weight: bold;">2026</div>
+                  <div>$10.71K</div>
+                </div>
+              </div>
+            </div>
           </div>
           
           <div class="project-links">
-            <a href="telecom.html" class="btn btn-primary">
-              📊 Explore All 4 Pages
+            <a href="https://app.powerbi.com/view?r=YOUR_TELECOM_LINK_HERE" target="_blank" rel="noopener" class="btn btn-primary">
+              🚀 Live Dashboard (Power BI)
+            </a>
+            <a href="telecom.html" class="btn btn-outline">
+              📊 View Full Analysis
             </a>
           </div>
-        </article>
+        </div>
 
         <!-- Project 2: Enterprise Sales Dashboard -->
-        <article class="project-card">
-          <h3>📈 Enterprise Sales Dashboard</h3>
-          <img src="Enterprise-Dashboard.png" alt="Enterprise Sales Dashboard Preview" class="gallery-img" onclick="openModal(this)" loading="lazy">
+        <div class="project-card">
+          <h3>📊 Enterprise Sales Dashboard</h3>
+          <p>Comprehensive sales analytics with revenue tracking and profit margin analysis</p>
+          
+          <img src="Enterprise-Dashboard.png" alt="Enterprise Sales Dashboard" class="project-image" onclick="openModal(this)">
+          
+          <!-- Quick Analysis Preview -->
+          <div class="analysis-section">
+            <h4>Key Metrics:</h4>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin: 1rem 0;">
+              <span class="metric-highlight">Total Revenue: $32.48M</span>
+              <span class="metric-highlight">Profit Margin: 21.42%</span>
+              <span class="metric-highlight">Growth: +15.3%</span>
+            </div>
+            
+            <div class="analysis-card">
+              <h3>💰 Revenue Breakdown</h3>
+              <div style="margin-top: 1rem;">
+                <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                  <div style="width: 100px;">Product A:</div>
+                  <div style="flex: 1; height: 20px; background: #e2e8f0; border-radius: 10px;">
+                    <div style="width: 75%; height: 100%; background: var(--primary); border-radius: 10px;"></div>
+                  </div>
+                  <div>$12.5M</div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                  <div style="width: 100px;">Product B:</div>
+                  <div style="flex: 1; height: 20px; background: #e2e8f0; border-radius: 10px;">
+                    <div style="width: 60%; height: 100%; background: var(--secondary); border-radius: 10px;"></div>
+                  </div>
+                  <div>$10.2M</div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  <div style="width: 100px;">Product C:</div>
+                  <div style="flex: 1; height: 20px; background: #e2e8f0; border-radius: 10px;">
+                    <div style="width: 45%; height: 100%; background: #10b981; border-radius: 10px;"></div>
+                  </div>
+                  <div>$9.78M</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
           <div class="project-links">
-            <a href="enterprise-sales.html" class="btn btn-primary">
-              📊 View Dashboard
+            <a href="https://app.powerbi.com/view?r=YOUR_ENTERPRISE_LINK_HERE" target="_blank" rel="noopener" class="btn btn-primary">
+              🚀 Live Dashboard (Power BI)
             </a>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- Telecom Pages Detail Section -->
-    <section class="telecom-pages">
-      <h2>📱 Telecom Churn Dashboard - 4 Pages</h2>
-      <p style="margin-bottom: 2rem;">End-to-end churn analysis with interconnected dashboards</p>
-      
-      <div class="pages-grid">
-        <div class="page-card">
-          <h3>📋 Page 1: Executive Overview</h3>
-          <p>High-level KPIs including churn rate (26.8%), monthly revenue, and at-risk customers. Quick snapshot of business health.</p>
-        </div>
-        
-        <div class="page-card">
-          <h3>👥 Page 2: Customer Insights</h3>
-          <p>Deep dive into customer demographics, contract types, and behavior patterns of churned vs. retained customers.</p>
-        </div>
-        
-        <div class="page-card">
-          <h3>💰 Page 3: Revenue Analysis</h3>
-          <p>Revenue impact of churn, monthly charges analysis, and financial trends across different customer segments.</p>
-        </div>
-        
-        <div class="page-card">
-          <h3>🎯 Page 4: Retention Strategies</h3>
-          <p>Actionable insights and recommendations including targeting month-to-month contracts and offering loyalty programs.</p>
-        </div>
-      </div>
-      
-      <!-- Key Insights -->
-      <div class="insights-box">
-        <h3 style="color: var(--primary); margin-bottom: 1rem;">🔑 Key Insights Across All 4 Pages</h3>
-        <div class="insights-grid">
-          <div class="insight-item">
-            <span style="color: var(--primary); font-size: 1.2rem;">📌</span>
-            <span><strong>High churn</strong> among low tenure customers (first 6 months)</span>
-          </div>
-          <div class="insight-item">
-            <span style="color: var(--primary); font-size: 1.2rem;">📌</span>
-            <span><strong>Month-to-month contracts</strong> show 45% higher churn</span>
-          </div>
-          <div class="insight-item">
-            <span style="color: var(--primary); font-size: 1.2rem;">📌</span>
-            <span><strong>Fiber optic users</strong> have highest retention rate</span>
-          </div>
-          <div class="insight-item">
-            <span style="color: var(--primary); font-size: 1.2rem;">📌</span>
-            <span><strong>Senior citizens</strong> 30% less likely to churn</span>
-          </div>
-          <div class="insight-item">
-            <span style="color: var(--primary); font-size: 1.2rem;">📌</span>
-            <span><strong>Paperless billing</strong> customers churn 2x more</span>
-          </div>
-          <div class="insight-item">
-            <span style="color: var(--primary); font-size: 1.2rem;">📌</span>
-            <span><strong>Tech support</strong> users show 50% lower churn</span>
+            <a href="sales-details.html" class="btn btn-outline">
+              📊 View Details
+            </a>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Value Section -->
-    <section aria-labelledby="value-heading">
-      <h2 id="value-heading">What I Bring to the Table</h2>
+    <section class="value-section">
+      <h2>What I Bring to the Table</h2>
       <div class="value-grid">
         <div class="value-card">📊 Data Cleaning & Preparation</div>
         <div class="value-card">📈 Interactive Dashboards</div>
@@ -611,15 +575,15 @@
     </section>
 
     <!-- Open for Opportunities -->
-    <section class="open-section" aria-labelledby="open-heading">
-      <h2 id="open-heading">🚀 Open to Opportunities</h2>
+    <section class="open-section">
+      <h2>🚀 Open to Opportunities</h2>
       <p>I am actively looking for Data Analyst roles. Let's connect!</p>
     </section>
   </main>
 
   <!-- Image Modal -->
-  <div id="modal" class="modal" onclick="closeModal()" role="dialog" aria-modal="true" aria-label="Image preview">
-    <img id="modalImg" src="" alt="Enlarged project preview">
+  <div id="modal" class="modal" onclick="closeModal()">
+    <img id="modalImg" src="" alt="Enlarged view">
   </div>
 
   <footer>
@@ -627,7 +591,7 @@
   </footer>
 
   <script>
-    // Optimized modal functions
+    // Modal functionality
     const modal = document.getElementById('modal');
     const modalImg = document.getElementById('modalImg');
 
@@ -635,13 +599,13 @@
       if (!img?.src) return;
       modal.style.display = 'flex';
       modalImg.src = img.src;
-      document.body.style.overflow = 'hidden'; // Prevent background scrolling
+      document.body.style.overflow = 'hidden';
     }
 
     function closeModal() {
       modal.style.display = 'none';
-      modalImg.src = ''; // Clear src for better performance
-      document.body.style.overflow = ''; // Restore scrolling
+      modalImg.src = '';
+      document.body.style.overflow = '';
     }
 
     // Close modal with Escape key
@@ -651,7 +615,7 @@
       }
     });
 
-    // Smooth scrolling for navigation links
+    // Smooth scrolling for navigation
     document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         e.preventDefault();
