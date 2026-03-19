@@ -4,187 +4,97 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Mohd Faij | Data Analyst</title>
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<title>Dashboard | Mohd Faij</title>
 
 <style>
 
+/* RESET */
+*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui;}
+
 /* BODY */
 body{
-margin:0;
-font-family:system-ui;
-background:#f8fafc;
-color:#0f172a;
-scroll-behavior:smooth;
+background:linear-gradient(135deg,#0f172a,#1e293b);
+color:white;
 }
 
-/* NAVBAR */
-nav{
+/* NAV */
+.nav{
 display:flex;
-justify-content:center;
-gap:40px;
-padding:18px;
-background:#ffffff;
-border-bottom:1px solid #e2e8f0;
-position:sticky;
-top:0;
+justify-content:space-between;
+align-items:center;
+padding:15px 25px;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(10px);
 }
 
-nav a{
-text-decoration:none;
-color:#334155;
-font-weight:500;
-}
+.nav h2{font-size:18px;}
+.nav a{color:white;text-decoration:none;}
 
-nav a:hover{
-color:#6366f1;
-}
-
-/* HERO */
-.hero{
-text-align:center;
-padding:100px 20px;
-background:linear-gradient(135deg,#f1f5f9,#e2e8f0);
-}
-
-.hero img{
-width:140px;
-height:140px;
-border-radius:50%;
-border:4px solid white;
-box-shadow:0 10px 25px rgba(0,0,0,0.15);
-}
-
-.hero h1{
-font-size:42px;
-margin-top:20px;
-}
-
-.hero p{
-color:#475569;
-}
-
-/* CONTACT ICONS */
-.contact-icons{
+/* PROJECT SWITCH */
+.project-switch{
 display:flex;
 justify-content:center;
 gap:15px;
-margin-top:20px;
+padding:15px;
 }
 
-.contact-icons a{
-font-size:18px;
-padding:12px;
-border-radius:50%;
-background:white;
-color:#0f172a;
-border:1px solid #e2e8f0;
+.switch-btn{
+padding:10px 20px;
+border-radius:20px;
+background:rgba(255,255,255,0.08);
+cursor:pointer;
 transition:0.3s;
 }
 
-.contact-icons a:hover{
-background:#0f172a;
-color:white;
-transform:scale(1.1);
+.switch-btn:hover{background:#6366f1;}
+.active-switch{background:#6366f1;}
+
+/* TABS */
+.tabs{
+display:flex;
+justify-content:center;
+gap:10px;
+padding:10px;
+flex-wrap:wrap;
+}
+
+.tab{
+padding:8px 16px;
+border-radius:15px;
+background:rgba(255,255,255,0.08);
+cursor:pointer;
+}
+
+.tab.active{background:#8b5cf6;}
+
+/* CONTAINER */
+.container{padding:15px;}
+
+iframe{
+width:100%;
+height:80vh;
+border:none;
+border-radius:12px;
+animation:fade 0.4s ease;
+}
+
+@keyframes fade{
+from{opacity:0;transform:scale(0.98);}
+to{opacity:1;}
 }
 
 /* BUTTON */
-.button{
-display:inline-block;
-margin-top:25px;
-padding:12px 30px;
-border-radius:30px;
-background:linear-gradient(135deg,#6366f1,#8b5cf6);
-color:white;
-text-decoration:none;
-font-weight:500;
-}
-
-/* SECTIONS */
-section{
-max-width:1100px;
-margin:auto;
-padding:80px 20px;
+.fallback{
 text-align:center;
-}
-
-h2{
-margin-bottom:30px;
-}
-
-/* SKILLS */
-.skills{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:20px;
-}
-
-.skill{
-background:white;
-border:1px solid #e2e8f0;
-border-radius:12px;
-padding:25px;
-transition:0.3s;
-}
-
-.skill:hover{
-transform:translateY(-5px);
-box-shadow:0 10px 25px rgba(0,0,0,0.1);
-}
-
-/* PROJECTS */
-.projects{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-gap:25px;
-}
-
-.card{
-background:white;
-border:1px solid #e2e8f0;
-padding:25px;
-border-radius:15px;
-transition:0.3s;
-}
-
-.card:hover{
-transform:translateY(-6px);
-box-shadow:0 10px 25px rgba(0,0,0,0.1);
-}
-
-.card a{
-display:block;
 margin-top:10px;
-padding:10px;
+}
+
+.fallback a{
 background:#6366f1;
-border-radius:8px;
+padding:10px 20px;
+border-radius:20px;
 color:white;
 text-decoration:none;
-text-align:center;
-font-size:14px;
-transition:0.3s;
-}
-
-.card a:hover{
-background:#4f46e5;
-transform:scale(1.03);
-}
-
-/* VIDEO */
-video{
-width:100%;
-border-radius:12px;
-margin-top:20px;
-}
-
-/* FOOTER */
-footer{
-text-align:center;
-padding:30px;
-background:white;
-border-top:1px solid #e2e8f0;
-color:#64748b;
 }
 
 </style>
@@ -192,105 +102,96 @@ color:#64748b;
 
 <body>
 
-<!-- NAVBAR -->
-<nav>
-<a href="#">Home</a>
-<a href="#skills">Skills</a>
-<a href="#projects">Projects</a>
-</nav>
-
-<!-- HERO -->
-<div class="hero">
-<img src="photo.jpeg">
-<h1>Mohd Faij</h1>
-<p>Data Analyst | SQL | Excel | Power BI | Python</p>
-
-<div class="contact-icons">
-<a href="mailto:mohdfaij.data@gmail.com"><i class="fa-solid fa-envelope"></i></a>
-<a href="+916387151848"><i class="fa-solid fa-phone"></i></a>
-<a href="https://linkedin.com/in/mohdfaij-data" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
-<a href="https://github.com/mohdfaij-data" target="_blank"><i class="fa-brands fa-github"></i></a>
+<!-- NAV -->
+<div class="nav">
+<h2>📊 Dashboard Viewer</h2>
+<a href="index.html">⬅ Back</a>
 </div>
 
-<a href="resume.pdf" download class="button">Download Resume</a>
+<!-- PROJECT SWITCH -->
+<div class="project-switch">
+
+<div class="switch-btn active-switch" onclick="switchProject('telecom', this)">
+Telecom Project
 </div>
 
-<!-- ABOUT -->
-<section>
-<h2>About Me</h2>
-<p>
-Results-driven Data Analyst skilled in SQL, Excel, Power BI, and Python. I specialize in transforming raw data into actionable insights through dashboards, analysis, and data modeling.
-</p>
-</section>
-
-<!-- SKILLS -->
-<section id="skills">
-<h2>Skills</h2>
-<div class="skills">
-<div class="skill">SQL</div>
-<div class="skill">Excel</div>
-<div class="skill">Power BI</div>
-<div class="skill">Python</div>
-</div>
-</section>
-
-<!-- PROJECTS -->
-<section id="projects">
-<h2>Projects</h2>
-
-<div class="projects">
-
-<!-- PROJECT 1 -->
-<div class="card">
-<h3>Telecom Customer Analytics</h3>
-<p>End-to-end telecom churn analysis with insights, trends, and retention strategies.</p>
-
-<a href="executive-overview.png">📄 View Project</a>
-
-<a href="executive-overview.png" target="_blank">📊 Executive Overview</a>
-<a href="customer-insights.png" target="_blank">📊 Insights & Revenue</a>
-<a href="churn-analysis.png" target="_blank">📊 Churn Analysis</a>
-<a href="retention-strategy.png" target="_blank">📊 Retention Strategy</a>
-
-</div>
-
-<!-- PROJECT 2 -->
-<div class="card">
-<h3>Enterprise Sales Dashboard</h3>
-<p>Dashboard analyzing revenue, profitability, and sales performance.</p>
-
-<a href="<iframe title="Telecom-Project" width="600" height="373.5" src="https://app.powerbi.com/view?r=eyJrIjoiNGM0OGMxN2UtMjdjYy00YzRkLWE5NTMtNzRhMDAyZjJkODZkIiwidCI6IjNkMGE5Y2FiLTQzYzYtNDlkNi1iODZjLTFiMTZjNGQwMjYzNSJ9&pageName=40ed3e03483196c0b5e2" frameborder="0" allowFullScreen="true">
-</iframe>" target="_blank">🚀 View Live Dashboard</a>
-
-</div>
-
-<!-- PROJECT 3 -->
-<div class="card">
-<h3>Data Modeling (SQL)</h3>
-<p>Designed relational and transactional data models for business analysis.</p>
-
-<a href="#">📄 View Project</a>
-
-<a href="PASTE_LINK_6" target="_blank">🗂 Customers & Orders Model</a>
-<a href="PASTE_LINK_7" target="_blank">🗂 Transactions Model</a>
-
+<div class="switch-btn" onclick="switchProject('enterprise', this)">
+Enterprise Project
 </div>
 
 </div>
-</section>
 
-<!-- VIDEO -->
-<section>
-<h2>Dashboard Demo</h2>
-<video controls>
-<source src="dashboard.mp4" type="video/mp4">
-</video>
-</section>
+<!-- TELECOM TABS -->
+<div id="telecomTabs" class="tabs">
 
-<!-- FOOTER -->
-<footer>
-© 2026 Mohd Faij
-</footer>
+<div class="tab active" onclick="loadTelecom('overview', this)">Overview</div>
+<div class="tab" onclick="loadTelecom('insights', this)">Insights</div>
+<div class="tab" onclick="loadTelecom('churn', this)">Churn</div>
+<div class="tab" onclick="loadTelecom('strategy', this)">Strategy</div>
+
+</div>
+
+<!-- DASHBOARD -->
+<div class="container">
+<iframe id="frame"></iframe>
+
+<div class="fallback">
+<a id="openLink" target="_blank">🔗 Open in New Tab</a>
+</div>
+</div>
+
+<script>
+
+/* 🖼️ TELECOM IMAGES (4 PAGES) */
+const telecomImages = {
+overview: "executive-overview.png",
+insights: "customer-insights.png",
+churn: "churn-analysis.png",
+strategy: "retention-strategy.png"
+};
+
+/* 🔗 LINKS (ONLY 1 PER PROJECT) */
+const telecomLink = "PASTE_TELECOM_LINK";
+const enterpriseLink = "PASTE_ENTERPRISE_LINK";
+
+/* 🖼️ ENTERPRISE IMAGE */
+const enterpriseImage = "enterprise-dashboard.png";
+
+/* DEFAULT LOAD */
+loadTelecom('overview', document.querySelector('.tab'));
+
+/* SWITCH PROJECT */
+function switchProject(type, el){
+
+document.querySelectorAll(".switch-btn").forEach(b=>b.classList.remove("active-switch"));
+el.classList.add("active-switch");
+
+if(type === "telecom"){
+document.getElementById("telecomTabs").style.display="flex";
+loadTelecom('overview', document.querySelector('.tab'));
+}
+else{
+document.getElementById("telecomTabs").style.display="none";
+
+document.getElementById("previewImg").src = enterpriseImage;
+document.getElementById("openLink").href = enterpriseLink;
+}
+
+}
+
+/* TELECOM TAB SWITCH */
+function loadTelecom(page, el){
+
+document.getElementById("previewImg").src = telecomImages[page];
+document.getElementById("openLink").href = telecomLink;
+
+/* ACTIVE TAB */
+document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
+el.classList.add("active");
+
+}
+
+</script>
 
 </body>
 </html>
