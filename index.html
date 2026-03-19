@@ -1,397 +1,181 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Mohd Faij | Data Analyst</title>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
 <style>
 
 /* RESET */
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:system-ui;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:system-ui;
 }
 
 body{
-background:#f8fafc;
-color:#0f172a;
+  background:#f8fafc;
+  color:#0f172a;
 }
 
 /* NAVBAR */
 nav{
-display:flex;
-justify-content:center;
-gap:40px;
-padding:20px;
-background:white;
-border-bottom:1px solid #e2e8f0;
-position:sticky;
-top:0;
-z-index:100;
+  display:flex;
+  justify-content:center;
+  gap:40px;
+  padding:20px;
+  background:white;
+  border-bottom:1px solid #e2e8f0;
+  position:sticky;
+  top:0;
 }
 
 nav a{
-text-decoration:none;
-color:#334155;
-font-weight:500;
+  text-decoration:none;
+  color:#334155;
+  font-weight:500;
 }
 
-nav a:hover{
-color:#6366f1;
-}
-
-/* HERO */
-.hero{
-text-align:center;
-padding:100px 20px;
-background:linear-gradient(135deg,#f1f5f9,#e2e8f0);
-}
-
-/* PROFILE */
-.profile-wrap{
-width:180px;
-height:180px;
-margin:auto;
-border-radius:50%;
-padding:5px;
-background:linear-gradient(45deg,#6366f1,#8b5cf6,#06b6d4,#6366f1);
-background-size:300% 300%;
-animation:gradient 6s ease infinite;
-box-shadow:0 15px 40px rgba(0,0,0,0.2);
-display:flex;
-align-items:center;
-justify-content:center;
-}
-
-.profile-wrap img{
-width:100%;
-height:100%;
-border-radius:50%;
-object-fit:cover;
-border:4px solid white;
-}
-
-@keyframes gradient{
-0%{background-position:0% 50%;}
-50%{background-position:100% 50%;}
-100%{background-position:0% 50%;}
-}
-
-.hero h1{
-font-size:42px;
-margin-top:20px;
-}
-
-.hero p{
-color:#475569;
-margin-top:10px;
-}
-
-/* ICONS */
-.contact-icons{
-display:flex;
-justify-content:center;
-gap:15px;
-margin-top:20px;
-}
-
-.contact-icons a{
-font-size:18px;
-padding:12px;
-border-radius:50%;
-background:white;
-border:1px solid #e2e8f0;
-color:#0f172a;
-transition:0.3s;
-}
-
-.contact-icons a:hover{
-transform:translateY(-5px) scale(1.1);
-background:#0f172a;
-color:white;
-}
-
-/* BUTTON */
-.button{
-display:inline-block;
-margin-top:15px;
-padding:10px 25px;
-border-radius:30px;
-background:linear-gradient(135deg,#6366f1,#8b5cf6);
-color:white;
-text-decoration:none;
-cursor:pointer;
-border:none;
-}
-
-/* SECTIONS */
-section{
-max-width:1000px;
-margin:auto;
-padding:80px 20px;
-text-align:center;
-}
-
-h2{
-margin-bottom:30px;
-}
-
-/* SKILLS */
-.skills{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:20px;
-}
-
-.skill{
-background:white;
-padding:25px;
-border-radius:12px;
-border:1px solid #e2e8f0;
-transition:0.3s;
-}
-
-.skill:hover{
-transform:translateY(-6px);
-box-shadow:0 10px 25px rgba(0,0,0,0.1);
-}
-
-/* PROJECTS */
+/* PROJECT SECTION */
 .projects{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:25px;
+  padding:60px 20px;
+  text-align:center;
 }
 
 .card{
-background:white;
-padding:25px;
-border-radius:15px;
-border:1px solid #e2e8f0;
-transition:0.3s;
+  background:white;
+  padding:20px;
+  border-radius:16px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.05);
+  max-width:500px;
+  margin:auto;
 }
 
-.card:hover{
-transform:translateY(-6px);
-box-shadow:0 10px 25px rgba(0,0,0,0.1);
+.card img{
+  width:100%;
+  border-radius:10px;
 }
 
-.project-img{
-width:100%;
-border-radius:12px;
-margin-top:12px;
-transition:0.3s;
-}
-
-.project-img:hover{
-transform:scale(1.03);
-}
-
-details{
-margin-top:15px;
-}
-
-summary{
-cursor:pointer;
-color:#6366f1;
-font-weight:500;
+.btn{
+  margin-top:15px;
+  padding:12px 20px;
+  border:none;
+  border-radius:8px;
+  background:#6366f1;
+  color:white;
+  cursor:pointer;
 }
 
 /* MODAL */
 .modal{
-display:none;
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.85);
-z-index:999;
+  display:none;
+  position:fixed;
+  z-index:1000;
+  left:0;
+  top:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.7);
+  backdrop-filter:blur(8px);
+  justify-content:center;
+  align-items:center;
+}
+
+.modal-content{
+  width:90%;
+  height:80%;
+  background:white;
+  border-radius:12px;
+  overflow:hidden;
+  position:relative;
 }
 
 .modal iframe{
-width:90%;
-height:80%;
-margin:5% auto;
-display:block;
-border-radius:10px;
+  width:100%;
+  height:100%;
+  border:none;
 }
 
+/* CLOSE BUTTON */
 .close{
-position:absolute;
-top:20px;
-right:30px;
-font-size:35px;
-color:white;
-cursor:pointer;
+  position:absolute;
+  top:10px;
+  right:20px;
+  font-size:28px;
+  cursor:pointer;
+  color:#111;
+  z-index:10;
 }
 
-/* VIDEO */
-video{
-width:100%;
-border-radius:12px;
-margin-top:20px;
-}
-
-/* FOOTER */
-footer{
-text-align:center;
-padding:30px;
-background:white;
-border-top:1px solid #e2e8f0;
-color:#64748b;
-}
-
-/* 👇 PASTE HERE */
-
-.modal {
-display: none;  /* ✅ FIXED */
-position: fixed;
-z-index: 1000;
-left: 0;
-top: 0;
-width: 100%;
-height: 100%;
-background: rgba(0,0,0,0.7);
-backdrop-filter: blur(8px);
-
-justify-content: center;
-align-items: center;
-}
-.modal iframe {
-width: 90%;
-height: 80%;
-border-radius: 12px;
-}
-
-.close {
-position: absolute;
-top: 20px;
-right: 40px;
-color: white;
-font-size: 30px;
-cursor: pointer;
+/* FALLBACK BUTTON */
+.fallback{
+  position:absolute;
+  bottom:10px;
+  left:50%;
+  transform:translateX(-50%);
+  background:#111;
+  color:white;
+  padding:10px 15px;
+  border-radius:8px;
+  font-size:14px;
 }
 
 </style>
+</head>
 
-<!-- NAVBAR -->
+<body>
 
+<!-- NAV -->
 <nav>
-<a href="#">Home</a>
-<a href="#skills">Skills</a>
-<a href="#projects">Projects</a>
+  <a href="#">Home</a>
+  <a href="#">Projects</a>
 </nav>
 
-<!-- HERO -->
+<!-- PROJECT -->
+<section class="projects">
 
-<div class="hero">
+  <h2>My Projects</h2>
 
-<div class="profile-wrap">
-<img src="photo.jpeg">
-</div>
+  <div class="card">
+    <h3>Telecom Customer Churn Analysis</h3>
 
-<h1>Mohd Faij</h1>
-<p>Data Analyst | SQL | Excel | Power BI | Python</p>
+    <img src="https://via.placeholder.com/500x250">
 
-<div class="contact-icons">
-<a href="mailto:mohdfaij.data@gmail.com"><i class="fa-solid fa-envelope"></i></a>
-<a href="tel:+916387151848"><i class="fa-solid fa-phone"></i></a>
-<a href="https://linkedin.com/in/mohdfaij-data" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
-<a href="https://github.com/mohdfaij-data" target="_blank"><i class="fa-brands fa-github"></i></a>
-<a href="https://wa.me/916387151848" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
-</div>
-
-<a href="resume.pdf" download class="button">Download Resume</a>
-
-</div>
-
-<!-- ABOUT -->
-
-<section>
-<h2>About Me</h2>
-<p>
-I am a B.Com graduate and a results-driven Data Analyst skilled in SQL, Excel, Power BI, and Python. I have delivered multiple end-to-end analytics projects involving data cleaning, transformation, and visualization—turning complex datasets into actionable insights and building interactive dashboards that drive strategic business decisions.
-</p>
-</section>
-
-<!-- SKILLS -->
-
-<section id="skills">
-<h2>Skills</h2>
-<div class="skills">
-<div class="skill">SQL</div>
-<div class="skill">Excel</div>
-<div class="skill">Power BI</div>
-<div class="skill">Python</div>
-</div>
-</section>
-
-<!-- PROJECTS -->
-
-<section id="projects">
-<h2>Projects</h2>
-
-<div class="projects">
-
-<!-- TELECOM -->
-
-<div class="card">
-<h3>Telecom Customer Churn Analysis</h3>
-<p>Analyzed churn patterns and built interactive dashboards.</p>
-<p><strong>Key Insight:</strong> High churn among low tenure customers.</p>
-
-<img src="executive-overview.png" class="project-img">
-
-<button class="button" onclick="openModal()">View Live Dashboard</button>
-
-<details>
-<summary>View Full Dashboard</summary>
-<img src="customer-insights.png" class="project-img">
-<img src="churn-analysis.png" class="project-img">
-<img src="retention-strategy.png" class="project-img">
-</details>
-</div>
-
-<!-- SALES -->
-
-<div class="card">
-<h3>Enterprise Sales Dashboard</h3>
-<p>Built dashboard to track revenue and performance.</p>
-<p><strong>Key Insight:</strong> Premium segment drives highest revenue.</p>
-
-<img src="Enterprise-Dashboard.png" class="project-img">
-</div>
-
-</div>
+    <button class="btn" onclick="openModal()">View Live Dashboard</button>
+  </div>
 
 </section>
 
 <!-- MODAL -->
-<button onclick="window.open('https://app.powerbi.com/view?r=eyJrIjoiNGM0OGMxN2UtMjdjYy00YzRkLWE5NTMtNzRhMDAyZjJkODZkIiwidCI6IjNkMGE5Y2FiLTQzYzYtNDlkNi1iODZjLTFiMTZjNGQwMjYzNSJ9&pageName=40ed3e03483196c0b5e2', '_blank')">
-  View Live Dashboard
-</button>
+<div id="dashboardModal" class="modal">
 
-<!-- VIDEO -->
+  <div class="modal-content">
 
-<section>
-<h2>Dashboard Demo</h2>
-<video controls>
-<source src="dashboard.mp4" type="video/mp4">
-</video>
-</section>
+    <span class="close" onclick="closeModal()">&times;</span>
 
-<!-- FOOTER --><footer>
-© 2026 Mohd Faij
-</footer><!-- JS HERE 👇 --><script>
+    <!-- TRY EMBED -->
+    <iframe 
+      src="https://app.powerbi.com/view?r=eyJrIjoiNGM0OGMxN2UtMjdjYy00YzRkLWE5NTMtNzRhMDAyZjJkODZkIiwidCI6IjNkMGE5Y2FiLTQzYzYtNDlkNi1iODZjLTFiMTZjNGQwMjYzNSJ9&pageName=40ed3e03483196c0b5e2">
+    </iframe>
+
+    <!-- FALLBACK -->
+    <div class="fallback">
+      If dashboard not loading 👉 
+      <a href="https://app.powerbi.com/view?r=eyJrIjoiNGM0OGMxN2UtMjdjYy00YzRkLWE5NTMtNzRhMDAyZjJkODZkIiwidCI6IjNkMGE5Y2FiLTQzYzYtNDlkNi1iODZjLTFiMTZjNGQwMjYzNSJ9&pageName=40ed3e03483196c0b5e2" target="_blank" style="color:#60a5fa;">
+        Open in new tab
+      </a>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- JS -->
+<script>
+
 function openModal(){
   document.getElementById("dashboardModal").style.display = "flex";
 }
@@ -399,5 +183,8 @@ function openModal(){
 function closeModal(){
   document.getElementById("dashboardModal").style.display = "none";
 }
-</script></body>
+
+</script>
+
+</body>
 </html>
