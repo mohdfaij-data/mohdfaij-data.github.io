@@ -38,7 +38,6 @@ nav a:hover{color:#6366f1;}
 .hero{
 text-align:center;
 padding:50px 20px 20px;
-animation:fade 1s ease;
 }
 
 .hero img{
@@ -65,7 +64,7 @@ color:#64748b;
 margin-bottom:10px;
 }
 
-/* BUTTONS */
+/* BUTTON */
 .button{
 display:inline-block;
 margin:10px;
@@ -74,12 +73,6 @@ border-radius:30px;
 background:linear-gradient(135deg,#6366f1,#8b5cf6);
 color:white;
 text-decoration:none;
-transition:0.3s;
-}
-
-.button:hover{
-transform:translateY(-3px);
-box-shadow:0 10px 20px rgba(99,102,241,0.3);
 }
 
 .secondary-btn{
@@ -160,7 +153,8 @@ margin-top:30px;
 }
 
 .card{
-background:white;
+background:rgba(255,255,255,0.7);
+backdrop-filter:blur(12px);
 padding:20px;
 border-radius:15px;
 box-shadow:0 10px 25px rgba(0,0,0,0.08);
@@ -176,9 +170,14 @@ width:100%;
 border-radius:10px;
 margin-top:10px;
 cursor:pointer;
+transition:0.3s;
 }
 
-/* PRIMARY BUTTON */
+.card img:hover{
+transform:scale(1.05);
+}
+
+/* BUTTON */
 .primary-btn{
 display:block;
 margin-top:12px;
@@ -213,7 +212,7 @@ transition:0.3s;
 transform:translateY(-8px);
 }
 
-/* OPEN TO WORK */
+/* OPEN */
 .hire{
 background:linear-gradient(135deg,#6366f1,#8b5cf6);
 color:white;
@@ -247,12 +246,6 @@ footer{
 text-align:center;
 padding:20px;
 color:#64748b;
-}
-
-/* ANIMATION */
-@keyframes fade{
-from{opacity:0;}
-to{opacity:1;}
 }
 
 </style>
@@ -300,6 +293,7 @@ I am a B.Com graduate and a results-driven Data Analyst skilled in SQL, Excel, P
 </div>
 </section>
 
+<!-- 🔥 YOUR ORIGINAL PROJECTS BACK -->
 <section id="projects">
 <h2>Projects</h2>
 
@@ -307,20 +301,42 @@ I am a B.Com graduate and a results-driven Data Analyst skilled in SQL, Excel, P
 
 <div class="card">
 <h3>Telecom Customer Churn Analysis</h3>
-<p>Identified key churn drivers and built dashboards for insights.</p>
+
+<p>Key Insight: High churn among low tenure customers.</p>
+
+<p style="font-size:13px; color:#64748b;">
+📊 Cleaned 7K+ records • Built dashboards • Identified churn drivers
+</p>
+
 <img src="executive-overview.png" onclick="openModal(this)">
-<a href="#" class="primary-btn">View Dashboard</a>
+
+<p style="margin-top:10px;">
+👉 Includes 4 dashboards: Overview • Insights • Churn • Strategy
+</p>
+
+<a href="https://app.powerbi.com/view?r=eyJrIjoiNGM0OGMxN2UtMjdjYy00YzRkLWE5NTMtNzRhMDAyZjJkODZkIiwidCI6IjNkMGE5Y2FiLTQzYzYtNDlkNi1iODZjLTFiMTZjNGQwMjYzNSJ9"
+target="_blank"
+class="primary-btn">
+🚀 View Live Dashboard
+</a>
+
+<a href="telecom.html" class="primary-btn" style="background:#0f172a;">
+📊 Explore Project
+</a>
 </div>
 
 <div class="card">
 <h3>Enterprise Sales Dashboard</h3>
-<p>Analyzed revenue trends and business performance.</p>
+<p>Key Insight: Premium segment drives highest revenue.</p>
+
 <img src="Enterprise-Dashboard.png" onclick="openModal(this)">
-<a href="#" class="primary-btn">View Dashboard</a>
+
+<a href="PASTE_ENTERPRISE_LINK" target="_blank" class="primary-btn">
+🚀 View Live Dashboard
+</a>
 </div>
 
 </div>
-
 </section>
 
 <section class="value-section">
