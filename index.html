@@ -20,7 +20,6 @@ box-sizing:border-box;
 font-family:system-ui;
 }
 
-/* BODY */
 body{
 background:#f8fafc;
 color:#0f172a;
@@ -43,7 +42,6 @@ nav a{
 text-decoration:none;
 color:#334155;
 font-weight:500;
-transition:0.3s;
 }
 
 nav a:hover{
@@ -57,7 +55,7 @@ padding:100px 20px;
 background:linear-gradient(135deg,#f1f5f9,#e2e8f0);
 }
 
-/* PREMIUM PROFILE */
+/* PROFILE */
 .profile-wrap{
 width:180px;
 height:180px;
@@ -81,14 +79,12 @@ object-fit:cover;
 border:4px solid white;
 }
 
-/* ANIMATION */
 @keyframes gradient{
 0%{background-position:0% 50%;}
 50%{background-position:100% 50%;}
 100%{background-position:0% 50%;}
 }
 
-/* TEXT */
 .hero h1{
 font-size:42px;
 margin-top:20px;
@@ -126,18 +122,14 @@ color:white;
 /* BUTTON */
 .button{
 display:inline-block;
-margin-top:25px;
-padding:12px 30px;
+margin-top:15px;
+padding:10px 25px;
 border-radius:30px;
 background:linear-gradient(135deg,#6366f1,#8b5cf6);
 color:white;
 text-decoration:none;
-font-weight:500;
-transition:0.3s;
-}
-
-.button:hover{
-transform:scale(1.05);
+cursor:pointer;
+border:none;
 }
 
 /* SECTIONS */
@@ -192,14 +184,54 @@ transform:translateY(-6px);
 box-shadow:0 10px 25px rgba(0,0,0,0.1);
 }
 
-.card a{
-display:inline-block;
+.project-img{
+width:100%;
+border-radius:12px;
+margin-top:12px;
+transition:0.3s;
+}
+
+.project-img:hover{
+transform:scale(1.03);
+}
+
+details{
 margin-top:15px;
-padding:8px 18px;
-background:#6366f1;
+}
+
+summary{
+cursor:pointer;
+color:#6366f1;
+font-weight:500;
+}
+
+/* MODAL */
+.modal{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.85);
+z-index:999;
+}
+
+.modal iframe{
+width:90%;
+height:80%;
+margin:5% auto;
+display:block;
+border-radius:10px;
+}
+
+.close{
+position:absolute;
+top:20px;
+right:30px;
+font-size:35px;
 color:white;
-border-radius:8px;
-text-decoration:none;
+cursor:pointer;
 }
 
 /* VIDEO */
@@ -244,20 +276,14 @@ color:#64748b;
 <p>Data Analyst | SQL | Excel | Power BI | Python</p>
 
 <div class="contact-icons">
-
 <a href="mailto:mohdfaij.data@gmail.com"><i class="fa-solid fa-envelope"></i></a>
-
 <a href="tel:+916387151848"><i class="fa-solid fa-phone"></i></a>
-
 <a href="https://linkedin.com/in/mohdfaij-data" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
-
 <a href="https://github.com/mohdfaij-data" target="_blank"><i class="fa-brands fa-github"></i></a>
-
 <a href="https://wa.me/916387151848" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
-
 </div>
 
-<a href="resume.pdf" download class="button">Download Resume</a>
+<a href="resume.jpeg" download class="button">Download Resume</a>
 
 </div>
 
@@ -266,7 +292,8 @@ color:#64748b;
 <section>
 <h2>About Me</h2>
 <p>
-I am a B.Com graduate and a results-driven Data Analyst skilled in SQL, Excel, Power BI, and Python. I have delivered multiple end-to-end analytics projects involving data cleaning, transformation, and visualization—turning complex datasets into actionable insights and building interactive dashboards that drive strategic business decisions.
+B.Com graduate and aspiring Data Analyst skilled in SQL, Excel, Power BI, and Python.
+I specialize in transforming data into insights and building dashboards for better decisions.
 </p>
 </section>
 
@@ -274,14 +301,12 @@ I am a B.Com graduate and a results-driven Data Analyst skilled in SQL, Excel, P
 
 <section id="skills">
 <h2>Skills</h2>
-
 <div class="skills">
 <div class="skill">SQL</div>
 <div class="skill">Excel</div>
 <div class="skill">Power BI</div>
 <div class="skill">Python</div>
 </div>
-
 </section>
 
 <!-- PROJECTS -->
@@ -291,31 +316,55 @@ I am a B.Com graduate and a results-driven Data Analyst skilled in SQL, Excel, P
 
 <div class="projects">
 
-<div class="card">
-<h3>SQL Sales Analysis</h3>
-<p>Analyzed sales data to identify trends and business insights.</p>
-<a href="#">View Project</a>
-</div>
+<!-- TELECOM -->
 
 <div class="card">
-<h3>Power BI Dashboard</h3>
-<p>Interactive dashboard showing KPIs and performance metrics.</p>
-<a href="#">View Dashboard</a>
+<h3>Telecom Customer Churn Analysis</h3>
+<p>Analyzed churn patterns and built interactive dashboards.</p>
+<p><strong>Key Insight:</strong> High churn among low tenure customers.</p>
+
+<img src="churn1.jpeg" class="project-img">
+
+<button class="button" onclick="openModal()">View Live Dashboard</button>
+
+<details>
+<summary>View Full Dashboard</summary>
+<img src="churn2.jpeg" class="project-img">
+<img src="churn3.jpeg" class="project-img">
+<img src="churn4.jpeg" class="project-img">
+</details>
+</div>
+
+<!-- SALES -->
+
+<div class="card">
+<h3>Enterprise Sales Dashboard</h3>
+<p>Built dashboard to track revenue and performance.</p>
+<p><strong>Key Insight:</strong> Premium segment drives highest revenue.</p>
+
+<img src="sales.jpeg" class="project-img">
 </div>
 
 </div>
 
 </section>
 
+<!-- MODAL -->
+
+<div id="dashboardModal" class="modal">
+<span class="close" onclick="closeModal()">&times;</span>
+
+<iframe src="YOUR_POWERBI_LINK"></iframe>
+
+</div>
+
 <!-- VIDEO -->
 
 <section>
 <h2>Dashboard Demo</h2>
-
 <video controls>
 <source src="dashboard.mp4" type="video/mp4">
 </video>
-
 </section>
 
 <!-- FOOTER -->
@@ -323,6 +372,18 @@ I am a B.Com graduate and a results-driven Data Analyst skilled in SQL, Excel, P
 <footer>
 © 2026 Mohd Faij
 </footer>
+
+<!-- JS -->
+
+<script>
+function openModal(){
+document.getElementById("dashboardModal").style.display = "block";
+}
+
+function closeModal(){
+document.getElementById("dashboardModal").style.display = "none";
+}
+</script>
 
 </body>
 </html>
