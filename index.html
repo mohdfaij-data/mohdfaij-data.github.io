@@ -479,25 +479,7 @@ function revealOnScroll(){
 
 window.addEventListener("scroll", revealOnScroll);
 window.addEventListener("load", revealOnScroll);
-let current = window.scrollY;
-let target = current;
 
-function smoothScroll(){
-  current += (target - current) * 0.08;
-
-  window.scroll({
-    top: current,
-    behavior: "auto"
-  });
-
-  requestAnimationFrame(smoothScroll);
-}
-
-window.addEventListener("scroll", () => {
-  target = window.scrollY;
-});
-
-smoothScroll();
 </script>
 
 </body>
