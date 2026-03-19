@@ -200,17 +200,22 @@ gap:20px;
 margin-top:30px;
 }
 
+/* 👇 PASTE HERE EXACTLY */
 .value-card{
-background:white;
-padding:20px;
-border-radius:15px;
-box-shadow:0 5px 20px rgba(0,0,0,0.08);
-transition:0.3s;
+background:rgba(255,255,255,0.7);
+backdrop-filter:blur(12px);
+padding:25px;
+border-radius:16px;
+box-shadow:0 10px 30px rgba(0,0,0,0.08);
+transition:all 0.35s ease;
+border:1px solid rgba(255,255,255,0.3);
 }
 
 .value-card:hover{
-transform:translateY(-8px);
+transform:translateY(-12px) scale(1.04);
+box-shadow:0 25px 50px rgba(99,102,241,0.3);
 }
+
 
 /* OPEN */
 .hire{
@@ -337,17 +342,36 @@ class="primary-btn">
 </div>
 
 </div>
-</section>
-
 <section class="value-section">
-<h2>What I Bring</h2>
+  <h2>What I Bring to the Table</h2>
 
-<div class="value-grid">
-<div class="value-card">📊 Data Cleaning</div>
-<div class="value-card">📈 Dashboards</div>
-<div class="value-card">🔍 Insights</div>
-<div class="value-card">💡 Decision Support</div>
-</div>
+  <p style="color:#64748b; max-width:600px; margin:auto; margin-bottom:30px;">
+    Delivering impactful data solutions that drive business growth and smarter decisions.
+  </p>
+
+  <div class="value-grid">
+
+    <div class="value-card">
+      <h3>📊 Data Cleaning & Transformation</h3>
+      <p>Cleaning and preparing raw data for accurate analysis</p>
+    </div>
+
+    <div class="value-card">
+      <h3>📈 Interactive Dashboards</h3>
+      <p>Building dynamic dashboards using Power BI</p>
+    </div>
+
+    <div class="value-card">
+      <h3>🔍 Business Insights & Trends</h3>
+      <p>Identifying patterns to improve business performance</p>
+    </div>
+
+    <div class="value-card">
+      <h3>💡 Data-Driven Decision Support</h3>
+      <p>Helping businesses make informed decisions using data</p>
+    </div>
+
+  </div>
 </section>
 
 <section class="hire">
