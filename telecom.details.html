@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telecom Churn Analysis - Mohd Faij</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #f8fafc, #eef2ff);
+            color: #0f172a;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        h1 {
+            color: #6366f1;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: #6366f1;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .dashboard-card {
+            background: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .dashboard-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .card-content {
+            padding: 1.5rem;
+        }
+        .card-content h3 {
+            color: #6366f1;
+            margin-bottom: 0.5rem;
+        }
+        .insights {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            margin: 2rem 0;
+        }
+        .insights h2 {
+            color: #6366f1;
+            margin-bottom: 1rem;
+        }
+        .insights ul {
+            list-style: none;
+        }
+        .insights li {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        .insights li:before {
+            content: "📌";
+            position: absolute;
+            left: 0;
+            color: #6366f1;
+        }
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            text-decoration: none;
+            border-radius: 2rem;
+            font-weight: 500;
+            margin-top: 1rem;
+        }
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            color: #64748b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html#projects" class="back-btn">← Back to Portfolio</a>
+        
+        <header>
+            <h1>📱 Telecom Customer Churn Analysis</h1>
+            <p>Complete 4-Page Power BI Dashboard</p>
+        </header>
+
+        <!-- Power BI Dashboard Link -->
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <a href="YOUR_POWERBI_LINK_HERE" target="_blank" class="btn">
+                🚀 Open Live Dashboard (Power BI)
+            </a>
+        </div>
+
+        <!-- Dashboard Pages -->
+        <h2 style="margin: 2rem 0 1rem;">📋 All 4 Dashboard Pages</h2>
+        <div class="dashboard-grid">
+            <div class="dashboard-card">
+                <img src="executive-overview.png" alt="Executive Overview">
+                <div class="card-content">
+                    <h3>Page 1: Executive Overview</h3>
+                    <p>High-level KPIs, churn rate trends, and overall performance metrics.</p>
+                </div>
+            </div>
+
+            <div class="dashboard-card">
+                <img src="customer-insights.png" alt="Customer Insights">
+                <div class="card-content">
+                    <h3>Page 2: Customer Insights</h3>
+                    <p>Demographic analysis and behavior patterns of churned customers.</p>
+                </div>
+            </div>
+
+            <div class="dashboard-card">
+                <img src="revenue-analysis.png" alt="Revenue Analysis">
+                <div class="card-content">
+                    <h3>Page 3: Revenue Analysis</h3>
+                    <p>Revenue impact of churn and at-risk revenue analysis.</p>
+                </div>
+            </div>
+
+            <div class="dashboard-card">
+                <img src="retention-strategies.png" alt="Retention Strategies">
+                <div class="card-content">
+                    <h3>Page 4: Retention Strategies</h3>
+                    <p>Actionable insights and recommended retention campaigns.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Key Insights -->
+        <div class="insights">
+            <h2>🔑 Key Insights</h2>
+            <ul>
+                <li><strong>Churn Rate:</strong> 26.8% of customers churned</li>
+                <li><strong>High Risk Group:</strong> Month-to-month contract customers show 45% higher churn</li>
+                <li><strong>Revenue at Risk:</strong> $158,240 monthly recurring revenue at risk</li>
+                <li><strong>Top Reason:</strong> Competitors offered better deals (33% of churned customers)</li>
+                <li><strong>Retention Opportunity:</strong> Fiber optic users have highest retention when bundled with tech support</li>
+                <li><strong>Recommendation:</strong> Target month-to-month customers with loyalty discounts</li>
+            </ul>
+        </div>
+
+        <!-- Technical Details -->
+        <div style="background: #f1f5f9; padding: 2rem; border-radius: 1rem;">
+            <h3 style="color: #6366f1; margin-bottom: 1rem;">🛠️ Tools Used</h3>
+            <p>Power BI | DAX | Power Query | Data Modeling</p>
+            
+            <h3 style="color: #6366f1; margin: 1.5rem 0 1rem;">📊 Key Metrics Tracked</h3>
+            <p>Customer Churn Rate • Monthly Recurring Revenue • Customer Lifetime Value • Retention Rate • At-Risk Revenue • NPS Score</p>
+        </div>
+
+        <footer>
+            <p>© 2026 Mohd Faij • Data Analyst</p>
+        </footer>
+    </div>
+</body>
+</html>
