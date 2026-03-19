@@ -289,6 +289,17 @@ padding:20px;
 color:#64748b;
 }
 
+/* 🔥 Scroll Animation */
+.reveal{
+  opacity:0;
+  transform:translateY(40px);
+  transition:all 0.8s ease;
+}
+
+.reveal.active{
+  opacity:1;
+  transform:translateY(0);
+} 
 </style>
 </head>
 
@@ -317,7 +328,7 @@ color:#64748b;
 <a href="#projects" class="button secondary-btn">View Projects</a>
 </div>
 
-<section id="about">
+<section id="about" class="reveal">
 <h2>About Me</h2>
 <p>
 I am a B.Com graduate and a results-driven Data Analyst skilled in SQL, Excel, Power BI, and Python. 
@@ -327,7 +338,7 @@ I have built end-to-end analytics projects involving data cleaning, transformati
 </p>
 </section>
 
-<section id="skills">
+<section id="projects" class="reveal">
 <h2>Skills</h2>
 <div class="skills">
 <div class="skill">SQL</div>
@@ -338,7 +349,7 @@ I have built end-to-end analytics projects involving data cleaning, transformati
 </section>
 
 <!-- 🔥 YOUR ORIGINAL PROJECTS BACK -->
-<section id="projects">
+<section id="skills" class="reveal">
 <h2>Projects</h2>
 
 <div class="projects">
@@ -381,7 +392,7 @@ class="primary-btn">
 </div>
 
 </div>
-<section class="value-section">
+<section class="value-section reveal">
   <h2>What I Bring to the Table</h2>
 
   <p style="color:#64748b; max-width:600px; margin:auto; margin-bottom:30px;">
@@ -413,7 +424,7 @@ class="primary-btn">
   </div>
 </section>
 
-<section class="hire">
+<section class="hire reveal">
 <h2>🚀 Open to Opportunities</h2>
 <p>I am actively looking for Data Analyst roles.</p>
 </section>
@@ -434,6 +445,23 @@ document.getElementById("modalImg").src=img.src;
 function closeModal(){
 document.getElementById("modal").style.display="none";
 }
+
+function revealOnScroll(){
+  let reveals = document.querySelectorAll(".reveal");
+
+  for(let i = 0; i < reveals.length; i++){
+    let windowHeight = window.innerHeight;
+    let elementTop = reveals[i].getBoundingClientRect().top;
+    let elementVisible = 100;
+
+    if(elementTop < windowHeight - elementVisible){
+      reveals[i].classList.add("active");
+    }
+  }
+}
+
+window.addEventListener("scroll", revealOnScroll);
+window.addEventListener("load", revealOnScroll);
 </script>
 
 </body>
