@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Sales Dashboard - Mohd Faij</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #f8fafc, #eef2ff);
+            color: #0f172a;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        h1 {
+            color: #6366f1;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: #6366f1;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .metric-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        .metric-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #6366f1;
+            margin: 0.5rem 0;
+        }
+        .dashboard-img {
+            width: 100%;
+            border-radius: 1rem;
+            margin: 2rem 0;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .insights {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            margin: 2rem 0;
+        }
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            text-decoration: none;
+            border-radius: 2rem;
+            font-weight: 500;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        th {
+            background: #f1f5f9;
+            color: #6366f1;
+        }
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            color: #64748b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html#projects" class="back-btn">← Back to Portfolio</a>
+        
+        <header>
+            <h1>📊 Enterprise Sales Dashboard</h1>
+            <p>Comprehensive Sales Analytics & Revenue Tracking</p>
+        </header>
+
+        <!-- Power BI Dashboard Link -->
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <a href="YOUR_POWERBI_LINK_HERE" target="_blank" class="btn">
+                🚀 Open Live Dashboard (Power BI)
+            </a>
+        </div>
+
+        <!-- Key Metrics -->
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div>Total Revenue</div>
+                <div class="metric-value">$32.48M</div>
+                <div style="color: #10b981;">↑ +15.3% vs last year</div>
+            </div>
+            <div class="metric-card">
+                <div>Profit Margin</div>
+                <div class="metric-value">21.42%</div>
+                <div style="color: #10b981;">↑ +3.2%</div>
+            </div>
+            <div class="metric-card">
+                <div>Total Customers</div>
+                <div class="metric-value">1,547</div>
+                <div style="color: #10b981;">↑ +124 new</div>
+            </div>
+            <div class="metric-card">
+                <div>Avg. Deal Size</div>
+                <div class="metric-value">$21.5K</div>
+                <div style="color: #6366f1;">Stable</div>
+            </div>
+        </div>
+
+        <!-- Dashboard Image -->
+        <img src="Enterprise-Dashboard.png" alt="Enterprise Sales Dashboard" class="dashboard-img">
+
+        <!-- Revenue Breakdown -->
+        <div class="insights">
+            <h2 style="color: #6366f1; margin-bottom: 1.5rem;">💰 Revenue by Product Category</h2>
+            <table>
+                <tr>
+                    <th>Product Category</th>
+                    <th>Revenue</th>
+                    <th>% of Total</th>
+                    <th>Growth</th>
+                </tr>
+                <tr>
+                    <td>Product A (Enterprise)</td>
+                    <td>$12.5M</td>
+                    <td>38.5%</td>
+                    <td style="color: #10b981;">+18%</td>
+                </tr>
+                <tr>
+                    <td>Product B (SMB)</td>
+                    <td>$10.2M</td>
+                    <td>31.4%</td>
+                    <td style="color: #10b981;">+12%</td>
+                </tr>
+                <tr>
+                    <td>Product C (Professional)</td>
+                    <td>$9.78M</td>
+                    <td>30.1%</td>
+                    <td style="color: #ef4444;">-2%</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Monthly Trends -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0;">
+            <div style="background: white; padding: 1.5rem; border-radius: 1rem;">
+                <h3 style="color: #6366f1; margin-bottom: 1rem;">📈 Monthly Revenue Trend</h3>
+                <div>Jan: $2.4M</div>
+                <div>Feb: $2.6M</div>
+                <div>Mar: $2.8M</div>
+                <div>Apr: $2.7M</div>
+                <div>May: $2.9M</div>
+                <div>Jun: $3.1M</div>
+            </div>
+            <div style="background: white; padding: 1.5rem; border-radius: 1rem;">
+                <h3 style="color: #6366f1; margin-bottom: 1rem;">🎯 Top Insights</h3>
+                <ul style="list-style: none;">
+                    <li style="margin: 0.5rem 0;">• Enterprise segment growing fastest</li>
+                    <li style="margin: 0.5rem 0;">• Q2 saw 15.3% revenue increase</li>
+                    <li style="margin: 0.5rem 0;">• Cross-selling up 24% this year</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Technical Details -->
+        <div style="background: #f1f5f9; padding: 2rem; border-radius: 1rem;">
+            <h3 style="color: #6366f1; margin-bottom: 1rem;">🛠️ Tools Used</h3>
+            <p>Power BI | DAX | SQL | Data Modeling | Excel</p>
+            
+            <h3 style="color: #6366f1; margin: 1.5rem 0 1rem;">📊 Key Features</h3>
+            <p>• Dynamic revenue forecasting • Product category analysis • Regional sales breakdown • YoY growth tracking • Profit margin analytics</p>
+        </div>
+
+        <footer>
+            <p>© 2026 Mohd Faij • Data Analyst</p>
+        </footer>
+    </div>
+</body>
+</html>
