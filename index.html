@@ -530,14 +530,23 @@
     
     .project-image-container {
         height: auto;
-        min-height: 200px;
-        max-height: 280px;
+        min-height: 220px;
+        max-height: 260px;
+        border-radius: 0;  /* REMOVE rounded corners on mobile */
+        border-bottom: 3px solid var(--primary-light);
     }
     
     .project-image {
-        object-fit: scale-down;
+        object-fit: contain;
         object-position: center;
-        background: #f8fafc;
+        background: white;
+        border-radius: 0;  /* REMOVE any border radius */
+    }
+    
+    /* Also fix the project card corners */
+    .project-card {
+        border-radius: 1.5rem;  /* Keep card corners rounded */
+        overflow: hidden;  /* This ensures image corners don't show */
     }
 }
   </style>
