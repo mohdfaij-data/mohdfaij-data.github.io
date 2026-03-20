@@ -68,9 +68,9 @@
 
     /* Container */
     .container {
-      max-width: 1200px;
+      max-width: 1400px;
       margin: 0 auto;
-      padding: 0 1.5rem;
+      padding: 0 2rem;
     }
 
     /* Hero Section */
@@ -254,114 +254,122 @@
       display: block;
     }
 
-    /* Projects Grid */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 2rem;
-    }
-
-    .project-card {
+    /* Projects - Full Width Images */
+    .project-full {
       background: white;
       border-radius: 2rem;
       overflow: hidden;
       box-shadow: var(--shadow);
       transition: all 0.3s;
+      margin-bottom: 3rem;
     }
 
-    .project-card:hover {
+    .project-full:hover {
       transform: translateY(-8px);
       box-shadow: var(--shadow-hover);
     }
 
-    .project-image {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-bottom: 3px solid var(--primary-light);
-      cursor: pointer;
-      transition: transform 0.3s;
-    }
-
-    .project-image:hover {
-      transform: scale(1.02);
-    }
-
     .project-header {
-      padding: 1.5rem 1.5rem 0;
+      padding: 2rem 2rem 1rem;
     }
 
     .project-header h3 {
-      font-size: 1.3rem;
+      font-size: 1.8rem;
       margin-bottom: 0.75rem;
       color: var(--primary);
     }
 
     .project-header p {
       color: var(--text-light);
-      font-size: 0.95rem;
-      margin-bottom: 1rem;
+      font-size: 1.1rem;
     }
 
-    .metrics-badge {
+    .metrics-row {
       display: flex;
-      gap: 0.75rem;
+      gap: 1.5rem;
       flex-wrap: wrap;
-      margin: 1rem 0;
+      margin: 1.5rem 0;
     }
 
-    .metric {
+    .metric-large {
       background: #eef2ff;
-      padding: 0.35rem 1rem;
+      padding: 0.5rem 1.5rem;
       border-radius: 9999px;
-      font-size: 0.85rem;
+      font-size: 1rem;
       font-weight: 600;
       color: var(--primary);
     }
 
-    .project-preview {
-      background: linear-gradient(135deg, #f1f5f9, #f8fafc);
-      padding: 1.5rem;
+    /* Full Image Container */
+    .full-image-container {
+      width: 100%;
+      background: #f1f5f9;
+      padding: 1rem;
       border-radius: 1.5rem;
-      margin: 1rem 1.5rem;
+      margin: 1.5rem 2rem;
     }
 
-    .preview-title {
+    .full-image {
+      width: 100%;
+      height: auto;
+      border-radius: 1rem;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      transition: transform 0.3s;
+      display: block;
+    }
+
+    .full-image:hover {
+      transform: scale(1.01);
+    }
+
+    /* Project Stats Grid */
+    .stats-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      padding: 1.5rem 2rem;
+      background: #f8fafc;
+      margin: 1rem 2rem 2rem;
+      border-radius: 1.5rem;
+    }
+
+    .stat-block {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 1rem;
+      box-shadow: var(--shadow);
+    }
+
+    .stat-block h4 {
+      color: var(--text-light);
       font-size: 0.9rem;
       text-transform: uppercase;
       letter-spacing: 1px;
-      color: var(--text-light);
       margin-bottom: 1rem;
     }
 
-    .data-row {
+    .stat-item {
       display: flex;
       justify-content: space-between;
       padding: 0.5rem 0;
-      border-bottom: 1px dashed #cbd5e1;
+      border-bottom: 1px dashed #e2e8f0;
     }
 
-    .highlight {
-      color: var(--primary);
+    .stat-value {
       font-weight: 600;
+      color: var(--primary);
     }
 
-    .revenue-bar {
-      height: 8px;
-      background: #e2e8f0;
-      border-radius: 9999px;
-      margin: 0.5rem 0;
-      overflow: hidden;
-    }
-
-    .bar-fill {
-      height: 100%;
-      background: linear-gradient(90deg, var(--primary), var(--primary-light));
-      border-radius: 9999px;
+    .highlight-number {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
     }
 
     .project-footer {
-      padding: 1.5rem;
+      padding: 1.5rem 2rem 2rem;
       display: flex;
       gap: 1rem;
       border-top: 1px solid #e2e8f0;
@@ -370,8 +378,8 @@
     .project-footer .btn {
       flex: 1;
       text-align: center;
-      padding: 0.6rem 1rem;
-      font-size: 0.9rem;
+      padding: 1rem;
+      font-size: 1rem;
     }
 
     /* Value Grid */
@@ -449,7 +457,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0,0,0,0.9);
+      background: rgba(0,0,0,0.95);
       justify-content: center;
       align-items: center;
       z-index: 1000;
@@ -457,9 +465,10 @@
     }
 
     .modal img {
-      max-width: 90%;
-      max-height: 90%;
+      max-width: 95%;
+      max-height: 95%;
       border-radius: 1rem;
+      box-shadow: var(--shadow);
     }
 
     /* Open Section */
@@ -498,13 +507,18 @@
 
     /* Responsive */
     @media (max-width: 768px) {
-      .skills-grid, .projects-grid, .value-grid, .stats-grid {
+      .skills-grid, .value-grid, .stats-grid {
         grid-template-columns: 1fr;
       }
       
       h1 { font-size: 2rem; }
       .btn-group { flex-direction: column; }
       .btn { width: 100%; }
+      
+      .project-header h3 { font-size: 1.5rem; }
+      .full-image-container { margin: 1rem; }
+      .stats-container { margin: 1rem; }
+      .project-footer { flex-direction: column; }
     }
   </style>
 </head>
@@ -527,7 +541,6 @@
     <section id="home">
       <div class="hero">
         <div class="profile-img">
-          <!-- Make sure photo.jpeg exists in your folder -->
           <img src="photo.jpeg" alt="Mohd Faij" onerror="this.src='https://via.placeholder.com/120'">
         </div>
         <h1>Mohd Faij</h1>
@@ -588,71 +601,126 @@
     <!-- Projects Section -->
     <section id="projects">
       <h2 class="section-title">Featured Projects</h2>
-      <div class="projects-grid">
-        
-        <!-- Project 1: Telecom Churn Analysis -->
-        <div class="project-card">
-          <!-- executive-overview.png - Make sure this file exists -->
-          <img src="executive-overview.png" alt="Telecom Churn Dashboard" class="project-image" onclick="openModal(this)" onerror="this.src='https://via.placeholder.com/400x200?text=Telecom+Dashboard'">
-          
-          <div class="project-header">
-            <h3>📱 Telecom Customer Churn Analysis</h3>
-            <p>Complete end-to-end churn analysis with revenue impact and retention strategies</p>
-            <div class="metrics-badge">
-              <span class="metric">Churn: 26.8%</span>
-              <span class="metric">At-Risk: $158.24K</span>
-              <span class="metric">Retention: 73.2%</span>
-            </div>
-          </div>
-          
-          <div class="project-preview">
-            <div class="preview-title">REVENUE ANALYSIS (PAGE 3)</div>
-            <div class="data-row"><span>Jan</span> <span class="highlight">2,466 customers</span></div>
-            <div class="data-row"><span>Feb</span> <span class="highlight">14.55% growth</span></div>
-            <div class="data-row"><span>Mar</span> <span class="highlight">380 new</span></div>
-            <div class="data-row"><span>Apr</span> <span class="highlight">1.56x revenue</span></div>
-            <div class="data-row"><span>May</span> <span class="highlight">$158.24K at-risk</span></div>
-          </div>
-
-          <div class="project-footer">
-            <!-- POWER BI LINK 1 - Replace with your actual Telecom Power BI link -->
-            <a href="https://app.powerbi.com/view?r=YOUR_TELECOM_POWERBI_LINK_HERE" target="_blank" class="btn btn-primary">🚀 Live Dashboard</a>
-            <!-- Link to telecom-details.html -->
-            <a href="telecom-details.html" class="btn btn-outline">📊 Full Analysis</a>
+      
+      <!-- Project 1: Telecom Customer Churn Analysis - FULL IMAGE -->
+      <div class="project-full">
+        <div class="project-header">
+          <h3>📱 Telecom Customer Churn Analysis</h3>
+          <p>Complete end-to-end churn analysis with revenue impact and retention strategies</p>
+          <div class="metrics-row">
+            <span class="metric-large">📊 Churn Rate: 26.8%</span>
+            <span class="metric-large">💰 At-Risk Revenue: $158.24K</span>
+            <span class="metric-large">📈 Retention Rate: 73.2%</span>
           </div>
         </div>
 
-        <!-- Project 2: Enterprise Sales Dashboard -->
-        <div class="project-card">
-          <!-- Enterprise-Dashboard.png - Make sure this file exists -->
-          <img src="Enterprise-Dashboard.png" alt="Enterprise Sales Dashboard" class="project-image" onclick="openModal(this)" onerror="this.src='https://via.placeholder.com/400x200?text=Enterprise+Dashboard'">
-          
-          <div class="project-header">
-            <h3>📊 Enterprise Sales Dashboard</h3>
-            <p>Comprehensive sales analytics with revenue tracking and profit margin analysis</p>
-            <div class="metrics-badge">
-              <span class="metric">Revenue: $32.48M</span>
-              <span class="metric">Margin: 21.42%</span>
-              <span class="metric">Growth: +15.3%</span>
+        <!-- FULL WIDTH IMAGE - Telecom Dashboard -->
+        <div class="full-image-container">
+          <img src="executive-overview.png" alt="Telecom Churn Analysis - Full Dashboard" class="full-image" onclick="openModal(this)" onerror="this.src='https://via.placeholder.com/1200x600?text=Telecom+Churn+Dashboard'">
+        </div>
+
+        <!-- Telecom Stats from your image -->
+        <div class="stats-container">
+          <div class="stat-block">
+            <h4>Total Customers</h4>
+            <div class="highlight-number">2,666</div>
+            <div class="stat-item">
+              <span>Customer Churn Rate by Tenure Segment</span>
+              <span class="stat-value">26.8%</span>
             </div>
           </div>
-          
-          <div class="project-preview">
-            <div class="preview-title">REVENUE BREAKDOWN</div>
-            <div class="data-row"><span>Product A</span> <span class="highlight">$5.53M</span></div>
-            <div class="revenue-bar"><div class="bar-fill" style="width: 55%"></div></div>
-            <div class="data-row"><span>Product B</span> <span class="highlight">$10.12M</span></div>
-            <div class="revenue-bar"><div class="bar-fill" style="width: 100%"></div></div>
-            <div class="data-row"><span>Product C</span> <span class="highlight">$9.78M</span></div>
-            <div class="revenue-bar"><div class="bar-fill" style="width: 97%"></div></div>
+
+          <div class="stat-block">
+            <h4>Top States</h4>
+            <div class="stat-item"><span>New York (NY)</span> <span class="stat-value">88</span></div>
+            <div class="stat-item"><span>Wisconsin (WI)</span> <span class="stat-value">70</span></div>
+            <div class="stat-item"><span>Minnesota (MN)</span> <span class="stat-value">68</span></div>
+            <div class="stat-item"><span>Missouri (MO)</span> <span class="stat-value">58</span></div>
           </div>
 
-          <div class="project-footer">
-            <!-- POWER BI LINK 2 - Replace with your actual Enterprise Power BI link -->
-            <a href="https://app.powerbi.com/view?r=YOUR_ENTERPRISE_POWERBI_LINK_HERE" target="_blank" class="btn btn-primary">🚀 Live Dashboard</a>
-            <!-- Link to sales-details.html -->
-            <a href="sales-details.html" class="btn btn-outline">📊 Full Analysis</a>
+          <div class="stat-block">
+            <h4>At Risk Analysis</h4>
+            <div class="stat-item"><span>At Risk Customers</span> <span class="stat-value">458</span></div>
+            <div class="stat-item"><span>Churn by Voice Mail Plan</span> <span class="stat-value">85.45%</span></div>
+            <div class="stat-item"><span>Churn by Service Call</span> <span class="stat-value">14.6%</span></div>
           </div>
+
+          <div class="stat-block">
+            <h4>Service Metrics</h4>
+            <div class="stat-item"><span>Avg Service Calls</span> <span class="stat-value">1.56</span></div>
+            <div class="stat-item"><span>Avg Monthly Charge</span> <span class="stat-value">$158.26K</span></div>
+          </div>
+        </div>
+
+        <div class="project-footer">
+          <a href="https://app.powerbi.com/view?r=YOUR_TELECOM_POWERBI_LINK_HERE" target="_blank" class="btn btn-primary">🚀 Live Dashboard (Power BI)</a>
+          <a href="telecom-details.html" class="btn btn-outline">📊 View Full Analysis</a>
+        </div>
+      </div>
+
+      <!-- Project 2: Enterprise Sales Dashboard - FULL IMAGE -->
+      <div class="project-full">
+        <div class="project-header">
+          <h3>📊 Enterprise Sales Dashboard</h3>
+          <p>Comprehensive sales analytics with revenue tracking and profit margin analysis</p>
+          <div class="metrics-row">
+            <span class="metric-large">💰 Revenue: $32.48M</span>
+            <span class="metric-large">📊 Margin: 21.42%</span>
+            <span class="metric-large">📈 Growth: +15.3%</span>
+          </div>
+        </div>
+
+        <!-- FULL WIDTH IMAGE - Enterprise Dashboard -->
+        <div class="full-image-container">
+          <img src="Enterprise-Dashboard.png" alt="Enterprise Sales Dashboard - Full View" class="full-image" onclick="openModal(this)" onerror="this.src='https://via.placeholder.com/1200x600?text=Enterprise+Sales+Dashboard'">
+        </div>
+
+        <!-- Revenue Breakdown -->
+        <div class="stats-container">
+          <div class="stat-block">
+            <h4>Revenue Overview</h4>
+            <div class="highlight-number">$32.48M</div>
+            <div class="stat-item"><span>Profit Margin</span> <span class="stat-value">21.42%</span></div>
+            <div class="stat-item"><span>Year-over-Year</span> <span class="stat-value">+15.3%</span></div>
+          </div>
+
+          <div class="stat-block">
+            <h4>Revenue by Product</h4>
+            <div class="stat-item"><span>Product A</span> <span class="stat-value">$5.53M</span></div>
+            <div class="stat-item"><span>Product B</span> <span class="stat-value">$10.12M</span></div>
+            <div class="stat-item"><span>Product C</span> <span class="stat-value">$9.78M</span></div>
+          </div>
+
+          <div class="stat-block">
+            <h4>Monthly Performance</h4>
+            <div class="stat-item"><span>January</span> <span class="stat-value">$5.53M</span></div>
+            <div class="stat-item"><span>February</span> <span class="stat-value">$4.56M</span></div>
+            <div class="stat-item"><span>March</span> <span class="stat-value">$1.56M</span></div>
+            <div class="stat-item"><span>April</span> <span class="stat-value">$0.71M</span></div>
+          </div>
+
+          <div class="stat-block">
+            <h4>Product Contribution</h4>
+            <div style="margin-top: 1rem;">
+              <div>Product A <span style="float: right;">17%</span></div>
+              <div class="revenue-bar" style="height: 8px; background: #e2e8f0; border-radius: 9999px; margin: 0.5rem 0;">
+                <div style="width: 17%; height: 100%; background: var(--primary); border-radius: 9999px;"></div>
+              </div>
+              <div>Product B <span style="float: right;">31%</span></div>
+              <div class="revenue-bar" style="height: 8px; background: #e2e8f0; border-radius: 9999px; margin: 0.5rem 0;">
+                <div style="width: 31%; height: 100%; background: var(--primary); border-radius: 9999px;"></div>
+              </div>
+              <div>Product C <span style="float: right;">30%</span></div>
+              <div class="revenue-bar" style="height: 8px; background: #e2e8f0; border-radius: 9999px; margin: 0.5rem 0;">
+                <div style="width: 30%; height: 100%; background: var(--primary); border-radius: 9999px;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-footer">
+          <a href="https://app.powerbi.com/view?r=YOUR_ENTERPRISE_POWERBI_LINK_HERE" target="_blank" class="btn btn-primary">🚀 Live Dashboard (Power BI)</a>
+          <a href="sales-details.html" class="btn btn-outline">📊 View Full Analysis</a>
         </div>
       </div>
     </section>
