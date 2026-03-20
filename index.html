@@ -4,365 +4,444 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <!-- Primary Meta Tags -->
+  <!-- Meta Tags -->
   <title>Mohd Faij | Data Analyst</title>
-  <meta name="title" content="Mohd Faij | Data Analyst">
   <meta name="description" content="Data Analyst specializing in SQL, Excel, Power BI, and Python. Turning data into business insights.">
-  <meta name="keywords" content="Data Analyst, SQL, Excel, Power BI, Python, Portfolio">
-  <meta name="author" content="Mohd Faij">
-  
-  <!-- Open Graph / Social Media Meta Tags -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Mohd Faij | Data Analyst">
-  <meta property="og:description" content="Data Analyst specializing in SQL, Excel, Power BI, and Python">
-  <meta property="og:image" content="photo.jpeg">
   
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
   <style>
-    /* CSS Variables */
-    :root {
-      --primary: #6366f1;
-      --primary-dark: #4f46e5;
-      --secondary: #8b5cf6;
-      --text-dark: #0f172a;
-      --text-light: #64748b;
-      --bg-gradient: linear-gradient(135deg, #eef2ff, #f8fafc);
-      --card-bg: rgba(255, 255, 255, 0.7);
-      --shadow-sm: 0 5px 15px rgba(0, 0, 0, 0.08);
-      --shadow-md: 0 10px 25px rgba(0, 0, 0, 0.1);
-      --shadow-lg: 0 25px 60px rgba(99, 102, 241, 0.2);
-      --transition: all 0.3s ease;
-    }
-
-    /* Reset */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    :root {
+      --primary: #4f46e5;
+      --primary-light: #818cf8;
+      --secondary: #0f172a;
+      --text-light: #64748b;
+      --bg-light: #f8fafc;
+      --shadow: 0 20px 25px -5px rgba(0,0,0,0.05), 0 10px 10px -5px rgba(0,0,0,0.01);
+      --shadow-hover: 0 25px 30px -5px rgba(79,70,229,0.1);
     }
 
     body {
-      background: var(--bg-gradient);
-      color: var(--text-dark);
-      line-height: 1.5;
-      min-height: 100vh;
+      background: var(--bg-light);
+      color: var(--secondary);
+      line-height: 1.6;
     }
-
-    /* Typography */
-    h1 { font-size: clamp(32px, 5vw, 42px); }
-    h2 { font-size: clamp(24px, 4vw, 32px); margin-bottom: 1.5rem; }
 
     /* Navigation */
     nav {
       display: flex;
       justify-content: center;
-      gap: 2rem;
-      padding: 1rem;
-      background: var(--card-bg);
+      gap: 2.5rem;
+      padding: 1.25rem;
+      background: rgba(255,255,255,0.8);
       backdrop-filter: blur(10px);
       position: sticky;
       top: 0;
       z-index: 100;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
     }
 
     nav a {
       text-decoration: none;
-      color: var(--text-dark);
+      color: var(--secondary);
       font-weight: 500;
-      transition: var(--transition);
-      padding: 0.25rem 0.5rem;
+      transition: all 0.2s;
+      padding: 0.5rem 0;
+      border-bottom: 2px solid transparent;
     }
 
     nav a:hover {
       color: var(--primary);
+      border-bottom-color: var(--primary);
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
     }
 
     /* Hero Section */
     .hero {
       text-align: center;
-      padding: 3rem 1rem 2rem;
-      max-width: 800px;
-      margin: 0 auto;
+      padding: 4rem 0 2rem;
     }
 
-    .hero img {
+    .profile-img {
       width: 120px;
       height: 120px;
       border-radius: 50%;
-      object-fit: cover;
-      box-shadow: var(--shadow-md);
-      margin-bottom: 1rem;
+      margin: 0 auto 1.5rem;
+      overflow: hidden;
+      box-shadow: var(--shadow);
       border: 3px solid white;
     }
 
-    .hero .headline {
-      color: var(--primary);
-      font-weight: 600;
-      font-size: 1.125rem;
-      margin-bottom: 0.5rem;
+    .profile-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
-    .hero p {
-      color: var(--text-light);
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, var(--primary), #7c3aed);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .headline {
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 1.1rem;
       margin-bottom: 0.75rem;
     }
 
-    /* Buttons */
-    .btn {
-      display: inline-block;
-      padding: 0.75rem 1.75rem;
-      border-radius: 2rem;
-      text-decoration: none;
-      font-weight: 500;
-      transition: var(--transition);
-      margin: 0.5rem;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: white;
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4);
-    }
-
-    .btn-secondary {
-      background: white;
-      color: var(--primary);
-      border: 2px solid var(--primary);
-    }
-
-    .btn-secondary:hover {
-      background: var(--primary);
-      color: white;
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--text-dark);
-      border: 2px solid var(--text-light);
-    }
-
-    .btn-outline:hover {
-      border-color: var(--primary);
-      color: var(--primary);
+    .subheadline {
+      color: var(--text-light);
+      margin-bottom: 2rem;
     }
 
     /* Social Icons */
-    .social-icons {
+    .social-links {
       display: flex;
       justify-content: center;
       gap: 1rem;
-      margin: 1.5rem 0;
+      margin-bottom: 2rem;
     }
 
-    .social-icons a {
-      width: 40px;
-      height: 40px;
+    .social-links a {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: white;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 50%;
-      background: white;
-      color: var(--text-dark);
-      transition: var(--transition);
-      box-shadow: var(--shadow-sm);
+      color: var(--secondary);
+      text-decoration: none;
+      transition: all 0.3s;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
     }
 
-    .social-icons a:hover {
+    .social-links a:hover {
       background: var(--primary);
       color: white;
-      transform: translateY(-4px);
+      transform: translateY(-3px);
     }
 
-    /* Sections */
+    /* Buttons */
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      border-radius: 9999px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s;
+      border: 2px solid transparent;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 10px 15px -3px rgba(79,70,229,0.2);
+    }
+
+    .btn-primary:hover {
+      background: #4338ca;
+      transform: translateY(-2px);
+      box-shadow: 0 20px 25px -5px rgba(79,70,229,0.3);
+    }
+
+    .btn-outline {
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      background: white;
+    }
+
+    .btn-outline:hover {
+      background: var(--primary);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    /* Section Styles */
     section {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 4rem 1.5rem;
+      padding: 5rem 0;
     }
 
-    #about, #skills, .value-section {
+    .section-title {
       text-align: center;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 3rem;
+      position: relative;
     }
 
-    /* About */
-    #about p {
-      color: var(--text-light);
-      max-width: 700px;
+    .section-title:after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--primary-light));
+      margin: 1rem auto 0;
+      border-radius: 2px;
+    }
+
+    /* About Section */
+    .about-text {
+      max-width: 800px;
       margin: 0 auto;
-      font-size: 1.125rem;
+      text-align: center;
+      color: var(--text-light);
+      font-size: 1.1rem;
+      background: white;
+      padding: 2.5rem;
+      border-radius: 2rem;
+      box-shadow: var(--shadow);
     }
 
     /* Skills Grid */
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      grid-template-columns: repeat(4, 1fr);
       gap: 1.5rem;
-      margin-top: 2rem;
+      max-width: 600px;
+      margin: 0 auto;
     }
 
     .skill-card {
       background: white;
-      padding: 1.5rem 1rem;
+      padding: 1.5rem 0.5rem;
+      text-align: center;
       border-radius: 1rem;
-      box-shadow: var(--shadow-sm);
-      transition: var(--transition);
       font-weight: 600;
-      font-size: 1.125rem;
+      box-shadow: var(--shadow);
+      transition: all 0.3s;
     }
 
     .skill-card:hover {
-      transform: translateY(-6px);
-      box-shadow: var(--shadow-md);
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-hover);
       color: var(--primary);
+    }
+
+    .skill-icon {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      display: block;
     }
 
     /* Projects Grid */
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      grid-template-columns: repeat(2, 1fr);
       gap: 2rem;
-      margin-top: 2rem;
     }
 
     .project-card {
-      background: var(--card-bg);
-      backdrop-filter: blur(12px);
-      padding: 1.5rem;
-      border-radius: 1rem;
-      box-shadow: var(--shadow-sm);
-      transition: var(--transition);
+      background: white;
+      border-radius: 2rem;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: all 0.3s;
     }
 
     .project-card:hover {
       transform: translateY(-8px);
-      box-shadow: var(--shadow-lg);
+      box-shadow: var(--shadow-hover);
     }
 
     .project-image {
       width: 100%;
-      border-radius: 0.75rem;
-      margin: 1rem 0;
+      height: 200px;
+      object-fit: cover;
+      border-bottom: 3px solid var(--primary-light);
       cursor: pointer;
-      transition: transform 0.3s ease;
-      border: 2px solid white;
+      transition: transform 0.3s;
     }
 
     .project-image:hover {
       transform: scale(1.02);
     }
 
-    .project-links {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      margin-top: 1.5rem;
-      flex-wrap: wrap;
+    .project-header {
+      padding: 1.5rem 1.5rem 0;
     }
 
-    /* Telecom Analysis Section */
-    .analysis-section {
-      background: rgba(255, 255, 255, 0.5);
-      border-radius: 2rem;
-      padding: 2rem;
-      margin: 2rem 0;
-    }
-
-    .analysis-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-      margin: 2rem 0;
-    }
-
-    .analysis-card {
-      background: white;
-      padding: 1.5rem;
-      border-radius: 1rem;
-      text-align: left;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .analysis-card h3 {
+    .project-header h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.75rem;
       color: var(--primary);
+    }
+
+    .project-header p {
+      color: var(--text-light);
+      font-size: 0.95rem;
       margin-bottom: 1rem;
-      font-size: 1.2rem;
     }
 
-    .chart-placeholder {
-      background: #f1f5f9;
-      border-radius: 0.5rem;
-      padding: 1rem;
+    .metrics-badge {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
       margin: 1rem 0;
-      font-family: monospace;
     }
 
-    .data-point {
+    .metric {
+      background: #eef2ff;
+      padding: 0.35rem 1rem;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .project-preview {
+      background: linear-gradient(135deg, #f1f5f9, #f8fafc);
+      padding: 1.5rem;
+      border-radius: 1.5rem;
+      margin: 1rem 1.5rem;
+    }
+
+    .preview-title {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-light);
+      margin-bottom: 1rem;
+    }
+
+    .data-row {
       display: flex;
       justify-content: space-between;
-      padding: 0.25rem 0;
-      border-bottom: 1px dashed #e2e8f0;
+      padding: 0.5rem 0;
+      border-bottom: 1px dashed #cbd5e1;
     }
 
-    .metric-highlight {
-      background: #eef2ff;
+    .highlight {
       color: var(--primary);
-      padding: 0.25rem 0.5rem;
-      border-radius: 0.25rem;
       font-weight: 600;
+    }
+
+    .revenue-bar {
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 9999px;
+      margin: 0.5rem 0;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--primary-light));
+      border-radius: 9999px;
+    }
+
+    .project-footer {
+      padding: 1.5rem;
+      display: flex;
+      gap: 1rem;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    .project-footer .btn {
+      flex: 1;
+      text-align: center;
+      padding: 0.6rem 1rem;
+      font-size: 0.9rem;
     }
 
     /* Value Grid */
     .value-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(4, 1fr);
       gap: 1.5rem;
       margin-top: 2rem;
     }
 
     .value-card {
-      background: var(--card-bg);
-      backdrop-filter: blur(12px);
-      padding: 1.5rem;
-      border-radius: 1rem;
-      box-shadow: var(--shadow-sm);
-      transition: var(--transition);
-      font-size: 1.125rem;
-      font-weight: 500;
+      background: white;
+      padding: 2rem 1rem;
+      text-align: center;
+      border-radius: 1.5rem;
+      box-shadow: var(--shadow);
+      transition: all 0.3s;
     }
 
     .value-card:hover {
-      transform: translateY(-8px) scale(1.02);
-      box-shadow: var(--shadow-md);
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: var(--shadow-hover);
     }
 
-    /* Open Section */
-    .open-section {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: white;
-      padding: 3rem 2rem;
-      border-radius: 1.5rem;
-      margin: 2rem auto;
+    .value-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .value-card h4 {
+      margin-bottom: 0.5rem;
+      color: var(--secondary);
+    }
+
+    .value-card p {
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+
+    /* Stats Counter */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .stat-card {
+      background: white;
+      padding: 2rem;
       text-align: center;
-      max-width: 900px;
+      border-radius: 1.5rem;
+      box-shadow: var(--shadow);
     }
 
-    .open-section h2 {
-      margin-bottom: 0.75rem;
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
     }
 
-    .open-section p {
-      font-size: 1.125rem;
-      opacity: 0.95;
+    .stat-label {
+      color: var(--text-light);
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
-    /* Modal */
+    /* Modal for images */
     .modal {
       display: none;
       position: fixed;
@@ -370,7 +449,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.9);
+      background: rgba(0,0,0,0.9);
       justify-content: center;
       align-items: center;
       z-index: 1000;
@@ -380,7 +459,33 @@
     .modal img {
       max-width: 90%;
       max-height: 90%;
-      border-radius: 0.5rem;
+      border-radius: 1rem;
+    }
+
+    /* Open Section */
+    .open-section {
+      background: linear-gradient(135deg, var(--primary), #7c3aed);
+      color: white;
+      padding: 4rem 2rem;
+      border-radius: 2rem;
+      text-align: center;
+    }
+
+    .open-section h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .open-section .btn {
+      background: white;
+      color: var(--primary);
+      margin-top: 2rem;
+      display: inline-block;
+    }
+
+    .open-section .btn:hover {
+      background: #f8fafc;
+      transform: translateY(-2px);
     }
 
     /* Footer */
@@ -388,210 +493,213 @@
       text-align: center;
       padding: 2rem;
       color: var(--text-light);
+      border-top: 1px solid #e2e8f0;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .skills-grid, .projects-grid, .value-grid, .stats-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      h1 { font-size: 2rem; }
+      .btn-group { flex-direction: column; }
+      .btn { width: 100%; }
     }
   </style>
 </head>
 <body>
+  <!-- Modal for image zoom -->
+  <div id="modal" class="modal" onclick="closeModal()">
+    <img id="modalImg" src="" alt="Enlarged view">
+  </div>
+
   <nav>
     <a href="#home">Home</a>
+    <a href="#about">About</a>
     <a href="#skills">Skills</a>
     <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
   </nav>
 
-  <main>
+  <main class="container">
     <!-- Hero Section -->
-    <section id="home" class="hero">
-      <img src="photo.jpeg" alt="Mohd Faij">
-      <h1>Mohd Faij</h1>
-      <p class="headline">Turning Data into Business Insights</p>
-      <p>Data Analyst | SQL | Excel | Power BI | Python</p>
-      
-      <div class="social-icons">
-        <a href="mailto:mohdfaij.data@email.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-        <a href="https://linkedin.com/in/mohdfaij-data" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-        <a href="https://github.com/mohdfaij-data" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
-        <a href="https://wa.me/+916387151848" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-      </div>
+    <section id="home">
+      <div class="hero">
+        <div class="profile-img">
+          <!-- Make sure photo.jpeg exists in your folder -->
+          <img src="photo.jpeg" alt="Mohd Faij" onerror="this.src='https://via.placeholder.com/120'">
+        </div>
+        <h1>Mohd Faij</h1>
+        <p class="headline">Turning Data into Business Insights</p>
+        <p class="subheadline">Data Analyst | SQL | Excel | Power BI | Python</p>
+        
+        <div class="social-links">
+          <a href="mailto:mohdfaij.data@email.com"><i class="fas fa-envelope"></i></a>
+          <a href="https://linkedin.com/in/mohdfaij-data" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://github.com/mohdfaij-data" target="_blank"><i class="fab fa-github"></i></a>
+          <a href="https://wa.me/+916387151848" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        </div>
 
-      <div>
-        <a href="resume.pdf" class="btn btn-primary" download>📄 Download Resume</a>
-        <a href="#projects" class="btn btn-secondary">🔍 View Projects</a>
+        <div class="btn-group">
+          <a href="resume.pdf" class="btn btn-primary" download>📄 Download Resume</a>
+          <a href="#projects" class="btn btn-outline">🔍 View Projects</a>
+        </div>
       </div>
     </section>
 
     <!-- About Section -->
     <section id="about">
-      <h2>About Me</h2>
-      <p>
-        I am a B.Com graduate and a results-driven Data Analyst skilled in SQL, Excel, Power BI, and Python.
-        My academic background in Statistics, Finance, and Business Analytics has given me a strong foundation 
-        in data interpretation, financial analysis, and evaluating business performance.
-      </p>
+      <h2 class="section-title">About Me</h2>
+      <div class="about-text">
+        <p>I am a B.Com graduate and a results-driven Data Analyst skilled in SQL, Excel, Power BI, and Python. My academic background in Statistics, Finance, and Business Analytics has given me a strong foundation in data interpretation, financial analysis, and evaluating business performance.</p>
+      </div>
     </section>
 
     <!-- Skills Section -->
     <section id="skills">
-      <h2>Technical Skills</h2>
+      <h2 class="section-title">Technical Skills</h2>
       <div class="skills-grid">
-        <div class="skill-card">📊 SQL</div>
-        <div class="skill-card">📈 Excel</div>
-        <div class="skill-card">📉 Power BI</div>
-        <div class="skill-card">🐍 Python</div>
+        <div class="skill-card"><span class="skill-icon">📊</span>SQL</div>
+        <div class="skill-card"><span class="skill-icon">📈</span>Excel</div>
+        <div class="skill-card"><span class="skill-icon">📉</span>Power BI</div>
+        <div class="skill-card"><span class="skill-icon">🐍</span>Python</div>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">5+</div>
+          <div class="stat-label">Projects Completed</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">4</div>
+          <div class="stat-label">Power BI Dashboards</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">2+</div>
+          <div class="stat-label">Years Experience</div>
+        </div>
       </div>
     </section>
 
     <!-- Projects Section -->
     <section id="projects">
-      <h2>Featured Projects</h2>
+      <h2 class="section-title">Featured Projects</h2>
       <div class="projects-grid">
+        
         <!-- Project 1: Telecom Churn Analysis -->
         <div class="project-card">
-          <h3>📱 Telecom Customer Churn Analysis</h3>
-          <p>Complete end-to-end churn analysis with revenue impact and retention strategies</p>
+          <!-- executive-overview.png - Make sure this file exists -->
+          <img src="executive-overview.png" alt="Telecom Churn Dashboard" class="project-image" onclick="openModal(this)" onerror="this.src='https://via.placeholder.com/400x200?text=Telecom+Dashboard'">
           
-          <img src="executive-overview.png" alt="Telecom Churn Dashboard" class="project-image" onclick="openModal(this)">
-          
-          <!-- Quick Analysis Preview -->
-          <div class="analysis-section">
-            <h4>Key Metrics:</h4>
-            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin: 1rem 0;">
-              <span class="metric-highlight">Churn Rate: 26.8%</span>
-              <span class="metric-highlight">At-Risk Revenue: $158.24K</span>
-              <span class="metric-highlight">Retention Rate: 73.2%</span>
-            </div>
-            
-            <!-- Page 3: Revenue Analysis Preview -->
-            <div class="analysis-card">
-              <h3>📊 Churn Analysis (Page 3)</h3>
-              <div class="chart-placeholder">
-                <div class="data-point"><span>Jan</span> <span>2,466 customers</span></div>
-                <div class="data-point"><span>Feb</span> <span>14.55% growth</span></div>
-                <div class="data-point"><span>Mar</span> <span>380 new</span></div>
-                <div class="data-point"><span>Apr</span> <span>1.56x revenue</span></div>
-                <div class="data-point"><span>May</span> <span>$158.24K at-risk</span></div>
-                <div class="data-point"><span>Jun</span> <span>1.54% churn</span></div>
-              </div>
-            </div>
-            
-            <!-- Page 4: Retention Strategies Preview -->
-            <div class="analysis-card">
-              <h3>🎯 Retention Strategies (Page 4)</h3>
-              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-top: 0.5rem;">
-                <div style="background: #eef2ff; padding: 0.5rem; border-radius: 0.5rem;">
-                  <div style="color: var(--primary); font-weight: bold;">2023</div>
-                  <div>$5.53M</div>
-                </div>
-                <div style="background: #eef2ff; padding: 0.5rem; border-radius: 0.5rem;">
-                  <div style="color: var(--primary); font-weight: bold;">2024</div>
-                  <div>$21.42M</div>
-                </div>
-                <div style="background: #eef2ff; padding: 0.5rem; border-radius: 0.5rem;">
-                  <div style="color: var(--primary); font-weight: bold;">2025</div>
-                  <div>$5.53M</div>
-                </div>
-                <div style="background: #eef2ff; padding: 0.5rem; border-radius: 0.5rem;">
-                  <div style="color: var(--primary); font-weight: bold;">2026</div>
-                  <div>$10.71K</div>
-                </div>
-              </div>
+          <div class="project-header">
+            <h3>📱 Telecom Customer Churn Analysis</h3>
+            <p>Complete end-to-end churn analysis with revenue impact and retention strategies</p>
+            <div class="metrics-badge">
+              <span class="metric">Churn: 26.8%</span>
+              <span class="metric">At-Risk: $158.24K</span>
+              <span class="metric">Retention: 73.2%</span>
             </div>
           </div>
           
-          <div class="project-links">
-            <a href="https://app.powerbi.com/view?r=eyJrIjoiNGM0OGMxN2UtMjdjYy00YzRkLWE5NTMtNzRhMDAyZjJkODZkIiwidCI6IjNkMGE5Y2FiLTQzYzYtNDlkNi1iODZjLTFiMTZjNGQwMjYzNSJ9&pageName=40ed3e03483196c0b5e2" target="_blank" rel="noopener" class="btn btn-primary">
-              🚀 Live Dashboard (Power BI)
-            </a>
-            <a href="telecom.details.html" class="btn btn-outline">
-              📊 View Full Analysis
-            </a>
+          <div class="project-preview">
+            <div class="preview-title">REVENUE ANALYSIS (PAGE 3)</div>
+            <div class="data-row"><span>Jan</span> <span class="highlight">2,466 customers</span></div>
+            <div class="data-row"><span>Feb</span> <span class="highlight">14.55% growth</span></div>
+            <div class="data-row"><span>Mar</span> <span class="highlight">380 new</span></div>
+            <div class="data-row"><span>Apr</span> <span class="highlight">1.56x revenue</span></div>
+            <div class="data-row"><span>May</span> <span class="highlight">$158.24K at-risk</span></div>
+          </div>
+
+          <div class="project-footer">
+            <!-- POWER BI LINK 1 - Replace with your actual Telecom Power BI link -->
+            <a href="https://app.powerbi.com/view?r=YOUR_TELECOM_POWERBI_LINK_HERE" target="_blank" class="btn btn-primary">🚀 Live Dashboard</a>
+            <!-- Link to telecom-details.html -->
+            <a href="telecom-details.html" class="btn btn-outline">📊 Full Analysis</a>
           </div>
         </div>
 
         <!-- Project 2: Enterprise Sales Dashboard -->
         <div class="project-card">
-          <h3>📊 Enterprise Sales Dashboard</h3>
-          <p>Comprehensive sales analytics with revenue tracking and profit margin analysis</p>
+          <!-- Enterprise-Dashboard.png - Make sure this file exists -->
+          <img src="Enterprise-Dashboard.png" alt="Enterprise Sales Dashboard" class="project-image" onclick="openModal(this)" onerror="this.src='https://via.placeholder.com/400x200?text=Enterprise+Dashboard'">
           
-          <img src="Enterprise-Dashboard.png" alt="Enterprise Sales Dashboard" class="project-image" onclick="openModal(this)">
-          
-          <!-- Quick Analysis Preview -->
-          <div class="analysis-section">
-            <h4>Key Metrics:</h4>
-            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin: 1rem 0;">
-              <span class="metric-highlight">Total Revenue: $32.48M</span>
-              <span class="metric-highlight">Profit Margin: 21.42%</span>
-              <span class="metric-highlight">Growth: +15.3%</span>
-            </div>
-            
-            <div class="analysis-card">
-              <h3>💰 Revenue Breakdown</h3>
-              <div style="margin-top: 1rem;">
-                <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
-                  <div style="width: 100px;">Product A:</div>
-                  <div style="flex: 1; height: 20px; background: #e2e8f0; border-radius: 10px;">
-                    <div style="width: 75%; height: 100%; background: var(--primary); border-radius: 10px;"></div>
-                  </div>
-                  <div>$12.5M</div>
-                </div>
-                <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
-                  <div style="width: 100px;">Product B:</div>
-                  <div style="flex: 1; height: 20px; background: #e2e8f0; border-radius: 10px;">
-                    <div style="width: 60%; height: 100%; background: var(--secondary); border-radius: 10px;"></div>
-                  </div>
-                  <div>$10.2M</div>
-                </div>
-                <div style="display: flex; align-items: center; gap: 0.5rem;">
-                  <div style="width: 100px;">Product C:</div>
-                  <div style="flex: 1; height: 20px; background: #e2e8f0; border-radius: 10px;">
-                    <div style="width: 45%; height: 100%; background: #10b981; border-radius: 10px;"></div>
-                  </div>
-                  <div>$9.78M</div>
-                </div>
-              </div>
+          <div class="project-header">
+            <h3>📊 Enterprise Sales Dashboard</h3>
+            <p>Comprehensive sales analytics with revenue tracking and profit margin analysis</p>
+            <div class="metrics-badge">
+              <span class="metric">Revenue: $32.48M</span>
+              <span class="metric">Margin: 21.42%</span>
+              <span class="metric">Growth: +15.3%</span>
             </div>
           </div>
           
-          <div class="project-links">
-            <a href="https://app.powerbi.com/view?r=YOUR_ENTERPRISE_LINK_HERE" target="_blank" rel="noopener" class="btn btn-primary">
-              🚀 Live Dashboard (Power BI)
-            </a>
-            <a href="sales-details.html" class="btn btn-outline">
-              📊 View Details
-            </a>
+          <div class="project-preview">
+            <div class="preview-title">REVENUE BREAKDOWN</div>
+            <div class="data-row"><span>Product A</span> <span class="highlight">$5.53M</span></div>
+            <div class="revenue-bar"><div class="bar-fill" style="width: 55%"></div></div>
+            <div class="data-row"><span>Product B</span> <span class="highlight">$10.12M</span></div>
+            <div class="revenue-bar"><div class="bar-fill" style="width: 100%"></div></div>
+            <div class="data-row"><span>Product C</span> <span class="highlight">$9.78M</span></div>
+            <div class="revenue-bar"><div class="bar-fill" style="width: 97%"></div></div>
+          </div>
+
+          <div class="project-footer">
+            <!-- POWER BI LINK 2 - Replace with your actual Enterprise Power BI link -->
+            <a href="https://app.powerbi.com/view?r=YOUR_ENTERPRISE_POWERBI_LINK_HERE" target="_blank" class="btn btn-primary">🚀 Live Dashboard</a>
+            <!-- Link to sales-details.html -->
+            <a href="sales-details.html" class="btn btn-outline">📊 Full Analysis</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Value Section -->
-    <section class="value-section">
-      <h2>What I Bring to the Table</h2>
+    <!-- Value Proposition -->
+    <section>
+      <h2 class="section-title">What I Bring to the Table</h2>
       <div class="value-grid">
-        <div class="value-card">📊 Data Cleaning & Preparation</div>
-        <div class="value-card">📈 Interactive Dashboards</div>
-        <div class="value-card">🔍 Actionable Insights</div>
-        <div class="value-card">💡 Data-Driven Decisions</div>
+        <div class="value-card">
+          <div class="value-icon">📊</div>
+          <h4>Data Cleaning</h4>
+          <p>Raw data to analysis-ready format</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">📈</div>
+          <h4>Dashboards</h4>
+          <p>Interactive Power BI visuals</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">🔍</div>
+          <h4>Insights</h4>
+          <p>Actionable business intelligence</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">💡</div>
+          <h4>Decisions</h4>
+          <p>Data-driven recommendations</p>
+        </div>
       </div>
     </section>
 
     <!-- Open for Opportunities -->
-    <section class="open-section">
-      <h2>🚀 Open to Opportunities</h2>
-      <p>I am actively looking for Data Analyst roles. Let's connect!</p>
+    <section id="contact">
+      <div class="open-section">
+        <h2>🚀 Open to Opportunities</h2>
+        <p>I am actively looking for Data Analyst roles. Let's connect!</p>
+        <a href="mailto:mohdfaij.data@email.com" class="btn">📧 Hire Me</a>
+      </div>
     </section>
   </main>
 
-  <!-- Image Modal -->
-  <div id="modal" class="modal" onclick="closeModal()">
-    <img id="modalImg" src="" alt="Enlarged view">
-  </div>
-
   <footer>
-    <p>© 2026 Mohd Faij • All Rights Reserved</p>
+    <p>© 2026 Mohd Faij • Data Analyst • All Rights Reserved</p>
   </footer>
 
   <script>
-    // Modal functionality
+    // Modal functionality for image zoom
     const modal = document.getElementById('modal');
     const modalImg = document.getElementById('modalImg');
 
