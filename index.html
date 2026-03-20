@@ -528,14 +528,20 @@
         width: 100%;
     }
     
-    /* Remove ALL rounded corners on mobile */
+    /* Remove rounded corners ONLY from images and cards */
     .project-card,
     .project-image-container,
     .project-image,
-    .project-card img,
-    .project-card .btn,
-    .project-footer {
+    .project-card img {
         border-radius: 0 !important;
+    }
+    
+    /* BUT KEEP buttons rounded */
+    .btn,
+    .project-card .btn,
+    .project-footer .btn {
+        border-radius: 9999px !important;  /* Fully rounded on mobile too */
+        padding: 0.6rem 1rem;
     }
     
     /* Keep just a straight line separator */
@@ -574,16 +580,6 @@
         font-size: 0.85rem;
     }
     
-    .project-footer .btn {
-        font-size: 0.8rem;
-    }
-    
-    /* Square buttons on mobile */
-    .btn {
-        border-radius: 0 !important;
-        padding: 0.6rem 1rem;
-    }
-    
     .project-footer {
         flex-direction: row;
         gap: 0.5rem;
@@ -591,7 +587,7 @@
     
     .project-footer .btn {
         flex: 1;
-        border-radius: 0 !important;
+        border-radius: 9999px !important;  /* Rounded buttons in footer too */
     }
 }
   </style>
