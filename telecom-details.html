@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telecom Churn Analysis - 4 Pages</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f8fafc, #eef2ff);
+            color: #0f172a;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: #4f46e5;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #4f46e5;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 2rem;
+        }
+        
+        .powerbi-link {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            background: #4f46e5;
+            color: white;
+            text-decoration: none;
+            border-radius: 9999px;
+            font-weight: 500;
+        }
+        
+        .pages-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .page-card {
+            background: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .page-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            cursor: pointer;
+        }
+        
+        .page-info {
+            padding: 1rem;
+            background: #f8fafc;
+            border-top: 2px solid #4f46e5;
+        }
+        
+        .page-info h3 {
+            color: #4f46e5;
+            margin-bottom: 0.25rem;
+            font-size: 1.1rem;
+        }
+        
+        .page-info p {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+        
+        .metrics {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .metrics h2 {
+            color: #4f46e5;
+            margin-bottom: 1rem;
+        }
+        
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+        
+        .metric-item {
+            padding: 1rem;
+            background: #f1f5f9;
+            border-radius: 0.5rem;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            cursor: pointer;
+        }
+        
+        .modal img {
+            max-width: 95%;
+            max-height: 95%;
+            border-radius: 0.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .pages-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Modal for image zoom -->
+    <div id="modal" class="modal" onclick="closeModal()">
+        <img id="modalImg" src="">
+    </div>
+
+    <div class="container">
+        <a href="index.html#projects" class="back-btn">← Back to Portfolio</a>
+        
+        <h1>📱 Telecom Customer Churn Analysis</h1>
+        <p class="subtitle">Complete 4-Page Power BI Dashboard</p>
+        
+        <div class="powerbi-link">
+            <a href="YOUR_TELECOM_POWERBI_LINK_HERE" target="_blank" class="btn">🚀 Open Live Dashboard (Power BI)</a>
+        </div>
+        
+        <h2 style="text-align: center; margin: 2rem 0;">📋 All 4 Dashboard Pages</h2>
+        
+        <!-- 4 Pages Grid -->
+        <div class="pages-grid">
+            <div class="page-card">
+                <img src="executive-overview.png" alt="Executive Overview" onclick="openModal(this)">
+                <div class="page-info">
+                    <h3>Page 1: Executive Overview</h3>
+                    <p>High-level KPIs, churn rate trends, and overall performance metrics</p>
+                </div>
+            </div>
+            
+            <div class="page-card">
+                <img src="customer-insights.png" alt="Customer Insights" onclick="openModal(this)">
+                <div class="page-info">
+                    <h3>Page 2: Customer Insights</h3>
+                    <p>Demographic analysis and behavior patterns of churned customers</p>
+                </div>
+            </div>
+            
+            <div class="page-card">
+                <img src="churn-analysis.png" alt="Revenue Analysis" onclick="openModal(this)">
+                <div class="page-info">
+                    <h3>Page 3: Revenue Analysis</h3>
+                    <p>Revenue impact of churn and at-risk revenue analysis</p>
+                </div>
+            </div>
+            
+            <div class="page-card">
+                <img src="retention-strategy.png" alt="Retention Strategies" onclick="openModal(this)">
+                <div class="page-info">
+                    <h3>Page 4: Retention Strategies</h3>
+                    <p>Actionable insights and recommended retention campaigns</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Key Metrics -->
+        <div class="metrics">
+            <h2>🔑 Key Insights</h2>
+            <div class="metrics-grid">
+                <div class="metric-item"><strong>Total Customers:</strong> 2,666</div>
+                <div class="metric-item"><strong>Churn Rate:</strong> 26.8%</div>
+                <div class="metric-item"><strong>At-Risk Revenue:</strong> $158.24K</div>
+                <div class="metric-item"><strong>At-Risk Customers:</strong> 458</div>
+                <div class="metric-item"><strong>Avg Monthly Charge:</strong> $158.26K</div>
+                <div class="metric-item"><strong>Avg Service Calls:</strong> 1.56</div>
+                <div class="metric-item"><strong>Retention Score:</strong> 85.45</div>
+                <div class="metric-item"><strong>Top State:</strong> WY (88)</div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const modal = document.getElementById('modal');
+        const modalImg = document.getElementById('modalImg');
+
+        function openModal(img) {
+            if (!img?.src) return;
+            modal.style.display = 'flex';
+            modalImg.src = img.src;
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.style.display = 'none';
+            modalImg.src = '';
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.style.display === 'flex') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
