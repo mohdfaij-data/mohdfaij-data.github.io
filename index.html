@@ -510,20 +510,36 @@
       border-top: 1px solid #e2e8f0;
     }
 
-    /* Responsive */
-    @media (max-width: 768px) {
-      .skills-grid, .projects-grid, .value-grid, .stats-grid {
+/* Responsive */
+@media (max-width: 768px) {
+    .skills-grid, .projects-grid, .value-grid, .stats-grid {
         grid-template-columns: 1fr;
-      }
-      
-      h1 { font-size: 2rem; }
-      .btn-group { flex-direction: column; }
-      .btn { width: 100%; }
-      
-      .project-image-container {
-        height: 250px;
-      }
     }
+    
+    h1 { 
+        font-size: 2rem; 
+    }
+    
+    .btn-group { 
+        flex-direction: column; 
+    }
+    
+    .btn { 
+        width: 100%; 
+    }
+    
+    .project-image-container {
+        height: auto;
+        min-height: 200px;
+        max-height: 280px;
+    }
+    
+    .project-image {
+        object-fit: scale-down;
+        object-position: center;
+        background: #f8fafc;
+    }
+}
   </style>
 </head>
 <body>
