@@ -536,12 +536,21 @@
         border-radius: 0 !important;
     }
     
-    /* BUT KEEP buttons rounded */
+    /* BUTTONS - Fixed for better text fit */
     .btn,
     .project-card .btn,
     .project-footer .btn {
-        border-radius: 9999px !important;  /* Fully rounded on mobile too */
-        padding: 0.6rem 1rem;
+        border-radius: 9999px !important;
+        padding: 0.5rem 0.25rem;  /* Less padding */
+        font-size: 0.7rem;  /* Smaller font */
+        white-space: nowrap;
+        min-width: 0;  /* Allow buttons to shrink */
+    }
+    
+    /* Icon spacing */
+    .btn i, .btn svg {
+        margin-right: 0.15rem;
+        font-size: 0.7rem;
     }
     
     /* Keep just a straight line separator */
@@ -564,30 +573,49 @@
     }
     
     .project-header p {
-        font-size: 0.85rem;
+        font-size: 0.8rem;  /* Smaller description */
+        margin-bottom: 0.5rem;
     }
     
     .metric {
-        font-size: 0.75rem;
-        padding: 0.25rem 0.75rem;
+        font-size: 0.7rem;
+        padding: 0.2rem 0.6rem;
     }
     
     .preview-title {
-        font-size: 0.8rem;
+        font-size: 0.75rem;
+        margin-bottom: 0.5rem;
     }
     
     .data-row {
-        font-size: 0.85rem;
+        font-size: 0.75rem;
+        padding: 0.25rem 0;
     }
     
     .project-footer {
         flex-direction: row;
-        gap: 0.5rem;
+        gap: 0.3rem;  /* Smaller gap */
+        padding: 0.75rem;
     }
     
     .project-footer .btn {
         flex: 1;
-        border-radius: 9999px !important;  /* Rounded buttons in footer too */
+        border-radius: 9999px !important;
+        padding: 0.5rem 0.1rem;  /* Minimal padding */
+        font-size: 0.65rem;  /* Even smaller for two-word buttons */
+        letter-spacing: -0.01em;  /* Slightly tighter text */
+    }
+    
+    /* Specific fix for "Live Dashboard" and "Details" */
+    .project-footer .btn:first-child {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    /* If "Live Dashboard" is still too long, use this */
+    .project-footer .btn-primary {
+        font-size: 0.6rem;  /* Even smaller for the longer button */
     }
 }
   </style>
