@@ -210,91 +210,40 @@ h1 {
       margin: 1rem auto 0;
       border-radius: 2px;
     }
-/* Premium Certifications with Images */
+/* Certifications - Side‑by‑Side with Buttons Under Image */
 .cert-showcase {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: 2rem;
     margin-top: 2rem;
 }
 
-.cert-item {
+.cert-card {
     background: white;
     border-radius: 1.5rem;
-    overflow: hidden;
     box-shadow: var(--shadow);
-    transition: var(--transition);
-    display: flex;
-    flex-direction: row;
-    gap: 2rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
     border: 1px solid rgba(0,0,0,0.05);
 }
 
-.cert-item:hover {
-    transform: translateY(-5px);
+.cert-card:hover {
+    transform: translateY(-4px);
     box-shadow: var(--shadow-hover);
 }
 
-.cert-item.premium {
-    background: linear-gradient(135deg, #fff 0%, #fef9e6 100%);
-    border-left: 5px solid #f59e0b;
-}
-
-.cert-image-wrapper {
-    flex: 0 0 280px;
-    position: relative;
-    overflow: hidden;
-    background: #f1f5f9;
-    cursor: pointer;
-}
-
-.cert-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-}
-
-.cert-image-wrapper:hover .cert-image {
-    transform: scale(1.05);
-}
-
-.cert-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    color: white;
-    font-size: 0.9rem;
-}
-
-.cert-image-wrapper:hover .cert-overlay {
-    opacity: 1;
-}
-
-.cert-details {
-    flex: 1;
-    padding: 2rem 2rem 2rem 0;
-}
-
 .cert-badge {
-    display: inline-block;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
     background: linear-gradient(135deg, var(--primary), #7c3aed);
     color: white;
-    padding: 0.25rem 1rem;
+    padding: 0.3rem 1rem;
     border-radius: 9999px;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 1rem;
+    z-index: 2;
 }
 
 .cert-badge.silver {
@@ -305,103 +254,183 @@ h1 {
     background: linear-gradient(135deg, #b45309, #92400e);
 }
 
-.cert-details h3 {
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: var(--secondary);
-    margin-bottom: 0.5rem;
+.cert-inner {
+    display: flex;
+    gap: 2rem;
+    padding: 2rem;
 }
 
-.cert-issuer, .cert-date {
-    font-size: 0.85rem;
+.cert-left {
+    flex: 0 0 260px;
+}
+
+.cert-preview {
+    width: 100%;
+    height: 180px; /* Fixed height – matches your image ratio */
+    border-radius: 1rem;
+    overflow: hidden;
+    background: #f1f5f9;
+    cursor: pointer;
+    position: relative;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+}
+
+.cert-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Fills the box, no blank space */
+    display: block;
+    transition: transform 0.3s;
+}
+
+.cert-preview:hover img {
+    transform: scale(1.05);
+}
+
+.preview-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: white;
+    font-size: 0.8rem;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.cert-preview:hover .preview-overlay {
+    opacity: 1;
+}
+
+.cert-buttons {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+.btn-view, .btn-verify {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.45rem 1rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+    background: white;
+    border: 1.5px solid var(--primary);
+    color: var(--primary);
+}
+
+.btn-view:hover, .btn-verify:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-verify {
+    background: var(--primary);
+    color: white;
+    border: none;
+}
+
+.btn-verify:hover {
+    background: #4338ca;
+}
+
+.btn-verify.disabled {
+    background: #cbd5e1;
+    cursor: not-allowed;
+    opacity: 0.6;
+    border: none;
+}
+
+.cert-id {
+    font-size: 0.7rem;
     color: var(--text-light);
-    margin-bottom: 0.3rem;
+    background: #f8fafc;
+    display: inline-block;
+    padding: 0.2rem 0.7rem;
+    border-radius: 9999px;
+    font-family: monospace;
+    margin-top: 0.75rem;
 }
 
-.cert-issuer i, .cert-date i {
-    margin-right: 0.3rem;
-    width: 16px;
+.cert-info {
+    flex: 1;
 }
 
-.cert-desc {
+.cert-info h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
     color: var(--secondary);
-    margin: 1rem 0;
-    line-height: 1.6;
-    font-size: 0.95rem;
 }
 
-.cert-skills {
+.issuer, .date {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    margin-bottom: 0.25rem;
+}
+
+.issuer i, .date i {
+    width: 1rem;
+    margin-right: 0.3rem;
+}
+
+.description {
+    color: var(--secondary);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0.75rem 0;
+}
+
+.skills {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.6rem;
-    margin: 1rem 0 1.5rem;
+    gap: 0.5rem;
+    margin-top: 1rem;
 }
 
-.skill-tag {
+.skills span {
     background: #eef2ff;
-    padding: 0.3rem 1rem;
+    padding: 0.25rem 0.8rem;
     border-radius: 9999px;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: 500;
     color: var(--primary);
 }
 
-.cert-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem;
-    padding-top: 1rem;
-    border-top: 1px solid #e2e8f0;
-}
-
-.verify-btn {
-    background: var(--primary);
-    color: white;
-    padding: 0.5rem 1.2rem;
-    border-radius: 9999px;
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 500;
-    transition: all 0.2s;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.verify-btn:hover {
-    background: #4338ca;
-    transform: translateY(-2px);
-}
-
-.cert-id {
-    font-size: 0.75rem;
-    color: var(--text-light);
-    font-family: monospace;
-    background: #f8fafc;
-    padding: 0.3rem 0.7rem;
-    border-radius: 0.5rem;
-}
-
-/* Mobile Responsive */
+/* Mobile */
 @media (max-width: 768px) {
-    .cert-item {
+    .cert-inner {
         flex-direction: column;
-    }
-    
-    .cert-image-wrapper {
-        flex: none;
-        height: 200px;
-    }
-    
-    .cert-details {
         padding: 1.5rem;
     }
     
-    .cert-footer {
+    .cert-left {
+        flex: none;
+        width: 100%;
+    }
+    
+    .cert-preview {
+        height: 200px;
+    }
+    
+    .cert-buttons {
         flex-direction: column;
-        align-items: flex-start;
+    }
+    
+    .btn-view, .btn-verify {
+        justify-content: center;
     }
 }
     /* About Section */
@@ -994,82 +1023,105 @@ h1 {
     <div class="cert-showcase">
         
         <!-- IBM Data Analyst Capstone -->
-        <div class="cert-item premium">
-            <div class="cert-image-wrapper">
-                <img src="ibm-certificate.jpg" alt="IBM Data Analyst Capstone Certificate" class="cert-image" onclick="openModal(this)">
-                <div class="cert-overlay">
-                    <span><i class="fas fa-search-plus"></i> Click to enlarge</span>
+        <div class="cert-card">
+            <div class="cert-badge">🏆 Most Valuable</div>
+            <div class="cert-inner">
+                <div class="cert-left">
+                    <div class="cert-preview">
+                        <img src="IBM_Data_Analyst.png" alt="IBM Certificate" onclick="openModal(this)">
+                        <div class="preview-overlay">
+                            <i class="fas fa-search-plus"></i> Click to enlarge
+                        </div>
+                    </div>
+                    <div class="cert-buttons">
+                        <a href="ibm-certificate.pdf" target="_blank" class="btn-view">
+                            <i class="fas fa-file-pdf"></i> View Full Certificate
+                        </a>
+                        <a href="https://coursera.org/verify/A7G49EPP821F" target="_blank" class="btn-verify">
+                            <i class="fas fa-check-circle"></i> Verify Certificate
+                        </a>
+                    </div>
+                    <div class="cert-id">ID: A7G49EPP821F</div>
                 </div>
-            </div>
-            <div class="cert-details">
-                <div class="cert-badge">⭐ Most Valuable</div>
-                <h3>IBM Data Analyst Capstone Project</h3>
-                <p class="cert-issuer"><i class="fas fa-building"></i> IBM | Coursera</p>
-                <p class="cert-date"><i class="far fa-calendar-alt"></i> January 31, 2026</p>
-                <p class="cert-desc">Comprehensive capstone project demonstrating end-to-end data analysis skills including data cleaning, SQL querying, Python programming, and interactive dashboard creation.</p>
-                <div class="cert-skills">
-                    <span class="skill-tag">Data Analysis</span>
-                    <span class="skill-tag">SQL</span>
-                    <span class="skill-tag">Python</span>
-                    <span class="skill-tag">Data Visualization</span>
-                </div>
-                <div class="cert-footer">
-                    <a href="https://coursera.org/verify/A7G49EPP821F" target="_blank" class="verify-btn">
-                        <i class="fas fa-check-circle"></i> Verify Certificate
-                    </a>
-                    <span class="cert-id">ID: A7G49EPP821F</span>
+                <div class="cert-info">
+                    <h3>IBM Data Analyst Capstone Project</h3>
+                    <p class="issuer"><i class="fas fa-building"></i> IBM | Coursera</p>
+                    <p class="date"><i class="far fa-calendar-alt"></i> January 31, 2026</p>
+                    <p class="description">Comprehensive capstone project demonstrating end‑to‑end data analysis skills including data cleaning, SQL, Python, and dashboard creation.</p>
+                    <div class="skills">
+                        <span>📊 Data Analysis</span>
+                        <span>🗄️ SQL</span>
+                        <span>🐍 Python</span>
+                        <span>📈 Data Viz</span>
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- J.P. Morgan Quantitative Research -->
-        <div class="cert-item">
-            <div class="cert-image-wrapper">
-                <img src="jpmorgan-certificate.jpg" alt="J.P. Morgan Quantitative Research Certificate" class="cert-image" onclick="openModal(this)">
-                <div class="cert-overlay">
-                    <span><i class="fas fa-search-plus"></i> Click to enlarge</span>
+        <div class="cert-card">
+            <div class="cert-badge silver">🏦 Industry Recognition</div>
+            <div class="cert-inner">
+                <div class="cert-left">
+                    <div class="cert-preview">
+                        <img src="JP_Morgan.png" alt="J.P. Morgan Certificate" onclick="openModal(this)">
+                        <div class="preview-overlay">
+                            <i class="fas fa-search-plus"></i> Click to enlarge
+                        </div>
+                    </div>
+                    <div class="cert-buttons">
+                        <a href="jpmorgan-certificate.pdf" target="_blank" class="btn-view">
+                            <i class="fas fa-file-pdf"></i> View Full Certificate
+                        </a>
+                        <span class="btn-verify disabled">Verify (No link)</span>
+                    </div>
+                    <div class="cert-id">Verification: PfbR9BecHpEZjXMMK</div>
                 </div>
-            </div>
-            <div class="cert-details">
-                <div class="cert-badge silver">🏦 Industry Recognition</div>
-                <h3>J.P. Morgan | Quantitative Research Job Simulation</h3>
-                <p class="cert-issuer"><i class="fas fa-building"></i> JPMorgan Chase & Co. | Forage</p>
-                <p class="cert-date"><i class="far fa-calendar-alt"></i> January 2026</p>
-                <p class="cert-desc">Virtual experience program simulating real-world quantitative research tasks including financial data analysis, commodity pricing, and credit risk assessment.</p>
-                <div class="cert-skills">
-                    <span class="skill-tag">Financial Analysis</span>
-                    <span class="skill-tag">Credit Risk</span>
-                    <span class="skill-tag">FICO Scores</span>
-                    <span class="skill-tag">Price Analysis</span>
-                </div>
-                <div class="cert-footer">
-                    <span class="cert-id">Verification: PfbR9BecHpEZjXMMK</span>
+                <div class="cert-info">
+                    <h3>J.P. Morgan | Quantitative Research Job Simulation</h3>
+                    <p class="issuer"><i class="fas fa-building"></i> JPMorgan Chase & Co. | Forage</p>
+                    <p class="date"><i class="far fa-calendar-alt"></i> January 2026</p>
+                    <p class="description">Virtual experience program simulating real‑world quantitative research tasks: financial data analysis, commodity pricing, credit risk.</p>
+                    <div class="skills">
+                        <span>💰 Financial Analysis</span>
+                        <span>⚠️ Credit Risk</span>
+                        <span>📊 FICO Scores</span>
+                        <span>📉 Price Analysis</span>
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- Python Libraries for Data Science -->
-        <div class="cert-item">
-            <div class="cert-image-wrapper">
-                <img src="python-certificate.jpg" alt="Python Libraries Certificate" class="cert-image" onclick="openModal(this)">
-                <div class="cert-overlay">
-                    <span><i class="fas fa-search-plus"></i> Click to enlarge</span>
+        <div class="cert-card">
+            <div class="cert-badge bronze">💻 Technical Skill</div>
+            <div class="cert-inner">
+                <div class="cert-left">
+                    <div class="cert-preview">
+                        <img src="Python_Libraries.png" alt="Python Libraries Certificate" onclick="openModal(this)">
+                        <div class="preview-overlay">
+                            <i class="fas fa-search-plus"></i> Click to enlarge
+                        </div>
+                    </div>
+                    <div class="cert-buttons">
+                        <a href="python-certificate.pdf" target="_blank" class="btn-view">
+                            <i class="fas fa-file-pdf"></i> View Full Certificate
+                        </a>
+                        <span class="btn-verify disabled">Verify (No link)</span>
+                    </div>
+                    <div class="cert-id">Code: 9924081</div>
                 </div>
-            </div>
-            <div class="cert-details">
-                <div class="cert-badge bronze">💻 Technical Skill</div>
-                <h3>Python Libraries for Data Science</h3>
-                <p class="cert-issuer"><i class="fas fa-graduation-cap"></i> Simplilearn SkillUp</p>
-                <p class="cert-date"><i class="far fa-calendar-alt"></i> March 5, 2026</p>
-                <p class="cert-desc">Mastered essential Python libraries including NumPy, Pandas, Matplotlib, and Scikit-learn for data analysis and visualization.</p>
-                <div class="cert-skills">
-                    <span class="skill-tag">NumPy</span>
-                    <span class="skill-tag">Pandas</span>
-                    <span class="skill-tag">Matplotlib</span>
-                    <span class="skill-tag">Scikit-learn</span>
-                </div>
-                <div class="cert-footer">
-                    <span class="cert-id">Code: 9924081</span>
+                <div class="cert-info">
+                    <h3>Python Libraries for Data Science</h3>
+                    <p class="issuer"><i class="fas fa-graduation-cap"></i> Simplilearn SkillUp</p>
+                    <p class="date"><i class="far fa-calendar-alt"></i> March 5, 2026</p>
+                    <p class="description">Mastered essential Python libraries: NumPy, Pandas, Matplotlib, Scikit‑learn for data analysis and visualization.</p>
+                    <div class="skills">
+                        <span>📦 NumPy</span>
+                        <span>🐼 Pandas</span>
+                        <span>📊 Matplotlib</span>
+                        <span>🤖 Scikit‑learn</span>
+                    </div>
                 </div>
             </div>
         </div>
