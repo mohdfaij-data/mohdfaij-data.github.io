@@ -210,7 +210,123 @@ h1 {
       margin: 1rem auto 0;
       border-radius: 2px;
     }
+/* Certifications Section */
+.cert-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
 
+.cert-card {
+    background: white;
+    border-radius: 1.5rem;
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    display: flex;
+    gap: 1rem;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.cert-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+.cert-icon {
+    width: 50px;
+    height: 50px;
+    background: #eef2ff;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--primary);
+    flex-shrink: 0;
+}
+
+.cert-content {
+    flex: 1;
+}
+
+.cert-content h3 {
+    font-size: 1.1rem;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+.cert-issuer, .cert-date {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    margin-bottom: 0.3rem;
+}
+
+.cert-issuer i, .cert-date i {
+    width: 18px;
+    margin-right: 0.3rem;
+}
+
+.cert-desc {
+    font-size: 0.9rem;
+    color: var(--secondary);
+    margin: 0.75rem 0;
+    line-height: 1.5;
+}
+
+.cert-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0.75rem 0;
+}
+
+.skill-tag {
+    background: #eef2ff;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    color: var(--primary);
+    font-weight: 500;
+}
+
+.cert-code {
+    font-size: 0.7rem;
+    color: var(--text-light);
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid #e2e8f0;
+}
+
+.cert-code a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.cert-code a:hover {
+    text-decoration: underline;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .cert-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .cert-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .cert-icon {
+        margin: 0 auto;
+    }
+    
+    .cert-skills {
+        justify-content: center;
+    }
+}
     /* About Section */
     .about-text {
       max-width: 800px;
@@ -794,7 +910,78 @@ h1 {
         </div>
       </div>
     </section>
+<!-- Certifications Section -->
+<section id="certifications">
+    <h2 class="section-title">📜 Certifications & Achievements</h2>
+    
+    <div class="cert-grid">
+        <!-- Certificate 1: J.P. Morgan -->
+        <div class="cert-card">
+            <div class="cert-icon">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="cert-content">
+                <h3>J.P. Morgan | Quantitative Research Job Simulation</h3>
+                <p class="cert-issuer"><i class="fas fa-building"></i> JPMorgan Chase & Co. | Forage</p>
+                <p class="cert-date"><i class="far fa-calendar-alt"></i> January 2026</p>
+                <p class="cert-desc">Completed practical tasks including financial data analysis, commodity storage pricing, credit risk assessment, and FICO score segmentation.</p>
+                <div class="cert-skills">
+                    <span class="skill-tag">Financial Analysis</span>
+                    <span class="skill-tag">Credit Risk</span>
+                    <span class="skill-tag">FICO Scores</span>
+                    <span class="skill-tag">Price Analysis</span>
+                </div>
+                <div class="cert-code">
+                    <small>Verification: PfbR9BecHpEZjXMMK | User: 6972b7a0fef7f1cb1370905</small>
+                </div>
+            </div>
+        </div>
 
+        <!-- Certificate 2: Python Libraries -->
+        <div class="cert-card">
+            <div class="cert-icon">
+                <i class="fab fa-python"></i>
+            </div>
+            <div class="cert-content">
+                <h3>Python Libraries for Data Science</h3>
+                <p class="cert-issuer"><i class="fas fa-graduation-cap"></i> Simplilearn SkillUp</p>
+                <p class="cert-date"><i class="far fa-calendar-alt"></i> March 5th, 2026</p>
+                <p class="cert-desc">Mastered essential Python libraries including NumPy, Pandas, Matplotlib, and Scikit-learn for data analysis and visualization.</p>
+                <div class="cert-skills">
+                    <span class="skill-tag">NumPy</span>
+                    <span class="skill-tag">Pandas</span>
+                    <span class="skill-tag">Matplotlib</span>
+                    <span class="skill-tag">Scikit-learn</span>
+                </div>
+                <div class="cert-code">
+                    <small>Certificate Code: 9924081</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Certificate 3: IBM Data Analyst Capstone -->
+        <div class="cert-card">
+            <div class="cert-icon">
+                <i class="fab fa-ibm"></i>
+            </div>
+            <div class="cert-content">
+                <h3>IBM Data Analyst Capstone Project</h3>
+                <p class="cert-issuer"><i class="fas fa-building"></i> IBM | Coursera</p>
+                <p class="cert-date"><i class="far fa-calendar-alt"></i> January 31st, 2026</p>
+                <p class="cert-desc">Demonstrated skills in Data Analysis, SQL, Python, and Data Visualization through a comprehensive capstone project.</p>
+                <div class="cert-skills">
+                    <span class="skill-tag">Data Analysis</span>
+                    <span class="skill-tag">SQL</span>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">Data Visualization</span>
+                </div>
+                <div class="cert-code">
+                    <small>Certificate: A7G49EPP821F | <a href="https://coursera.org/verify/A7G49EPP821F" target="_blank">Verify on Coursera</a></small>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
     <!-- Open for Opportunities -->
     <section id="contact">
       <div class="open-section">
