@@ -294,29 +294,6 @@ h1 {
     transform: scale(1.02);
 }
 
-.preview-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(2px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    color: white;
-    font-size: 0.75rem;
-    font-weight: 500;
-    opacity: 0;
-    transition: opacity 0.2s;
-}
-
-.cert-preview:hover .preview-overlay {
-    opacity: 1;
-}
-
 /* Buttons – sleek, minimal */
 .cert-buttons {
     display: flex;
@@ -893,11 +870,11 @@ h1 {
   </div>
 
   <nav>
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
+    <a href="#home"><i class="fas fa-home"></i> Home</a>
+    <a href="#about"><i class="fas fa-user"></i> About</a>
+    <a href="#skills"><i class="fas fa-code"></i> Skills</a>
+    <a href="#projects"><i class="fas fa-folder-open"></i> Projects</a>
+    <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
   </nav>
 
   <main class="container">
@@ -919,15 +896,15 @@ h1 {
         </div>
 
         <div class="btn-group">
-          <a href="resume.pdf" class="btn btn-primary" download>📄 Download Resume</a>
-          <a href="#projects" class="btn btn-outline">🔍 View Projects</a>
+          <a href="resume.pdf" class="btn btn-primary" download><i class="fas fa-file-alt"></i> Download Resume</a>
+          <a href="#projects" class="btn btn-outline"><i class="fas fa-chart-line"></i> View Projects</a>
         </div>
       </div>
     </section>
 
     <!-- About Section -->
     <section id="about">
-      <h2 class="section-title">About Me</h2>
+      <h2 class="section-title"><i class="fas fa-user-circle"></i> About Me</h2>
       <div class="about-text">
         <p>I am a B.Com graduate and a results-driven Data Analyst skilled in SQL, Excel, Power BI, and Python. My academic background in Statistics, Finance, and Business Analytics has given me a strong foundation in data interpretation, financial analysis, and evaluating business performance.</p>
       </div>
@@ -935,12 +912,12 @@ h1 {
 
     <!-- Skills Section -->
     <section id="skills">
-      <h2 class="section-title">Technical Skills</h2>
+      <h2 class="section-title"><i class="fas fa-cogs"></i> Technical Skills</h2>
       <div class="skills-grid">
-        <div class="skill-card"><span class="skill-icon">📊</span>SQL</div>
-        <div class="skill-card"><span class="skill-icon">📈</span>Excel</div>
-        <div class="skill-card"><span class="skill-icon">📉</span>Power BI</div>
-        <div class="skill-card"><span class="skill-icon">🐍</span>Python</div>
+        <div class="skill-card"><span class="skill-icon"><i class="fas fa-database"></i></span>SQL</div>
+        <div class="skill-card"><span class="skill-icon"><i class="fas fa-file-excel"></i></span>Excel</div>
+        <div class="skill-card"><span class="skill-icon"><i class="fas fa-chart-pie"></i></span>Power BI</div>
+        <div class="skill-card"><span class="skill-icon"><i class="fab fa-python"></i></span>Python</div>
       </div>
     </section>
 
@@ -949,22 +926,22 @@ h1 {
       <div class="stats-grid">
         <div class="stat-card">
           <div class="stat-number">5+</div>
-          <div class="stat-label">Projects Completed</div>
+          <div class="stat-label"><i class="fas fa-check-circle"></i> Projects Completed</div>
         </div>
         <div class="stat-card">
           <div class="stat-number">4</div>
-          <div class="stat-label">Power BI Dashboards</div>
+          <div class="stat-label"><i class="fas fa-chart-bar"></i> Power BI Dashboards</div>
         </div>
         <div class="stat-card">
           <div class="stat-number">1.2+</div>
-          <div class="stat-label">Years Experience</div>
+          <div class="stat-label"><i class="fas fa-calendar-alt"></i> Years Experience</div>
         </div>
       </div>
     </section>
 
     <!-- Projects Section - Small Cards with Full Images -->
     <section id="projects">
-      <h2 class="section-title">Featured Projects</h2>
+      <h2 class="section-title"><i class="fas fa-project-diagram"></i> Featured Projects</h2>
       <div class="projects-grid">
         
         <!-- Project 1: Telecom Churn Analysis - Full image in small card -->
@@ -975,26 +952,26 @@ h1 {
           </div>
           
           <div class="project-header">
-            <h3>📱 Telecom Customer Churn Analysis</h3>
+            <h3><i class="fas fa-chart-line"></i> Telecom Customer Churn Analysis</h3>
             <p>Complete end-to-end churn analysis with revenue impact</p>
             <div class="metrics-badge">
-              <span class="metric">Churn: 26.8%</span>
-              <span class="metric">At-Risk: $158.24K</span>
-              <span class="metric">Retention: 73.2%</span>
+              <span class="metric"><i class="fas fa-percent"></i> Churn: 26.8%</span>
+              <span class="metric"><i class="fas fa-dollar-sign"></i> At-Risk: $158.24K</span>
+              <span class="metric"><i class="fas fa-chart-line"></i> Retention: 73.2%</span>
             </div>
           </div>
           
           <div class="project-preview">
-            <div class="preview-title">KEY METRICS</div>
-            <div class="data-row"><span>Total Customers</span> <span class="highlight">2,666</span></div>
-            <div class="data-row"><span>At Risk Customers</span> <span class="highlight">458</span></div>
-            <div class="data-row"><span>Avg Monthly Charge</span> <span class="highlight">$158.26K</span></div>
-            <div class="data-row"><span>Avg Service Calls</span> <span class="highlight">1.56</span></div>
+            <div class="preview-title"><i class="fas fa-chart-simple"></i> KEY METRICS</div>
+            <div class="data-row"><span><i class="fas fa-users"></i> Total Customers</span> <span class="highlight">2,666</span></div>
+            <div class="data-row"><span><i class="fas fa-exclamation-triangle"></i> At Risk Customers</span> <span class="highlight">458</span></div>
+            <div class="data-row"><span><i class="fas fa-dollar-sign"></i> Avg Monthly Charge</span> <span class="highlight">$158.26K</span></div>
+            <div class="data-row"><span><i class="fas fa-phone"></i> Avg Service Calls</span> <span class="highlight">1.56</span></div>
           </div>
 
           <div class="project-footer">
-            <a href="https://app.powerbi.com/view?r=eyJrIjoiNGM0OGMxN2UtMjdjYy00YzRkLWE5NTMtNzRhMDAyZjJkODZkIiwidCI6IjNkMGE5Y2FiLTQzYzYtNDlkNi1iODZjLTFiMTZjNGQwMjYzNSJ9&pageName=40ed3e03483196c0b5e2" target="_blank" class="btn btn-primary">🚀 Live Dashboard</a>
-            <a href="telecom-details.html" class="btn btn-outline">📊 Details</a>
+            <a href="https://app.powerbi.com/view?r=eyJrIjoiNGM0OGMxN2UtMjdjYy00YzRkLWE5NTMtNzRhMDAyZjJkODZkIiwidCI6IjNkMGE5Y2FiLTQzYzYtNDlkNi1iODZjLTFiMTZjNGQwMjYzNSJ9&pageName=40ed3e03483196c0b5e2" target="_blank" class="btn btn-primary"><i class="fas fa-tachometer-alt"></i> Live Dashboard</a>
+            <a href="telecom-details.html" class="btn btn-outline"><i class="fas fa-info-circle"></i> Details</a>
           </div>
         </div>
 
@@ -1006,28 +983,28 @@ h1 {
           </div>
           
           <div class="project-header">
-            <h3>📊 Enterprise Sales Dashboard</h3>
+            <h3><i class="fas fa-chart-bar"></i> Enterprise Sales Dashboard</h3>
             <p>Comprehensive sales analytics with revenue tracking</p>
             <div class="metrics-badge">
-              <span class="metric">Revenue: $32.48M</span>
-              <span class="metric">Margin: 21.42%</span>
-              <span class="metric">Growth: +15.3%</span>
+              <span class="metric"><i class="fas fa-dollar-sign"></i> Revenue: $32.48M</span>
+              <span class="metric"><i class="fas fa-chart-line"></i> Margin: 21.42%</span>
+              <span class="metric"><i class="fas fa-arrow-up"></i> Growth: +15.3%</span>
             </div>
           </div>
           
           <div class="project-preview">
-            <div class="preview-title">REVENUE BREAKDOWN</div>
-            <div class="data-row"><span>Product A</span> <span class="highlight">$5.53M</span></div>
+            <div class="preview-title"><i class="fas fa-chart-pie"></i> REVENUE BREAKDOWN</div>
+            <div class="data-row"><span><i class="fas fa-box"></i> Product A</span> <span class="highlight">$5.53M</span></div>
             <div class="revenue-bar"><div class="bar-fill" style="width: 55%"></div></div>
-            <div class="data-row"><span>Product B</span> <span class="highlight">$10.12M</span></div>
+            <div class="data-row"><span><i class="fas fa-box"></i> Product B</span> <span class="highlight">$10.12M</span></div>
             <div class="revenue-bar"><div class="bar-fill" style="width: 100%"></div></div>
-            <div class="data-row"><span>Product C</span> <span class="highlight">$9.78M</span></div>
+            <div class="data-row"><span><i class="fas fa-box"></i> Product C</span> <span class="highlight">$9.78M</span></div>
             <div class="revenue-bar"><div class="bar-fill" style="width: 97%"></div></div>
           </div>
 
           <div class="project-footer">
-            <a href="https://app.powerbi.com/view?r=eyJrIjoiYmM4ZmJmMzMtNTE5Yi00NzIxLTlkNTItOWRiNmVkNTQwMDU3IiwidCI6IjNkMGE5Y2FiLTQzYzYtNDlkNi1iODZjLTFiMTZjNGQwMjYzNSJ9" target="_blank" class="btn btn-primary">🚀 Live Dashboard</a>
-            <a href="sales-details.html" class="btn btn-outline">📊 Details</a>
+            <a href="https://app.powerbi.com/view?r=eyJrIjoiYmM4ZmJmMzMtNTE5Yi00NzIxLTlkNTItOWRiNmVkNTQwMDU3IiwidCI6IjNkMGE5Y2FiLTQzYzYtNDlkNi1iODZjLTFiMTZjNGQwMjYzNSJ9" target="_blank" class="btn btn-primary"><i class="fas fa-tachometer-alt"></i> Live Dashboard</a>
+            <a href="sales-details.html" class="btn btn-outline"><i class="fas fa-info-circle"></i> Details</a>
           </div>
         </div>
       </div>
@@ -1035,181 +1012,183 @@ h1 {
 
     <!-- Value Proposition -->
     <section>
-      <h2 class="section-title">What I Bring to the Table</h2>
+      <h2 class="section-title"><i class="fas fa-gem"></i> What I Bring to the Table</h2>
       <div class="value-grid">
         <div class="value-card">
-          <div class="value-icon">📊</div>
+          <div class="value-icon"><i class="fas fa-broom"></i></div>
           <h4>Data Cleaning</h4>
           <p>Raw data to analysis-ready format</p>
         </div>
         <div class="value-card">
-          <div class="value-icon">📈</div>
+          <div class="value-icon"><i class="fas fa-chart-simple"></i></div>
           <h4>Dashboards</h4>
           <p>Interactive Power BI visuals</p>
         </div>
         <div class="value-card">
-          <div class="value-icon">🔍</div>
+          <div class="value-icon"><i class="fas fa-lightbulb"></i></div>
           <h4>Insights</h4>
           <p>Actionable business intelligence</p>
         </div>
         <div class="value-card">
-          <div class="value-icon">💡</div>
+          <div class="value-icon"><i class="fas fa-chalkboard-user"></i></div>
           <h4>Decisions</h4>
           <p>Data-driven recommendations</p>
         </div>
       </div>
     </section>
-<!-- Certifications Section -->
-<section id="certifications">
-    <h2 class="section-title">📜 Certifications & Achievements</h2>
-    
-    <div class="cert-showcase">
+
+    <!-- Certifications Section -->
+    <section id="certifications">
+      <h2 class="section-title"><i class="fas fa-certificate"></i> Certifications & Achievements</h2>
+      
+      <div class="cert-showcase">
         
         <!-- IBM Data Analyst Capstone -->
         <div class="cert-card">
-            <div class="cert-badge">🏆 Most Valuable</div>
-            <div class="cert-inner">
-                <div class="cert-left">
-                    <div class="cert-preview">
-                        <img src="IBM_Data_Analyst.png" alt="IBM Certificate">
-                    </div>
-                    <div class="cert-buttons">
-                        <a href="ibm-certificate.pdf" target="_blank" class="btn-view">
-                            <i class="fas fa-file-pdf"></i> View Full Certificate
-                        </a>
-                        <a href="https://coursera.org/verify/A7G49EPP821F" target="_blank" class="btn-verify">
-                            <i class="fas fa-check-circle"></i> Verify Certificate
-                        </a>
-                    </div>
-                </div>
-                <div class="cert-info">
-                    <h3>IBM Data Analyst Capstone Project</h3>
-                    <p class="issuer"><i class="fas fa-building"></i> IBM | Coursera</p>
-                    <p class="date"><i class="far fa-calendar-alt"></i> January 31, 2026</p>
-                    <p class="description">Comprehensive capstone project demonstrating end‑to‑end data analysis skills including data cleaning, SQL, Python, and dashboard creation.</p>
-                    <div class="skills">
-                        <span>📊 Data Analysis</span>
-                        <span>🗄️ SQL</span>
-                        <span>🐍 Python</span>
-                        <span>📈 Data Visualization</span>
-                    </div>
-                    <div class="cert-id">ID: A7G49EPP821F</div>
-                </div>
+          <div class="cert-badge"><i class="fas fa-trophy"></i> Most Valuable</div>
+          <div class="cert-inner">
+            <div class="cert-left">
+              <div class="cert-preview">
+                <img src="IBM_Data_Analyst.png" alt="IBM Certificate">
+              </div>
+              <div class="cert-buttons">
+                <a href="ibm-certificate.pdf" target="_blank" class="btn-view">
+                  <i class="fas fa-file-pdf"></i> View Full Certificate
+                </a>
+                <a href="https://coursera.org/verify/A7G49EPP821F" target="_blank" class="btn-verify">
+                  <i class="fas fa-check-circle"></i> Verify Certificate
+                </a>
+              </div>
             </div>
+            <div class="cert-info">
+              <h3>IBM Data Analyst Capstone Project</h3>
+              <p class="issuer"><i class="fas fa-building"></i> IBM | Coursera</p>
+              <p class="date"><i class="far fa-calendar-alt"></i> January 31, 2026</p>
+              <p class="description">Comprehensive capstone project demonstrating end‑to‑end data analysis skills including data cleaning, SQL, Python, and dashboard creation.</p>
+              <div class="skills">
+                <span><i class="fas fa-chart-line"></i> Data Analysis</span>
+                <span><i class="fas fa-database"></i> SQL</span>
+                <span><i class="fab fa-python"></i> Python</span>
+                <span><i class="fas fa-chart-pie"></i> Data Visualization</span>
+              </div>
+              <div class="cert-id">ID: A7G49EPP821F</div>
+            </div>
+          </div>
         </div>
 
         <!-- HackerRank SQL (Advanced) Certificate -->
         <div class="cert-card">
-            <div class="cert-badge silver">🏅 Advanced SQL</div>
-            <div class="cert-inner">
-                <div class="cert-left">
-                    <div class="cert-preview">
-                        <img src="hackerrank-sql-certificate.png" alt="HackerRank SQL Advanced Certificate">
-                    </div>
-                    <div class="cert-buttons">
-                        <a href="sql_advanced-certificate.pdf" target="_blank" class="btn-view">
-                            <i class="fas fa-file-pdf"></i> View Full Certificate
-                        </a>
-                        <a href="https://www.hackerrank.com/certificates/2080940260AE" target="_blank" class="btn-verify">
-                            <i class="fas fa-check-circle"></i> Verify Certificate
-                        </a>
-                    </div>
-                </div>
-                <div class="cert-info">
-                    <h3>SQL (Advanced) Certificate</h3>
-                    <p class="issuer"><i class="fas fa-code"></i> HackerRank</p>
-                    <p class="date"><i class="far fa-calendar-alt"></i> March 18, 2026</p>
-                    <p class="description">Passed the HackerRank skill certification test for Advanced SQL, demonstrating proficiency in complex queries, joins, subqueries, and database optimization.</p>
-                    <div class="skills">
-                        <span>🗄️ Advanced SQL</span>
-                        <span>📊 Complex Queries</span>
-                        <span>🔗 Joins & Subqueries</span>
-                        <span>⚡ Query Optimization</span>
-                    </div>
-                    <div class="cert-id">ID: 2080940260AE</div>
-                </div>
+          <div class="cert-badge silver"><i class="fas fa-code"></i> Advanced SQL</div>
+          <div class="cert-inner">
+            <div class="cert-left">
+              <div class="cert-preview">
+                <img src="hackerrank-sql-certificate.png" alt="HackerRank SQL Advanced Certificate">
+              </div>
+              <div class="cert-buttons">
+                <a href="sql_advanced-certificate.pdf" target="_blank" class="btn-view">
+                  <i class="fas fa-file-pdf"></i> View Full Certificate
+                </a>
+                <a href="https://www.hackerrank.com/certificates/2080940260AE" target="_blank" class="btn-verify">
+                  <i class="fas fa-check-circle"></i> Verify Certificate
+                </a>
+              </div>
             </div>
+            <div class="cert-info">
+              <h3>SQL (Advanced) Certificate</h3>
+              <p class="issuer"><i class="fas fa-code"></i> HackerRank</p>
+              <p class="date"><i class="far fa-calendar-alt"></i> March 18, 2026</p>
+              <p class="description">Passed the HackerRank skill certification test for Advanced SQL, demonstrating proficiency in complex queries, joins, subqueries, and database optimization.</p>
+              <div class="skills">
+                <span><i class="fas fa-database"></i> Advanced SQL</span>
+                <span><i class="fas fa-code-branch"></i> Complex Queries</span>
+                <span><i class="fas fa-link"></i> Joins & Subqueries</span>
+                <span><i class="fas fa-rocket"></i> Query Optimization</span>
+              </div>
+              <div class="cert-id">ID: 2080940260AE</div>
+            </div>
+          </div>
         </div>
 
         <!-- J.P. Morgan Quantitative Research -->
         <div class="cert-card">
-            <div class="cert-badge silver">🏦 Industry Recognition</div>
-            <div class="cert-inner">
-                <div class="cert-left">
-                    <div class="cert-preview">
-                        <img src="JP_Morgan.png" alt="J.P. Morgan Certificate">
-                    </div>
-                    <div class="cert-buttons">
-                        <a href="jpmorgan-certificate.pdf" target="_blank" class="btn-view">
-                            <i class="fas fa-file-pdf"></i> View Full Certificate
-                        </a>
-                        <a href="https://www.theforage.com/completion-certificates/Sj7temL583QAYpHXD/bWqaecPDbYAwSDqJy_Sj7temL583QAYpHXD_6972b7a0feaf7f1cb1370905_1769126536371_completion_certificate.pdf" target="_blank" class="btn-verify">
-                            <i class="fas fa-check-circle"></i> Verify Certificate
-                        </a>
-                    </div>
-                </div>
-                <div class="cert-info">
-                    <h3>J.P. Morgan | Quantitative Research Job Simulation</h3>
-                    <p class="issuer"><i class="fas fa-building"></i> JPMorgan Chase & Co. | Forage</p>
-                    <p class="date"><i class="far fa-calendar-alt"></i> January 2026</p>
-                    <p class="description">Virtual experience program simulating real‑world quantitative research tasks: financial data analysis, commodity pricing, credit risk.</p>
-                    <div class="skills">
-                        <span>💰 Financial Analysis</span>
-                        <span>⚠️ Credit Risk</span>
-                        <span>📊 FICO Scores</span>
-                        <span>📉 Price Analysis</span>
-                    </div>
-                    <div class="cert-id">Verification: PfbR9BecHpEZjXMMK</div>
-                </div>
+          <div class="cert-badge silver"><i class="fas fa-building"></i> Industry Recognition</div>
+          <div class="cert-inner">
+            <div class="cert-left">
+              <div class="cert-preview">
+                <img src="JP_Morgan.png" alt="J.P. Morgan Certificate">
+              </div>
+              <div class="cert-buttons">
+                <a href="jpmorgan-certificate.pdf" target="_blank" class="btn-view">
+                  <i class="fas fa-file-pdf"></i> View Full Certificate
+                </a>
+                <a href="https://www.theforage.com/completion-certificates/Sj7temL583QAYpHXD/bWqaecPDbYAwSDqJy_Sj7temL583QAYpHXD_6972b7a0feaf7f1cb1370905_1769126536371_completion_certificate.pdf" target="_blank" class="btn-verify">
+                  <i class="fas fa-check-circle"></i> Verify Certificate
+                </a>
+              </div>
             </div>
+            <div class="cert-info">
+              <h3>J.P. Morgan | Quantitative Research Job Simulation</h3>
+              <p class="issuer"><i class="fas fa-building"></i> JPMorgan Chase & Co. | Forage</p>
+              <p class="date"><i class="far fa-calendar-alt"></i> January 2026</p>
+              <p class="description">Virtual experience program simulating real‑world quantitative research tasks: financial data analysis, commodity pricing, credit risk.</p>
+              <div class="skills">
+                <span><i class="fas fa-chart-line"></i> Financial Analysis</span>
+                <span><i class="fas fa-shield-alt"></i> Credit Risk</span>
+                <span><i class="fas fa-chart-bar"></i> FICO Scores</span>
+                <span><i class="fas fa-dollar-sign"></i> Price Analysis</span>
+              </div>
+              <div class="cert-id">Verification: PfbR9BecHpEZjXMMK</div>
+            </div>
+          </div>
         </div>
 
         <!-- Python Libraries for Data Science -->
         <div class="cert-card">
-            <div class="cert-badge bronze">💻 Technical Skill</div>
-            <div class="cert-inner">
-                <div class="cert-left">
-                    <div class="cert-preview">
-                        <img src="Python_Libraries.png" alt="Python Libraries Certificate">
-                    </div>
-                    <div class="cert-buttons">
-                        <a href="python-certificate.pdf" target="_blank" class="btn-view">
-                            <i class="fas fa-file-pdf"></i> View Full Certificate
-                        </a>
-                        <a href="https://www.simplilearn.com/skillup-certificate-landing?token=eyJjb3Vyc2VfaWQiOiIxNzUyIiwiY2VydGlmaWNhdGVfdXJsIjoiaHR0cHM6XC9cL2NlcnRpZmljYXRlcy5zaW1wbGljZG4ubmV0XC9zaGFyZVwvOTkyNDA4MV8xMDEzNTIzMF8xNzcyNzE3ODIyNzQ1LnBuZyIsInVzZXJuYW1lIjoiTU9IRCBGQUlKIn0%3D&utm_source=shared-certificate&utm_medium=lms&utm_campaign=shared-certificate-promotion&referrer=https%3A%2F%2Flms.simplilearn.com%2Fcourses%2F4242%2FPython-Libraries-for-Data-Science%2Fcertificate%2Fdownload-skillup&%24web_only=true&_branch_match_id=1564270053704371691&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXL87MLcjJ1EssKNDLyczL1k%2FVTw8zLSp190tPN0yyrytKTUstKsrMS49PKsovL04tsvUBqkpN8cwDAEepPBFBAAAA" target="_blank" class="btn-verify">
-                            <i class="fas fa-check-circle"></i> Verify Certificate
-                        </a>
-                    </div>
-                </div>
-                <div class="cert-info">
-                    <h3>Python Libraries for Data Science</h3>
-                    <p class="issuer"><i class="fas fa-graduation-cap"></i> Simplilearn SkillUp</p>
-                    <p class="date"><i class="far fa-calendar-alt"></i> March 5, 2026</p>
-                    <p class="description">Mastered essential Python libraries: NumPy, Pandas, Matplotlib, Scikit‑learn for data analysis and visualization.</p>
-                    <div class="skills">
-                        <span>📦 NumPy</span>
-                        <span>🐼 Pandas</span>
-                        <span>📊 Matplotlib</span>
-                        <span>🤖 Scikit‑learn</span>
-                    </div>
-                    <div class="cert-id">Certification Code: 9924081</div>
-                </div>
+          <div class="cert-badge bronze"><i class="fas fa-laptop-code"></i> Technical Skill</div>
+          <div class="cert-inner">
+            <div class="cert-left">
+              <div class="cert-preview">
+                <img src="Python_Libraries.png" alt="Python Libraries Certificate">
+              </div>
+              <div class="cert-buttons">
+                <a href="python-certificate.pdf" target="_blank" class="btn-view">
+                  <i class="fas fa-file-pdf"></i> View Full Certificate
+                </a>
+                <a href="https://www.simplilearn.com/skillup-certificate-landing?token=eyJjb3Vyc2VfaWQiOiIxNzUyIiwiY2VydGlmaWNhdGVfdXJsIjoiaHR0cHM6XC9cL2NlcnRpZmljYXRlcy5zaW1wbGljZG4ubmV0XC9zaGFyZVwvOTkyNDA4MV8xMDEzNTIzMF8xNzcyNzE3ODIyNzQ1LnBuZyIsInVzZXJuYW1lIjoiTU9IRCBGQUlKIn0%3D&utm_source=shared-certificate&utm_medium=lms&utm_campaign=shared-certificate-promotion&referrer=https%3A%2F%2Flms.simplilearn.com%2Fcourses%2F4242%2FPython-Libraries-for-Data-Science%2Fcertificate%2Fdownload-skillup&%24web_only=true&_branch_match_id=1564270053704371691&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXL87MLcjJ1EssKNDLyczL1k%2FVTw8zLSp190tPN0yyrytKTUstKsrMS49PKsovL04tsvUBqkpN8cwDAEepPBFBAAAA" target="_blank" class="btn-verify">
+                  <i class="fas fa-check-circle"></i> Verify Certificate
+                </a>
+              </div>
             </div>
+            <div class="cert-info">
+              <h3>Python Libraries for Data Science</h3>
+              <p class="issuer"><i class="fas fa-graduation-cap"></i> Simplilearn SkillUp</p>
+              <p class="date"><i class="far fa-calendar-alt"></i> March 5, 2026</p>
+              <p class="description">Mastered essential Python libraries: NumPy, Pandas, Matplotlib, Scikit‑learn for data analysis and visualization.</p>
+              <div class="skills">
+                <span><i class="fas fa-calculator"></i> NumPy</span>
+                <span><i class="fas fa-table"></i> Pandas</span>
+                <span><i class="fas fa-chart-line"></i> Matplotlib</span>
+                <span><i class="fas fa-brain"></i> Scikit‑learn</span>
+              </div>
+              <div class="cert-id">Certification Code: 9924081</div>
+            </div>
+          </div>
         </div>
-    </div>
-</section>
+      </div>
+    </section>
+
     <!-- Open for Opportunities -->
     <section id="contact">
       <div class="open-section">
-        <h2>🚀 Open to Opportunities</h2>
+        <h2><i class="fas fa-rocket"></i> Open to Opportunities</h2>
         <p>I am actively looking for Data Analyst roles. Let's connect!</p>
-        <a href="mailto:mohdfaij.data@email.com" class="btn">📧 Hire Me</a>
+        <a href="mailto:mohdfaij.data@email.com" class="btn"><i class="fas fa-envelope"></i> Hire Me</a>
       </div>
     </section>
   </main>
 
   <footer>
-    <p>© 2026 Mohd Faij • Data Analyst • All Rights Reserved</p>
+    <p><i class="far fa-copyright"></i> 2026 Mohd Faij • Data Analyst • All Rights Reserved</p>
   </footer>
 
   <script>
