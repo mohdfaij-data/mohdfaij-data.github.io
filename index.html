@@ -466,36 +466,86 @@ h1 {
       box-shadow: var(--shadow);
     }
 
-    /* Skills Grid */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+    align-items: stretch;          /* makes all cards same height */
+}
+
+.skill-card {
+    background: white;
+    border-radius: 1.2rem;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    transition: all 0.2s;
+    border: 1px solid rgba(79,70,229,0.1);
+    display: flex;
+    flex-direction: column;
+    height: 100%;                  /* ensures full height inside grid */
+}
+
+.skill-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 20px -8px rgba(79,70,229,0.15);
+    border-color: rgba(79,70,229,0.3);
+}
+
+.skill-icon {
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 0.75rem;
+}
+
+.skill-card h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--secondary);
+}
+
+.sub-skills {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    flex: 1;                       /* pushes list to fill remaining space */
+}
+
+.sub-skills li {
+    background: #f1f5f9;
+    padding: 0.25rem 0.8rem;
+    border-radius: 30px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--primary);
+    transition: all 0.2s;
+    white-space: nowrap;           /* prevents individual tags from wrapping */
+}
+
+/* For very small screens, allow tags to wrap inside their container */
+@media (max-width: 480px) {
+    .sub-skills li {
+        white-space: normal;
+        word-break: keep-all;
+    }
+}
+
+/* Mobile: stack cards */
+@media (max-width: 768px) {
     .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1.5rem;
-      max-width: 600px;
-      margin: 0 auto;
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
     }
-
     .skill-card {
-      background: white;
-      padding: 1.5rem 0.5rem;
-      text-align: center;
-      border-radius: 1rem;
-      font-weight: 600;
-      box-shadow: var(--shadow);
-      transition: all 0.3s;
+        padding: 1.2rem;
     }
-
-    .skill-card:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-hover);
-      color: var(--primary);
-    }
-
-    .skill-icon {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-      display: block;
-    }
+}
 
     /* Projects Grid - Small Cards like before */
     .projects-grid {
@@ -909,61 +959,57 @@ h1 {
         <p>Data doesn't lie — but it does hide. I find what's hidden. I'm a Data Analyst who doesn't just crunch numbers — I chase the story behind them, turning chaos into clarity and questions into decisions. Armed with SQL, Python, Excel, and Power BI, I bridge the gap between raw data and real business impact. As a B.Com graduate with a background in Statistics, Finance, and Business Analytics, I bring something most analysts don't — I understand the numbers and the business they belong to. I'm not just looking for any role. I'm looking for one where the work actually means something.</p>
       </div>
     </section>
-<section id="skills">
-    <h2 class="section-title">🛠️ Technical Skills</h2>
-    <div class="skills-grid">
-        
-        <!-- SQL -->
-        <div class="skill-card">
-            <div class="skill-icon"><i class="fas fa-database"></i></div>
-            <h3>SQL</h3>
-            <ul class="sub-skills">
-                <li>Complex Queries</li>
-                <li>Joins & Subqueries</li>
-                <li>Query Optimization</li>
-                <li>Window Functions</li>
-            </ul>
-        </div>
-
-        <!-- Excel -->
-        <div class="skill-card">
-            <div class="skill-icon"><i class="fas fa-file-excel"></i></div>
-            <h3>Excel</h3>
-            <ul class="sub-skills">
-                <li>Pivot Tables</li>
-                <li>Power Query</li>
-                <li>Advanced Formulas</li>
-                <li>VBA / Macros</li>
-            </ul>
-        </div>
-
-        <!-- Power BI -->
-        <div class="skill-card">
-            <div class="skill-icon"><i class="fas fa-chart-pie"></i></div>
-            <h3>Power BI</h3>
-            <ul class="sub-skills">
-                <li>DAX</li>
-                <li>Power Query</li>
-                <li>Data Modeling</li>
-                <li>Dashboard Design</li>
-            </ul>
-        </div>
-
-        <!-- Python -->
-        <div class="skill-card">
-            <div class="skill-icon"><i class="fab fa-python"></i></div>
-            <h3>Python</h3>
-            <ul class="sub-skills">
-                <li>Pandas</li>
-                <li>NumPy</li>
-                <li>Matplotlib</li>
-                <li>Seaborn</li>
-                <li>Scikit‑learn</li>
-            </ul>
-        </div>
+<div class="skills-grid">
+    <!-- SQL -->
+    <div class="skill-card">
+        <div class="skill-icon"><i class="fas fa-database"></i></div>
+        <h3>SQL</h3>
+        <ul class="sub-skills">
+            <li>Complex Queries</li>
+            <li>Joins & Subqueries</li>
+            <li>Query Optimization</li>
+            <li>Window Functions</li>
+        </ul>
     </div>
-</section>
 
+    <!-- Excel -->
+    <div class="skill-card">
+        <div class="skill-icon"><i class="fas fa-file-excel"></i></div>
+        <h3>Excel</h3>
+        <ul class="sub-skills">
+            <li>Pivot Tables</li>
+            <li>Power Query</li>
+            <li>Advanced Formulas</li>
+            <li>VBA / Macros</li>
+        </ul>
+    </div>
+
+    <!-- Power BI -->
+    <div class="skill-card">
+        <div class="skill-icon"><i class="fas fa-chart-pie"></i></div>
+        <h3>Power BI</h3>
+        <ul class="sub-skills">
+            <li>DAX</li>
+            <li>Power Query</li>
+            <li>Data Modeling</li>
+            <li>Dashboard Design</li>
+        </ul>
+    </div>
+
+    <!-- Python -->
+    <div class="skill-card">
+        <div class="skill-icon"><i class="fab fa-python"></i></div>
+        <h3>Python</h3>
+        <ul class="sub-skills">
+            <li>Pandas</li>
+            <li>NumPy</li>
+            <li>Matplotlib</li>
+            <li>Seaborn</li>
+            <li>Scikit‑learn</li>
+        </ul>
+    </div>
+</div>
+<section>
 
     <!-- Stats Section -->
     <section>
