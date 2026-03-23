@@ -471,7 +471,6 @@ h1 {
     grid-template-columns: repeat(4, 1fr);
     gap: 1.5rem;
     margin-top: 2rem;
-    align-items: stretch;          /* makes all cards same height */
 }
 
 .skill-card {
@@ -481,21 +480,19 @@ h1 {
     text-align: center;
     box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     transition: all 0.2s;
-    border: 1px solid rgba(79,70,229,0.1);
+    border: 1px solid rgba(0,0,0,0.05);
     display: flex;
     flex-direction: column;
-    height: 100%;                  /* ensures full height inside grid */
 }
 
 .skill-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 12px 20px -8px rgba(79,70,229,0.15);
-    border-color: rgba(79,70,229,0.3);
+    box-shadow: 0 12px 20px -8px rgba(0,0,0,0.1);
 }
 
 .skill-icon {
     font-size: 2rem;
-    color: var(--primary);
+    color: #000;          /* black, not blue */
     margin-bottom: 0.75rem;
 }
 
@@ -503,7 +500,7 @@ h1 {
     font-size: 1.2rem;
     font-weight: 700;
     margin-bottom: 1rem;
-    color: var(--secondary);
+    color: #0f172a;
 }
 
 .sub-skills {
@@ -514,7 +511,7 @@ h1 {
     flex-wrap: wrap;
     justify-content: center;
     gap: 0.5rem;
-    flex: 1;                       /* pushes list to fill remaining space */
+    flex: 1;
 }
 
 .sub-skills li {
@@ -523,27 +520,17 @@ h1 {
     border-radius: 30px;
     font-size: 0.75rem;
     font-weight: 500;
-    color: var(--primary);
+    color: #334155;
     transition: all 0.2s;
-    white-space: nowrap;           /* prevents individual tags from wrapping */
 }
 
-/* For very small screens, allow tags to wrap inside their container */
-@media (max-width: 480px) {
-    .sub-skills li {
-        white-space: normal;
-        word-break: keep-all;
-    }
+.sub-skills li:hover {
+    background: #e2e8f0;
 }
 
-/* Mobile: stack cards */
 @media (max-width: 768px) {
     .skills-grid {
         grid-template-columns: 1fr;
-        gap: 1.2rem;
-    }
-    .skill-card {
-        padding: 1.2rem;
     }
 }
 
@@ -965,7 +952,6 @@ h1 {
         <div class="skill-icon"><i class="fas fa-database"></i></div>
         <h3>SQL</h3>
         <ul class="sub-skills">
-            <li>Complex Queries</li>
             <li>Joins & Subqueries</li>
             <li>Query Optimization</li>
             <li>Window Functions</li>
@@ -980,7 +966,6 @@ h1 {
             <li>Pivot Tables</li>
             <li>Power Query</li>
             <li>Advanced Formulas</li>
-            <li>VBA / Macros</li>
         </ul>
     </div>
 
@@ -1005,7 +990,6 @@ h1 {
             <li>NumPy</li>
             <li>Matplotlib</li>
             <li>Seaborn</li>
-            <li>Scikit‑learn</li>
         </ul>
     </div>
 </div>
