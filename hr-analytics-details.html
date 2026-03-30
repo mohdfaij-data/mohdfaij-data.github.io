@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HR Analytics: Employee Attrition Intelligence – Project Details</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+    body {
+      background: #f8fafc;
+      color: #0f172a;
+      line-height: 1.5;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      color: #4f46e5;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .back-link:hover {
+      color: #4338ca;
+      text-decoration: underline;
+    }
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+    .project-meta {
+      color: #64748b;
+      margin-bottom: 2rem;
+      font-size: 1rem;
+    }
+    .metrics-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+    .metric-card {
+      background: white;
+      padding: 1.2rem 1.5rem;
+      border-radius: 1rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      flex: 1;
+      min-width: 150px;
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .metric-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 20px -8px rgba(0,0,0,0.1);
+    }
+    .metric-value {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #4f46e5;
+    }
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin: 2rem 0;
+    }
+    .btn {
+      padding: 0.6rem 1.2rem;
+      border-radius: 9999px;
+      text-decoration: none;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s;
+    }
+    .btn-primary {
+      background: #4f46e5;
+      color: white;
+      box-shadow: 0 4px 8px rgba(79,70,229,0.2);
+    }
+    .btn-primary:hover {
+      background: #4338ca;
+      transform: translateY(-2px);
+    }
+    .btn-outline {
+      border: 2px solid #4f46e5;
+      color: #4f46e5;
+      background: white;
+    }
+    .btn-outline:hover {
+      background: #4f46e5;
+      color: white;
+      transform: translateY(-2px);
+    }
+    .dashboard-gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    .dashboard-card {
+      background: white;
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transition: transform 0.2s;
+    }
+    .dashboard-card:hover {
+      transform: translateY(-4px);
+    }
+    .dashboard-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .dashboard-card .caption {
+      padding: 0.75rem;
+      text-align: center;
+      font-weight: 500;
+      background: #f1f5f9;
+      font-size: 0.85rem;
+    }
+    .insight-box {
+      background: #eef2ff;
+      padding: 1.5rem;
+      border-radius: 1rem;
+      margin: 1.5rem 0;
+      border-left: 4px solid #4f46e5;
+    }
+    h2 {
+      font-size: 1.5rem;
+      margin: 2rem 0 1rem;
+      font-weight: 600;
+    }
+    pre {
+      background: #1e293b;
+      color: #e2e8f0;
+      padding: 1rem;
+      border-radius: 0.75rem;
+      overflow-x: auto;
+      margin: 1rem 0;
+      font-size: 0.85rem;
+      font-family: 'Courier New', monospace;
+    }
+    .code-tabs {
+      display: flex;
+      gap: 0.5rem;
+      border-bottom: 1px solid #cbd5e1;
+      margin-bottom: 1rem;
+    }
+    .tab-btn {
+      background: none;
+      border: none;
+      padding: 0.5rem 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      color: #64748b;
+      transition: all 0.2s;
+    }
+    .tab-btn.active {
+      color: #4f46e5;
+      border-bottom: 2px solid #4f46e5;
+    }
+    .code-content {
+      display: none;
+    }
+    .code-content.active {
+      display: block;
+    }
+    hr {
+      margin: 2rem 0;
+      border: 0;
+      height: 1px;
+      background: #e2e8f0;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid #e2e8f0;
+      color: #64748b;
+    }
+    footer a {
+      color: #4f46e5;
+      text-decoration: none;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.95);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      cursor: pointer;
+    }
+    .modal img {
+      max-width: 95%;
+      max-height: 95%;
+      border-radius: 0.5rem;
+    }
+    @media (max-width: 768px) {
+      .dashboard-gallery {
+        grid-template-columns: 1fr;
+      }
+      .metrics-grid {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <a href="../index.html#projects" class="back-link"><i class="fas fa-arrow-left"></i> Back to Projects</a>
+
+  <h1>📊 HR Analytics: Employee Attrition Intelligence</h1>
+  <div class="project-meta">A 4‑page prescriptive retention framework built with SQL, Python, Power BI & DAX</div>
+
+  <div class="metrics-grid">
+    <div class="metric-card"><div class="metric-value">1,470</div> Employees Analyzed</div>
+    <div class="metric-card"><div class="metric-value">16.1%</div> Overall Attrition</div>
+    <div class="metric-card"><div class="metric-value">10.4%</div> High‑Risk Flagged</div>
+    <div class="metric-card"><div class="metric-value">$1.2M+</div> Annual Savings*</div>
+  </div>
+
+  <div class="btn-group">
+    <a href="https://app.powerbi.com/view?r=YOUR_HR_DASHBOARD_LINK" target="_blank" class="btn btn-primary"><i class="fas fa-tachometer-alt"></i> Live Dashboard</a>
+    <a href="https://github.com/YOUR_GITHUB_REPO" target="_blank" class="btn btn-outline"><i class="fab fa-github"></i> GitHub Repository</a>
+    <a href="https://github.com/YOUR_GITHUB_REPO/python/eda_insights_report.pdf" target="_blank" class="btn btn-outline"><i class="fas fa-file-pdf"></i> Python EDA Report</a>
+  </div>
+
+  <h2>📸 Dashboard Gallery (4 Pages)</h2>
+  <div class="dashboard-gallery">
+    <div class="dashboard-card">
+      <img src="Overview.png" alt="Page 1: Executive Overview" onclick="openModal(this)">
+      <div class="caption">Page 1: Executive Overview – Workforce Snapshot</div>
+    </div>
+    <div class="dashboard-card">
+      <img src="Dashboard/insights.png" alt="Page 2: Insights & Patterns" onclick="openModal(this)">
+      <div class="caption">Page 2: Drivers – Root Cause Analysis</div>
+    </div>
+    <div class="dashboard-card">
+      <img src="Dashboard/deepdive.png" alt="Page 3: Deep Dive Analysis" onclick="openModal(this)">
+      <div class="caption">Page 3: Analysis – Risk Prediction & AI Key Influencers</div>
+    </div>
+    <div class="dashboard-card">
+      <img src="Dashboard/strategy.png" alt="Page 4: Strategy Framework" onclick="openModal(this)">
+      <div class="caption">Page 4: Strategy – Prioritized Recommendations & ROI</div>
+    </div>
+  </div>
+
+  <div class="insight-box">
+    <h3><i class="fas fa-lightbulb"></i> The Insight That Changed Everything</h3>
+    <p>Employees who rated their work‑life balance as <strong>"Good"</strong> had the <strong>highest attrition count (127)</strong> — not "Poor" or "Average."</p>
+    <p>This revealed that attrition isn't always dissatisfaction. Sometimes it's hidden structural pressure — workload creep, stalled careers, unmet expectations — masked by a score that looks fine on paper.</p>
+  </div>
+
+  <h2>🔍 Key Data‑Driven Insights</h2>
+  <ul style="margin-left: 1.5rem;">
+    <li><strong>Overtime = 3× higher attrition</strong> – 31% vs 9% baseline</li>
+    <li><strong>41% of exits happen in first 2 years</strong> – an onboarding failure</li>
+    <li><strong>Sales Representatives: 39.8% attrition</strong> – highest of any role</li>
+    <li><strong>Job Level 1 drives 60% of attrition</strong> – entry‑level most vulnerable</li>
+    <li><strong>Promotion gap >4 years doubles risk</strong> – median gap 3 years for leavers vs 2 for stayers</li>
+    <li><strong>AI Key Influencers:</strong> No overtime → 1.29× retention; Tenure >2y → 1.25×; Income >$13,758 → 1.17×</li>
+  </ul>
+
+  <h2>⚙️ Code & Technical Implementation</h2>
+  <div class="code-tabs">
+    <button class="tab-btn active" data-tab="sql">SQL</button>
+    <button class="tab-btn" data-tab="python">Python</button>
+    <button class="tab-btn" data-tab="dax">DAX</button>
+  </div>
+  <div id="sql" class="code-content active">
+    <pre><code>-- Tenure cohort creation
+SELECT 
+    EmployeeID,
+    CASE 
+        WHEN YearsAtCompany <= 2 THEN '0-2'
+        WHEN YearsAtCompany <= 6 THEN '3-6'
+        WHEN YearsAtCompany <= 10 THEN '7-10'
+        WHEN YearsAtCompany <= 15 THEN '10-15'
+        ELSE '15+'
+    END AS TenureGroup
+FROM Employees;
+
+-- Aggregated view for dashboards
+SELECT 
+    Department,
+    COUNT(*) AS TotalEmployees,
+    SUM(CASE WHEN Attrition = 'Yes' THEN 1 ELSE 0 END) AS AttritionCount,
+    AVG(MonthlyIncome) AS AvgMonthlyIncome
+FROM EmployeeMaster
+GROUP BY Department;</code></pre>
+  </div>
+  <div id="python" class="code-content">
+    <pre><code># Overtime vs Satisfaction heatmap – critical insight
+pivot = pd.pivot_table(df, values='Attrition_Flag',
+                       index='JobSatisfaction',
+                       columns='OverTime')
+sns.heatmap(pivot, annot=True, cmap='Reds')
+plt.title("High Risk: Overtime vs Low Satisfaction")
+
+# Correlation analysis
+corr = df[['AttritionFlag', 'OverTime', 'JobSatisfaction', 
+           'YearsAtCompany', 'YearsSinceLastPromotion']].corr()
+sns.heatmap(corr, annot=True, cmap='coolwarm')</code></pre>
+  </div>
+  <div id="dax" class="code-content">
+    <pre><code>// Risk Score – composite index for proactive flagging
+Risk Score = 
+VAR OvertimeRisk = IF(Employees[OverTime] = "Yes", 0.3, 0)
+VAR PromotionRisk = IF(Employees[YearsSinceLastPromotion] > 4, 0.25, 0)
+VAR TenureRisk = IF(Employees[YearsAtCompany] <= 2, 0.2, 0)
+VAR SatisfactionRisk = IF(Employees[JobSatisfaction] <= 2, 0.15, 0)
+RETURN
+    OvertimeRisk + PromotionRisk + TenureRisk + SatisfactionRisk
+
+// Retention Multiplier – quantifies impact of a factor
+Retention Multiplier = 
+DIVIDE(
+    CALCULATE([Retention Rate], Employees[OverTime] = "No"),
+    [Retention Rate]
+)</code></pre>
+  </div>
+
+  <h2>🎯 Strategic Recommendations</h2>
+  <ol style="margin-left: 1.5rem;">
+    <li><strong>Audit overtime‑heavy roles</strong> – reduce 31% attrition</li>
+    <li><strong>Redesign onboarding for first 2 years</strong> – 30‑60‑90 day checkpoints</li>
+    <li><strong>Transparent promotion cycles</strong> – flag at year 3 to avoid >4 year gaps</li>
+  </ol>
+  <p><strong>Projected impact:</strong> 20–25% reduction in high‑risk attrition → <strong>$1M+ annual savings</strong> (based on 1.5× salary replacement cost).</p>
+
+  <hr>
+
+  <h2>📚 Full Project Links</h2>
+  <ul style="margin-left: 1.5rem;">
+    <li><a href="https://app.powerbi.com/view?r=YOUR_HR_DASHBOARD_LINK" target="_blank">Live Power BI Dashboard</a></li>
+    <li><a href="https://github.com/YOUR_GITHUB_REPO" target="_blank">GitHub Repository (SQL, Python, DAX, README)</a></li>
+    <li><a href="https://github.com/YOUR_GITHUB_REPO/python/eda_insights_report.pdf" target="_blank">Python EDA Report (PDF)</a></li>
+  </ul>
+
+  <footer>
+    <p>Built by Mohd Faij | Data Analyst</p>
+    <p><a href="https://github.com/mohdfaij-data" target="_blank">GitHub</a> | <a href="https://linkedin.com/in/mohdfaij-data" target="_blank">LinkedIn</a></p>
+  </footer>
+</div>
+
+<div id="modal" class="modal" onclick="closeModal()"><img id="modalImg" src="" alt="Enlarged view"></div>
+
+<script>
+  function openModal(img) {
+    if (img?.src) {
+      const modal = document.getElementById('modal');
+      const modalImg = document.getElementById('modalImg');
+      modal.style.display = 'flex';
+      modalImg.src = img.src;
+      document.body.style.overflow = 'hidden';
+    }
+  }
+  function closeModal() {
+    const modal = document.getElementById('modal');
+    modal.style.display = 'none';
+    document.getElementById('modalImg').src = '';
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  // Tab switching
+  const tabs = document.querySelectorAll('.tab-btn');
+  tabs.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = btn.dataset.tab;
+      // Deactivate all tabs and contents
+      tabs.forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.code-content').forEach(c => c.classList.remove('active'));
+      // Activate current
+      btn.classList.add('active');
+      document.getElementById(target).classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
