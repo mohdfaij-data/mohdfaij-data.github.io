@@ -670,6 +670,49 @@ h1 {
   font-size: 0.9rem;
 }
 
+    
+/* 🔥 PASTE FOOTER CODE HERE */
+
+.footer {
+  margin-top: 60px;
+  padding: 25px 15px;
+  text-align: center;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  color: #94a3b8;
+  font-size: 14px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #4f46e5, transparent);
+}
+
+.footer p {
+  transition: all 0.3s ease;
+}
+
+.footer p:hover {
+  color: #e2e8f0;
+  letter-spacing: 0.5px;
+}
+
+@media (max-width: 768px) {
+  .footer {
+    font-size: 12px;
+    padding: 18px 10px;
+  }
+}
+
+/* Value Grid */
     /* Value Grid */
     .value-grid {
       display: grid;
