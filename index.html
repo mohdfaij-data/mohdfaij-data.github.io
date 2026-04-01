@@ -671,11 +671,9 @@ h1 {
 }
 
     
-/* 🔥 PASTE FOOTER CODE HERE */
-
 .footer {
   margin-top: 60px;
-  padding: 25px 15px;
+  padding: 30px 15px;
   text-align: center;
   background: linear-gradient(135deg, #0f172a, #1e293b);
   color: #94a3b8;
@@ -685,34 +683,47 @@ h1 {
   overflow: hidden;
 }
 
+/* 🔥 Animated glow line */
 .footer::before {
   content: "";
   position: absolute;
   top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 120px;
+  left: -50%;
+  width: 200%;
   height: 2px;
   background: linear-gradient(90deg, transparent, #4f46e5, transparent);
+  animation: glowMove 4s linear infinite;
 }
 
+@keyframes glowMove {
+  0% { left: -50%; }
+  100% { left: 100%; }
+}
+
+/* ✨ Text styling */
 .footer p {
   transition: all 0.3s ease;
+  letter-spacing: 0.3px;
 }
 
+/* 🔥 Hover effect */
 .footer p:hover {
   color: #e2e8f0;
-  letter-spacing: 0.5px;
+  transform: scale(1.05);
 }
 
+/* 💎 Extra glow on hover */
+.footer:hover {
+  box-shadow: 0 -10px 40px rgba(79,70,229,0.2);
+}
+
+/* 📱 Mobile fix */
 @media (max-width: 768px) {
   .footer {
     font-size: 12px;
-    padding: 18px 10px;
+    padding: 20px 10px;
   }
 }
-
-/* Value Grid */
     /* Value Grid */
     .value-grid {
       display: grid;
