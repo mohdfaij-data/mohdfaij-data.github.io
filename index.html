@@ -804,7 +804,7 @@ h1 {
     }
 
     /* Open Section */
-/* ===== ULTIMATE CTA DESIGN ===== */
+/* ===== FINAL PREMIUM CTA ===== */
 
 .cta-box {
   margin: 60px 20px;
@@ -819,7 +819,7 @@ h1 {
   overflow: hidden;
 }
 
-/* ✨ Soft light effect */
+/* Light effect */
 .cta-box::before {
   content: '';
   position: absolute;
@@ -828,7 +828,7 @@ h1 {
   background: radial-gradient(circle at top left, rgba(255,255,255,0.2), transparent 60%);
 }
 
-/* 🔥 Hover glow */
+/* Hover glow */
 .cta-box:hover {
   transform: translateY(-6px);
   box-shadow: 0 40px 80px rgba(79,70,229,0.4);
@@ -858,7 +858,7 @@ h1 {
   font-size: 14px;
 }
 
-/* Buttons */
+/* Buttons container */
 .buttons {
   display: flex;
   justify-content: center;
@@ -867,6 +867,7 @@ h1 {
   flex-wrap: wrap;
 }
 
+/* Base button */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -891,19 +892,22 @@ h1 {
   color: white;
 }
 
-/* Hover */
+/* 🔥 HOVER ZOOM + GLOW */
+.btn.primary:hover,
+.btn.secondary:hover {
+  transform: scale(1.1) !important;
+}
+
 .primary:hover {
-  transform: scale(1.08);
   box-shadow: 0 12px 30px rgba(255,255,255,0.6);
 }
 
 .secondary:hover {
   background: white;
   color: #6c63ff;
-  transform: scale(1.08);
 }
 
-/* Availability */
+/* Availability badge */
 .availability {
   margin-top: 18px;
   background: #e6ffe6;
@@ -913,9 +917,15 @@ h1 {
   display: inline-block;
   font-weight: 600;
   box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
 }
 
-/* ===== WHATSAPP PREMIUM ===== */
+.availability:hover {
+  transform: scale(1.08);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* ===== WHATSAPP ===== */
 
 .whatsapp {
   position: fixed;
@@ -931,8 +941,9 @@ h1 {
   z-index: 999;
 }
 
+/* Hover */
 .whatsapp:hover {
-  transform: scale(1.15);
+  transform: scale(1.2) rotate(5deg);
   box-shadow: 0 15px 40px rgba(37,211,102,0.6);
 }
 
