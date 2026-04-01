@@ -806,6 +806,8 @@ h1 {
     /* Open Section */
 /* ===== FINAL PREMIUM CTA ===== */
 
+/* ================= FINAL CTA ================= */
+
 .cta-box {
   margin: 60px 20px;
   padding: 50px 25px;
@@ -814,21 +816,28 @@ h1 {
   color: white;
   text-align: center;
   position: relative;
+  overflow: hidden;
   box-shadow: 0 25px 50px rgba(0,0,0,0.25);
   transition: all 0.4s ease;
-  overflow: hidden;
 }
 
-/* Light effect */
+/* Overlay FIXED */
 .cta-box::before {
   content: '';
   position: absolute;
   inset: 0;
   border-radius: 30px;
   background: radial-gradient(circle at top left, rgba(255,255,255,0.2), transparent 60%);
+  pointer-events: none; /* 🔥 IMPORTANT FIX */
 }
 
-/* Hover glow */
+/* Content above overlay */
+.cta-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Hover card */
 .cta-box:hover {
   transform: translateY(-6px);
   box-shadow: 0 40px 80px rgba(79,70,229,0.4);
@@ -852,13 +861,12 @@ h1 {
   font-weight: 500;
 }
 
-/* Highlights */
 .highlights p {
   margin: 6px 0;
   font-size: 14px;
 }
 
-/* Buttons container */
+/* Buttons */
 .buttons {
   display: flex;
   justify-content: center;
@@ -867,7 +875,6 @@ h1 {
   flex-wrap: wrap;
 }
 
-/* Base button */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -876,7 +883,7 @@ h1 {
   border-radius: 999px;
   font-weight: 500;
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 /* Primary */
@@ -892,22 +899,32 @@ h1 {
   color: white;
 }
 
-/* 🔥 HOVER ZOOM + GLOW */
-.btn.primary:hover,
-.btn.secondary:hover {
-  transform: scale(1.1) !important;
+/* 🔥 FINAL HOVER WORKING */
+.btn:hover {
+  transform: scale(1.12);
 }
 
+/* Glow */
 .primary:hover {
   box-shadow: 0 12px 30px rgba(255,255,255,0.6);
 }
 
+/* Secondary hover */
 .secondary:hover {
   background: white;
   color: #6c63ff;
 }
 
-/* Availability badge */
+/* Icon animation */
+.btn i {
+  transition: transform 0.25s ease;
+}
+
+.btn:hover i {
+  transform: scale(1.2);
+}
+
+/* Availability */
 .availability {
   margin-top: 18px;
   background: #e6ffe6;
@@ -917,15 +934,15 @@ h1 {
   display: inline-block;
   font-weight: 600;
   box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  transition: all 0.3s ease;
+  transition: all 0.25s ease;
 }
 
 .availability:hover {
-  transform: scale(1.08);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  transform: scale(1.1);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
 }
 
-/* ===== WHATSAPP ===== */
+/* ===== WHATSAPP FINAL ===== */
 
 .whatsapp {
   position: fixed;
@@ -941,13 +958,12 @@ h1 {
   z-index: 999;
 }
 
-/* Hover */
 .whatsapp:hover {
   transform: scale(1.2) rotate(5deg);
   box-shadow: 0 15px 40px rgba(37,211,102,0.6);
 }
 
-/* Pulse animation */
+/* Pulse */
 .whatsapp::after {
   content: '';
   position: absolute;
