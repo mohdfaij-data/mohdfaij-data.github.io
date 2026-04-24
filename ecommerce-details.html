@@ -1,0 +1,80 @@
+<section class="project-details">
+
+  <!-- TITLE -->
+  <h1 class="title">🛒 E-Commerce Sales & Profit Intelligence</h1>
+  <p class="subtitle">End-to-end profitability analysis using SQL, Power BI & DAX</p>
+
+  <!-- KPI CARDS -->
+  <div class="kpi-grid">
+    <div class="kpi-card">₹78.59M <span>Revenue</span></div>
+    <div class="kpi-card">₹25.76M <span>Profit</span></div>
+    <div class="kpi-card">32.78% <span>Margin</span></div>
+    <div class="kpi-card">42.22% <span>ROI</span></div>
+  </div>
+
+  <!-- BUTTONS -->
+  <div class="btns">
+    <a href="#" class="btn primary">🚀 Live Dashboard</a>
+    <a href="#" class="btn outline">💻 GitHub</a>
+  </div>
+
+  <!-- DASHBOARD GALLERY -->
+  <div class="gallery">
+    <h2>📊 Dashboard Screens</h2>
+
+    <div class="gallery-grid">
+      <img src="page1_sales_overview.png" onclick="openModal(this)">
+      <img src="page2_customer_insights.png" onclick="openModal(this)">
+      <img src="page3_profitability.png" onclick="openModal(this)">
+      <img src="page4_recommendations.png" onclick="openModal(this)">
+    </div>
+  </div>
+
+  <!-- MODAL -->
+  <div id="imgModal" class="modal" onclick="closeModal()">
+    <img id="modalImg">
+  </div>
+
+  <!-- INSIGHT -->
+  <div class="insight-box">
+    <h3>💡 Key Insight</h3>
+    <p>Profit wasn’t limited by sales — it was leaking through operations. ₹8M+ loss from returns & cancellations.</p>
+  </div>
+
+  <!-- INSIGHTS -->
+  <div class="section">
+    <h2>📊 Key Insights</h2>
+    <ul>
+      <li>₹8M+ loss due to returns & cancellations</li>
+      <li>Set category drives highest revenue</li>
+      <li>3x profit difference (Amazon FBA vs Merchant)</li>
+      <li>Operations optimization > Sales growth</li>
+    </ul>
+  </div>
+
+  <!-- CODE -->
+  <div class="section">
+    <h2>⚙️ Key DAX</h2>
+    <pre>
+Total Profit =
+[Total Revenue] - [Total Cost] - [Cancelled Loss] - [Return Loss]
+
+Profit Margin % =
+DIVIDE([Total Profit], [Total Revenue], 0) * 100
+
+ROI % =
+DIVIDE([Total Profit], [Total Cost], 0) * 100
+    </pre>
+  </div>
+
+  <!-- STRATEGY -->
+  <div class="strategy">
+    <h2>🎯 Strategy</h2>
+    <ol>
+      <li>Reduce returns via better product info</li>
+      <li>Optimize delivery to reduce cancellations</li>
+      <li>Shift to FBA for higher profitability</li>
+    </ol>
+  </div>
+
+</section>
