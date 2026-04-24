@@ -75,23 +75,22 @@
 
     /* Metrics Grid */
     .metrics-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.5rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
       margin: 2.5rem 0;
     }
 
     .metric-card {
       background: rgba(255, 255, 255, 0.85);
       backdrop-filter: blur(12px);
-      padding: 1.5rem 2rem;
-      border-radius: 2rem;
-      flex: 1;
-      min-width: 160px;
+      padding: 1.4rem 1.2rem;
+      border-radius: 1.5rem;
       text-align: center;
       transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
       border: 1px solid rgba(249, 115, 22, 0.15);
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+      overflow: hidden;
     }
 
     .metric-card:hover {
@@ -102,20 +101,23 @@
     }
 
     .metric-value {
-      font-size: 2.4rem;
+      font-size: 2rem;
       font-weight: 800;
       background: linear-gradient(135deg, #f97316, #fb923c);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
       line-height: 1.2;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .metric-card p {
       color: #475569;
       font-weight: 500;
-      margin-top: 0.5rem;
-      font-size: 0.9rem;
+      margin-top: 0.4rem;
+      font-size: 0.85rem;
     }
 
     /* Amazon badge */
@@ -524,7 +526,7 @@
       .container { padding: 1rem; }
       h1 { font-size: 2rem; }
       .dashboard-gallery { grid-template-columns: 1fr; gap: 1.5rem; }
-      .metrics-grid { flex-direction: column; }
+      .metrics-grid { grid-template-columns: repeat(2, 1fr); }
       .btn-group { flex-direction: column; }
       .btn { justify-content: center; }
       .rec-grid { grid-template-columns: 1fr; }
