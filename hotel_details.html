@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Booking Intelligence - Mohd Faij</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #4f46e5;
+            --primary-light: #818cf8;
+            --primary-soft: #eef2ff;
+            --secondary: #0f172a;
+            --text: #334155;
+            --muted: #64748b;
+            --border: #e2e8f0;
+            --bg: #f8fafc;
+            --white: #ffffff;
+            --red: #ef4444;
+            --amber: #f59e0b;
+            --green: #10b981;
+            --shadow-sm: 0 4px 12px rgba(0,0,0,0.05);
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --shadow-lg: 0 20px 40px rgba(79,70,229,0.12);
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--secondary);
+            font-family: 'Inter', system-ui, sans-serif;
+            line-height: 1.6;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem 1.5rem; }
+
+        /* ── BACK BUTTON ── */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: gap 0.2s;
+        }
+        .back-btn:hover { gap: 0.75rem; }
+
+        /* ── HERO — matches your dark nav/footer theme ── */
+        .hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #312e81 100%);
+            border-radius: 2rem;
+            padding: 3.5rem 3rem;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -80px; right: -80px;
+            width: 350px; height: 350px;
+            background: radial-gradient(circle, rgba(129,140,248,0.15), transparent 70%);
+            pointer-events: none;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -60px; left: -60px;
+            width: 250px; height: 250px;
+            background: radial-gradient(circle, rgba(79,70,229,0.12), transparent 70%);
+            pointer-events: none;
+        }
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: rgba(129,140,248,0.15);
+            border: 1px solid rgba(129,140,248,0.3);
+            color: #a5b4fc;
+            padding: 0.3rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 1.25rem;
+        }
+        .hero h1 {
+            font-size: clamp(1.6rem, 3vw, 2.4rem);
+            font-weight: 800;
+            color: #fff;
+            line-height: 1.2;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.02em;
+        }
+        .hero h1 span { color: #a5b4fc; }
+        .hero-sub {
+            color: #94a3b8;
+            font-size: 1rem;
+            max-width: 620px;
+            margin-bottom: 2rem;
+        }
+        .hero-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+        .hero-badge {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+            color: #cbd5e1;
+            padding: 0.3rem 0.9rem;
+            border-radius: 9999px;
+            font-size: 0.78rem;
+            font-weight: 500;
+        }
+        .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .btn-hero-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.75rem;
+            background: var(--primary);
+            color: white;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 8px 20px rgba(79,70,229,0.35);
+        }
+        .btn-hero-primary:hover { background: #4338ca; transform: translateY(-2px); }
+        .btn-hero-outline {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.75rem;
+            border: 1.5px solid rgba(255,255,255,0.2);
+            color: #e2e8f0;
+            border-radius: 9999px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .btn-hero-outline:hover { background: rgba(255,255,255,0.08); }
+
+        /* ── KPI GRID ── */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .kpi-card {
+            background: var(--white);
+            border-radius: 1.25rem;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+            transition: all 0.25s;
+        }
+        .kpi-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: rgba(79,70,229,0.2); }
+        .kpi-icon { font-size: 1.4rem; color: var(--primary); margin-bottom: 0.5rem; }
+        .kpi-value { font-size: 1.6rem; font-weight: 800; color: var(--primary); line-height: 1; margin-bottom: 0.35rem; }
+        .kpi-value.red { color: var(--red); }
+        .kpi-value.green { color: var(--green); }
+        .kpi-label { font-size: 0.72rem; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+
+        /* ── DASHBOARD SHOWCASE ── */
+        .dashboard-showcase {
+            background: var(--white);
+            border-radius: 1.5rem;
+            padding: 0.5rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            border: 1px solid var(--border);
+        }
+        .dashboard-tabs {
+            display: flex;
+            padding: 0.75rem 0.75rem 0;
+            border-bottom: 1px solid var(--border);
+            overflow-x: auto;
+            gap: 0;
+        }
+        .dash-tab {
+            padding: 0.6rem 1.1rem;
+            font-size: 0.78rem;
+            font-weight: 500;
+            color: var(--muted);
+            border: none;
+            background: none;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            white-space: nowrap;
+            transition: all 0.2s;
+            font-family: 'Inter', sans-serif;
+        }
+        .dash-tab:hover { color: var(--primary); }
+        .dash-tab.active { color: var(--primary); border-bottom-color: var(--primary); font-weight: 600; }
+        .dash-img-wrap { padding: 0.75rem; }
+        .dash-img-wrap img {
+            width: 100%;
+            border-radius: 0.75rem;
+            display: block;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .dash-img-wrap img:hover { transform: scale(1.005); }
+        .dash-panel { display: none; }
+        .dash-panel.active { display: block; }
+
+        /* ── SECTION ── */
+        .section {
+            background: var(--white);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+        }
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--primary-soft);
+        }
+        .section-title i { color: var(--primary); }
+
+        /* ── INSIGHTS ── */
+        .insights-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+        .insight-card {
+            background: var(--bg);
+            border-radius: 1rem;
+            padding: 1.25rem;
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--primary);
+            transition: all 0.2s;
+        }
+        .insight-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+        .insight-card.red { border-left-color: var(--red); }
+        .insight-card.amber { border-left-color: var(--amber); }
+        .insight-card.green { border-left-color: var(--green); }
+        .insight-num { font-size: 0.68rem; font-weight: 600; color: var(--primary); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.4rem; }
+        .insight-card.red .insight-num { color: var(--red); }
+        .insight-card.amber .insight-num { color: var(--amber); }
+        .insight-title { font-size: 0.9rem; font-weight: 700; color: var(--secondary); margin-bottom: 0.4rem; }
+        .insight-body { font-size: 0.82rem; color: var(--text); margin-bottom: 0.6rem; line-height: 1.5; }
+        .insight-action { font-size: 0.75rem; color: var(--primary); font-weight: 500; padding-top: 0.5rem; border-top: 1px solid var(--border); }
+
+        /* ── RISK MATRIX ── */
+        .matrix-wrap { overflow-x: auto; }
+        .risk-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+        .risk-table th { background: var(--primary-soft); color: var(--primary); font-weight: 600; padding: 0.75rem 1rem; text-align: left; font-size: 0.75rem; letter-spacing: 0.04em; text-transform: uppercase; }
+        .risk-table th:not(:first-child) { text-align: center; }
+        .risk-table td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--border); color: var(--text); }
+        .risk-table td:not(:first-child) { text-align: center; font-weight: 500; font-size: 0.8rem; }
+        .risk-table tr:hover td { background: #fafafa; }
+        .risk-table tr:last-child td { background: var(--primary-soft); font-weight: 700; color: var(--secondary); }
+        .cell-red { color: var(--red) !important; font-weight: 700 !important; }
+        .cell-amber { color: var(--amber) !important; }
+        .cell-green { color: var(--green) !important; }
+
+        /* ── MONTHLY GRID ── */
+        .monthly-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0.75rem; }
+        .month-card {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            padding: 0.9rem 0.5rem;
+            text-align: center;
+            transition: all 0.2s;
+        }
+        .month-card:hover { background: var(--primary-soft); border-color: rgba(79,70,229,0.2); transform: translateY(-2px); }
+        .month-card.peak { background: #fef2f2; border-color: #fca5a5; }
+        .month-card.peak .month-val { color: var(--red); }
+        .month-name { font-size: 0.7rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.35rem; }
+        .month-val { font-size: 0.88rem; font-weight: 700; color: var(--primary); }
+        .month-note { font-size: 0.62rem; color: var(--muted); margin-top: 0.2rem; }
+
+        /* ── BARS ── */
+        .bar-list { display: flex; flex-direction: column; gap: 0.85rem; }
+        .bar-item { display: grid; grid-template-columns: 140px 1fr 70px; align-items: center; gap: 0.75rem; }
+        .bar-label { font-size: 0.82rem; font-weight: 500; color: var(--text); }
+        .bar-track { height: 10px; background: #f1f5f9; border-radius: 9999px; overflow: hidden; }
+        .bar-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--primary-light)); border-radius: 9999px; }
+        .bar-fill.red { background: linear-gradient(90deg, #ef4444, #f87171); }
+        .bar-fill.amber { background: linear-gradient(90deg, #f59e0b, #fcd34d); }
+        .bar-fill.green { background: linear-gradient(90deg, #10b981, #34d399); }
+        .bar-val { font-size: 0.82rem; font-weight: 700; color: var(--primary); text-align: right; }
+        .bar-val.red { color: var(--red); }
+        .bar-val.amber { color: var(--amber); }
+
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+
+        /* ── CODE SECTION — dark theme matching footer ── */
+        .code-section {
+            background: #0f172a;
+            border-radius: 1.5rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid #1e293b;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        .code-section-title {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #e2e8f0;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid #1e293b;
+        }
+        .code-section-title i { color: var(--primary-light); }
+        .code-tabs {
+            display: flex;
+            gap: 0;
+            border-bottom: 1px solid #1e293b;
+            margin-bottom: 1.25rem;
+            overflow-x: auto;
+        }
+        .code-tab {
+            padding: 0.55rem 1.1rem;
+            font-size: 0.78rem;
+            font-weight: 500;
+            color: #64748b;
+            border: none;
+            background: none;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            white-space: nowrap;
+            transition: all 0.2s;
+            font-family: 'Inter', sans-serif;
+        }
+        .code-tab:hover { color: #94a3b8; }
+        .code-tab.active { color: #a5b4fc; border-bottom-color: #818cf8; }
+        .code-panel { display: none; }
+        .code-panel.active { display: block; }
+        .code-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #475569;
+            margin-bottom: 0.5rem;
+            margin-top: 1.25rem;
+        }
+        .code-label:first-child { margin-top: 0; }
+        .code-block {
+            background: #020617;
+            border: 1px solid #1e293b;
+            border-radius: 0.75rem;
+            padding: 1.25rem 1.5rem;
+            position: relative;
+            overflow-x: auto;
+        }
+        .code-block pre {
+            font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+            font-size: 0.78rem;
+            line-height: 1.75;
+            color: #e2e8f0;
+            white-space: pre;
+            margin: 0;
+        }
+        /* syntax colors */
+        .kw { color: #c084fc; }   /* keywords */
+        .fn { color: #60a5fa; }   /* functions */
+        .str { color: #34d399; }  /* strings */
+        .cm { color: #475569; font-style: italic; } /* comments */
+        .nb { color: #f59e0b; }   /* numbers */
+        .op { color: #94a3b8; }   /* operators */
+        .tbl { color: #fb923c; }  /* table/object names */
+        .copy-code-btn {
+            position: absolute;
+            top: 0.6rem;
+            right: 0.6rem;
+            background: #1e293b;
+            border: 1px solid #334155;
+            color: #64748b;
+            padding: 0.25rem 0.7rem;
+            border-radius: 0.4rem;
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: 'Inter', sans-serif;
+        }
+        .copy-code-btn:hover { background: #334155; color: #e2e8f0; }
+
+        /* ── ML MODEL ── */
+        .ml-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+        .ml-pipeline { background: var(--bg); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; }
+        .pipeline-step { display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.75rem 0; border-bottom: 1px dashed var(--border); }
+        .pipeline-step:last-child { border-bottom: none; }
+        .step-icon { width: 32px; height: 32px; border-radius: 50%; background: var(--primary-soft); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 0.8rem; flex-shrink: 0; margin-top: 2px; }
+        .step-label { font-size: 0.78rem; font-weight: 600; color: var(--secondary); margin-bottom: 0.2rem; }
+        .step-desc { font-size: 0.72rem; color: var(--muted); line-height: 1.4; }
+        .risk-dist { display: flex; flex-direction: column; gap: 1rem; }
+        .risk-row { display: flex; flex-direction: column; gap: 0.3rem; }
+        .risk-header { display: flex; justify-content: space-between; font-size: 0.82rem; font-weight: 500; }
+        .risk-bar-track { height: 8px; background: #f1f5f9; border-radius: 9999px; overflow: hidden; }
+        .risk-bar-fill { height: 100%; border-radius: 9999px; }
+
+        /* ── TOOLS ── */
+        .tools-wrap { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px dashed var(--border); }
+        .tool-badge {
+            background: var(--primary-soft);
+            color: var(--primary);
+            padding: 0.4rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: 1px solid rgba(79,70,229,0.15);
+            transition: all 0.2s;
+        }
+        .tool-badge:hover { background: var(--primary); color: white; transform: translateY(-1px); }
+        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
+        .feature-item { display: flex; align-items: center; gap: 0.65rem; padding: 0.75rem; background: var(--bg); border-radius: 0.7rem; border: 1px solid var(--border); font-size: 0.82rem; font-weight: 500; color: var(--text); transition: all 0.2s; }
+        .feature-item:hover { background: var(--primary-soft); border-color: rgba(79,70,229,0.2); transform: translateY(-1px); }
+        .feature-item i { color: var(--primary); font-size: 0.9rem; width: 18px; text-align: center; }
+
+        /* ── PILLARS ── */
+        .pillars-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+        .pillar-card { background: var(--bg); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; transition: all 0.2s; }
+        .pillar-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-sm); }
+        .pillar-num { font-size: 2rem; font-weight: 800; color: rgba(79,70,229,0.12); line-height: 1; margin-bottom: 0.5rem; }
+        .pillar-title { font-size: 0.9rem; font-weight: 700; color: var(--secondary); margin-bottom: 0.75rem; }
+        .pillar-list { list-style: none; padding: 0; }
+        .pillar-list li { font-size: 0.78rem; color: var(--text); padding: 0.35rem 0; border-bottom: 1px solid var(--border); display: flex; gap: 0.5rem; }
+        .pillar-list li::before { content: '→'; color: var(--primary); flex-shrink: 0; }
+        .pillar-list li:last-child { border-bottom: none; }
+
+        /* ── AUTHOR FOOTER CARD — matches your dark footer/nav ── */
+        .author-card {
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 60%, #312e81 100%);
+            border-radius: 2rem;
+            padding: 3rem 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .author-card::before {
+            content: '';
+            position: absolute;
+            top: -60px; right: -60px;
+            width: 280px; height: 280px;
+            background: radial-gradient(circle, rgba(129,140,248,0.12), transparent 70%);
+            pointer-events: none;
+        }
+        .author-avatar {
+            width: 80px; height: 80px;
+            border-radius: 50%;
+            border: 3px solid rgba(129,140,248,0.4);
+            margin: 0 auto 1rem;
+            overflow: hidden;
+            background: #1e293b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .author-avatar img { width: 100%; height: 100%; object-fit: cover; }
+        .author-avatar i { font-size: 2.5rem; color: #a5b4fc; }
+        .author-name { font-size: 1.6rem; font-weight: 800; color: #fff; margin-bottom: 0.3rem; letter-spacing: -0.02em; }
+        .author-role { font-size: 0.9rem; color: #a5b4fc; font-weight: 500; margin-bottom: 0.25rem; }
+        .author-tagline { font-size: 0.82rem; color: #64748b; margin-bottom: 2rem; }
+        .author-links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        .author-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.65rem 1.5rem;
+            border-radius: 9999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .link-linkedin {
+            background: #0a66c2;
+            color: white;
+            box-shadow: 0 6px 20px rgba(10,102,194,0.35);
+        }
+        .link-linkedin:hover { background: #0958a8; transform: translateY(-2px); box-shadow: 0 10px 28px rgba(10,102,194,0.45); }
+        .link-github {
+            background: rgba(255,255,255,0.08);
+            border: 1.5px solid rgba(255,255,255,0.15);
+            color: #e2e8f0;
+        }
+        .link-github:hover { background: rgba(255,255,255,0.15); transform: translateY(-2px); }
+        .link-email {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 6px 20px rgba(79,70,229,0.35);
+        }
+        .link-email:hover { background: #4338ca; transform: translateY(-2px); }
+
+        /* ── MODAL ── */
+        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.92); justify-content: center; align-items: center; z-index: 1000; cursor: pointer; }
+        .modal img { max-width: 95%; max-height: 95%; border-radius: 0.75rem; }
+
+        /* ── FOOTER ── */
+        footer {
+            text-align: center;
+            padding: 1.5rem 0;
+            color: var(--muted);
+            font-size: 0.88rem;
+            border-top: 1px solid var(--border);
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 1024px) {
+            .kpi-grid { grid-template-columns: repeat(3, 1fr); }
+            .insights-grid { grid-template-columns: repeat(2, 1fr); }
+            .monthly-grid { grid-template-columns: repeat(4, 1fr); }
+            .features-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+            .insights-grid, .two-col, .ml-grid, .pillars-grid { grid-template-columns: 1fr; }
+            .monthly-grid { grid-template-columns: repeat(3, 1fr); }
+            .features-grid { grid-template-columns: 1fr; }
+            .hero { padding: 2.5rem 1.5rem; border-radius: 1.25rem; }
+            .bar-item { grid-template-columns: 100px 1fr 55px; }
+            .author-card { padding: 2rem 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div id="modal" class="modal" onclick="closeModal()">
+    <img id="modalImg" src="" alt="Dashboard Preview">
+</div>
+
+<div class="container">
+    <a href="index.html#projects" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Portfolio</a>
+
+    <!-- ══ HERO ══ -->
+    <div class="hero">
+        <div class="hero-tag"><i class="fas fa-hotel"></i> Power BI · SQL · Python · DAX · Machine Learning</div>
+        <h1>Hotel Booking <span>Intelligence</span><br/>& Cancellation Risk Engine</h1>
+        <p class="hero-sub">Transforming 119,400 raw hotel reservations into decision-grade revenue, cancellation risk, and guest retention intelligence — across City & Resort Hotel properties.</p>
+        <div class="hero-badges">
+            <span class="hero-badge"><i class="fas fa-calendar-check"></i> 119.4K Reservations</span>
+            <span class="hero-badge"><i class="fas fa-dollar-sign"></i> $101.83 Avg ADR</span>
+            <span class="hero-badge"><i class="fas fa-times-circle"></i> 37.0% Cancellation Rate</span>
+            <span class="hero-badge"><i class="fas fa-users"></i> 235K Total Guests</span>
+            <span class="hero-badge"><i class="fas fa-chart-bar"></i> 5 Dashboards</span>
+        </div>
+        <div class="hero-actions">
+            <a href="YOUR_POWERBI_LINK" target="_blank" class="btn-hero-primary"><i class="fas fa-tachometer-alt"></i> Open Live Dashboard</a>
+            <a href="YOUR_REPORT_LINK" target="_blank" class="btn-hero-outline"><i class="fas fa-file-pdf"></i> Full PDF Report</a>
+        </div>
+    </div>
+
+    <!-- ══ KPI STRIP ══ -->
+    <div class="kpi-grid">
+        <div class="kpi-card"><div class="kpi-icon"><i class="fas fa-calendar-check"></i></div><div class="kpi-value">119.4K</div><div class="kpi-label">Total Reservations</div></div>
+        <div class="kpi-card"><div class="kpi-icon"><i class="fas fa-times-circle"></i></div><div class="kpi-value red">37.0%</div><div class="kpi-label">Cancellation Rate</div></div>
+        <div class="kpi-card"><div class="kpi-icon"><i class="fas fa-dollar-sign"></i></div><div class="kpi-value">$101.83</div><div class="kpi-label">Average ADR</div></div>
+        <div class="kpi-card"><div class="kpi-icon"><i class="fas fa-users"></i></div><div class="kpi-value">235K</div><div class="kpi-label">Total Guests</div></div>
+        <div class="kpi-card"><div class="kpi-icon"><i class="fas fa-clock"></i></div><div class="kpi-value">104</div><div class="kpi-label">Avg Lead Time (days)</div></div>
+        <div class="kpi-card"><div class="kpi-icon"><i class="fas fa-redo"></i></div><div class="kpi-value red">3.2%</div><div class="kpi-label">Repeat Guest Rate</div></div>
+        <div class="kpi-card"><div class="kpi-icon"><i class="fas fa-car"></i></div><div class="kpi-value">7,464</div><div class="kpi-label">Parking Requests</div></div>
+        <div class="kpi-card"><div class="kpi-icon"><i class="fas fa-bed"></i></div><div class="kpi-value">3.43</div><div class="kpi-label">Avg Stay (nights)</div></div>
+        <div class="kpi-card"><div class="kpi-icon"><i class="fas fa-arrow-up"></i></div><div class="kpi-value green">12.49%</div><div class="kpi-label">Room Upgrade Rate</div></div>
+        <div class="kpi-card"><div class="kpi-icon"><i class="fas fa-check-circle"></i></div><div class="kpi-value">75.2K</div><div class="kpi-label">Confirmed Bookings</div></div>
+    </div>
+
+    <!-- ══ DASHBOARD SHOWCASE ══ -->
+    <div class="dashboard-showcase">
+        <div class="dashboard-tabs">
+            <button class="dash-tab active" onclick="switchDash(0)">01 · Performance Overview</button>
+            <button class="dash-tab" onclick="switchDash(1)">02 · Cancellation Risk</button>
+            <button class="dash-tab" onclick="switchDash(2)">03 · Pricing & ADR</button>
+            <button class="dash-tab" onclick="switchDash(3)">04 · Guest Behavior</button>
+            <button class="dash-tab" onclick="switchDash(4)">05 · Strategy</button>
+        </div>
+        <div class="dash-img-wrap">
+            <div class="dash-panel active" id="dp0"><img src="hotel_overview.png" alt="Hotel Performance Overview" onclick="openModal(this)" onerror="this.src='https://via.placeholder.com/1200x600/0f172a/818cf8?text=Hotel+Performance+Overview'"></div>
+            <div class="dash-panel" id="dp1"><img src="cancellation.png" alt="Cancellation Risk" onclick="openModal(this)" onerror="this.src='https://via.placeholder.com/1200x600/0f172a/818cf8?text=Cancellation+Risk+Analysis'"></div>
+            <div class="dash-panel" id="dp2"><img src="ADR.png" alt="Pricing & ADR" onclick="openModal(this)" onerror="this.src='https://via.placeholder.com/1200x600/0f172a/818cf8?text=Pricing+Behavior'"></div>
+            <div class="dash-panel" id="dp3"><img src="customers.png" alt="Guest Behavior" onclick="openModal(this)" onerror="this.src='https://via.placeholder.com/1200x600/0f172a/818cf8?text=Guest+Behavior'"></div>
+            <div class="dash-panel" id="dp4"><img src="strategies.png" alt="Strategy" onclick="openModal(this)" onerror="this.src='https://via.placeholder.com/1200x600/0f172a/818cf8?text=Strategic+Insights'"></div>
+        </div>
+    </div>
+
+    <!-- ══ 6 INSIGHTS ══ -->
+    <div class="section">
+        <div class="section-title"><i class="fas fa-lightbulb"></i> 6 Critical Findings</div>
+        <div class="insights-grid">
+            <div class="insight-card red"><div class="insight-num">Insight 01</div><div class="insight-title">OTA Dependency Risk</div><div class="insight-body">Online TA generated the highest booking volume but also the highest cancellation rate at 36.7% — creating structural revenue instability.</div><div class="insight-action">→ Prepaid OTA offers · Stricter cancellation policies · Direct booking campaigns</div></div>
+            <div class="insight-card amber"><div class="insight-num">Insight 02</div><div class="insight-title">Peak Season Yield Gap</div><div class="insight-body">Booking volume and ADR peaked in July–August with ADR reaching $160 in Room Type C — untapped yield management opportunity.</div><div class="insight-action">→ Dynamic pricing · Operational surge readiness</div></div>
+            <div class="insight-card"><div class="insight-num">Insight 03</div><div class="insight-title">Unmonetized Parking Demand</div><div class="insight-body">Parking demand remained consistently high across all segments — 7,464 requests — reflecting strong private transport dependence.</div><div class="insight-action">→ Premium reserved parking · Capacity management system</div></div>
+            <div class="insight-card"><div class="insight-num">Insight 04</div><div class="insight-title">Resort Premium Pricing Power</div><div class="insight-body">Resort Hotel achieved a higher ADR than City Hotel, reflecting stronger premium pricing power and higher guest spending behavior.</div><div class="insight-action">→ Luxury packages · Seasonal upsells · Experience bundles</div></div>
+            <div class="insight-card amber"><div class="insight-num">Insight 05</div><div class="insight-title">Transient Dominance</div><div class="insight-body">Transient customers contributed 75.1% of all bookings — dominant revenue driver — yet loyalty investment remains minimal.</div><div class="insight-action">→ Personalized loyalty tiers · Direct booking incentives</div></div>
+            <div class="insight-card red"><div class="insight-num">Insight 06</div><div class="insight-title">Groups = Highest Risk Segment</div><div class="insight-body">Groups segment showed a 61% cancellation rate — the single highest-risk segment causing massive revenue block leakage.</div><div class="insight-action">→ Deposit requirements · Contract enforcement · Risk scoring</div></div>
+        </div>
+    </div>
+
+    <!-- ══ RISK MATRIX ══ -->
+    <div class="section">
+        <div class="section-title"><i class="fas fa-exclamation-triangle"></i> Cancellation Risk Matrix — Segment × Customer Type</div>
+        <div class="matrix-wrap">
+            <table class="risk-table">
+                <thead><tr><th>Market Segment</th><th>Contract</th><th>Group</th><th>Transient</th><th>Transient-Party</th><th>Total</th></tr></thead>
+                <tbody>
+                    <tr><td>Aviation</td><td>—</td><td class="cell-green">0.00%</td><td>21.10%</td><td>35.29%</td><td>21.94%</td></tr>
+                    <tr><td>Complementary</td><td class="cell-green">0.00%</td><td class="cell-green">0.00%</td><td>13.23%</td><td>12.50%</td><td class="cell-green">13.06%</td></tr>
+                    <tr><td>Corporate</td><td>18.18%</td><td>17.24%</td><td>18.29%</td><td>19.72%</td><td>18.73%</td></tr>
+                    <tr><td>Direct</td><td>14.29%</td><td>13.43%</td><td>15.54%</td><td>13.55%</td><td class="cell-green">15.34%</td></tr>
+                    <tr><td><strong>Groups</strong></td><td class="cell-red">95.92% ⚠</td><td class="cell-green">0.00%</td><td class="cell-red">95.69% ⚠</td><td>31.30%</td><td class="cell-red">61.06% ⚠</td></tr>
+                    <tr><td>Offline TA/TO</td><td>9.19%</td><td>11.85%</td><td class="cell-amber">42.63%</td><td>26.15%</td><td class="cell-amber">34.32%</td></tr>
+                    <tr><td><strong>Online TA</strong></td><td>25.84%</td><td>6.15%</td><td class="cell-amber">38.80%</td><td>12.52%</td><td class="cell-amber">36.72% ⚠</td></tr>
+                    <tr><td><strong>TOTAL</strong></td><td><strong>30.96%</strong></td><td><strong>10.23%</strong></td><td class="cell-amber"><strong>40.75%</strong></td><td><strong>25.43%</strong></td><td class="cell-amber"><strong>37.04%</strong></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- ══ MONTHLY TREND ══ -->
+    <div class="section">
+        <div class="section-title"><i class="fas fa-chart-line"></i> Monthly Cancellation Trend</div>
+        <div class="monthly-grid">
+            <div class="month-card"><div class="month-name">Jan</div><div class="month-val">1,800</div><div class="month-note">Lowest</div></div>
+            <div class="month-card"><div class="month-name">Feb</div><div class="month-val">2,700</div><div class="month-note">Rising</div></div>
+            <div class="month-card"><div class="month-name">Mar</div><div class="month-val">3,100</div><div class="month-note">Climbing</div></div>
+            <div class="month-card"><div class="month-name">Apr</div><div class="month-val">4,500</div><div class="month-note">High Season ↑</div></div>
+            <div class="month-card"><div class="month-name">May</div><div class="month-val">4,700</div><div class="month-note">High Season</div></div>
+            <div class="month-card"><div class="month-name">Jun</div><div class="month-val">4,500</div><div class="month-note">High Season</div></div>
+            <div class="month-card"><div class="month-name">Jul</div><div class="month-val">4,700</div><div class="month-note">Peak Season</div></div>
+            <div class="month-card peak"><div class="month-name">Aug</div><div class="month-val">5,200</div><div class="month-note">⚠ Peak</div></div>
+            <div class="month-card"><div class="month-name">Sep</div><div class="month-val">4,100</div><div class="month-note">Declining</div></div>
+            <div class="month-card"><div class="month-name">Oct</div><div class="month-val">4,200</div><div class="month-note">Moderate</div></div>
+            <div class="month-card"><div class="month-name">Nov</div><div class="month-val">2,100</div><div class="month-note">Low</div></div>
+            <div class="month-card"><div class="month-name">Dec</div><div class="month-val">2,400</div><div class="month-note">Low</div></div>
+        </div>
+    </div>
+
+    <!-- ══ ADR + SEGMENT ══ -->
+    <div class="two-col">
+        <div class="section" style="margin-bottom:0">
+            <div class="section-title"><i class="fas fa-dollar-sign"></i> ADR by Customer Type</div>
+            <div class="bar-list">
+                <div class="bar-item"><span class="bar-label">Transient</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><span class="bar-val">$107.0</span></div>
+                <div class="bar-item"><span class="bar-label">Contract</span><div class="bar-track"><div class="bar-fill" style="width:82%"></div></div><span class="bar-val">$87.5</span></div>
+                <div class="bar-item"><span class="bar-label">Transient-Party</span><div class="bar-track"><div class="bar-fill" style="width:80%"></div></div><span class="bar-val">$86.1</span></div>
+                <div class="bar-item"><span class="bar-label">Group</span><div class="bar-track"><div class="bar-fill" style="width:78%"></div></div><span class="bar-val">$83.5</span></div>
+            </div>
+            <div style="margin-top:1.25rem;padding:0.85rem 1rem;background:#fef2f2;border-radius:0.75rem;border:1px solid #fca5a5;">
+                <p style="font-size:0.8rem;color:#991b1b;font-weight:500;"><i class="fas fa-exclamation-circle"></i> Transient guests pay the most ($107) but cancel the most (40.7%) — highest revenue risk segment.</p>
+            </div>
+        </div>
+        <div class="section" style="margin-bottom:0">
+            <div class="section-title"><i class="fas fa-users"></i> Booking Risk by Segment</div>
+            <div class="bar-list">
+                <div class="bar-item"><span class="bar-label">Groups</span><div class="bar-track"><div class="bar-fill red" style="width:61.1%"></div></div><span class="bar-val red">61.1% 🔴</span></div>
+                <div class="bar-item"><span class="bar-label">Online TA</span><div class="bar-track"><div class="bar-fill amber" style="width:36.7%"></div></div><span class="bar-val amber">36.7% 🟡</span></div>
+                <div class="bar-item"><span class="bar-label">Offline TA/TO</span><div class="bar-track"><div class="bar-fill amber" style="width:34.3%"></div></div><span class="bar-val amber">34.3% 🟡</span></div>
+                <div class="bar-item"><span class="bar-label">Aviation</span><div class="bar-track"><div class="bar-fill" style="width:21.9%"></div></div><span class="bar-val">21.9%</span></div>
+                <div class="bar-item"><span class="bar-label">Corporate</span><div class="bar-track"><div class="bar-fill" style="width:18.7%"></div></div><span class="bar-val">18.7%</span></div>
+                <div class="bar-item"><span class="bar-label">Direct</span><div class="bar-track"><div class="bar-fill green" style="width:15.3%"></div></div><span class="bar-val" style="color:var(--green)">15.3% 🟢</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ ML MODEL ══ -->
+    <div class="section">
+        <div class="section-title"><i class="fas fa-brain"></i> ML Model — Cancellation Risk Predictor</div>
+        <div class="ml-grid">
+            <div class="ml-pipeline">
+                <div class="pipeline-step"><div class="step-icon"><i class="fas fa-database"></i></div><div><div class="step-label">Input Features</div><div class="step-desc">lead_time · market_segment · adr · hotel_type · deposit_type · customer_type · previous_cancellations · special_requests</div></div></div>
+                <div class="pipeline-step"><div class="step-icon"><i class="fas fa-cogs"></i></div><div><div class="step-label">Feature Engineering</div><div class="step-desc">Key driver: lead_time × market_segment · ADR normalisation · Deposit type encoding</div></div></div>
+                <div class="pipeline-step"><div class="step-icon"><i class="fas fa-brain"></i></div><div><div class="step-label">Model Training</div><div class="step-desc">Logistic Regression + Random Forest Ensemble classifier</div></div></div>
+                <div class="pipeline-step"><div class="step-icon"><i class="fas fa-flag"></i></div><div><div class="step-label">Risk Score Output</div><div class="step-desc">Every booking flagged Low / Medium / High risk at reservation time</div></div></div>
+            </div>
+            <div>
+                <div class="risk-dist">
+                    <div style="font-size:0.82rem;font-weight:600;color:var(--secondary);margin-bottom:0.75rem;">Predicted Risk Distribution</div>
+                    <div class="risk-row"><div class="risk-header"><span style="color:var(--green)">🟢 Low Risk</span><span style="color:var(--green);font-weight:700">60.3% · 72,000 bookings</span></div><div class="risk-bar-track"><div class="risk-bar-fill" style="width:60.3%;background:#10b981;height:8px;border-radius:9999px;"></div></div></div>
+                    <div class="risk-row"><div class="risk-header"><span style="color:var(--amber)">🟡 Medium Risk</span><span style="color:var(--amber);font-weight:700">28.2% · 33,600 bookings</span></div><div class="risk-bar-track"><div class="risk-bar-fill" style="width:28.2%;background:#f59e0b;height:8px;border-radius:9999px;"></div></div></div>
+                    <div class="risk-row"><div class="risk-header"><span style="color:var(--red)">🔴 High Risk</span><span style="color:var(--red);font-weight:700">11.5% · 13,700 bookings</span></div><div class="risk-bar-track"><div class="risk-bar-fill" style="width:11.5%;background:#ef4444;height:8px;border-radius:9999px;"></div></div></div>
+                </div>
+                <div style="margin-top:1.25rem;background:#fef2f2;border:1px solid #fca5a5;border-radius:0.75rem;padding:1rem;">
+                    <p style="font-size:0.78rem;color:#991b1b;font-weight:600;margin-bottom:0.3rem;"><i class="fas fa-bell"></i> High-Risk Triggers</p>
+                    <p style="font-size:0.76rem;color:#7f1d1d;line-height:1.6;">Mandatory deposit request · Reduced cancellation window · Upsell to prepaid rate · Revenue team alert</p>
+                </div>
+                <div style="margin-top:1rem;background:var(--primary-soft);border:1px solid rgba(79,70,229,0.15);border-radius:0.75rem;padding:1rem;">
+                    <p style="font-size:0.82rem;color:var(--primary);font-weight:600;">13,700 high-risk bookings flagged at reservation time — enabling proactive revenue protection.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ CODE SECTION ══ -->
+    <div class="code-section">
+        <div class="code-section-title"><i class="fas fa-code"></i> Code Samples — SQL · DAX · Python</div>
+        <div class="code-tabs">
+            <button class="code-tab active" onclick="switchCode(0)"><i class="fas fa-database"></i> SQL Queries</button>
+            <button class="code-tab" onclick="switchCode(1)"><i class="fas fa-chart-pie"></i> DAX Measures</button>
+            <button class="code-tab" onclick="switchCode(2)"><i class="fab fa-python"></i> Python (EDA & ML)</button>
+        </div>
+
+        <!-- SQL -->
+        <div class="code-panel active" id="cp0">
+            <div class="code-label">1. Cancellation Rate by Market Segment</div>
+            <div class="code-block">
+                <button class="copy-code-btn" onclick="copyCode(this)">Copy</button>
+                <pre><span class="cm">-- Cancellation rate per market segment</span>
+<span class="kw">SELECT</span>
+    market_segment,
+    <span class="fn">COUNT</span>(*) <span class="kw">AS</span> total_bookings,
+    <span class="fn">SUM</span>(<span class="kw">CASE WHEN</span> reservation_status <span class="op">=</span> <span class="str">'Canceled'</span> <span class="kw">THEN</span> <span class="nb">1</span> <span class="kw">ELSE</span> <span class="nb">0</span> <span class="kw">END</span>) <span class="kw">AS</span> cancellations,
+    <span class="fn">ROUND</span>(
+        <span class="fn">SUM</span>(<span class="kw">CASE WHEN</span> reservation_status <span class="op">=</span> <span class="str">'Canceled'</span> <span class="kw">THEN</span> <span class="nb">1</span> <span class="kw">ELSE</span> <span class="nb">0</span> <span class="kw">END</span>) <span class="op">* 100.0</span> <span class="op">/</span> <span class="fn">COUNT</span>(*), <span class="nb">2</span>
+    ) <span class="kw">AS</span> cancellation_rate_pct
+<span class="kw">FROM</span> <span class="tbl">hotel_bookings</span>
+<span class="kw">GROUP BY</span> market_segment
+<span class="kw">ORDER BY</span> cancellation_rate_pct <span class="kw">DESC</span>;</pre>
+            </div>
+
+            <div class="code-label">2. Monthly ADR Trend by Hotel Type</div>
+            <div class="code-block">
+                <button class="copy-code-btn" onclick="copyCode(this)">Copy</button>
+                <pre><span class="cm">-- Monthly ADR trend for City vs Resort Hotel</span>
+<span class="kw">SELECT</span>
+    hotel,
+    arrival_date_month,
+    <span class="fn">ROUND</span>(<span class="fn">AVG</span>(adr), <span class="nb">2</span>) <span class="kw">AS</span> avg_adr,
+    <span class="fn">COUNT</span>(*) <span class="kw">AS</span> total_bookings,
+    <span class="fn">SUM</span>(<span class="kw">CASE WHEN</span> reservation_status <span class="op">=</span> <span class="str">'Canceled'</span> <span class="kw">THEN</span> <span class="nb">1</span> <span class="kw">ELSE</span> <span class="nb">0</span> <span class="kw">END</span>) <span class="kw">AS</span> cancellations
+<span class="kw">FROM</span> <span class="tbl">hotel_bookings</span>
+<span class="kw">WHERE</span> adr <span class="op">&gt;</span> <span class="nb">0</span>
+<span class="kw">GROUP BY</span> hotel, arrival_date_month
+<span class="kw">ORDER BY</span>
+    hotel,
+    <span class="fn">FIELD</span>(arrival_date_month,
+        <span class="str">'January'</span>,<span class="str">'February'</span>,<span class="str">'March'</span>,<span class="str">'April'</span>,<span class="str">'May'</span>,<span class="str">'June'</span>,
+        <span class="str">'July'</span>,<span class="str">'August'</span>,<span class="str">'September'</span>,<span class="str">'October'</span>,<span class="str">'November'</span>,<span class="str">'December'</span>
+    );</pre>
+            </div>
+
+            <div class="code-label">3. Guest Acquisition Flow — Segment to Customer Type</div>
+            <div class="code-block">
+                <button class="copy-code-btn" onclick="copyCode(this)">Copy</button>
+                <pre><span class="cm">-- Market segment to customer type flow with risk scoring</span>
+<span class="kw">SELECT</span>
+    market_segment,
+    customer_type,
+    <span class="fn">COUNT</span>(*) <span class="kw">AS</span> total_bookings,
+    <span class="fn">ROUND</span>(<span class="fn">AVG</span>(adr), <span class="nb">2</span>) <span class="kw">AS</span> avg_adr,
+    <span class="fn">ROUND</span>(
+        <span class="fn">SUM</span>(<span class="kw">CASE WHEN</span> reservation_status <span class="op">=</span> <span class="str">'Canceled'</span> <span class="kw">THEN</span> <span class="nb">1</span> <span class="kw">ELSE</span> <span class="nb">0</span> <span class="kw">END</span>) <span class="op">* 100.0</span> <span class="op">/</span> <span class="fn">COUNT</span>(*), <span class="nb">2</span>
+    ) <span class="kw">AS</span> cancel_rate,
+    <span class="kw">CASE</span>
+        <span class="kw">WHEN</span> <span class="fn">AVG</span>(lead_time) <span class="op">&gt;</span> <span class="nb">150</span> <span class="kw">AND</span>
+             <span class="fn">SUM</span>(<span class="kw">CASE WHEN</span> reservation_status <span class="op">=</span> <span class="str">'Canceled'</span> <span class="kw">THEN</span> <span class="nb">1</span> <span class="kw">ELSE</span> <span class="nb">0</span> <span class="kw">END</span>) <span class="op">* 100.0</span> <span class="op">/</span> <span class="fn">COUNT</span>(*) <span class="op">&gt;</span> <span class="nb">40</span>
+             <span class="kw">THEN</span> <span class="str">'High Risk'</span>
+        <span class="kw">WHEN</span> <span class="fn">SUM</span>(<span class="kw">CASE WHEN</span> reservation_status <span class="op">=</span> <span class="str">'Canceled'</span> <span class="kw">THEN</span> <span class="nb">1</span> <span class="kw">ELSE</span> <span class="nb">0</span> <span class="kw">END</span>) <span class="op">* 100.0</span> <span class="op">/</span> <span class="fn">COUNT</span>(*) <span class="op">&gt;</span> <span class="nb">25</span>
+             <span class="kw">THEN</span> <span class="str">'Medium Risk'</span>
+        <span class="kw">ELSE</span> <span class="str">'Low Risk'</span>
+    <span class="kw">END</span> <span class="kw">AS</span> risk_level
+<span class="kw">FROM</span> <span class="tbl">hotel_bookings</span>
+<span class="kw">GROUP BY</span> market_segment, customer_type
+<span class="kw">ORDER BY</span> cancel_rate <span class="kw">DESC</span>;</pre>
+            </div>
+        </div>
+
+        <!-- DAX -->
+        <div class="code-panel" id="cp1">
+            <div class="code-label">1. Core KPI Measures</div>
+            <div class="code-block">
+                <button class="copy-code-btn" onclick="copyCode(this)">Copy</button>
+                <pre><span class="cm">-- Total Reservations</span>
+<span class="tbl">Total Reservations</span> <span class="op">=</span>
+<span class="fn">COUNTROWS</span>(<span class="tbl">'HotelBookings'</span>)
+
+<span class="cm">-- Cancellation Rate</span>
+<span class="tbl">Cancellation Rate</span> <span class="op">=</span>
+<span class="kw">VAR</span> _cancelled <span class="op">=</span>
+    <span class="fn">CALCULATE</span>(
+        <span class="fn">COUNTROWS</span>(<span class="tbl">'HotelBookings'</span>),
+        <span class="tbl">'HotelBookings'</span>[reservation_status] <span class="op">=</span> <span class="str">"Canceled"</span>
+    )
+<span class="kw">RETURN</span>
+    <span class="fn">DIVIDE</span>(_cancelled, <span class="fn">COUNTROWS</span>(<span class="tbl">'HotelBookings'</span>), <span class="nb">0</span>)
+
+<span class="cm">-- Average Daily Rate (filtered for valid bookings)</span>
+<span class="tbl">Avg ADR</span> <span class="op">=</span>
+<span class="fn">CALCULATE</span>(
+    <span class="fn">AVERAGE</span>(<span class="tbl">'HotelBookings'</span>[adr]),
+    <span class="tbl">'HotelBookings'</span>[adr] <span class="op">&gt;</span> <span class="nb">0</span>
+)</pre>
+            </div>
+
+            <div class="code-label">2. Dynamic Cancellation Risk Flag</div>
+            <div class="code-block">
+                <button class="copy-code-btn" onclick="copyCode(this)">Copy</button>
+                <pre><span class="cm">-- Predicted Risk Category (replicates ML output in DAX)</span>
+<span class="tbl">Risk Category</span> <span class="op">=</span>
+<span class="kw">VAR</span> _leadTime <span class="op">=</span> <span class="tbl">'HotelBookings'</span>[lead_time]
+<span class="kw">VAR</span> _prevCancel <span class="op">=</span> <span class="tbl">'HotelBookings'</span>[previous_cancellations]
+<span class="kw">VAR</span> _depositType <span class="op">=</span> <span class="tbl">'HotelBookings'</span>[deposit_type]
+<span class="kw">VAR</span> _segment <span class="op">=</span> <span class="tbl">'HotelBookings'</span>[market_segment]
+<span class="kw">RETURN</span>
+    <span class="fn">SWITCH</span>(<span class="kw">TRUE</span>(),
+        _leadTime <span class="op">&gt;</span> <span class="nb">150</span>
+            <span class="op">&amp;&amp;</span> _prevCancel <span class="op">&gt;</span> <span class="nb">0</span>
+            <span class="op">&amp;&amp;</span> _depositType <span class="op">=</span> <span class="str">"No Deposit"</span>,
+            <span class="str">"High Risk"</span>,
+        _leadTime <span class="op">&gt;</span> <span class="nb">80</span>
+            <span class="op">&amp;&amp;</span> <span class="fn">OR</span>(_segment <span class="op">=</span> <span class="str">"Online TA"</span>, _segment <span class="op">=</span> <span class="str">"Groups"</span>),
+            <span class="str">"Medium Risk"</span>,
+        <span class="str">"Low Risk"</span>
+    )
+
+<span class="cm">-- Revenue at Risk from High-Risk Bookings</span>
+<span class="tbl">Revenue at Risk</span> <span class="op">=</span>
+<span class="fn">CALCULATE</span>(
+    <span class="fn">SUMX</span>(
+        <span class="tbl">'HotelBookings'</span>,
+        <span class="tbl">'HotelBookings'</span>[adr] <span class="op">*</span> <span class="tbl">'HotelBookings'</span>[stays_in_week_nights]
+        <span class="op">+</span> <span class="tbl">'HotelBookings'</span>[adr] <span class="op">*</span> <span class="tbl">'HotelBookings'</span>[stays_in_weekend_nights]
+    ),
+    [<span class="tbl">Risk Category</span>] <span class="op">=</span> <span class="str">"High Risk"</span>
+)</pre>
+            </div>
+
+            <div class="code-label">3. Time Intelligence — MoM Cancellation Change</div>
+            <div class="code-block">
+                <button class="copy-code-btn" onclick="copyCode(this)">Copy</button>
+                <pre><span class="cm">-- Month-over-Month cancellation change</span>
+<span class="tbl">Cancellations MoM %</span> <span class="op">=</span>
+<span class="kw">VAR</span> _currentMonth <span class="op">=</span>
+    <span class="fn">CALCULATE</span>(
+        <span class="fn">COUNTROWS</span>(<span class="tbl">'HotelBookings'</span>),
+        <span class="tbl">'HotelBookings'</span>[reservation_status] <span class="op">=</span> <span class="str">"Canceled"</span>
+    )
+<span class="kw">VAR</span> _prevMonth <span class="op">=</span>
+    <span class="fn">CALCULATE</span>(
+        <span class="fn">COUNTROWS</span>(<span class="tbl">'HotelBookings'</span>),
+        <span class="tbl">'HotelBookings'</span>[reservation_status] <span class="op">=</span> <span class="str">"Canceled"</span>,
+        <span class="fn">DATEADD</span>(<span class="tbl">'DateTable'</span>[Date], <span class="op">-</span><span class="nb">1</span>, <span class="fn">MONTH</span>)
+    )
+<span class="kw">RETURN</span>
+    <span class="fn">DIVIDE</span>(_currentMonth <span class="op">-</span> _prevMonth, _prevMonth, <span class="nb">0</span>)</pre>
+            </div>
+        </div>
+
+        <!-- PYTHON -->
+        <div class="code-panel" id="cp2">
+            <div class="code-label">1. Exploratory Data Analysis</div>
+            <div class="code-block">
+                <button class="copy-code-btn" onclick="copyCode(this)">Copy</button>
+                <pre><span class="kw">import</span> pandas <span class="kw">as</span> pd
+<span class="kw">import</span> matplotlib.pyplot <span class="kw">as</span> plt
+<span class="kw">import</span> seaborn <span class="kw">as</span> sns
+
+<span class="cm"># Load dataset</span>
+df <span class="op">=</span> pd.<span class="fn">read_csv</span>(<span class="str">'hotel_bookings.csv'</span>)
+
+<span class="cm"># Basic overview</span>
+<span class="fn">print</span>(df.<span class="fn">shape</span>)         <span class="cm"># (119390, 32)</span>
+<span class="fn">print</span>(df.<span class="fn">isnull</span>().<span class="fn">sum</span>()) <span class="cm"># Check nulls</span>
+
+<span class="cm"># Cancellation rate by market segment</span>
+cancel_rate <span class="op">=</span> (
+    df.<span class="fn">groupby</span>(<span class="str">'market_segment'</span>)[<span class="str">'is_canceled'</span>]
+    .<span class="fn">agg</span>([<span class="str">'sum'</span>, <span class="str">'count'</span>])
+    .<span class="fn">assign</span>(rate<span class="op">=</span><span class="kw">lambda</span> x: x[<span class="str">'sum'</span>] <span class="op">/</span> x[<span class="str">'count'</span>] <span class="op">* 100</span>)
+    .<span class="fn">sort_values</span>(<span class="str">'rate'</span>, ascending<span class="op">=</span><span class="kw">False</span>)
+)
+<span class="fn">print</span>(cancel_rate)
+
+<span class="cm"># ADR distribution by hotel type</span>
+fig, ax <span class="op">=</span> plt.<span class="fn">subplots</span>(figsize<span class="op">=</span>(<span class="nb">10</span>, <span class="nb">5</span>))
+sns.<span class="fn">boxplot</span>(
+    data<span class="op">=</span>df[df[<span class="str">'adr'</span>] <span class="op">&gt;</span> <span class="nb">0</span>],
+    x<span class="op">=</span><span class="str">'hotel'</span>, y<span class="op">=</span><span class="str">'adr'</span>,
+    hue<span class="op">=</span><span class="str">'reservation_status'</span>,
+    palette<span class="op">=</span>[<span class="str">'#4f46e5'</span>, <span class="str">'#ef4444'</span>], ax<span class="op">=</span>ax
+)
+ax.<span class="fn">set_title</span>(<span class="str">'ADR Distribution: Hotel × Booking Status'</span>)
+plt.<span class="fn">tight_layout</span>()
+plt.<span class="fn">show</span>()</pre>
+            </div>
+
+            <div class="code-label">2. Feature Engineering</div>
+            <div class="code-block">
+                <button class="copy-code-btn" onclick="copyCode(this)">Copy</button>
+                <pre><span class="cm"># Feature engineering for ML model</span>
+df[<span class="str">'total_nights'</span>] <span class="op">=</span> (
+    df[<span class="str">'stays_in_weekend_nights'</span>] <span class="op">+</span> df[<span class="str">'stays_in_week_nights'</span>]
+)
+df[<span class="str">'total_guests'</span>] <span class="op">=</span> (
+    df[<span class="str">'adults'</span>] <span class="op">+</span> df[<span class="str">'children'</span>].<span class="fn">fillna</span>(<span class="nb">0</span>) <span class="op">+</span> df[<span class="str">'babies'</span>]
+)
+df[<span class="str">'revenue_estimate'</span>] <span class="op">=</span> df[<span class="str">'adr'</span>] <span class="op">*</span> df[<span class="str">'total_nights'</span>]
+
+<span class="cm"># Encode categorical features</span>
+<span class="kw">from</span> sklearn.preprocessing <span class="kw">import</span> LabelEncoder
+cat_cols <span class="op">=</span> [
+    <span class="str">'hotel'</span>, <span class="str">'market_segment'</span>, <span class="str">'customer_type'</span>,
+    <span class="str">'deposit_type'</span>, <span class="str">'distribution_channel'</span>
+]
+le <span class="op">=</span> LabelEncoder()
+<span class="kw">for</span> col <span class="kw">in</span> cat_cols:
+    df[col <span class="op">+</span> <span class="str">'_enc'</span>] <span class="op">=</span> le.<span class="fn">fit_transform</span>(df[col].<span class="fn">astype</span>(<span class="str">'str'</span>))
+
+<span class="cm"># Select final features</span>
+features <span class="op">=</span> [
+    <span class="str">'lead_time'</span>, <span class="str">'adr'</span>, <span class="str">'total_nights'</span>, <span class="str">'total_guests'</span>,
+    <span class="str">'previous_cancellations'</span>, <span class="str">'total_of_special_requests'</span>,
+    <span class="str">'booking_changes'</span>, <span class="str">'hotel_enc'</span>, <span class="str">'market_segment_enc'</span>,
+    <span class="str">'customer_type_enc'</span>, <span class="str">'deposit_type_enc'</span>
+]
+X <span class="op">=</span> df[features]
+y <span class="op">=</span> df[<span class="str">'is_canceled'</span>]</pre>
+            </div>
+
+            <div class="code-label">3. ML Model Training & Risk Scoring</div>
+            <div class="code-block">
+                <button class="copy-code-btn" onclick="copyCode(this)">Copy</button>
+                <pre><span class="kw">from</span> sklearn.model_selection <span class="kw">import</span> train_test_split
+<span class="kw">from</span> sklearn.ensemble <span class="kw">import</span> RandomForestClassifier
+<span class="kw">from</span> sklearn.linear_model <span class="kw">import</span> LogisticRegression
+<span class="kw">from</span> sklearn.metrics <span class="kw">import</span> classification_report, roc_auc_score
+<span class="kw">import</span> numpy <span class="kw">as</span> np
+
+<span class="cm"># Train/test split</span>
+X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(
+    X, y, test_size<span class="op">=</span><span class="nb">0.2</span>, random_state<span class="op">=</span><span class="nb">42</span>, stratify<span class="op">=</span>y
+)
+
+<span class="cm"># Random Forest model</span>
+rf <span class="op">=</span> RandomForestClassifier(
+    n_estimators<span class="op">=</span><span class="nb">200</span>, max_depth<span class="op">=</span><span class="nb">12</span>,
+    random_state<span class="op">=</span><span class="nb">42</span>, class_weight<span class="op">=</span><span class="str">'balanced'</span>
+)
+rf.<span class="fn">fit</span>(X_train, y_train)
+
+<span class="cm"># Evaluate</span>
+y_pred <span class="op">=</span> rf.<span class="fn">predict</span>(X_test)
+y_prob <span class="op">=</span> rf.<span class="fn">predict_proba</span>(X_test)[:, <span class="nb">1</span>]
+<span class="fn">print</span>(<span class="fn">classification_report</span>(y_test, y_pred))
+<span class="fn">print</span>(<span class="str">f"ROC-AUC: {<span class="fn">roc_auc_score</span>(y_test, y_prob):.4f}"</span>)
+
+<span class="cm"># Assign risk tiers based on probability score</span>
+df_test <span class="op">=</span> X_test.<span class="fn">copy</span>()
+df_test[<span class="str">'cancel_prob'</span>] <span class="op">=</span> y_prob
+df_test[<span class="str">'risk_tier'</span>] <span class="op">=</span> pd.<span class="fn">cut</span>(
+    df_test[<span class="str">'cancel_prob'</span>],
+    bins<span class="op">=</span>[<span class="nb">0</span>, <span class="nb">0.35</span>, <span class="nb">0.65</span>, <span class="nb">1.0</span>],
+    labels<span class="op">=</span>[<span class="str">'Low Risk'</span>, <span class="str">'Medium Risk'</span>, <span class="str">'High Risk'</span>]
+)
+<span class="fn">print</span>(df_test[<span class="str">'risk_tier'</span>].<span class="fn">value_counts</span>(normalize<span class="op">=</span><span class="kw">True</span>))</pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ STRATEGIC PILLARS ══ -->
+    <div class="section">
+        <div class="section-title"><i class="fas fa-chess"></i> Strategic Action Pillars</div>
+        <div class="pillars-grid">
+            <div class="pillar-card"><div class="pillar-num">01</div><div class="pillar-title">Reduce Cancellation Losses</div><ul class="pillar-list"><li>Predictive risk flags at booking time</li><li>OTA deposit mandates</li><li>Lead time cancellation policies</li><li>Group contract enforcement</li><li>Advance payment triggers</li></ul></div>
+            <div class="pillar-card"><div class="pillar-num">02</div><div class="pillar-title">Grow Revenue & ADR</div><ul class="pillar-list"><li>Dynamic peak-season pricing</li><li>Resort luxury bundles</li><li>Yield management system</li><li>Room type upsell automation</li><li>Premium parking monetization</li></ul></div>
+            <div class="pillar-card"><div class="pillar-num">03</div><div class="pillar-title">Retain Guests Directly</div><ul class="pillar-list"><li>Personalized loyalty tiers</li><li>Transient direct booking offers</li><li>Member-exclusive rates</li><li>Website & mobile UX optimization</li><li>Exclusive member discounts</li></ul></div>
+        </div>
+    </div>
+
+    <!-- ══ TOOLS & FEATURES ══ -->
+    <div class="section">
+        <div class="section-title"><i class="fas fa-tools"></i> Tools & Technologies</div>
+        <div class="tools-wrap">
+            <span class="tool-badge">Power BI</span>
+            <span class="tool-badge">DAX</span>
+            <span class="tool-badge">SQL</span>
+            <span class="tool-badge">PostgreSQL</span>
+            <span class="tool-badge">Python</span>
+            <span class="tool-badge">Pandas</span>
+            <span class="tool-badge">Scikit-learn</span>
+            <span class="tool-badge">Power Query (M)</span>
+            <span class="tool-badge">Jupyter Notebook</span>
+            <span class="tool-badge">Data Modeling</span>
+        </div>
+        <div class="section-title" style="margin-top:0.25rem;"><i class="fas fa-star"></i> Key Features</div>
+        <div class="features-grid">
+            <div class="feature-item"><i class="fas fa-brain"></i> ML Cancellation Risk Predictor</div>
+            <div class="feature-item"><i class="fas fa-chart-line"></i> Monthly ADR trend analysis</div>
+            <div class="feature-item"><i class="fas fa-table"></i> Segment × customer risk matrix</div>
+            <div class="feature-item"><i class="fas fa-exchange-alt"></i> Sankey acquisition flow chart</div>
+            <div class="feature-item"><i class="fas fa-map-marker-alt"></i> Global guest distribution map</div>
+            <div class="feature-item"><i class="fas fa-sliders-h"></i> Dynamic City / Resort filter</div>
+            <div class="feature-item"><i class="fas fa-dollar-sign"></i> ADR distribution box plots</div>
+            <div class="feature-item"><i class="fas fa-calendar-alt"></i> Monthly cancellation trend</div>
+            <div class="feature-item"><i class="fas fa-lightbulb"></i> 6-insight strategy dashboard</div>
+        </div>
+    </div>
+
+    <!-- ══ AUTHOR CARD ══ -->
+    <div class="author-card">
+        <div class="author-avatar">
+            <img src="1775452156751.png" alt="Mohd Faij"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+            <i class="fas fa-user" style="display:none"></i>
+        </div>
+        <div class="author-name">Mohd Faij</div>
+        <div class="author-role">Data Analyst</div>
+        <div class="author-tagline">SQL · Excel · Power BI · Python · Turning Data into Business Insights</div>
+        <div class="author-links">
+            <a href="https://linkedin.com/in/mohdfaij-data" target="_blank" class="author-link link-linkedin">
+                <i class="fab fa-linkedin"></i> Connect on LinkedIn
+            </a>
+            <a href="https://github.com/mohdfaij-data" target="_blank" class="author-link link-github">
+                <i class="fab fa-github"></i> View on GitHub
+            </a>
+            <a href="mailto:mohdfaij.data@gmail.com" class="author-link link-email">
+                <i class="fas fa-envelope"></i> Hire Me
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 Mohd Faij · Data Analyst · Hotel Booking Intelligence Project</p>
+    </footer>
+</div>
+
+<script>
+    const modal = document.getElementById('modal');
+    const modalImg = document.getElementById('modalImg');
+
+    function openModal(img) {
+        if (!img?.src) return;
+        modal.style.display = 'flex';
+        modalImg.src = img.src;
+        document.body.style.overflow = 'hidden';
+    }
+    function closeModal() {
+        modal.style.display = 'none';
+        modalImg.src = '';
+        document.body.style.overflow = '';
+    }
+    function switchDash(n) {
+        for (let i = 0; i < 5; i++) {
+            document.getElementById('dp' + i).classList.toggle('active', i === n);
+            document.querySelectorAll('.dash-tab')[i].classList.toggle('active', i === n);
+        }
+    }
+    function switchCode(n) {
+        for (let i = 0; i < 3; i++) {
+            document.getElementById('cp' + i).classList.toggle('active', i === n);
+            document.querySelectorAll('.code-tab')[i].classList.toggle('active', i === n);
+        }
+    }
+    function copyCode(btn) {
+        const pre = btn.nextElementSibling;
+        navigator.clipboard.writeText(pre.innerText).then(() => {
+            btn.textContent = 'Copied!';
+            setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
+        });
+    }
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.style.display === 'flex') closeModal();
+    });
+</script>
+</body>
+</html>
