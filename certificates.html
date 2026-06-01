@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Certifications | Mohd Faij</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0B1D3A;
+      --navy-mid: #13294B;
+      --navy-light: #1C3A63;
+      --accent: #4A90E2;
+      --accent-glow: rgba(74,144,226,0.18);
+      --accent-gold: #C9A84C;
+      --gold-glow: rgba(201,168,76,0.15);
+      --text-primary: #EAF0FB;
+      --text-secondary: #8EA8CC;
+      --text-muted: #556B8A;
+      --border: rgba(74,144,226,0.2);
+      --border-hover: rgba(74,144,226,0.5);
+      --card-bg: rgba(19,41,75,0.7);
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--navy);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── Background mesh ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 20% 10%, rgba(74,144,226,0.10) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 40% at 80% 85%, rgba(201,168,76,0.07) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 60% at 70% 20%, rgba(74,144,226,0.06) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Nav bar ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 4vw;
+      background: rgba(11,29,58,0.85);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+    }
+
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+
+    /* ── Main wrapper ── */
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 5rem 4vw 8rem;
+    }
+
+    /* ── Hero heading ── */
+    .page-header {
+      text-align: center;
+      margin-bottom: 4rem;
+      animation: fadeUp 0.7s ease both;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      padding: 0.35rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 2em;
+      background: var(--accent-glow);
+    }
+
+    .page-header h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+    }
+
+    .page-header h1 em {
+      font-style: italic;
+      color: var(--accent-gold);
+    }
+
+    .page-header p {
+      margin-top: 1rem;
+      font-size: 1rem;
+      color: var(--text-secondary);
+      max-width: 480px;
+      margin-inline: auto;
+      line-height: 1.7;
+    }
+
+    /* ── Filter tabs ── */
+    .filter-row {
+      display: flex;
+      gap: 0.6rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+      animation: fadeUp 0.7s 0.1s ease both;
+    }
+
+    .filter-btn {
+      padding: 0.45rem 1.1rem;
+      border-radius: 2em;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-secondary);
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: 0.02em;
+    }
+
+    .filter-btn:hover {
+      border-color: var(--border-hover);
+      color: var(--text-primary);
+      background: var(--accent-glow);
+    }
+
+    .filter-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    /* ── Certificate grid ── */
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+
+    /* ── Certificate card ── */
+    .cert-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+      animation: fadeUp 0.6s ease both;
+      backdrop-filter: blur(8px);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cert-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--border-hover);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.4), 0 0 0 1px var(--border-hover);
+    }
+
+    /* stagger animation */
+    .cert-card:nth-child(1) { animation-delay: 0.15s; }
+    .cert-card:nth-child(2) { animation-delay: 0.25s; }
+    .cert-card:nth-child(3) { animation-delay: 0.35s; }
+    .cert-card:nth-child(4) { animation-delay: 0.45s; }
+
+    /* ── Image area ── */
+    .cert-img-wrap {
+      position: relative;
+      overflow: hidden;
+      background: var(--navy-mid);
+      aspect-ratio: 16/10;
+    }
+
+    .cert-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+      display: block;
+    }
+
+    .cert-card:hover .cert-img-wrap img { transform: scale(1.04); }
+
+    .cert-img-wrap .img-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 50%, rgba(11,29,58,0.85) 100%);
+    }
+
+    /* placeholder when no image */
+    .cert-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--navy-mid), var(--navy-light));
+    }
+
+    .cert-placeholder svg {
+      opacity: 0.25;
+      width: 64px;
+      height: 64px;
+    }
+
+    /* category badge */
+    .cert-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.75rem;
+      border-radius: 2em;
+      backdrop-filter: blur(10px);
+    }
+
+    .badge-ai {
+      background: rgba(74,144,226,0.25);
+      border: 1px solid rgba(74,144,226,0.5);
+      color: #93C5FD;
+    }
+
+    .badge-analytics {
+      background: rgba(201,168,76,0.2);
+      border: 1px solid rgba(201,168,76,0.45);
+      color: #FCD34D;
+    }
+
+    .badge-dev {
+      background: rgba(52,211,153,0.2);
+      border: 1px solid rgba(52,211,153,0.4);
+      color: #6EE7B7;
+    }
+
+    /* ── Card body ── */
+    .cert-body {
+      padding: 1.4rem 1.5rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .cert-issuer {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .cert-title {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.35;
+      margin-bottom: 0.75rem;
+    }
+
+    .cert-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .cert-tag {
+      font-size: 0.72rem;
+      font-weight: 500;
+      padding: 0.25rem 0.65rem;
+      border-radius: 2em;
+      background: rgba(74,144,226,0.1);
+      border: 1px solid rgba(74,144,226,0.2);
+      color: var(--text-secondary);
+    }
+
+    .cert-date {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: auto;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .cert-date svg { flex-shrink: 0; }
+
+    /* ── View btn ── */
+    .cert-view-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1rem;
+      padding: 0.55rem 1.2rem;
+      border-radius: 2em;
+      border: 1px solid var(--border-hover);
+      background: transparent;
+      color: var(--accent);
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+      width: fit-content;
+    }
+
+    .cert-view-btn:hover {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    .cert-view-btn svg { transition: transform 0.2s; }
+    .cert-view-btn:hover svg { transform: translate(2px, -2px); }
+
+    /* ── Stats row ── */
+    .stats-row {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin: 4rem 0 0;
+      padding-top: 3rem;
+      border-top: 1px solid var(--border);
+      animation: fadeUp 0.7s 0.4s ease both;
+    }
+
+    .stat-item { text-align: center; }
+
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: 0.4rem;
+    }
+
+    /* ── Back link ── */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      margin-bottom: 3rem;
+      transition: color 0.2s;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .back-link:hover { color: var(--accent); }
+    .back-link:hover svg { transform: translateX(-3px); }
+    .back-link svg { transition: transform 0.2s; }
+
+    /* ── Lightbox ── */
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(5,12,25,0.92);
+      backdrop-filter: blur(10px);
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    #lightbox.open { display: flex; }
+
+    #lightbox img {
+      max-width: 90vw;
+      max-height: 85vh;
+      border-radius: 12px;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.7);
+      object-fit: contain;
+    }
+
+    #lightbox-close {
+      position: fixed;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      transition: background 0.2s;
+    }
+
+    #lightbox-close:hover { background: rgba(255,255,255,0.2); }
+
+    /* ── Animations ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Hidden (filter) ── */
+    .cert-card.hidden { display: none; }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .stats-row { gap: 1.5rem; }
+      .stat-number { font-size: 1.7rem; }
+      nav { padding: 0.9rem 5vw; }
+      .nav-links { gap: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Navbar ── -->
+  <nav>
+    <a href="index.html" class="nav-logo">Mohd<span>.</span>Faij</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#projects">Projects</a></li>
+      <li><a href="certificates.html" class="active">Certifications</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ── Main ── -->
+  <main>
+
+    <!-- Back link -->
+    <a href="index.html" class="back-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Back to Portfolio
+    </a>
+
+    <!-- Header -->
+    <div class="page-header">
+      <span class="eyebrow">Credentials &amp; Achievements</span>
+      <h1>My <em>Certifications</em></h1>
+      <p>Professional certifications and internship completions across data analytics, AI, and business intelligence.</p>
+    </div>
+
+    <!-- Filter buttons -->
+    <div class="filter-row">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="ai">AI &amp; ML</button>
+      <button class="filter-btn" data-filter="analytics">Data Analytics</button>
+    </div>
+
+    <!-- Certificate grid -->
+    <div class="cert-grid" id="certGrid">
+
+      <!-- Card 1: Edunet / IBM SkillsBuild -->
+      <div class="cert-card" data-category="ai">
+        <div class="cert-img-wrap">
+          <img
+            src="edunet-certificate.jpeg"
+            alt="Edunet Foundation AI Internship Certificate"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='none'; this.parentElement.querySelector('.cert-placeholder').style.display='flex';"
+          />
+          <div class="img-overlay"></div>
+          <div class="cert-placeholder" style="display:none;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M7 8l3 3-3 3M13 11h4"/></svg>
+          </div>
+          <span class="cert-badge badge-ai">AI &amp; ML</span>
+        </div>
+        <div class="cert-body">
+          <p class="cert-issuer">Edunet Foundation × IBM SkillsBuild × AICTE</p>
+          <h2 class="cert-title">Artificial Intelligence &amp; Data Analytics Internship</h2>
+          <div class="cert-meta">
+            <span class="cert-tag">Python</span>
+            <span class="cert-tag">Machine Learning</span>
+            <span class="cert-tag">IBM Watson</span>
+            <span class="cert-tag">AICTE Certified</span>
+          </div>
+          <p class="cert-date">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+            2024 · 4-Week Internship
+          </p>
+          <button class="cert-view-btn" onclick="openLightbox('certificates/edunet-certificate.jpg')">
+            View Certificate
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Card 2: Cognifyz -->
+      <div class="cert-card" data-category="analytics">
+        <div class="cert-img-wrap">
+          <img
+            src="cognifyz-certificate.jpeg"
+            alt="Cognifyz Data Analytics Internship Certificate"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='none'; this.parentElement.querySelector('.cert-placeholder').style.display='flex';"
+          />
+          <div class="img-overlay"></div>
+          <div class="cert-placeholder" style="display:none;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M7 8l3 3-3 3M13 11h4"/></svg>
+          </div>
+          <span class="cert-badge badge-analytics">Analytics</span>
+        </div>
+        <div class="cert-body">
+          <p class="cert-issuer">Cognifyz Technologies</p>
+          <h2 class="cert-title">Data Analyst Internship</h2>
+          <div class="cert-meta">
+            <span class="cert-tag">Power BI</span>
+            <span class="cert-tag">Python</span>
+            <span class="cert-tag">SQL</span>
+            <span class="cert-tag">Data Visualization</span>
+          </div>
+          <p class="cert-date">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+            2024 · Data Analytics Track
+          </p>
+          <button class="cert-view-btn" onclick="openLightbox('certificates/cognifyz-certificate.jpg')">
+            View Certificate
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- ── Add more cards below following the same pattern ── -->
+
+    </div>
+
+    <!-- Stats row -->
+    <div class="stats-row">
+      <div class="stat-item">
+        <div class="stat-number" id="statTotal">2</div>
+        <div class="stat-label">Certifications</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">2</div>
+        <div class="stat-label">Internships</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">3+</div>
+        <div class="stat-label">Skills Verified</div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ── Lightbox ── -->
+  <div id="lightbox" role="dialog" aria-modal="true" aria-label="Certificate preview">
+    <button id="lightbox-close" aria-label="Close preview">&#10005;</button>
+    <img id="lightbox-img" src="" alt="Certificate full view" />
+  </div>
+
+  <script>
+    // ── Filter ──
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        let visible = 0;
+        document.querySelectorAll('.cert-card').forEach(card => {
+          const match = filter === 'all' || card.dataset.category === filter;
+          card.classList.toggle('hidden', !match);
+          if (match) visible++;
+        });
+        document.getElementById('statTotal').textContent = visible;
+      });
+    });
+
+    // ── Lightbox ──
+    function openLightbox(src) {
+      const lb = document.getElementById('lightbox');
+      document.getElementById('lightbox-img').src = src;
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+    document.getElementById('lightbox').addEventListener('click', e => {
+      if (e.target === e.currentTarget) closeLightbox();
+    });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  </script>
+
+</body>
+</html>
