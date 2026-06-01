@@ -1548,7 +1548,107 @@ h1 {
     .project-footer .btn-primary {
         font-size: 0.6rem;  /* Even smaller for the longer button */
     }
-}
+@media screen and (max-width: 768px){
+
+    .internships-section{
+        padding:60px 15px;
+    }
+
+    .section-header h2{
+        font-size:48px;
+        line-height:1.1;
+    }
+
+    .section-header p{
+        font-size:18px;
+    }
+
+    .timeline{
+        margin-top:30px;
+    }
+
+    .timeline::before{
+        left:18px;
+    }
+
+    .timeline-item{
+        padding-left:45px;
+    }
+
+    .timeline-dot{
+        left:4px;
+        width:24px;
+        height:24px;
+        border-width:4px;
+    }
+
+    .internship-card{
+        padding:20px;
+        border-radius:20px;
+    }
+
+    .internship-grid{
+        display:block;
+    }
+
+    .company-header{
+        flex-direction:column;
+        align-items:center;
+        text-align:center;
+    }
+
+    .company-logo{
+        width:140px;
+        height:100px;
+        margin-bottom:15px;
+    }
+
+    .company-info h3{
+        font-size:28px;
+        margin-bottom:8px;
+    }
+
+    .company-info h4{
+        font-size:20px;
+    }
+
+    .meta-info{
+        justify-content:center;
+        gap:10px;
+    }
+
+    .stats-grid{
+        grid-template-columns:1fr;
+    }
+
+    .right-section{
+        border-left:none;
+        border-top:1px solid #e5e7eb;
+        padding-left:0;
+        padding-top:20px;
+        margin-top:20px;
+    }
+
+    .credential-row{
+        display:flex;
+        flex-direction:column;
+        gap:10px;
+    }
+
+    .credential-id{
+        width:fit-content;
+        margin:auto;
+    }
+
+    .action-buttons{
+        flex-direction:column;
+    }
+
+    .btn-outline,
+    .btn-primary{
+        width:100%;
+    }
+}}
   </style>
 </head>
 <body>
@@ -1561,6 +1661,7 @@ h1 {
     <a href="#home"><i class="fas fa-home"></i> Home</a>
     <a href="#about"><i class="fas fa-user"></i> About</a>
     <a href="#skills"><i class="fas fa-code"></i> Skills</a>
+    <a href="#internships"><i class="fas fa-briefcase"></i> Internships</a>
     <a href="#projects"><i class="fas fa-folder-open"></i> Projects</a>
     <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
   </nav>
