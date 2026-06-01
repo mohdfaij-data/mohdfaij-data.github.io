@@ -452,7 +452,38 @@ h1 {
         right: 0.7rem;
         font-size: 0.6rem;
     }
+/* Dark Mode */
+.dark-mode{
+    background:#121212;
+    color:#ffffff;
 }
+
+.dark-mode nav{
+    background:#1e1e1e;
+}
+
+.dark-mode .hero,
+.dark-mode section,
+.dark-mode .internships-section{
+    background:#121212 !important;
+}
+
+.dark-mode .stat-card,
+.dark-mode .project-card,
+.dark-mode .internship-card{
+    background:#1e1e1e !important;
+    color:#ffffff !important;
+    border:1px solid #333;
+}
+
+.dark-mode h1,
+.dark-mode h2,
+.dark-mode h3,
+.dark-mode p,
+.dark-mode span,
+.dark-mode a{
+    color:#ffffff !important;
+}}
     /* About Section */
     .about-text {
       max-width: 800px;
@@ -1418,6 +1449,21 @@ h1 {
   padding: 6px 10px;
   border-radius: 8px;
   font-size: 12px;
+}
+.theme-toggle{
+    position: fixed;
+    right: 20px;
+    bottom: 90px;
+    width: 55px;
+    height: 55px;
+    border: none;
+    border-radius: 50%;
+    background: #0f172a;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    z-index: 999;
 }
 /* ===== MOBILE RESPONSIVE FIX ===== */
 @media (max-width: 768px) {
@@ -2881,9 +2927,14 @@ through data.
   </div>
 </section>
 
+<!-- Dark Mode Button -->
+<button id="theme-toggle" class="theme-toggle">
+    🌙
+</button>
+
 <!-- WhatsApp Floating -->
-<a href="https://wa.me/+916387151848" target="_blank" class="whatsapp">
-  <i class="fab fa-whatsapp"></i>
+<a href="https://wa.me/+917307124699" target="_blank" class="whatsapp">
+    <i class="fab fa-whatsapp"></i>
 </a>
   </main>
 
@@ -2926,6 +2977,17 @@ through data.
         }
       });
     });
+    const themeToggle = document.getElementById('theme-toggle');
+
+themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+
+    if(document.body.classList.contains('dark-mode')){
+        themeToggle.innerHTML = '☀️';
+    } else {
+        themeToggle.innerHTML = '🌙';
+    }
+});
   </script>
 </body>
 </html>
