@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Securitisation Risk Intelligence — Project Details</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0e17;
+      --bg2: #0f1520;
+      --bg3: #141b2d;
+      --card: #111827;
+      --border: rgba(255,255,255,0.07);
+      --border2: rgba(255,255,255,0.12);
+      --accent: #e8601c;
+      --accent2: #ff8c42;
+      --accent-glow: rgba(232,96,28,0.18);
+      --text: #f0f4ff;
+      --muted: #8b95aa;
+      --muted2: #5c6478;
+      --stage1: #22c55e;
+      --stage2: #f59e0b;
+      --stage3: #ef4444;
+      --font-head: 'Syne', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 6rem 2rem 4rem;
+      overflow: hidden;
+    }
+
+    .hero-glow {
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(232,96,28,0.12) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero-glow2 {
+      position: absolute;
+      bottom: -300px; left: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(59,130,246,0.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .back-btn {
+      position: fixed;
+      top: 1.5rem; left: 1.5rem;
+      z-index: 100;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border2);
+      border-radius: 50px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-family: var(--font-body);
+      transition: all 0.25s;
+      backdrop-filter: blur(10px);
+    }
+    .back-btn:hover { color: var(--text); background: rgba(255,255,255,0.09); }
+
+    .hero-inner { max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background: var(--accent-glow);
+      border: 1px solid rgba(232,96,28,0.3);
+      border-radius: 50px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--accent2);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .hero-title {
+      font-family: var(--font-head);
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 1.2rem;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+
+    .hero-title span { color: var(--accent); }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 620px;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+
+    /* KPI STRIP */
+    .kpi-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 2.5rem;
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+
+    .kpi-item {
+      background: var(--card);
+      padding: 1.2rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      transition: background 0.2s;
+    }
+    .kpi-item:hover { background: var(--bg3); }
+
+    .kpi-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted2);
+      font-weight: 500;
+    }
+
+    .kpi-value {
+      font-family: var(--font-head);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .kpi-value.accent { color: var(--accent); }
+    .kpi-value.green  { color: var(--stage1); }
+    .kpi-value.yellow { color: var(--stage2); }
+    .kpi-value.red    { color: var(--stage3); }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      animation: fadeUp 0.6s 0.4s ease both;
+    }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.25s;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+    .btn-primary:hover { background: var(--accent2); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(232,96,28,0.35); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border2);
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.06); transform: translateY(-2px); }
+
+    .btn-ghost {
+      background: rgba(232,96,28,0.1);
+      color: var(--accent2);
+      border: 1px solid rgba(232,96,28,0.25);
+    }
+    .btn-ghost:hover { background: rgba(232,96,28,0.2); transform: translateY(-2px); }
+
+    /* ── MAIN CONTENT ── */
+    .content { max-width: 960px; margin: 0 auto; padding: 0 2rem 6rem; position: relative; z-index: 1; }
+
+    /* ── SECTION ── */
+    .section { margin-bottom: 5rem; }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, var(--border2), transparent);
+    }
+
+    .section-title {
+      font-family: var(--font-head);
+      font-size: 1.9rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+    }
+
+    .section-desc {
+      color: var(--muted);
+      font-size: 0.95rem;
+      max-width: 680px;
+      margin-bottom: 2rem;
+    }
+
+    /* ── OVERVIEW GRID ── */
+    .overview-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    @media (max-width: 640px) { .overview-grid { grid-template-columns: 1fr; } }
+
+    .overview-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+    .overview-card:hover { border-color: var(--border2); transform: translateY(-3px); }
+
+    .overview-card.full { grid-column: 1 / -1; }
+
+    .ov-icon {
+      width: 40px; height: 40px;
+      background: var(--accent-glow);
+      border: 1px solid rgba(232,96,28,0.2);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent);
+      font-size: 16px;
+      margin-bottom: 1rem;
+    }
+
+    .ov-title {
+      font-family: var(--font-head);
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .ov-text { color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
+
+    /* OBJECTIVES LIST */
+    .obj-list { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-top: 0.5rem; }
+    .obj-list li {
+      display: flex; align-items: flex-start; gap: 10px;
+      color: var(--muted); font-size: 0.9rem;
+    }
+    .obj-list li::before {
+      content: '';
+      width: 6px; height: 6px; min-width: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      margin-top: 8px;
+    }
+
+    /* ── DASHBOARD TABS ── */
+    .tab-nav {
+      display: flex;
+      gap: 4px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 4px;
+      margin-bottom: 1.5rem;
+      overflow-x: auto;
+    }
+
+    .tab-btn {
+      flex: 1;
+      min-width: 160px;
+      padding: 10px 16px;
+      background: transparent;
+      border: none;
+      border-radius: 9px;
+      color: var(--muted);
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+      text-align: center;
+    }
+
+    .tab-btn.active {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .tab-btn:not(.active):hover { background: rgba(255,255,255,0.05); color: var(--text); }
+
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; animation: fadeUp 0.3s ease; }
+
+    .dash-panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .dash-img-wrap {
+      position: relative;
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border);
+      min-height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .dash-img-wrap img {
+      width: 100%;
+      display: block;
+      border-radius: 0;
+    }
+
+    .dash-img-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 3rem;
+      color: var(--muted2);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .dash-img-placeholder i { font-size: 2.5rem; color: var(--muted2); }
+
+    .dash-body { padding: 1.8rem; }
+
+    .dash-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    .dash-title {
+      font-family: var(--font-head);
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    .dash-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      background: rgba(232,96,28,0.12);
+      border: 1px solid rgba(232,96,28,0.25);
+      border-radius: 50px;
+      font-size: 11px;
+      color: var(--accent2);
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .dash-desc { color: var(--muted); font-size: 0.9rem; margin-bottom: 1.5rem; }
+
+    .visual-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 10px;
+      margin-bottom: 1.5rem;
+    }
+
+    .visual-item {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--muted);
+      transition: border-color 0.2s;
+    }
+    .visual-item:hover { border-color: var(--border2); color: var(--text); }
+    .visual-item i { color: var(--accent); font-size: 14px; min-width: 16px; }
+
+    .metrics-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .mini-metric {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 120px;
+    }
+
+    .mini-metric-label { font-size: 11px; color: var(--muted2); text-transform: uppercase; letter-spacing: 0.08em; }
+    .mini-metric-value { font-family: var(--font-head); font-size: 1.1rem; font-weight: 700; }
+
+    /* ── TECH STACK ── */
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 12px;
+    }
+
+    .tech-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: all 0.25s;
+      cursor: default;
+    }
+    .tech-card:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 12px 32px rgba(232,96,28,0.1); }
+
+    .tech-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+    }
+
+    .tech-name { font-family: var(--font-head); font-size: 0.95rem; font-weight: 600; }
+    .tech-desc { font-size: 12px; color: var(--muted); line-height: 1.4; }
+
+    /* ── INSIGHTS ── */
+    .insights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+
+    .insight-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.25s;
+    }
+    .insight-card:hover { border-color: var(--border2); transform: translateY(-3px); }
+
+    .insight-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+    }
+
+    .insight-card.green::before  { background: var(--stage1); }
+    .insight-card.yellow::before { background: var(--stage2); }
+    .insight-card.red::before    { background: var(--stage3); }
+    .insight-card.orange::before { background: var(--accent); }
+
+    .insight-num {
+      font-family: var(--font-head);
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 4px;
+      line-height: 1;
+    }
+
+    .insight-num.green  { color: var(--stage1); }
+    .insight-num.yellow { color: var(--stage2); }
+    .insight-num.red    { color: var(--stage3); }
+    .insight-num.orange { color: var(--accent); }
+
+    .insight-title { font-family: var(--font-head); font-size: 0.95rem; font-weight: 600; margin-bottom: 6px; }
+    .insight-text  { font-size: 0.85rem; color: var(--muted); line-height: 1.5; }
+
+    /* ── STAGE TABLE ── */
+    .stage-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      margin-top: 1.5rem;
+    }
+
+    .stage-table th {
+      text-align: left;
+      padding: 12px 16px;
+      background: var(--bg2);
+      color: var(--muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 500;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .stage-table td {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    .stage-table tr:last-child td { border-bottom: none; }
+    .stage-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+    .stage-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 50px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .stage-pill.s1 { background: rgba(34,197,94,0.12);  color: var(--stage1); border: 1px solid rgba(34,197,94,0.25); }
+    .stage-pill.s2 { background: rgba(245,158,11,0.12); color: var(--stage2); border: 1px solid rgba(245,158,11,0.25); }
+    .stage-pill.s3 { background: rgba(239,68,68,0.12);  color: var(--stage3); border: 1px solid rgba(239,68,68,0.25); }
+    .stage-pill.total { background: rgba(232,96,28,0.12); color: var(--accent2); border: 1px solid rgba(232,96,28,0.25); }
+
+    .progress-bar-wrap { display: flex; align-items: center; gap: 10px; }
+    .progress-bar {
+      flex: 1;
+      height: 6px;
+      background: var(--bg2);
+      border-radius: 50px;
+      overflow: hidden;
+    }
+    .progress-fill { height: 100%; border-radius: 50px; }
+
+    /* ── REPORT SECTION ── */
+    .report-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .report-icon {
+      width: 72px; height: 72px; min-width: 72px;
+      background: rgba(239,68,68,0.1);
+      border: 1px solid rgba(239,68,68,0.2);
+      border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem;
+      color: #ef4444;
+    }
+
+    .report-info { flex: 1; min-width: 200px; }
+    .report-title { font-family: var(--font-head); font-size: 1.2rem; font-weight: 700; margin-bottom: 6px; }
+    .report-desc  { color: var(--muted); font-size: 0.9rem; margin-bottom: 1rem; }
+
+    .report-chapters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chapter-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 10px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .chapter-tag i { color: var(--accent); font-size: 10px; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+
+    /* ── DIVIDER ── */
+    .divider { height: 1px; background: var(--border); margin: 0 0 5rem; }
+
+    @media (max-width: 500px) {
+      .hero { padding: 5rem 1.2rem 3rem; }
+      .content { padding: 0 1.2rem 4rem; }
+      .kpi-value { font-size: 1.2rem; }
+      .section-title { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="index.html" class="back-btn">
+    <i class="fas fa-arrow-left"></i> Back to Portfolio
+  </a>
+
+  <!-- ═══════════════ HERO ═══════════════ -->
+  <section class="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-glow2"></div>
+    <div class="hero-inner">
+
+      <div class="hero-tag">
+        <i class="fas fa-briefcase"></i> Internship Project
+      </div>
+
+      <h1 class="hero-title">
+        Securitisation <span>Risk Intelligence</span><br>Dashboard
+      </h1>
+
+      <p class="hero-sub">
+        End-to-end IFRS9 credit risk monitoring for an auto loan portfolio —
+        3-page Power BI dashboard with 8-page project report.
+      </p>
+
+      <div class="kpi-strip">
+        <div class="kpi-item">
+          <span class="kpi-label">Portfolio</span>
+          <span class="kpi-value accent">₹317.8M</span>
+        </div>
+        <div class="kpi-item">
+          <span class="kpi-label">Total Loans</span>
+          <span class="kpi-value">500</span>
+        </div>
+        <div class="kpi-item">
+          <span class="kpi-label">Avg CIBIL</span>
+          <span class="kpi-value green">739.2</span>
+        </div>
+        <div class="kpi-item">
+          <span class="kpi-label">Default Rate</span>
+          <span class="kpi-value yellow">6.6%</span>
+        </div>
+        <div class="kpi-item">
+          <span class="kpi-label">Total ECL</span>
+          <span class="kpi-value red">₹11.7M</span>
+        </div>
+        <div class="kpi-item">
+          <span class="kpi-label">Stage 1 Share</span>
+          <span class="kpi-value green">86%</span>
+        </div>
+      </div>
+
+      <div class="hero-actions">
+        <a href="YOUR_POWERBI_LINK" target="_blank" class="btn btn-primary">
+          <i class="fas fa-tachometer-alt"></i> Live Dashboard
+        </a>
+        <a href="docs/Project_Report.pdf" target="_blank" class="btn btn-ghost">
+          <i class="fas fa-file-pdf"></i> Download Report
+        </a>
+        <a href="https://github.com/yourusername/securitisation-risk-intelligence" target="_blank" class="btn btn-outline">
+          <i class="fab fa-github"></i> GitHub Repo
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════ CONTENT ═══════════════ -->
+  <div class="content">
+
+    <!-- ── OVERVIEW ── -->
+    <section class="section">
+      <div class="section-label"><i class="fas fa-circle-info"></i> Overview</div>
+      <h2 class="section-title">Project Overview & Objectives</h2>
+      <p class="section-desc">
+        A comprehensive credit risk intelligence system built on Power BI, designed to monitor, analyse,
+        and visualise an auto loan securitisation portfolio in compliance with IFRS9 standards.
+      </p>
+
+      <div class="overview-grid">
+        <div class="overview-card">
+          <div class="ov-icon"><i class="fas fa-bullseye"></i></div>
+          <div class="ov-title">Problem Statement</div>
+          <div class="ov-text">
+            Auto loan portfolios require continuous monitoring for credit deterioration
+            under IFRS9. Manual reporting is slow, error-prone, and lacks visual
+            drill-down capability for risk officers and stakeholders.
+          </div>
+        </div>
+
+        <div class="overview-card">
+          <div class="ov-icon"><i class="fas fa-rocket"></i></div>
+          <div class="ov-title">Solution Built</div>
+          <div class="ov-text">
+            A 3-page interactive Power BI dashboard providing real-time portfolio
+            health monitoring, ECL analysis, borrower segmentation, and automated
+            risk driver identification using DAX and data modelling.
+          </div>
+        </div>
+
+        <div class="overview-card full">
+          <div class="ov-icon"><i class="fas fa-list-check"></i></div>
+          <div class="ov-title">Project Objectives</div>
+          <ul class="obj-list">
+            <li>Monitor portfolio health across IFRS9 Stage 1, 2, and 3 classifications</li>
+            <li>Identify and rank key risk drivers influencing ECL Provision using Key Influencers visual</li>
+            <li>Segment borrowers by demographics, vehicle type, employment, and credit profile</li>
+            <li>Track monthly default rate, net loss rate, recovery, and repayment trends</li>
+            <li>Provide a single-view executive KPI dashboard for stakeholder reporting</li>
+            <li>Deliver an 8-page project report documenting methodology, findings, and recommendations</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ── DASHBOARD WALKTHROUGH ── -->
+    <section class="section">
+      <div class="section-label"><i class="fas fa-chart-bar"></i> Dashboard</div>
+      <h2 class="section-title">Dashboard Walkthrough</h2>
+      <p class="section-desc">
+        Three interconnected pages covering risk analysis, borrower segmentation, and executive KPIs.
+      </p>
+
+      <div class="tab-nav">
+        <button class="tab-btn active" onclick="switchTab(0)">
+          <i class="fas fa-sitemap"></i> Tech_Overview
+        </button>
+        <button class="tab-btn" onclick="switchTab(1)">
+          <i class="fas fa-users"></i> Tech_Analysis
+        </button>
+        <button class="tab-btn" onclick="switchTab(2)">
+          <i class="fas fa-gauge-high"></i> Tech_Insights
+        </button>
+      </div>
+
+      <!-- TAB 0: Tech_Overview -->
+      <div class="tab-panel active" id="tab-0">
+        <div class="dash-panel">
+          <div class="dash-img-wrap">
+            <img src="assets/dashboard_page1.png" alt="Tech Overview Dashboard"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+            <div class="dash-img-placeholder" style="display:none">
+              <i class="fas fa-image"></i>
+              <span>Add dashboard_page1.png to assets/ folder</span>
+            </div>
+          </div>
+          <div class="dash-body">
+            <div class="dash-header">
+              <div class="dash-title">Tech_Overview — Risk Driver Analysis</div>
+              <span class="dash-badge"><i class="fas fa-layer-group"></i> Page 1 of 3</span>
+            </div>
+            <p class="dash-desc">
+              Decomposes the total portfolio balance across key risk dimensions — IFRS9 Stage,
+              Vehicle Type, Employment Type, and Age Band. Uses Power BI's Key Influencers
+              visual to automatically identify which factors most strongly drive ECL Provision increases.
+            </p>
+            <div class="visual-grid">
+              <div class="visual-item"><i class="fas fa-sitemap"></i> Decomposition Tree</div>
+              <div class="visual-item"><i class="fas fa-magnifying-glass-chart"></i> Key Influencers Visual</div>
+              <div class="visual-item"><i class="fas fa-table"></i> Stage-wise Summary Table</div>
+              <div class="visual-item"><i class="fas fa-lightbulb"></i> Key Insights Panel</div>
+              <div class="visual-item"><i class="fas fa-filter"></i> State & Region Filters</div>
+            </div>
+            <div class="metrics-row">
+              <div class="mini-metric">
+                <span class="mini-metric-label">Total Exposure</span>
+                <span class="mini-metric-value" style="color:var(--accent)">₹317.8M</span>
+              </div>
+              <div class="mini-metric">
+                <span class="mini-metric-label">Stage 1</span>
+                <span class="mini-metric-value" style="color:var(--stage1)">₹272.9M</span>
+              </div>
+              <div class="mini-metric">
+                <span class="mini-metric-label">Stage 3 ECL avg</span>
+                <span class="mini-metric-value" style="color:var(--stage3)">₹209.4K</span>
+              </div>
+              <div class="mini-metric">
+                <span class="mini-metric-label">Top Vehicle</span>
+                <span class="mini-metric-value">SUV</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 1: Tech_Analysis -->
+      <div class="tab-panel" id="tab-1">
+        <div class="dash-panel">
+          <div class="dash-img-wrap">
+            <img src="assets/dashboard_page2.png" alt="Tech Analysis Dashboard"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+            <div class="dash-img-placeholder" style="display:none">
+              <i class="fas fa-image"></i>
+              <span>Add dashboard_page2.png to assets/ folder</span>
+            </div>
+          </div>
+          <div class="dash-body">
+            <div class="dash-header">
+              <div class="dash-title">Tech_Analysis — Borrower & Portfolio Segmentation</div>
+              <span class="dash-badge"><i class="fas fa-layer-group"></i> Page 2 of 3</span>
+            </div>
+            <p class="dash-desc">
+              Deep-dives into customer demographics and credit profiling. Analyses
+              recoveries vs repayments monthly trends, portfolio distribution by
+              employment type, and income vs exposure scatter analysis per IFRS9 stage.
+            </p>
+            <div class="visual-grid">
+              <div class="visual-item"><i class="fas fa-chart-column"></i> Portfolio vs ECL by Stage</div>
+              <div class="visual-item"><i class="fas fa-chart-line"></i> Recoveries vs Repayments Trend</div>
+              <div class="visual-item"><i class="fas fa-bars"></i> Balance by Employment Type</div>
+              <div class="visual-item"><i class="fas fa-circle-dot"></i> Loan Distribution Donut</div>
+              <div class="visual-item"><i class="fas fa-braille"></i> Income vs Exposure Scatter</div>
+            </div>
+            <div class="metrics-row">
+              <div class="mini-metric">
+                <span class="mini-metric-label">Total ECL</span>
+                <span class="mini-metric-value" style="color:var(--stage3)">₹11.7M</span>
+              </div>
+              <div class="mini-metric">
+                <span class="mini-metric-label">Total Loans</span>
+                <span class="mini-metric-value">500</span>
+              </div>
+              <div class="mini-metric">
+                <span class="mini-metric-label">Avg Delinquency</span>
+                <span class="mini-metric-value" style="color:var(--stage2)">21.2 Days</span>
+              </div>
+              <div class="mini-metric">
+                <span class="mini-metric-label">Avg DTI</span>
+                <span class="mini-metric-value">19.5%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 2: Tech_Insights -->
+      <div class="tab-panel" id="tab-2">
+        <div class="dash-panel">
+          <div class="dash-img-wrap">
+            <img src="assets/dashboard_page3.png" alt="Tech Insights Dashboard"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+            <div class="dash-img-placeholder" style="display:none">
+              <i class="fas fa-image"></i>
+              <span>Add dashboard_page3.png to assets/ folder</span>
+            </div>
+          </div>
+          <div class="dash-body">
+            <div class="dash-header">
+              <div class="dash-title">Tech_Insights — Main KPI Dashboard</div>
+              <span class="dash-badge"><i class="fas fa-layer-group"></i> Page 3 of 3</span>
+            </div>
+            <p class="dash-desc">
+              Executive-level single-view dashboard covering all critical portfolio KPIs.
+              Includes monthly default rate trends, net loss rate, delinquency distribution
+              by DPD bucket, borrower CIBIL scatter, and IFRS9 stage-wise risk summary table.
+            </p>
+            <div class="visual-grid">
+              <div class="visual-item"><i class="fas fa-gauge-high"></i> 5 KPI Cards</div>
+              <div class="visual-item"><i class="fas fa-chart-bar"></i> Balance by Age Segment</div>
+              <div class="visual-item"><i class="fas fa-circle-dot"></i> Delinquency by DPD Bucket</div>
+              <div class="visual-item"><i class="fas fa-braille"></i> Borrower Credit Profile</div>
+              <div class="visual-item"><i class="fas fa-chart-line"></i> Monthly Default Rate Trend</div>
+              <div class="visual-item"><i class="fas fa-chart-line"></i> Net Loss Rate Trend</div>
+              <div class="visual-item"><i class="fas fa-table"></i> IFRS9 Stage Risk Summary</div>
+            </div>
+            <div class="metrics-row">
+              <div class="mini-metric">
+                <span class="mini-metric-label">Avg CIBIL</span>
+                <span class="mini-metric-value" style="color:var(--stage1)">739.2</span>
+              </div>
+              <div class="mini-metric">
+                <span class="mini-metric-label">Default Rate</span>
+                <span class="mini-metric-value" style="color:var(--stage3)">6.6%</span>
+              </div>
+              <div class="mini-metric">
+                <span class="mini-metric-label">Delinquent</span>
+                <span class="mini-metric-value" style="color:var(--stage2)">115 Loans</span>
+              </div>
+              <div class="mini-metric">
+                <span class="mini-metric-label">Current DPD</span>
+                <span class="mini-metric-value" style="color:var(--stage1)">86.76%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ── TECH STACK ── -->
+    <section class="section">
+      <div class="section-label"><i class="fas fa-screwdriver-wrench"></i> Stack</div>
+      <h2 class="section-title">Tech Stack & Tools</h2>
+      <p class="section-desc">Technologies used to build, model, and deploy the dashboard.</p>
+
+      <div class="tech-grid">
+        <div class="tech-card">
+          <div class="tech-icon" style="background:rgba(242,200,17,0.12); color:#f2c811;">
+            <i class="fas fa-chart-pie"></i>
+          </div>
+          <div class="tech-name">Power BI</div>
+          <div class="tech-desc">Dashboard development, visuals & report publishing</div>
+        </div>
+        <div class="tech-card">
+          <div class="tech-icon" style="background:rgba(0,120,212,0.12); color:#0078d4;">
+            <i class="fas fa-function"></i>
+          </div>
+          <div class="tech-name">DAX</div>
+          <div class="tech-desc">KPI measures, ECL calculations, stage logic</div>
+        </div>
+        <div class="tech-card">
+          <div class="tech-icon" style="background:rgba(255,107,107,0.12); color:#ff6b6b;">
+            <i class="fas fa-database"></i>
+          </div>
+          <div class="tech-name">SQL Server</div>
+          <div class="tech-desc">Source data extraction & querying</div>
+        </div>
+        <div class="tech-card">
+          <div class="tech-icon" style="background:rgba(55,175,224,0.12); color:#37afe0;">
+            <i class="fab fa-python"></i>
+          </div>
+          <div class="tech-name">Python</div>
+          <div class="tech-desc">Data cleaning, ECL preprocessing pipeline</div>
+        </div>
+        <div class="tech-card">
+          <div class="tech-icon" style="background:rgba(116,185,255,0.12); color:#74b9ff;">
+            <i class="fas fa-shuffle"></i>
+          </div>
+          <div class="tech-name">Power Query</div>
+          <div class="tech-desc">ETL transformations & data shaping</div>
+        </div>
+        <div class="tech-card">
+          <div class="tech-icon" style="background:rgba(232,96,28,0.12); color:var(--accent);">
+            <i class="fas fa-diagram-project"></i>
+          </div>
+          <div class="tech-name">Data Modelling</div>
+          <div class="tech-desc">Star schema design — fact & dimension tables</div>
+        </div>
+        <div class="tech-card">
+          <div class="tech-icon" style="background:rgba(34,197,94,0.12); color:var(--stage1);">
+            <i class="fas fa-scale-balanced"></i>
+          </div>
+          <div class="tech-name">IFRS9</div>
+          <div class="tech-desc">Credit risk staging & ECL framework</div>
+        </div>
+        <div class="tech-card">
+          <div class="tech-icon" style="background:rgba(139,92,246,0.12); color:#8b5cf6;">
+            <i class="fab fa-github"></i>
+          </div>
+          <div class="tech-name">GitHub</div>
+          <div class="tech-desc">Version control & portfolio hosting</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ── KEY FINDINGS ── -->
+    <section class="section">
+      <div class="section-label"><i class="fas fa-magnifying-glass"></i> Findings</div>
+      <h2 class="section-title">Key Findings & Insights</h2>
+      <p class="section-desc">Critical risk intelligence extracted from the portfolio analysis.</p>
+
+      <div class="insights-grid">
+        <div class="insight-card green">
+          <div class="insight-num green">86%</div>
+          <div class="insight-title">Strong Portfolio Quality</div>
+          <div class="insight-text">
+            86% of the total portfolio balance sits in IFRS9 Stage 1 —
+            indicating strong overall credit quality with low default risk.
+          </div>
+        </div>
+        <div class="insight-card yellow">
+          <div class="insight-num yellow">₹209K</div>
+          <div class="insight-title">Stage 3 ECL Driver</div>
+          <div class="insight-text">
+            Stage 3 is the #1 influencer of ECL Provision increase with
+            an average ECL of ₹209.4K — highest despite lowest exposure.
+          </div>
+        </div>
+        <div class="insight-card orange">
+          <div class="insight-num orange">SUV</div>
+          <div class="insight-title">Highest Asset Exposure</div>
+          <div class="insight-text">
+            SUVs contribute the largest share of total portfolio balance
+            at ₹95.3M, followed by MUVs at ₹82.4M across all stages.
+          </div>
+        </div>
+        <div class="insight-card green">
+          <div class="insight-num green">739</div>
+          <div class="insight-title">Above-Average CIBIL</div>
+          <div class="insight-text">
+            Average CIBIL score of 739.2 indicates above-average borrower
+            creditworthiness across the portfolio.
+          </div>
+        </div>
+        <div class="insight-card red">
+          <div class="insight-num red">6.6%</div>
+          <div class="insight-title">Default Rate Alert</div>
+          <div class="insight-text">
+            6.6% of loans are in Stage 3 (non-performing). 115 delinquent
+            loans identified with 86.76% of accounts current at 0 DPD.
+          </div>
+        </div>
+        <div class="insight-card yellow">
+          <div class="insight-num yellow">88M</div>
+          <div class="insight-title">Professional Dominance</div>
+          <div class="insight-text">
+            Professional borrowers hold the highest portfolio balance at ₹88M,
+            followed by Salaried at ₹85M across all vehicle categories.
+          </div>
+        </div>
+      </div>
+
+      <!-- STAGE TABLE -->
+      <div style="background:var(--card); border:1px solid var(--border); border-radius:16px; overflow:hidden; margin-top:2rem;">
+        <div style="padding:1.2rem 1.5rem; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:10px;">
+          <i class="fas fa-table" style="color:var(--accent)"></i>
+          <span style="font-family:var(--font-head); font-weight:600;">IFRS9 Stage-wise Risk Summary</span>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="stage-table">
+            <thead>
+              <tr>
+                <th>Stage</th>
+                <th>Current Balance</th>
+                <th>ECL Provision</th>
+                <th>Loan Share</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="stage-pill s1"><i class="fas fa-circle" style="font-size:7px"></i> Stage 1</span></td>
+                <td>₹272,932,661.65</td>
+                <td>₹2,792,098.27</td>
+                <td>
+                  <div class="progress-bar-wrap">
+                    <div class="progress-bar"><div class="progress-fill" style="width:86%; background:var(--stage1);"></div></div>
+                    <span style="font-size:13px; min-width:36px;">86%</span>
+                  </div>
+                </td>
+                <td style="color:var(--stage1); font-size:13px;">Performing</td>
+              </tr>
+              <tr>
+                <td><span class="stage-pill s2"><i class="fas fa-circle" style="font-size:7px"></i> Stage 2</span></td>
+                <td>₹27,153,397.92</td>
+                <td>₹1,648,395.03</td>
+                <td>
+                  <div class="progress-bar-wrap">
+                    <div class="progress-bar"><div class="progress-fill" style="width:8.5%; background:var(--stage2);"></div></div>
+                    <span style="font-size:13px; min-width:36px;">8.5%</span>
+                  </div>
+                </td>
+                <td style="color:var(--stage2); font-size:13px;">Under Watch</td>
+              </tr>
+              <tr>
+                <td><span class="stage-pill s3"><i class="fas fa-circle" style="font-size:7px"></i> Stage 3</span></td>
+                <td>₹17,699,142.57</td>
+                <td>₹7,222,459.60</td>
+                <td>
+                  <div class="progress-bar-wrap">
+                    <div class="progress-bar"><div class="progress-fill" style="width:5.5%; background:var(--stage3);"></div></div>
+                    <span style="font-size:13px; min-width:36px;">5.5%</span>
+                  </div>
+                </td>
+                <td style="color:var(--stage3); font-size:13px;">Non-Performing</td>
+              </tr>
+              <tr style="background:rgba(232,96,28,0.04);">
+                <td><span class="stage-pill total"><i class="fas fa-sigma" style="font-size:10px"></i> Total</span></td>
+                <td style="font-weight:600;">₹317,785,202.14</td>
+                <td style="font-weight:600; color:var(--accent);">₹11,662,952.90</td>
+                <td>
+                  <div class="progress-bar-wrap">
+                    <div class="progress-bar"><div class="progress-fill" style="width:100%; background:var(--accent);"></div></div>
+                    <span style="font-size:13px; min-width:36px;">100%</span>
+                  </div>
+                </td>
+                <td style="font-size:13px; color:var(--muted);">Full Portfolio</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ── PROJECT REPORT ── -->
+    <section class="section">
+      <div class="section-label"><i class="fas fa-file-lines"></i> Report</div>
+      <h2 class="section-title">Project Report</h2>
+      <p class="section-desc">
+        An 8-page comprehensive internship project report documenting the full methodology, analysis, and recommendations.
+      </p>
+
+      <div class="report-card">
+        <div class="report-icon">
+          <i class="fas fa-file-pdf"></i>
+        </div>
+        <div class="report-info">
+          <div class="report-title">Securitisation Risk Intelligence — Project Report</div>
+          <div class="report-desc">
+            8 pages | IFRS9 Framework | Auto Loan Portfolio | Power BI | Internship Project
+          </div>
+          <div class="report-chapters">
+            <span class="chapter-tag"><i class="fas fa-circle"></i> Executive Summary</span>
+            <span class="chapter-tag"><i class="fas fa-circle"></i> Problem Statement</span>
+            <span class="chapter-tag"><i class="fas fa-circle"></i> Data Architecture</span>
+            <span class="chapter-tag"><i class="fas fa-circle"></i> IFRS9 Methodology</span>
+            <span class="chapter-tag"><i class="fas fa-circle"></i> ECL Framework</span>
+            <span class="chapter-tag"><i class="fas fa-circle"></i> Dashboard Design</span>
+            <span class="chapter-tag"><i class="fas fa-circle"></i> Key Findings</span>
+            <span class="chapter-tag"><i class="fas fa-circle"></i> Recommendations</span>
+          </div>
+        </div>
+        <a href="docs/Project_Report.pdf" target="_blank" class="btn btn-primary" style="align-self:center; white-space:nowrap;">
+          <i class="fas fa-download"></i> Download PDF
+        </a>
+      </div>
+    </section>
+
+  </div><!-- /content -->
+
+  <script>
+    function switchTab(index) {
+      document.querySelectorAll('.tab-btn').forEach((btn, i) => {
+        btn.classList.toggle('active', i === index);
+      });
+      document.querySelectorAll('.tab-panel').forEach((panel, i) => {
+        panel.classList.toggle('active', i === index);
+      });
+    }
+  </script>
+
+</body>
+</html>
