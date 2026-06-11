@@ -1631,50 +1631,156 @@
 
     /* ===================== RESPONSIVE ===================== */
 
+    /* Large tablet */
     @media (max-width: 1024px) {
       .hero-nav { padding: 1rem 2rem; }
-      .hero-nav-links { gap: 1.4rem; }
+      .hero-nav-links { gap: 1.2rem; }
+      .hero-nav-links a { font-size: 0.82rem; }
     }
 
+    /* Tablet & mobile — hamburger takes over */
     @media (max-width: 768px) {
+
+      /* === NAV === */
       .hero-nav-links { display: none !important; }
       .hero-dark-toggle { display: none; }
       .hero-nav-hamburger { display: flex; }
-      .hero-nav { padding: 0.9rem 1.2rem; }
+      .hero-nav { padding: 0.85rem 1.1rem; }
 
+      /* === HERO BODY === */
       .hero-body {
         grid-template-columns: 1fr;
-        padding: 2rem 1.2rem;
-        gap: 2rem;
+        padding: 1.5rem 1rem;
+        gap: 1.8rem;
       }
-      .hero-right { order: -1; }
-      .profile-card { width: 100%; max-width: 320px; }
+      .hero-right { order: -1; display: flex; justify-content: center; }
+      .profile-card { width: 100%; max-width: 300px; padding: 1.8rem 1.2rem; }
       .float-badge { display: none; }
-      .hero-name { font-size: 2.8rem; }
-      .hero-tagline { font-size: 1.1rem; }
-      .hero-stats { flex-direction: column; gap: 0.6rem; }
+      .hero-name { font-size: 2.6rem; }
+      .hero-tagline { font-size: 1.05rem; }
+      .hero-stats { flex-direction: column; gap: 0.5rem; }
+      .hero-stat { padding: 0.7rem 1rem; }
+      .hero-tools { gap: 0.4rem; }
+      .hero-tool { font-size: 0.78rem; padding: 0.4rem 0.75rem; }
+      .hero-ctas { gap: 0.7rem; }
 
-      .stats-grid { grid-template-columns: repeat(2, 1fr); }
-      .skills-grid, .projects-grid, .value-grid { grid-template-columns: 1fr; }
+      /* === ABOUT / SECTION === */
+      section { padding: 3rem 0; }
+      .about-text { padding: 1.5rem; font-size: 0.95rem; }
 
-      .cert-inner { flex-direction: column; padding: 1.2rem; }
-      .cert-left { flex: none; width: 100%; max-width: 220px; margin: 0 auto; }
+      /* === SKILLS === */
+      .skills-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
 
-      .internship-grid { display: block; }
-      .right-section { border-left: none; border-top: 1px solid #e5e7eb; padding-left: 0; padding-top: 25px; }
-      .action-buttons { flex-direction: column; }
+      /* === STATS === */
+      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; margin: 1.5rem 0; }
+      .stat-number { font-size: 1.4rem; }
 
-      .project-footer { flex-direction: row; gap: 0.5rem; padding: 0.75rem; }
-      .project-footer .btn { font-size: 0.75rem; padding: 0.5rem 0.5rem; }
+      /* === PROJECTS === */
+      .projects-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+      .project-image-container { height: 200px; }
+      .project-header { padding: 1rem 1rem 0; }
+      .project-header h3 { font-size: 1rem; }
+      .project-header p { font-size: 0.82rem; }
+      .metric { font-size: 0.75rem; padding: 0.25rem 0.6rem; }
+      .project-preview { padding: 1rem; margin: 0.8rem 1rem; }
+      .preview-title { font-size: 0.75rem; }
+      .data-row { font-size: 0.78rem; padding: 0.35rem 0; }
+      .project-footer { padding: 0.8rem 1rem; gap: 0.5rem; }
+      .project-footer .btn { font-size: 0.78rem; padding: 0.55rem 0.6rem; gap: 5px; }
+
+      /* === INTERNSHIP SECTION — full mobile rewrite === */
+      .internships-section { padding: 3rem 0.8rem; }
+      .section-header { margin-bottom: 2rem; }
+      .section-header h2 { font-size: 1.8rem !important; margin: 12px 0 8px; }
+      .section-header p { font-size: 0.9rem; }
+      .section-tag { font-size: 12px; padding: 7px 14px; }
+
+      /* Timeline line closer to edge */
+      .timeline::before { left: 16px; width: 2px; }
+      .timeline-item { padding-left: 44px; margin-bottom: 1.5rem; }
+      .timeline-dot { left: 4px; top: 20px; width: 24px; height: 24px; border-width: 3px; }
+
+      /* Card padding reduced */
+      .internship-card { padding: 1.2rem; border-radius: 16px; }
+
+      /* Stack grid to single column */
+      .internship-grid { display: flex; flex-direction: column; gap: 1.2rem; }
+
+      /* Company header stack */
+      .company-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+      .company-logo { width: 80px; height: 60px; border-radius: 12px; }
+      .company-info h3 { font-size: 1.4rem !important; margin-bottom: 4px; }
+      .company-info h4 { font-size: 1rem !important; margin-bottom: 8px; }
+      .meta-info { flex-direction: column; gap: 4px; }
+      .meta-info span { font-size: 0.82rem; }
+
+      /* Stats boxes 3-col on mobile too, but smaller */
+      .stat-box { padding: 12px 8px; border-radius: 12px; }
+      .stat-box i { font-size: 1.2rem; margin-bottom: 6px; }
+      .stat-box h5 { font-size: 1.1rem !important; }
+      .stat-box p { font-size: 0.72rem; }
+
+      /* Skills row wrap nicely */
+      .skills-row { margin-top: 1rem; gap: 0.5rem; }
+      .skills-row span { padding: 6px 12px; font-size: 12px; }
+
+      /* Right section — remove left border, add top border */
+      .right-section { border-left: none !important; border-top: 1px solid #e5e7eb; padding-left: 0 !important; padding-top: 1rem; }
+
+      /* Highlights */
+      .highlight-title { font-size: 1rem !important; margin-bottom: 0.8rem; }
+      .highlight-list li { font-size: 0.85rem; margin-bottom: 10px; line-height: 1.5; }
+
+      /* Credential row */
+      .credential-row { flex-direction: column; gap: 6px; margin-top: 1rem; padding-top: 1rem; }
+      .credential-label { font-size: 0.82rem; }
+      .credential-id { margin-left: 0; font-size: 0.78rem; padding: 6px 10px; display: inline-block; width: fit-content; }
+
+      /* Action buttons stack */
+      .action-buttons { flex-direction: column; gap: 0.6rem; margin-top: 1rem; }
+      .action-buttons .btn-outline,
+      .action-buttons .btn-primary { width: 100%; padding: 12px; font-size: 0.85rem; border-radius: 12px; text-align: center; }
+
+      /* Certificate banner */
+      .certificate-banner { padding: 1.2rem; flex-direction: column; align-items: flex-start; gap: 1rem; margin-top: 1.5rem; border-radius: 16px; }
+      .banner-icon { font-size: 2rem; }
+      .banner-left h4 { font-size: 0.95rem; }
+      .banner-left p { font-size: 0.8rem; }
+      .view-all-btn { width: 100%; text-align: center; padding: 12px; font-size: 0.85rem; border-radius: 12px; }
+
+      /* === CERTIFICATIONS === */
+      .cert-inner { flex-direction: column; padding: 1rem; gap: 1rem; }
+      .cert-left { flex: none; width: 100%; max-width: 100%; }
+      .cert-preview img { max-height: 160px; object-fit: contain; }
+      .cert-buttons { justify-content: center; flex-wrap: wrap; }
+      .cert-info h3 { font-size: 0.95rem; }
+      .cert-badge { font-size: 0.6rem; padding: 0.15rem 0.6rem; top: 0.6rem; right: 0.6rem; }
+
+      /* === CTA === */
+      .cta-box { margin: 2rem 0.5rem; padding: 2rem 1.2rem; border-radius: 20px; }
+      .cta-content h2 { font-size: 1.4rem; }
+      .subtitle { font-size: 0.88rem; }
+      .highlights p { font-size: 0.82rem; }
+
+      /* === VALUE GRID === */
+      .value-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
     }
 
+    /* Small phones */
     @media (max-width: 480px) {
-      .hero-nav { padding: 0.8rem 1rem; }
-      .hero-name { font-size: 2.4rem; }
+      .hero-nav { padding: 0.75rem 0.9rem; }
+      .hero-name { font-size: 2.2rem; }
       .hero-ctas { flex-direction: column; }
       .hero-btn-primary, .hero-btn-secondary { width: 100%; justify-content: center; }
-      .hero-tools { gap: 0.4rem; }
-      .hero-tool { font-size: 0.8rem; padding: 0.4rem 0.8rem; }
+      .profile-card { max-width: 260px; padding: 1.4rem 1rem; }
+      .profile-img-ring { width: 130px; height: 130px; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .value-grid { grid-template-columns: 1fr; }
+      /* Internship card even tighter */
+      .internship-card { padding: 1rem; }
+      .timeline-item { padding-left: 38px; }
+      .stat-box h5 { font-size: 1rem !important; }
     }
   </style>
 </head>
@@ -1700,11 +1806,31 @@
         <li><a href="#about"><i class="fas fa-user"></i> <span>About</span></a></li>
         <li><a href="#skills"><i class="fas fa-code"></i> <span>Skills</span></a></li>
         <li><a href="#projects"><i class="fas fa-folder-open"></i> <span>Projects</span></a></li>
+        <li><a href="#internships"><i class="fas fa-briefcase"></i> <span>Internships</span></a></li>
         <li><a href="#contact"><i class="fas fa-envelope"></i> <span>Contact</span></a></li>
       </ul>
 
       <div class="hero-dark-toggle"><i class="fas fa-moon"></i></div>
+
+      <!-- Hamburger button (mobile only) -->
+      <button class="hero-nav-hamburger" id="hamburgerBtn" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
     </nav>
+
+    <!-- Mobile drawer overlay -->
+    <div class="hero-nav-overlay" id="navOverlay" onclick="closeDrawer()"></div>
+
+    <!-- Mobile slide-in drawer -->
+    <div class="hero-nav-drawer" id="navDrawer">
+      <div class="hero-nav-drawer-close" onclick="closeDrawer()"><i class="fas fa-times"></i></div>
+      <a href="#home" onclick="closeDrawer()"><i class="fas fa-home"></i> Home</a>
+      <a href="#about" onclick="closeDrawer()"><i class="fas fa-user"></i> About</a>
+      <a href="#skills" onclick="closeDrawer()"><i class="fas fa-code"></i> Skills</a>
+      <a href="#projects" onclick="closeDrawer()"><i class="fas fa-folder-open"></i> Projects</a>
+      <a href="#internships" onclick="closeDrawer()"><i class="fas fa-briefcase"></i> Internships</a>
+      <a href="#contact" onclick="closeDrawer()"><i class="fas fa-envelope"></i> Contact</a>
+    </div>
 
     <!-- Hero Body: Left content + Right profile card -->
     <div class="hero-body">
