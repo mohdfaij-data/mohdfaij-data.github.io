@@ -3,23 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <!-- Meta Tags -->
   <title>Mohd Faij | Data Analyst</title>
   <meta name="description" content="Data Analyst specializing in SQL, Excel, Power BI, and Python. Turning data into business insights.">
-  
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="shortcut icon" href="favicon.ico">
 
-  <!-- Favicon -->
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-<link rel="manifest" href="site.webmanifest">
-<link rel="shortcut icon" href="favicon.ico">
   <style>
     * {
       margin: 0;
@@ -29,22 +22,28 @@
     }
 
     :root {
-      --primary: #4f46e5;
-      --primary-light: #818cf8;
-      --secondary: #0f172a;
+      --primary: #7c3aed;
+      --primary-light: #a78bfa;
+      --primary-glow: rgba(124, 58, 237, 0.4);
+      --accent: #8b5cf6;
+      --accent2: #6366f1;
+      --dark-bg: #0a0a0f;
+      --dark-surface: #12121a;
+      --dark-card: #1a1a28;
+      --dark-border: rgba(124,58,237,0.2);
       --text-light: #64748b;
       --bg-light: #f8fafc;
-      --shadow: 0 20px 25px -5px rgba(0,0,0,0.05), 0 10px 10px -5px rgba(0,0,0,0.01);
+      --shadow: 0 20px 25px -5px rgba(0,0,0,0.05);
       --shadow-hover: 0 25px 30px -5px rgba(79,70,229,0.1);
     }
 
     body {
       background: var(--bg-light);
-      color: var(--secondary);
+      color: #0f172a;
       line-height: 1.6;
     }
 
-    /* Navigation */
+    /* ===================== NAVIGATION ===================== */
     nav {
       display: flex;
       justify-content: center;
@@ -58,9 +57,15 @@
       border-bottom: 1px solid rgba(0,0,0,0.05);
     }
 
+    /* Dark nav for hero page */
+    .hero-page nav {
+      background: rgba(10,10,15,0.85);
+      border-bottom: 1px solid rgba(124,58,237,0.15);
+    }
+
     nav a {
       text-decoration: none;
-      color: var(--secondary);
+      color: #0f172a;
       font-weight: 500;
       transition: all 0.2s;
       padding: 0.5rem 0;
@@ -72,129 +77,595 @@
       border-bottom-color: var(--primary);
     }
 
-    /* Container */
+    /* ===================== HERO SECTION ===================== */
+    #home {
+      background: #0a0a0f;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      padding: 0;
+    }
+
+    /* Animated mesh background */
+    #home::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 20% 50%, rgba(99,54,255,0.18) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 80% at 80% 80%, rgba(124,58,237,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 60% 10%, rgba(99,102,241,0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    /* Subtle grid overlay */
+    #home::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(124,58,237,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(124,58,237,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+
+    /* Hero navbar (dark) */
+    .hero-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 3rem;
+      position: relative;
+      z-index: 10;
+      border-bottom: 1px solid rgba(124,58,237,0.12);
+    }
+
+    .hero-nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .hero-nav-logo {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #7c3aed, #6366f1);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 1rem;
+      color: white;
+      letter-spacing: -0.5px;
+    }
+
+    .hero-nav-name {
+      color: white;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .hero-nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .hero-nav-links a {
+      color: rgba(255,255,255,0.65);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .hero-nav-links a:hover,
+    .hero-nav-links a.active {
+      color: white;
+    }
+
+    .hero-nav-links a.active {
+      border-bottom: 2px solid #7c3aed;
+      padding-bottom: 2px;
+    }
+
+    .hero-nav-links a i {
+      font-size: 0.85rem;
+      opacity: 0.8;
+    }
+
+    .hero-dark-toggle {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 1px solid rgba(124,58,237,0.4);
+      background: rgba(124,58,237,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: rgba(255,255,255,0.7);
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+
+    .hero-dark-toggle:hover {
+      background: rgba(124,58,237,0.25);
+      color: white;
+    }
+
+    /* ---- Hero Body ---- */
+    .hero-body {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 4rem;
+      padding: 4rem 3rem 3rem;
+      position: relative;
+      z-index: 5;
+      max-width: 1300px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* LEFT column */
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .hero-greeting {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(124,58,237,0.12);
+      border: 1px solid rgba(124,58,237,0.25);
+      border-radius: 30px;
+      padding: 0.45rem 1rem;
+      font-size: 0.85rem;
+      color: #a78bfa;
+      font-weight: 500;
+      width: fit-content;
+    }
+
+    .hero-name {
+      font-size: clamp(3rem, 5vw, 4.5rem);
+      font-weight: 900;
+      line-height: 1.05;
+      color: white;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-name .accent {
+      background: linear-gradient(135deg, #a78bfa 0%, #7c3aed 50%, #6366f1 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-tagline {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.4;
+    }
+
+    .hero-tagline .highlight-purple {
+      color: #a78bfa;
+    }
+
+    .hero-desc {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.7;
+      max-width: 480px;
+    }
+
+    /* Stats row */
+    .hero-stats {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .hero-stat {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 0.8rem 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex: 1;
+    }
+
+    .hero-stat-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: rgba(124,58,237,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #a78bfa;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .hero-stat-num {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: white;
+      line-height: 1;
+    }
+
+    .hero-stat-label {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.4);
+      margin-top: 2px;
+    }
+
+    /* Tools row */
+    .hero-tools-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.3);
+    }
+
+    .hero-tools {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-tool {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      padding: 0.5rem 1rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.8);
+      transition: all 0.2s;
+    }
+
+    .hero-tool:hover {
+      background: rgba(124,58,237,0.15);
+      border-color: rgba(124,58,237,0.4);
+      color: white;
+    }
+
+    .hero-tool i {
+      font-size: 1rem;
+    }
+
+    /* CTA buttons */
+    .hero-ctas {
+      display: flex;
+      gap: 0.9rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.75rem;
+      background: linear-gradient(135deg, #7c3aed, #6366f1);
+      color: white;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all 0.3s;
+      box-shadow: 0 8px 24px rgba(124,58,237,0.4);
+    }
+
+    .hero-btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(124,58,237,0.55);
+    }
+
+    .hero-btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.75rem;
+      background: transparent;
+      color: rgba(255,255,255,0.8);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+
+    .hero-btn-secondary:hover {
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.35);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    /* Social links */
+    .hero-socials {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .hero-socials-label {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.35);
+      margin-right: 0.25rem;
+    }
+
+    .hero-social-link {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: all 0.25s;
+    }
+
+    .hero-social-link:hover {
+      background: rgba(124,58,237,0.2);
+      border-color: rgba(124,58,237,0.5);
+      color: #a78bfa;
+      transform: translateY(-2px);
+    }
+
+    /* RIGHT column — Profile card */
+    .hero-right {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .profile-card {
+      background: rgba(26,26,40,0.85);
+      border: 1px solid rgba(124,58,237,0.25);
+      border-radius: 28px;
+      padding: 2.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.2rem;
+      width: 340px;
+      backdrop-filter: blur(20px);
+      position: relative;
+      box-shadow: 0 0 60px rgba(124,58,237,0.12), inset 0 1px 0 rgba(255,255,255,0.05);
+    }
+
+    /* Glow ring behind card */
+    .profile-card::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: 29px;
+      background: linear-gradient(135deg, rgba(124,58,237,0.4), transparent 50%, rgba(99,102,241,0.2));
+      z-index: -1;
+    }
+
+    .profile-img-wrap {
+      position: relative;
+    }
+
+    .profile-img-ring {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      padding: 3px;
+      background: linear-gradient(135deg, #7c3aed, #a78bfa, #6366f1);
+      position: relative;
+    }
+
+    .profile-img-ring::after {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      border: 1px dashed rgba(124,58,237,0.35);
+      animation: rotateDash 12s linear infinite;
+    }
+
+    @keyframes rotateDash {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .profile-img-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      overflow: hidden;
+      background: #1a1a28;
+    }
+
+    .profile-img-inner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Floating icon badges */
+    .float-badge {
+      position: absolute;
+      background: rgba(26,26,40,0.9);
+      border: 1px solid rgba(124,58,237,0.35);
+      border-radius: 12px;
+      padding: 0.45rem 0.7rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #a78bfa;
+      backdrop-filter: blur(8px);
+      white-space: nowrap;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+    }
+
+    .float-badge.left {
+      left: -60px;
+      top: 40%;
+    }
+
+    .float-badge.right {
+      right: -60px;
+      top: 25%;
+    }
+
+    .float-badge.right2 {
+      right: -55px;
+      top: 65%;
+    }
+
+    .float-badge i {
+      font-size: 1rem;
+    }
+
+    /* Quote block */
+    .profile-quote {
+      text-align: center;
+      padding: 0.5rem 0;
+    }
+
+    .profile-quote-icon {
+      font-size: 1.5rem;
+      color: #7c3aed;
+      opacity: 0.7;
+      margin-bottom: 0.5rem;
+    }
+
+    .profile-quote p {
+      font-size: 0.92rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.55;
+      font-style: italic;
+    }
+
+    /* Availability pill */
+    .profile-avail {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(22,101,52,0.2);
+      border: 1px solid rgba(34,197,94,0.3);
+      border-radius: 30px;
+      padding: 0.5rem 1.1rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #4ade80;
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    .avail-left {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .avail-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 8px rgba(34,197,94,0.8);
+      animation: pulse-green 2s infinite;
+    }
+
+    @keyframes pulse-green {
+      0%, 100% { box-shadow: 0 0 8px rgba(34,197,94,0.8); }
+      50% { box-shadow: 0 0 16px rgba(34,197,94,1); }
+    }
+
+    .hire-me-btn {
+      background: rgba(124,58,237,0.25);
+      border: 1px solid rgba(124,58,237,0.5);
+      color: #a78bfa;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: all 0.2s;
+    }
+
+    .hire-me-btn:hover {
+      background: rgba(124,58,237,0.4);
+      color: white;
+    }
+
+    /* Hero scroll indicator */
+    .hero-scroll {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      padding-bottom: 2rem;
+      position: relative;
+      z-index: 5;
+    }
+
+    .hero-scroll-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.4);
+      font-size: 0.8rem;
+      animation: bounce 2s infinite;
+    }
+
+    .hero-scroll-text {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.25);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(5px); }
+    }
+
+    /* ===================== CONTAINER (rest of page) ===================== */
     .container {
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 1.5rem;
     }
 
-    /* Hero Section */
-.hero {
-      text-align: center;
-      padding: 4rem 0 2rem;
-    }
-
-    .profile-img {
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
-      margin: 0 auto 1.5rem;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      border: 3px solid white;
-    }
-
-    .profile-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-h1 {
-    font-size: 2.7rem;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    margin-bottom: 0.5rem;
-    color: #111111;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    line-height: 1.2;
-}
-
-    .headline {
-      color: var(--primary);
-      font-weight: 600;
-      font-size: 1.1rem;
-      margin-bottom: 0.75rem;
-    }
-
-    .subheadline {
-      color: var(--text-light);
-      margin-bottom: 2rem;
-    }
-
-    /* Social Icons */
-    .social-links {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
-
-    .social-links a {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      background: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--secondary);
-      text-decoration: none;
-      transition: all 0.3s;
-      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
-    }
-
-    .social-links a:hover {
-      background: var(--primary);
-      color: white;
-      transform: translateY(-3px);
-    }
-
-    /* Buttons */
-    .btn-group {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 0.75rem 2rem;
-      border-radius: 9999px;
-      text-decoration: none;
-      font-weight: 500;
-      transition: all 0.3s;
-      border: 2px solid transparent;
-      cursor: pointer;
-    }
-
-    .btn-primary {
-      background: var(--primary);
-      color: white;
-      box-shadow: 0 10px 15px -3px rgba(79,70,229,0.2);
-    }
-
-    .btn-primary:hover {
-      background: #4338ca;
-      transform: translateY(-2px);
-      box-shadow: 0 20px 25px -5px rgba(79,70,229,0.3);
-    }
-
-    .btn-outline {
-      border: 2px solid var(--primary);
-      color: var(--primary);
-      background: white;
-    }
-
-    .btn-outline:hover {
-      background: var(--primary);
-      color: white;
-      transform: translateY(-2px);
-    }
-
-    /* Section Styles */
+    /* About Section */
     section {
       padding: 5rem 0;
     }
@@ -212,248 +683,11 @@ h1 {
       display: block;
       width: 60px;
       height: 4px;
-      background: linear-gradient(90deg, var(--primary), var(--primary-light));
+      background: linear-gradient(90deg, #7c3aed, #a78bfa);
       margin: 1rem auto 0;
       border-radius: 2px;
     }
-/* ========== CERTIFICATIONS – PREMIUM EDITION ========== */
 
-.cert-showcase {
-    display: flex;
-    flex-direction: column;
-    gap: 1.8rem;
-    margin-top: 2rem;
-}
-
-.cert-card {
-    background: #ffffff;
-    border-radius: 1.25rem;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.03), 0 2px 4px rgba(0, 0, 0, 0.02);
-    transition: all 0.35s cubic-bezier(0.2, 0, 0, 1);
-    border: 1px solid rgba(79, 70, 229, 0.12);
-    position: relative;
-    overflow: hidden;
-}
-
-.cert-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 20px 32px -12px rgba(79, 70, 229, 0.18);
-    border-color: rgba(79, 70, 229, 0.25);
-}
-
-/* Minimalist top accent – only appears on hover */
-.cert-card::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, #4f46e5, #a855f7, #4f46e5);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.4s ease;
-}
-
-.cert-card:hover::after {
-    transform: scaleX(1);
-}
-
-.cert-inner {
-    display: flex;
-    gap: 1.8rem;
-    padding: 1.5rem;
-}
-
-/* Left column – image area */
-.cert-left {
-    flex: 0 0 210px;
-}
-
-.cert-preview {
-    position: relative;
-    border-radius: 0;
-    overflow: hidden;
-    background: #f8fafc;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
-    transition: box-shadow 0.2s;
-}
-
-.cert-preview:hover {
-    box-shadow: 0 8px 20px rgba(79, 70, 229, 0.12);
-}
-
-.cert-preview img {
-    width: 100%;
-    height: auto;
-    display: block;
-    transition: transform 0.3s ease;
-}
-
-.cert-preview:hover img {
-    transform: scale(1.02);
-}
-
-/* Buttons – sleek, minimal */
-.cert-buttons {
-    display: flex;
-    gap: 0.7rem;
-    margin-top: 0.9rem;
-}
-
-.btn-view, .btn-verify {
-    white-space: nowrap;
-  display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    padding: 0.35rem 0.9rem;
-    border-radius: 40px;
-    font-size: 0.7rem;
-    font-weight: 500;
-    text-decoration: none;
-    transition: all 0.2s;
-    cursor: pointer;
-}
-
-.btn-view {
-    background: transparent;
-    border: 1px solid #4f46e5;
-    color: #4f46e5;
-}
-
-.btn-view:hover {
-    background: #4f46e5;
-    color: white;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(79, 70, 229, 0.2);
-}
-
-.btn-verify {
-    background: #4f46e5;
-    color: white;
-    border: none;
-}
-
-.btn-verify:hover {
-    background: #4338ca;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(79, 70, 229, 0.3);
-}
-
-.btn-verify.disabled {
-    background: #cbd5e1;
-    cursor: not-allowed;
-    transform: none;
-    box-shadow: none;
-}
-
-/* Badge – delicate, positioned */
-.cert-badge {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    padding: 0.2rem 0.8rem;
-    border-radius: 40px;
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(4px);
-    color: #4f46e5;
-    font-size: 0.65rem;
-    font-weight: 600;
-    letter-spacing: 0.3px;
-    border: 1px solid rgba(79, 70, 229, 0.2);
-    z-index: 2;
-}
-
-.cert-badge.silver {
-    background: rgba(241, 245, 249, 0.8);
-    color: #334155;
-}
-
-.cert-badge.bronze {
-    background: rgba(255, 251, 235, 0.9);
-    color: #b45309;
-}
-
-/* Right side content */
-.cert-info h3 {
-    font-size: 1.05rem;
-    font-weight: 700;
-    margin-bottom: 0.3rem;
-    color: #0f172a;
-    letter-spacing: -0.2px;
-}
-
-.issuer, .date {
-    font-size: 0.7rem;
-    color: #64748b;
-    margin-bottom: 0.2rem;
-}
-
-.issuer i, .date i {
-    margin-right: 0.3rem;
-    width: 1rem;
-}
-
-.description {
-    font-size: 0.8rem;
-    color: #334155;
-    line-height: 1.45;
-    margin: 0.6rem 0;
-}
-
-.skills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    margin: 0.6rem 0 0;
-}
-
-.skills span {
-    background: #f1f5f9;
-    padding: 0.2rem 0.7rem;
-    border-radius: 30px;
-    font-size: 0.65rem;
-    font-weight: 500;
-    color: #4f46e5;
-    transition: all 0.15s;
-}
-
-.skills span:hover {
-    background: #eef2ff;
-    transform: translateY(-1px);
-}
-
-.cert-id {
-    font-size: 0.6rem;
-    font-family: 'SF Mono', 'Fira Code', monospace;
-    color: #94a3b8;
-    margin-top: 0.7rem;
-    background: transparent;
-    padding: 0;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .cert-inner {
-        flex-direction: column;
-        padding: 1.2rem;
-    }
-    .cert-left {
-        flex: none;
-        width: 100%;
-        max-width: 220px;
-        margin: 0 auto;
-    }
-    .cert-buttons {
-        justify-content: center;
-    }
-    .cert-badge {
-        top: 0.7rem;
-        right: 0.7rem;
-        font-size: 0.6rem;
-    }
-}
-    /* About Section */
     .about-text {
       max-width: 800px;
       margin: 0 auto;
@@ -466,76 +700,130 @@ h1 {
       box-shadow: var(--shadow);
     }
 
-.skills-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
-    margin-top: 2rem;
-}
-
-.skill-card {
-    background: white;
-    border-radius: 1.2rem;
-    padding: 1.5rem;
-    text-align: center;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    transition: all 0.2s;
-    border: 1px solid rgba(0,0,0,0.05);
-    display: flex;
-    flex-direction: column;
-}
-
-.skill-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 20px -8px rgba(0,0,0,0.1);
-}
-
-.skill-icon {
-    font-size: 2rem;
-    color: #000;          /* black, not blue */
-    margin-bottom: 0.75rem;
-}
-
-.skill-card h3 {
-    font-size: 1.2rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    color: #0f172a;
-}
-
-.sub-skills {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.5rem;
-    flex: 1;
-}
-
-.sub-skills li {
-    background: #f1f5f9;
-    padding: 0.25rem 0.8rem;
-    border-radius: 30px;
-    font-size: 0.75rem;
-    font-weight: 500;
-    color: #334155;
-    transition: all 0.2s;
-}
-
-.sub-skills li:hover {
-    background: #e2e8f0;
-}
-
-@media (max-width: 768px) {
+    /* Skills Grid */
     .skills-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-top: 2rem;
     }
-}
 
-    /* Projects Grid - Small Cards like before */
+    .skill-card {
+      background: white;
+      border-radius: 1.2rem;
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      transition: all 0.2s;
+      border: 1px solid rgba(0,0,0,0.05);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 20px -8px rgba(0,0,0,0.1);
+    }
+
+    .skill-icon {
+      font-size: 2rem;
+      color: #000;
+      margin-bottom: 0.75rem;
+    }
+
+    .skill-card h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #0f172a;
+    }
+
+    .sub-skills {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      flex: 1;
+    }
+
+    .sub-skills li {
+      background: #f1f5f9;
+      padding: 0.25rem 0.8rem;
+      border-radius: 30px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #334155;
+      transition: all 0.2s;
+    }
+
+    .sub-skills li:hover {
+      background: #e2e8f0;
+    }
+
+    /* Stats Section */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.2rem;
+      margin: 3rem 0;
+    }
+
+    .stat-card {
+      background: white;
+      padding: 1.2rem 0.8rem;
+      text-align: center;
+      border-radius: 1.2rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+      transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      border: 1px solid rgba(124,58,237,0.08);
+      cursor: pointer;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 28px -8px rgba(124,58,237,0.2);
+      border-color: rgba(124,58,237,0.2);
+    }
+
+    .stat-number {
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #7c3aed 0%, #6366f1 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+    }
+
+    .stat-number i {
+      font-size: 1.6rem;
+      background: none;
+      -webkit-background-clip: unset;
+      background-clip: unset;
+      color: #7c3aed;
+    }
+
+    .stat-label {
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: #1e293b;
+      margin-bottom: 0.25rem;
+    }
+
+    .stat-desc {
+      font-size: 0.65rem;
+      color: #64748b;
+      line-height: 1.3;
+    }
+
+    /* Projects Grid */
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -557,19 +845,18 @@ h1 {
       box-shadow: var(--shadow-hover);
     }
 
-    /* Full image in small card - maintains aspect ratio */
     .project-image-container {
       width: 100%;
       height: 250px;
       overflow: hidden;
       background: #f1f5f9;
-      border-bottom: 3px solid var(--primary-light);
+      border-bottom: 3px solid #a78bfa;
     }
 
     .project-image {
       width: 100%;
       height: 100%;
-      object-fit: contain;  /* Shows FULL image without cropping */
+      object-fit: contain;
       object-position: top;
       cursor: pointer;
       transition: transform 0.3s;
@@ -587,7 +874,7 @@ h1 {
     .project-header h3 {
       font-size: 1.3rem;
       margin-bottom: 0.75rem;
-      color: var(--primary);
+      color: #7c3aed;
     }
 
     .project-header p {
@@ -604,12 +891,12 @@ h1 {
     }
 
     .metric {
-      background: #eef2ff;
+      background: #f3f0ff;
       padding: 0.35rem 1rem;
       border-radius: 9999px;
       font-size: 0.85rem;
       font-weight: 600;
-      color: var(--primary);
+      color: #7c3aed;
     }
 
     .project-preview {
@@ -635,7 +922,7 @@ h1 {
     }
 
     .highlight {
-      color: var(--primary);
+      color: #7c3aed;
       font-weight: 600;
     }
 
@@ -649,7 +936,7 @@ h1 {
 
     .bar-fill {
       height: 100%;
-      background: linear-gradient(90deg, var(--primary), var(--primary-light));
+      background: linear-gradient(90deg, #7c3aed, #a78bfa);
       border-radius: 9999px;
     }
 
@@ -661,70 +948,45 @@ h1 {
       margin-top: auto;
     }
 
-.project-footer .btn {
-  flex: 1;
-  display: flex;              /* 🔥 IMPORTANT */
-  align-items: center;        /* vertical center */
-  justify-content: center;    /* horizontal center */
-  gap: 8px;
-  padding: 0.6rem 1rem;
-  font-size: 0.9rem;
-}
+    .project-footer .btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 0.6rem 1rem;
+      font-size: 0.9rem;
+      border-radius: 9999px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s;
+      cursor: pointer;
+      border: 2px solid transparent;
+    }
 
-    
-.footer {
-  margin-top: 60px;
-  padding: 15px 10px;
-  text-align: center;
-  background: linear-gradient(135deg, #0f172a, #1e293b);
-  color: #94a3b8;
-  font-size: 14px;
-  border-top: 0.6px solid rgba(255,255,255,0.06);
-  position: relative;
-  overflow: hidden;
-}
+    .btn-primary {
+      background: #7c3aed;
+      color: white;
+      box-shadow: 0 6px 15px rgba(124,58,237,0.25);
+    }
 
-/* 🔥 Animated glow line */
-.footer::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -50%;
-  width: 200%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, #4f46e5, transparent);
-  animation: glowMove 4s linear infinite;
-}
+    .btn-primary:hover {
+      background: #6d28d9;
+      transform: translateY(-2px);
+    }
 
-@keyframes glowMove {
-  0% { left: -50%; }
-  100% { left: 100%; }
-}
+    .btn-outline {
+      border: 2px solid #7c3aed;
+      color: #7c3aed;
+      background: white;
+    }
 
-/* ✨ Text styling */
-.footer p {
-  transition: all 0.3s ease;
-  letter-spacing: 0.3px;
-}
+    .btn-outline:hover {
+      background: #7c3aed;
+      color: white;
+      transform: translateY(-2px);
+    }
 
-/* 🔥 Hover effect */
-.footer p:hover {
-  color: #e2e8f0;
-  transform: scale(1.05);
-}
-
-/* 💎 Extra glow on hover */
-.footer:hover {
-  box-shadow: 0 -10px 40px rgba(79,70,229,0.2);
-}
-
-/* 📱 Mobile fix */
-@media (max-width: 768px) {
-  .footer {
-    font-size: 12px;
-    padding: 20px 10px;
-  }
-}
     /* Value Grid */
     .value-grid {
       display: grid;
@@ -754,961 +1016,708 @@ h1 {
 
     .value-card h4 {
       margin-bottom: 0.5rem;
-      color: var(--secondary);
     }
 
     .value-card p {
       color: var(--text-light);
       font-size: 0.9rem;
     }
-/* Stats Counter - Premium 4-Card Layout */
-.stats-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.2rem;
-    margin: 3rem 0;
-}
 
-.stat-card {
-    background: white;
-    padding: 1.2rem 0.8rem;
-    text-align: center;
-    border-radius: 1.2rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
-    transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-    border: 1px solid rgba(79, 70, 229, 0.08);
-    cursor: pointer;
-}
-
-.stat-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 16px 28px -8px rgba(79, 70, 229, 0.2);
-    border-color: rgba(79, 70, 229, 0.2);
-    background: linear-gradient(135deg, #ffffff 0%, #faf5ff 100%);
-}
-
-.stat-number {
-    font-size: 1.8rem;
-    font-weight: 800;
-    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    margin-bottom: 0.4rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.4rem;
-}
-
-.stat-number i {
-    font-size: 1.6rem;
-    background: none;
-    -webkit-background-clip: unset;
-    background-clip: unset;
-    color: #4f46e5;
-}
-
-.stat-label {
-    font-weight: 700;
-    font-size: 0.85rem;
-    color: #1e293b;
-    margin-bottom: 0.25rem;
-    letter-spacing: -0.2px;
-}
-
-.stat-desc {
-    font-size: 0.65rem;
-    color: #64748b;
-    font-weight: normal;
-    line-height: 1.3;
-}
-
-/* Mobile Responsive */
-@media (max-width: 1024px) {
-    .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-    }
-}
-
-@media (max-width: 640px) {
-    .stats-grid {
-        grid-template-columns: 1fr;
+    /* ===================== CERTIFICATIONS ===================== */
+    .cert-showcase {
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+      margin-top: 2rem;
     }
 
-}
+    .cert-card {
+      background: #ffffff;
+      border-radius: 1.25rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.03);
+      transition: all 0.35s cubic-bezier(0.2,0,0,1);
+      border: 1px solid rgba(124,58,237,0.12);
+      position: relative;
+      overflow: hidden;
+    }
 
-    /* Modal for images */
+    .cert-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 32px -12px rgba(124,58,237,0.18);
+      border-color: rgba(124,58,237,0.25);
+    }
+
+    .cert-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, #7c3aed, #a855f7, #7c3aed);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+
+    .cert-card:hover::after { transform: scaleX(1); }
+
+    .cert-inner {
+      display: flex;
+      gap: 1.8rem;
+      padding: 1.5rem;
+    }
+
+    .cert-left { flex: 0 0 210px; }
+
+    .cert-preview {
+      border-radius: 0;
+      overflow: hidden;
+      background: #f8fafc;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    }
+
+    .cert-preview img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .cert-preview:hover img { transform: scale(1.02); }
+
+    .cert-buttons {
+      display: flex;
+      gap: 0.7rem;
+      margin-top: 0.9rem;
+    }
+
+    .btn-view, .btn-verify {
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.35rem 0.9rem;
+      border-radius: 40px;
+      font-size: 0.7rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .btn-view {
+      background: transparent;
+      border: 1px solid #7c3aed;
+      color: #7c3aed;
+    }
+
+    .btn-view:hover {
+      background: #7c3aed;
+      color: white;
+      transform: translateY(-1px);
+    }
+
+    .btn-verify {
+      background: #7c3aed;
+      color: white;
+      border: none;
+    }
+
+    .btn-verify:hover {
+      background: #6d28d9;
+      transform: translateY(-1px);
+    }
+
+    .cert-badge {
+      position: absolute;
+      top: 1rem; right: 1rem;
+      padding: 0.2rem 0.8rem;
+      border-radius: 40px;
+      background: rgba(255,255,255,0.8);
+      backdrop-filter: blur(4px);
+      color: #7c3aed;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      border: 1px solid rgba(124,58,237,0.2);
+      z-index: 2;
+    }
+
+    .cert-badge.silver { background: rgba(241,245,249,0.8); color: #334155; }
+    .cert-badge.bronze { background: rgba(255,251,235,0.9); color: #b45309; }
+
+    .cert-info h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+      color: #0f172a;
+    }
+
+    .issuer, .date {
+      font-size: 0.7rem;
+      color: #64748b;
+      margin-bottom: 0.2rem;
+    }
+
+    .issuer i, .date i { margin-right: 0.3rem; width: 1rem; }
+
+    .description {
+      font-size: 0.8rem;
+      color: #334155;
+      line-height: 1.45;
+      margin: 0.6rem 0;
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin: 0.6rem 0 0;
+    }
+
+    .skills span {
+      background: #f1f5f9;
+      padding: 0.2rem 0.7rem;
+      border-radius: 30px;
+      font-size: 0.65rem;
+      font-weight: 500;
+      color: #7c3aed;
+      transition: all 0.15s;
+    }
+
+    .skills span:hover { background: #ede9fe; transform: translateY(-1px); }
+
+    .cert-id {
+      font-size: 0.6rem;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      color: #94a3b8;
+      margin-top: 0.7rem;
+    }
+
+    /* ===================== INTERNSHIP SECTION ===================== */
+    .internships-section {
+      padding: 100px 3%;
+      background: #f8fbff;
+    }
+
+    .section-header { text-align: center; margin-bottom: 60px; }
+
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: 30px;
+      background: #eaf2ff;
+      color: #2563eb;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .section-header h2 { font-size: 42px; font-weight: 800; color: #0f172a; margin: 20px 0 10px; }
+    .section-header p { font-size: 17px; color: #64748b; }
+
+    .timeline { position: relative; width: 100%; max-width: 1700px; margin: auto; }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 35px; top: 0;
+      width: 4px; height: 100%;
+      background: #7c3aed;
+    }
+
+    .timeline-item { position: relative; padding-left: 90px; margin-bottom: 35px; }
+
+    .timeline-dot {
+      position: absolute;
+      left: 20px; top: 25px;
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      background: #fff;
+      border: 6px solid #7c3aed;
+      box-shadow: 0 0 15px rgba(124,58,237,.25);
+    }
+
+    .internship-card {
+      background: #fff;
+      border-radius: 24px;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 12px 30px rgba(0,0,0,.05);
+      padding: 40px;
+      transition: .3s;
+    }
+
+    .internship-card:hover { transform: translateY(-8px) scale(1.01); box-shadow: 0 20px 40px rgba(124,58,237,.15); }
+
+    .internship-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 30px; }
+
+    .right-section { border-left: 1px solid #e5e7eb; padding-left: 30px; }
+
+    .company-header { display: flex; gap: 25px; align-items: flex-start; }
+
+    .company-logo {
+      width: 140px; height: 110px;
+      border-radius: 18px;
+      border: 1px solid #dbeafe;
+      background: #fff;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+
+    .company-logo img { width: 90%; object-fit: contain; }
+
+    .company-info h3 { font-size: 42px; color: #0f172a; margin-bottom: 10px; }
+    .company-info h4 { color: #7c3aed; font-size: 28px; margin-bottom: 15px; }
+    .verified { color: #7c3aed; font-size: 18px; margin-left: 5px; }
+
+    .meta-info { display: flex; gap: 30px; flex-wrap: wrap; }
+    .meta-info span { color: #334155; font-size: 18px; }
+
+    .stat-box {
+      background: #f5f9ff;
+      border: 1px solid #dbeafe;
+      border-radius: 18px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .stat-box i { font-size: 28px; color: #7c3aed; margin-bottom: 10px; }
+    .stat-box h5 { font-size: 30px; color: #7c3aed; margin-bottom: 5px; }
+    .stat-box p { color: #64748b; }
+
+    .skills-row { margin-top: 25px; display: flex; flex-wrap: wrap; gap: 10px; }
+
+    .skills-row span {
+      padding: 10px 18px;
+      background: #f3f0ff;
+      color: #7c3aed;
+      border-radius: 25px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .highlight-title { font-size: 28px; color: #7c3aed; margin-bottom: 20px; }
+    .highlight-list { padding-left: 20px; }
+    .highlight-list li { margin-bottom: 18px; color: #334155; line-height: 1.7; font-size: 17px; }
+
+    .credential-row { margin-top: 25px; padding-top: 20px; border-top: 1px solid #e5e7eb; }
+    .credential-label { font-weight: 700; color: #0f172a; }
+    .credential-id { margin-left: 10px; background: #f3f0ff; color: #7c3aed; padding: 8px 14px; border-radius: 12px; font-weight: 700; }
+
+    .action-buttons { display: flex; gap: 15px; margin-top: 25px; }
+
+    .action-buttons .btn-outline {
+      flex: 1; text-align: center; padding: 16px;
+      border: 2px solid #7c3aed; border-radius: 14px;
+      text-decoration: none; color: #7c3aed; font-weight: 700;
+      transition: all .3s ease;
+    }
+
+    .action-buttons .btn-primary {
+      flex: 1; text-align: center; padding: 16px; border-radius: 14px;
+      text-decoration: none; background: #7c3aed; color: #fff; font-weight: 700;
+      transition: all .3s ease;
+    }
+
+    .action-buttons .btn-outline:hover { background: #7c3aed; color: white; transform: translateY(-3px) scale(1.05); }
+    .action-buttons .btn-primary:hover { background: #6d28d9; transform: translateY(-3px) scale(1.05); }
+
+    .certificate-banner {
+      margin-top: 40px;
+      background: white;
+      border-radius: 24px;
+      border: 1px solid #e5e7eb;
+      padding: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .banner-left { display: flex; gap: 20px; align-items: center; }
+    .banner-icon { font-size: 48px; color: #7c3aed; }
+    .banner-left h4 { color: #0f172a; margin-bottom: 8px; }
+    .banner-left p { color: #64748b; }
+
+    .view-all-btn {
+      padding: 16px 28px;
+      border: 2px solid #7c3aed;
+      border-radius: 14px;
+      text-decoration: none;
+      color: #7c3aed;
+      font-weight: 700;
+    }
+
+    .view-all-btn:hover { background: #7c3aed; color: white; }
+
+    /* ===================== CTA SECTION ===================== */
+    .cta-box {
+      margin: 60px 20px;
+      padding: 50px 25px;
+      border-radius: 30px;
+      background: linear-gradient(135deg, #7c3aed, #6366f1);
+      color: white;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+      transition: all 0.4s ease;
+    }
+
+    .cta-box::before {
+      content: '';
+      position: absolute; inset: 0;
+      border-radius: 30px;
+      background: radial-gradient(circle at top left, rgba(255,255,255,0.2), transparent 60%);
+      pointer-events: none;
+    }
+
+    .cta-content { position: relative; z-index: 2; }
+    .cta-box:hover { transform: translateY(-6px); box-shadow: 0 40px 80px rgba(124,58,237,0.4); }
+    .cta-content h2 { font-size: 32px; margin-bottom: 15px; font-weight: 700; }
+    .subtitle { font-size: 16px; color: rgba(255,255,255,0.9); }
+    .status { margin: 12px 0; font-size: 15px; font-weight: 500; }
+    .highlights p { margin: 6px 0; font-size: 14px; }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 25px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 22px;
+      border-radius: 999px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .primary { background: white; color: #6c63ff; box-shadow: 0 6px 20px rgba(255,255,255,0.4); }
+    .secondary { border: 2px solid white; color: white; }
+    .btn:hover { transform: scale(1.12); }
+    .primary:hover { box-shadow: 0 12px 30px rgba(255,255,255,0.6); }
+    .secondary:hover { background: white; color: #6c63ff; }
+    .btn i { transition: transform 0.25s ease; }
+    .btn:hover i { transform: scale(1.2); }
+
+    .availability {
+      margin-top: 18px;
+      background: #e6ffe6;
+      color: #15803d;
+      padding: 10px 18px;
+      border-radius: 25px;
+      display: inline-block;
+      font-weight: 600;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: all 0.25s ease;
+    }
+
+    .availability:hover { transform: scale(1.1); box-shadow: 0 10px 25px rgba(0,0,0,0.25); }
+
+    /* ===================== FOOTER ===================== */
+    .footer {
+      margin-top: 60px;
+      padding: 15px 10px;
+      text-align: center;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: #94a3b8;
+      font-size: 14px;
+      border-top: 0.6px solid rgba(255,255,255,0.06);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .footer::before {
+      content: "";
+      position: absolute; top: 0; left: -50%;
+      width: 200%; height: 2px;
+      background: linear-gradient(90deg, transparent, #7c3aed, transparent);
+      animation: glowMove 4s linear infinite;
+    }
+
+    @keyframes glowMove { 0% { left: -50%; } 100% { left: 100%; } }
+    .footer p:hover { color: #e2e8f0; transform: scale(1.05); }
+    .footer:hover { box-shadow: 0 -10px 40px rgba(124,58,237,0.2); }
+
+    /* WhatsApp */
+    .whatsapp {
+      position: fixed;
+      bottom: 25px; right: 25px;
+      width: 45px; height: 45px;
+      background: #25D366;
+      color: white;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+      border-radius: 50%;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      transition: all 0.3s ease;
+      z-index: 999;
+      text-decoration: none;
+    }
+
+    .whatsapp:hover { transform: scale(1.2) rotate(5deg); box-shadow: 0 15px 40px rgba(37,211,102,0.6); }
+
+    .whatsapp::after {
+      content: '';
+      position: absolute; inset: 0;
+      border-radius: 50%;
+      background: rgba(37,211,102,0.4);
+      animation: pulseWA 2s infinite;
+      z-index: -1;
+    }
+
+    @keyframes pulseWA {
+      0% { transform: scale(1); opacity: 0.7; }
+      70% { transform: scale(1.8); opacity: 0; }
+      100% { opacity: 0; }
+    }
+
+    .whatsapp:hover::before {
+      content: "Chat with me";
+      position: absolute;
+      right: 65px;
+      background: black;
+      color: white;
+      padding: 6px 10px;
+      border-radius: 8px;
+      font-size: 12px;
+    }
+
+    /* Modal */
     .modal {
       display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
       background: rgba(0,0,0,0.95);
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-      cursor: pointer;
+      justify-content: center; align-items: center;
+      z-index: 1000; cursor: pointer;
     }
 
     .modal img {
-      max-width: 95%;
-      max-height: 95%;
+      max-width: 95%; max-height: 95%;
       border-radius: 1rem;
-      box-shadow: var(--shadow);
-    }
-/* ====================================
-   PREMIUM INTERNSHIP SECTION
-==================================== */
-
-.internships-section{
-    padding:100px 3%;
-    background:#f8fbff;
-}
-
-.section-header{
-    text-align:center;
-    margin-bottom:60px;
-}
-
-.section-tag{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    padding:10px 20px;
-    border-radius:30px;
-    background:#eaf2ff;
-    color:#2563eb;
-    font-weight:600;
-    font-size:14px;
-}
-
-.section-header h2{
-    font-size:42px;
-    font-weight:800;
-    color:#0f172a;
-    margin:20px 0 10px;
-}
-
-.section-header p{
-    font-size:17px;
-    color:#64748b;
-}
-
-.timeline{
-    position:relative;
-    width:100%
-    max-width:1700px;
-    margin:auto;
-}
-
-.timeline::before{
-    content:"";
-    position:absolute;
-    left:35px;
-    top:0;
-    width:4px;
-    height:100%;
-    background:#2563eb;
-}
-
-.timeline-item{
-    position:relative;
-    padding-left:90px;
-    margin-bottom:35px;
-}
-
-.timeline-dot{
-    position:absolute;
-    left:20px;
-    top:25px;
-    width:34px;
-    height:34px;
-    border-radius:50%;
-    background:#fff;
-    border:6px solid #2563eb;
-    box-shadow:0 0 15px rgba(37,99,235,.25);
-}
-
-.internship-card{
-    background:#fff;
-    border-radius:24px;
-    border:1px solid #e5e7eb;
-    box-shadow:0 12px 30px rgba(0,0,0,.05);
-    padding:40px;
-    transition:.3s;
-}
-
-.internship-card:hover{
-    transform:translateY(-8px) scale(1.01);
-    box-shadow:0 20px 40px rgba(37,99,235,.15);
-}
-
-.internship-grid{
-    display:grid;
-    grid-template-columns:1.5fr 1fr;
-    gap:30px;
-}
-
-.right-section{
-    border-left:1px solid #e5e7eb;
-    padding-left:30px;
-}
-
-.company-header{
-    display:flex;
-    gap:25px;
-    align-items:flex-start;
-}
-
-.company-logo{
-    width:140px;
-    height:110px;
-    border-radius:18px;
-    border:1px solid #dbeafe;
-    background:#fff;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    overflow:hidden;
-}
-
-.company-logo img{
-    width:90%;
-    object-fit:contain;
-}
-
-.company-info h3{
-    font-size:42px;
-    color:#0f172a;
-    margin-bottom:10px;
-}
-
-.company-info h4{
-    color:#2563eb;
-    font-size:28px;
-    margin-bottom:15px;
-}
-
-.verified{
-    color:#2563eb;
-    font-size:18px;
-    margin-left:5px;
-}
-
-.meta-info{
-    display:flex;
-    gap:30px;
-    flex-wrap:wrap;
-}
-
-.meta-info span{
-    color:#334155;
-    font-size:18px;
-}
-
-.stats-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:15px;
-    margin-top:30px;
-}
-
-.stat-box{
-    background:#f5f9ff;
-    border:1px solid #dbeafe;
-    border-radius:18px;
-    padding:20px;
-    text-align:center;
-}
-
-.stat-box i{
-    font-size:28px;
-    color:#2563eb;
-    margin-bottom:10px;
-}
-
-.stat-box h5{
-    font-size:30px;
-    color:#2563eb;
-    margin-bottom:5px;
-}
-
-.stat-box p{
-    color:#64748b;
-}
-
-.skills-row{
-    margin-top:25px;
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
-}
-
-.skills-row span{
-    padding:10px 18px;
-    background:#eff6ff;
-    color:#2563eb;
-    border-radius:25px;
-    font-size:14px;
-    font-weight:600;
-}
-
-.highlight-title{
-    font-size:28px;
-    color:#2563eb;
-    margin-bottom:20px;
-}
-
-.highlight-list{
-    padding-left:20px;
-}
-
-.highlight-list li{
-    margin-bottom:18px;
-    color:#334155;
-    line-height:1.7;
-    font-size:17px;
-}
-
-.credential-row{
-    margin-top:25px;
-    padding-top:20px;
-    border-top:1px solid #e5e7eb;
-}
-
-.credential-label{
-    font-weight:700;
-    color:#0f172a;
-}
-
-.credential-id{
-    margin-left:10px;
-    background:#eff6ff;
-    color:#2563eb;
-    padding:8px 14px;
-    border-radius:12px;
-    font-weight:700;
-}
-
-.action-buttons{
-    display:flex;
-    gap:15px;
-    margin-top:25px;
-}
-
-.btn-outline{
-    flex:1;
-    text-align:center;
-    padding:16px;
-    border:2px solid #2563eb;
-    border-radius:14px;
-    text-decoration:none;
-    color:#2563eb;
-    font-weight:700;
-}
-
-.btn-primary{
-    flex:1;
-    text-align:center;
-    padding:16px;
-    border-radius:14px;
-    text-decoration:none;
-    background:#2563eb;
-    color:#fff;
-    font-weight:700;
-}
-
-.btn-outline{
-    transition:all .3s ease;
-}
-
-.btn-primary{
-    transition:all .3s ease;
-}
-
-.btn-outline:hover{
-    background:#2563eb;
-    color:white;
-    transform:translateY(-3px) scale(1.05);
-    box-shadow:0 10px 25px rgba(37,99,235,.25);
-}
-
-.btn-primary:hover{
-    background:#1d4ed8;
-    transform:translateY(-3px) scale(1.05);
-    box-shadow:0 10px 25px rgba(37,99,235,.35);
-}
-
-.certificate-banner{
-    margin-top:40px;
-    background:white;
-    border-radius:24px;
-    border:1px solid #e5e7eb;
-    padding:30px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    flex-wrap:wrap;
-    gap:20px;
-}
-
-.banner-left{
-    display:flex;
-    gap:20px;
-    align-items:center;
-}
-
-.banner-icon{
-    font-size:48px;
-    color:#2563eb;
-}
-
-.banner-left h4{
-    color:#0f172a;
-    margin-bottom:8px;
-}
-
-.banner-left p{
-    color:#64748b;
-}
-
-.view-all-btn{
-    padding:16px 28px;
-    border:2px solid #2563eb;
-    border-radius:14px;
-    text-decoration:none;
-    color:#2563eb;
-    font-weight:700;
-}
-
-.view-all-btn:hover{
-    background:#2563eb;
-    color:white;
-}
-
-/* MOBILE */
-
-@media(max-width:992px){
-
-    .internship-grid{
-        grid-template-columns:1fr;
     }
 
-    .right-section{
-        border-left:none;
-        border-top:1px solid #e5e7eb;
-        padding-left:0;
-        padding-top:25px;
-    }
-
-    .stats-grid{
-        grid-template-columns:1fr;
-    }
-
-    .company-header{
-        flex-direction:column;
-    }
-
-    .section-header h2{
-        font-size:48px;
-    }
-
-    .action-buttons{
-        flex-direction:column;
-    }
-}
-    /* Open Section */
-/* ===== FINAL PREMIUM CTA ===== */
-
-/* ================= FINAL CTA ================= */
-
-.cta-box {
-  margin: 60px 20px;
-  padding: 50px 25px;
-  border-radius: 30px;
-  background: linear-gradient(135deg, #5f5cff, #7b2ff7);
-  color: white;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 25px 50px rgba(0,0,0,0.25);
-  transition: all 0.4s ease;
-}
-
-/* Overlay FIXED */
-.cta-box::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 30px;
-  background: radial-gradient(circle at top left, rgba(255,255,255,0.2), transparent 60%);
-  pointer-events: none; /* 🔥 IMPORTANT FIX */
-}
-
-/* Content above overlay */
-.cta-content {
-  position: relative;
-  z-index: 2;
-}
-
-/* Hover card */
-.cta-box:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 40px 80px rgba(79,70,229,0.4);
-}
-
-/* Text */
-.cta-content h2 {
-  font-size: 32px;
-  margin-bottom: 15px;
-  font-weight: 700;
-}
-
-.subtitle {
-  font-size: 16px;
-  color: rgba(255,255,255,0.9);
-}
-
-.status {
-  margin: 12px 0;
-  font-size: 15px;
-  font-weight: 500;
-}
-
-.highlights p {
-  margin: 6px 0;
-  font-size: 14px;
-}
-
-/* Buttons */
-.buttons {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  margin-top: 25px;
-  flex-wrap: wrap;
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 10px 22px;
-  border-radius: 999px;
-  font-weight: 500;
-  text-decoration: none;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-/* Primary */
-.primary {
-  background: white;
-  color: #6c63ff;
-  box-shadow: 0 6px 20px rgba(255,255,255,0.4);
-}
-
-/* Secondary */
-.secondary {
-  border: 2px solid white;
-  color: white;
-}
-
-/* 🔥 FINAL HOVER WORKING */
-.btn:hover {
-  transform: scale(1.12);
-}
-
-/* Glow */
-.primary:hover {
-  box-shadow: 0 12px 30px rgba(255,255,255,0.6);
-}
-
-/* Secondary hover */
-.secondary:hover {
-  background: white;
-  color: #6c63ff;
-}
-
-/* Icon animation */
-.btn i {
-  transition: transform 0.25s ease;
-}
-
-.btn:hover i {
-  transform: scale(1.2);
-}
-
-/* Availability */
-.availability {
-  margin-top: 18px;
-  background: #e6ffe6;
-  color: #15803d;
-  padding: 10px 18px;
-  border-radius: 25px;
-  display: inline-block;
-  font-weight: 600;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  transition: all 0.25s ease;
-}
-
-.availability:hover {
-  transform: scale(1.1);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
-}
-
-/* ===== WHATSAPP FINAL ===== */
-
-.whatsapp {
-  position: fixed;
-  bottom: 25px;
-  right: 25px;
-
-  width: 45px;     /* 👈 control size */
-  height: 45px;    /* 👈 same = perfect circle */
-
-  background: #25D366;
-  color: white;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  font-size: 20px; /* 👈 icon size */
-
-  border-radius: 50%;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-  transition: all 0.3s ease;
-  z-index: 999;
-}
-
-.whatsapp:hover {
-  transform: scale(1.2) rotate(5deg);
-  box-shadow: 0 15px 40px rgba(37,211,102,0.6);
-}
-
-/* Pulse */
-.whatsapp::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  background: rgba(37,211,102,0.4);
-  animation: pulse 2s infinite;
-  z-index: -1;
-}
-
-@keyframes pulse {
-  0% { transform: scale(1); opacity: 0.7; }
-  70% { transform: scale(1.8); opacity: 0; }
-  100% { opacity: 0; }
-}
-
-/* Tooltip */
-.whatsapp:hover::before {
-  content: "Chat with me";
-  position: absolute;
-  right: 65px;
-  background: black;
-  color: white;
-  padding: 6px 10px;
-  border-radius: 8px;
-  font-size: 12px;
-}
-/* ===== MOBILE RESPONSIVE FIX ===== */
-@media (max-width: 768px) {
-
-  .footer {
-    padding: 20px 10px;
-  }
-
-  .footer-text {
-    font-size: 13px;
-    text-align: center;
-  }
-
-  .footer-links {
-    gap: 12px;
-  }
-
-  .footer-links a {
-    width: 34px;
-    height: 34px;
-    font-size: 14px;
-  }
-
-}
-/* Responsive */
-@media (max-width: 768px) {
-    .skills-grid, .projects-grid, .value-grid, .stats-grid {
+    /* ===================== RESPONSIVE ===================== */
+    @media (max-width: 900px) {
+      .hero-body {
         grid-template-columns: 1fr;
-    }
-    
-    h1 {
-        font-size: 2rem;
-    }
-    
-    .btn-group {
-        flex-direction: column;
-    }
-    
-    .btn {
-        width: 100%;
-    }
-    
-    /* Remove rounded corners ONLY from images and cards */
-    .project-card,
-    .project-image-container,
-    .project-image,
-    .project-card img {
-        border-radius: 0 !important;
-    }
-    
-    /* BUTTONS - Fixed for better text fit */
-    .btn,
-    .project-card .btn,
-    .project-footer .btn {
-        border-radius: 9999px !important;
-        padding: 0.5rem 0.25rem;  /* Less padding */
-        font-size: 0.7rem;  /* Smaller font */
-        white-space: nowrap;
-        min-width: 0;  /* Allow buttons to shrink */
-    }
-    
-    /* Icon spacing */
-    .btn i, .btn svg {
-        margin-right: 0.15rem;
-        font-size: 0.7rem;
-    }
-    
-    /* Keep just a straight line separator */
-    .project-image-container {
-        height: auto;
-        min-height: 220px;
-        max-height: 260px;
-        border-bottom: 3px solid var(--primary-light);
-    }
-    
-    .project-image {
-        object-fit: contain;
-        object-position: center;
-        background: white;
-    }
-    
-    /* MOBILE ONLY - Font adjustments */
-    .project-header h3 {
-        font-size: 1.1rem;
-    }
-    
-    .project-header p {
-        font-size: 0.8rem;  /* Smaller description */
-        margin-bottom: 0.5rem;
-    }
-    
-    .metric {
-        font-size: 0.7rem;
-        padding: 0.2rem 0.6rem;
-    }
-    
-    .preview-title {
-        font-size: 0.75rem;
-        margin-bottom: 0.5rem;
-    }
-    
-    .data-row {
-        font-size: 0.75rem;
-        padding: 0.25rem 0;
-    }
-    
-    .project-footer {
-        flex-direction: row;
-        gap: 0.3rem;  /* Smaller gap */
-        padding: 0.75rem;
-    }
-    
-    .project-footer .btn {
-        flex: 1;
-        border-radius: 9999px !important;
-        padding: 0.5rem 0.1rem;  /* Minimal padding */
-        font-size: 0.65rem;  /* Even smaller for two-word buttons */
-        letter-spacing: -0.01em;  /* Slightly tighter text */
-    }
-    
-    /* Specific fix for "Live Dashboard" and "Details" */
-    .project-footer .btn:first-child {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-    
-    /* If "Live Dashboard" is still too long, use this */
-    .project-footer .btn-primary {
-        font-size: 0.6rem;  /* Even smaller for the longer button */
-    }
-@media screen and (max-width: 768px){
+        padding: 2rem 1.5rem;
+        gap: 2.5rem;
+      }
 
-    .internships-section{
-        padding:60px 15px;
+      .hero-right { order: -1; }
+
+      .profile-card { width: 100%; max-width: 340px; }
+
+      .float-badge { display: none; }
+
+      .hero-nav { padding: 1rem 1.5rem; }
+
+      .hero-nav-links { gap: 1.2rem; }
     }
 
-    .section-header h2{
-        font-size:48px;
-        line-height:1.1;
+    @media (max-width: 768px) {
+      .hero-nav-links a span { display: none; }
+
+      .hero-stats { flex-direction: column; }
+
+      .skills-grid, .projects-grid, .value-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+
+      .cert-inner { flex-direction: column; padding: 1.2rem; }
+      .cert-left { flex: none; width: 100%; max-width: 220px; margin: 0 auto; }
+
+      .internship-grid { display: block; }
+      .right-section { border-left: none; border-top: 1px solid #e5e7eb; padding-left: 0; padding-top: 25px; }
+      .action-buttons { flex-direction: column; }
+
+      .project-footer { flex-direction: row; gap: 0.5rem; padding: 0.75rem; }
+      .project-footer .btn { font-size: 0.75rem; padding: 0.5rem 0.5rem; }
     }
 
-    .section-header p{
-        font-size:18px;
+    @media (max-width: 480px) {
+      .hero-nav { padding: 1rem; gap: 0; justify-content: space-around; }
+      .hero-nav-links { gap: 0; }
+      .hero-nav-brand .hero-nav-name { display: none; }
     }
-
-    .timeline{
-        margin-top:30px;
-    }
-
-    .timeline::before{
-        left:18px;
-    }
-
-    .timeline-item{
-        padding-left:45px;
-    }
-
-    .timeline-dot{
-        left:4px;
-        width:24px;
-        height:24px;
-        border-width:4px;
-    }
-
-    .internship-card{
-        padding:20px;
-        border-radius:20px;
-    }
-
-    .internship-grid{
-        display:block;
-    }
-
-    .company-header{
-        flex-direction:column;
-        align-items:center;
-        text-align:center;
-    }
-
-    .company-logo{
-        width:140px;
-        height:100px;
-        margin-bottom:15px;
-    }
-
-    .company-info h3{
-        font-size:28px;
-        margin-bottom:8px;
-    }
-
-    .company-info h4{
-        font-size:20px;
-    }
-
-    .meta-info{
-        justify-content:center;
-        gap:10px;
-    }
-
-    .stats-grid{
-        grid-template-columns:1fr;
-    }
-
-    .right-section{
-        border-left:none;
-        border-top:1px solid #e5e7eb;
-        padding-left:0;
-        padding-top:20px;
-        margin-top:20px;
-    }
-
-    .credential-row{
-        display:flex;
-        flex-direction:column;
-        gap:10px;
-    }
-
-    .credential-id{
-        width:fit-content;
-        margin:auto;
-    }
-
-    .action-buttons{
-        flex-direction:column;
-    }
-
-    .btn-outline,
-    .btn-primary{
-        width:100%;
-    }
-}/* Mobile Navbar - Icons Only */
-@media screen and (max-width: 768px){
-
-    nav{
-        display:flex;
-        justify-content:space-around;
-        align-items:center;
-        padding:12px 5px;
-    }
-
-    nav a{
-        font-size:0;
-        padding:8px;
-    }
-
-    nav a i{
-        font-size:22px;
-        margin:0;
-    }
-}}
   </style>
 </head>
 <body>
+
   <!-- Modal for image zoom -->
   <div id="modal" class="modal" onclick="closeModal()">
     <img id="modalImg" src="" alt="Enlarged view">
   </div>
 
-  <nav>
-    <a href="#home"><i class="fas fa-home"></i> Home</a>
-    <a href="#about"><i class="fas fa-user"></i> About</a>
-    <a href="#internships"><i class="fas fa-briefcase"></i> Internships</a>
-    <a href="#projects"><i class="fas fa-folder-open"></i> Projects</a>
-    <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
-  </nav>
+  <!-- ========================= HERO SECTION ========================= -->
+  <section id="home">
 
-  <main class="container">
-    <!-- Hero Section -->
-    <section id="home">
-      <div class="hero">
-        <div class="profile-img">
-          <img src="1775452156751.png" alt="Mohd Faij" onerror="this.src='https://via.placeholder.com/120'">
-        </div>
-        <h1>Mohd Faij</h1>
-        <p class="headline">Turning Data into Business Insights</p>
-        <p class="subheadline">Data Analyst | Finance & Business Analytics | SQL • Python • Power BI  Excel | Exploratory Data Analysis (EDA) • Machine Learning | Data Visualization | Business Intelligence | KPI Reporting | Data-Driven Decision Making</p>
-        
-        <div class="social-links">
-          <a href="mailto:mohdfaij.data@email.com"><i class="fas fa-envelope"></i></a>
-          <a href="https://linkedin.com/in/mohdfaij-data" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-          <a href="https://github.com/mohdfaij-data" target="_blank"><i class="fab fa-github"></i></a>
-          <a href="https://wa.me/+916387151848" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    <!-- Dark Navbar inside hero -->
+    <nav class="hero-nav">
+      <div class="hero-nav-brand">
+        <div class="hero-nav-logo">MF.</div>
+        <span class="hero-nav-name">Mohd Faij</span>
+      </div>
+
+      <ul class="hero-nav-links">
+        <li><a href="#home" class="active"><i class="fas fa-home"></i> <span>Home</span></a></li>
+        <li><a href="#about"><i class="fas fa-user"></i> <span>About</span></a></li>
+        <li><a href="#skills"><i class="fas fa-code"></i> <span>Skills</span></a></li>
+        <li><a href="#projects"><i class="fas fa-folder-open"></i> <span>Projects</span></a></li>
+        <li><a href="#contact"><i class="fas fa-envelope"></i> <span>Contact</span></a></li>
+      </ul>
+
+      <div class="hero-dark-toggle"><i class="fas fa-moon"></i></div>
+    </nav>
+
+    <!-- Hero Body: Left content + Right profile card -->
+    <div class="hero-body">
+
+      <!-- LEFT -->
+      <div class="hero-left">
+        <div class="hero-greeting">
+          👋 Hi, I'm
         </div>
 
-        <div class="btn-group">
-          <a href="resume.pdf" class="btn btn-primary" download><i class="fas fa-file-alt"></i> Download Resume</a>
-          <a href="#projects" class="btn btn-outline"><i class="fas fa-chart-line"></i> View Projects</a>
+        <h1 class="hero-name">
+          Mohd <span class="accent">Faij</span>
+        </h1>
+
+        <p class="hero-tagline">
+          I turn data into powerful<br>
+          <span class="highlight-purple">business insights.</span>
+        </p>
+
+        <p class="hero-desc">
+          Data Analyst with a passion for solving business problems through data.
+          I create dashboards and reports that drive smart, data-driven decisions.
+        </p>
+
+        <!-- Quick stats -->
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-icon"><i class="fas fa-chart-bar"></i></div>
+            <div>
+              <div class="hero-stat-num">12+</div>
+              <div class="hero-stat-label">Projects Done</div>
+            </div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-icon"><i class="fas fa-table"></i></div>
+            <div>
+              <div class="hero-stat-num">10K+</div>
+              <div class="hero-stat-label">Rows Analysed</div>
+            </div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-icon"><i class="fas fa-trophy"></i></div>
+            <div>
+              <div class="hero-stat-num">100%</div>
+              <div class="hero-stat-label">Client Satisfaction</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tools -->
+        <div>
+          <p class="hero-tools-label">Tools I work with</p>
+          <div class="hero-tools">
+            <span class="hero-tool"><i class="fas fa-database"></i> SQL</span>
+            <span class="hero-tool"><i class="fab fa-python"></i> Python</span>
+            <span class="hero-tool"><i class="fas fa-chart-pie"></i> Power BI</span>
+            <span class="hero-tool"><i class="fas fa-file-excel"></i> Excel</span>
+          </div>
+        </div>
+
+        <!-- CTA buttons -->
+        <div class="hero-ctas">
+          <a href="resume.pdf" class="hero-btn-primary" download>
+            <i class="fas fa-file-alt"></i> Get My Resume
+          </a>
+          <a href="#projects" class="hero-btn-secondary">
+            <i class="fas fa-rocket"></i> View My Work
+          </a>
+        </div>
+
+        <!-- Social links -->
+        <div class="hero-socials">
+          <span class="hero-socials-label">Let's connect</span>
+          <a href="https://linkedin.com/in/mohdfaij-data" target="_blank" class="hero-social-link"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://github.com/mohdfaij-data" target="_blank" class="hero-social-link"><i class="fab fa-github"></i></a>
+          <a href="mailto:mohdfaij.data@gmail.com" class="hero-social-link"><i class="fas fa-envelope"></i></a>
+          <a href="https://wa.me/+916387151848" target="_blank" class="hero-social-link"><i class="fab fa-whatsapp"></i></a>
         </div>
       </div>
-    </section>
+
+      <!-- RIGHT: Profile Card -->
+      <div class="hero-right">
+        <div class="profile-img-wrap">
+          <!-- Floating badges -->
+          <div class="float-badge left">
+            <i class="fas fa-chart-pie"></i> Power BI
+          </div>
+          <div class="float-badge right">
+            <i class="fas fa-arrow-trend-up"></i> Analytics
+          </div>
+          <div class="float-badge right2">
+            <i class="fab fa-python"></i> Python
+          </div>
+
+          <div class="profile-card">
+            <!-- Profile image ring -->
+            <div class="profile-img-ring">
+              <div class="profile-img-inner">
+                <img src="1775452156751.png" alt="Mohd Faij" onerror="this.style.background='linear-gradient(135deg,#7c3aed,#6366f1)';this.style.display='flex';this.style.alignItems='center';this.style.justifyContent='center';this.alt='MF'">
+              </div>
+            </div>
+
+            <!-- Quote -->
+            <div class="profile-quote">
+              <div class="profile-quote-icon"><i class="fas fa-quote-left"></i></div>
+              <p>Turning messy data<br>into clear business decisions.</p>
+            </div>
+
+            <!-- Availability -->
+            <div class="profile-avail">
+              <div class="avail-left">
+                <div class="avail-dot"></div>
+                <div>
+                  <div style="font-size:0.82rem;font-weight:600;color:#4ade80;">Available for opportunities</div>
+                  <div style="font-size:0.72rem;color:rgba(74,222,128,0.7);font-weight:400;">Open to Data Analyst roles</div>
+                </div>
+              </div>
+              <a href="mailto:mohdfaij.data@gmail.com" class="hire-me-btn">
+                <i class="fas fa-paper-plane"></i> Hire Me
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="hero-scroll">
+      <span class="hero-scroll-text">Scroll Down</span>
+      <div class="hero-scroll-icon"><i class="fas fa-chevron-down"></i></div>
+    </div>
+
+  </section>
+
+  <!-- Rest of the page in light mode -->
+  <main class="container">
 
     <!-- About Section -->
     <section id="about">
@@ -1717,127 +1726,98 @@ h1 {
         <p>Data doesn't lie — but it does hide. I find what's hidden. I'm a Data Analyst who doesn't just crunch numbers — I chase the story behind them, turning chaos into clarity and questions into decisions. Armed with SQL, Python, Excel, and Power BI, I bridge the gap between raw data and real business impact. As a B.Com graduate with a background in Statistics, Finance, and Business Analytics, I bring something most analysts don't — I understand the numbers and the business they belong to. I'm not just looking for any role. I'm looking for one where the work actually means something.</p>
       </div>
     </section>
-<!-- Skills Section -->
-<section id="skills">
-    <h2 class="section-title"><i class="fas fa-code"></i> Technical Skills</h2>
-    <div class="skills-grid">
 
-        <!-- SQL -->
+    <!-- Skills Section -->
+    <section id="skills">
+      <h2 class="section-title"><i class="fas fa-code"></i> Technical Skills</h2>
+      <div class="skills-grid">
         <div class="skill-card">
-            <div class="skill-icon"><i class="fas fa-database"></i></div>
-            <h3>SQL</h3>
-            <ul class="sub-skills">
-                <li>Joins & Subqueries</li>
-                <li>Query Optimization</li>
-                <li>Window Functions</li>
-            </ul>
+          <div class="skill-icon"><i class="fas fa-database"></i></div>
+          <h3>SQL</h3>
+          <ul class="sub-skills">
+            <li>Joins & Subqueries</li>
+            <li>Query Optimization</li>
+            <li>Window Functions</li>
+          </ul>
         </div>
-
-        <!-- Excel -->
         <div class="skill-card">
-            <div class="skill-icon"><i class="fas fa-file-excel"></i></div>
-            <h3>Excel</h3>
-            <ul class="sub-skills">
-                <li>Pivot Tables</li>
-                <li>Power Query</li>
-                <li>Advanced Formulas</li>
-            </ul>
+          <div class="skill-icon"><i class="fas fa-file-excel"></i></div>
+          <h3>Excel</h3>
+          <ul class="sub-skills">
+            <li>Pivot Tables</li>
+            <li>Power Query</li>
+            <li>Advanced Formulas</li>
+          </ul>
         </div>
-
-        <!-- Power BI -->
         <div class="skill-card">
-            <div class="skill-icon"><i class="fas fa-chart-pie"></i></div>
-            <h3>Power BI</h3>
-            <ul class="sub-skills">
-                <li>DAX</li>
-                <li>Power Query</li>
-                <li>Data Modeling</li>
-                <li>Dashboard Design</li>
-            </ul>
+          <div class="skill-icon"><i class="fas fa-chart-pie"></i></div>
+          <h3>Power BI</h3>
+          <ul class="sub-skills">
+            <li>DAX</li>
+            <li>Power Query</li>
+            <li>Data Modeling</li>
+            <li>Dashboard Design</li>
+          </ul>
         </div>
-
-        <!-- Python -->
         <div class="skill-card">
-            <div class="skill-icon"><i class="fab fa-python"></i></div>
-            <h3>Python</h3>
-            <ul class="sub-skills">
-                <li>Pandas</li>
-                <li>NumPy</li>
-                <li>Matplotlib</li>
-                <li>Seaborn</li>
-            </ul>
+          <div class="skill-icon"><i class="fab fa-python"></i></div>
+          <h3>Python</h3>
+          <ul class="sub-skills">
+            <li>Pandas</li>
+            <li>NumPy</li>
+            <li>Matplotlib</li>
+            <li>Seaborn</li>
+          </ul>
         </div>
+      </div>
+    </section>
 
-    </div>
-</section>
-
-<!-- Stats Section -->
-<section>
-    <div class="stats-grid">
-
+    <!-- Stats Section -->
+    <section>
+      <div class="stats-grid">
         <div class="stat-card">
-            <div class="stat-number">
-                <i class="fas fa-database"></i> 3
-            </div>
-            <div class="stat-label">SQL Projects</div>
-            <div class="stat-desc">Data extraction, joins, aggregations</div>
+          <div class="stat-number"><i class="fas fa-database"></i> 3</div>
+          <div class="stat-label">SQL Projects</div>
+          <div class="stat-desc">Data extraction, joins, aggregations</div>
         </div>
-
         <div class="stat-card">
-            <div class="stat-number">
-                <i class="fab fa-python"></i> 2
-            </div>
-            <div class="stat-label">Python Projects</div>
-            <div class="stat-desc">EDA, analysis, automation</div>
+          <div class="stat-number"><i class="fab fa-python"></i> 2</div>
+          <div class="stat-label">Python Projects</div>
+          <div class="stat-desc">EDA, analysis, automation</div>
         </div>
-
         <div class="stat-card">
-            <div class="stat-number">
-                <i class="fas fa-chart-pie"></i> 3
-            </div>
-            <div class="stat-label">Power BI Dashboards</div>
-            <div class="stat-desc">Interactive visuals, DAX, modeling</div>
+          <div class="stat-number"><i class="fas fa-chart-pie"></i> 3</div>
+          <div class="stat-label">Power BI Dashboards</div>
+          <div class="stat-desc">Interactive visuals, DAX, modeling</div>
         </div>
-
         <div class="stat-card">
-            <div class="stat-number">
-                <i class="fas fa-file-excel"></i> 4
-            </div>
-            <div class="stat-label">Excel Projects</div>
-            <div class="stat-desc">Pivot tables, formulas, dashboards</div>
+          <div class="stat-number"><i class="fas fa-file-excel"></i> 4</div>
+          <div class="stat-label">Excel Projects</div>
+          <div class="stat-desc">Pivot tables, formulas, dashboards</div>
         </div>
-
         <div class="stat-card">
-            <div class="stat-number">
-                <i class="fas fa-rocket"></i> 12+
-            </div>
-            <div class="stat-label">Total Projects</div>
-            <div class="stat-desc">SQL, Python, Power BI & Excel</div>
+          <div class="stat-number"><i class="fas fa-rocket"></i> 12+</div>
+          <div class="stat-label">Total Projects</div>
+          <div class="stat-desc">SQL, Python, Power BI & Excel</div>
         </div>
-
         <div class="stat-card">
-            <div class="stat-number">
-                <i class="fas fa-certificate"></i> 10+
-            </div>
-            <div class="stat-label">Certifications</div>
-            <div class="stat-desc">Industry-recognized credentials</div>
+          <div class="stat-number"><i class="fas fa-certificate"></i> 10+</div>
+          <div class="stat-label">Certifications</div>
+          <div class="stat-desc">Industry-recognized credentials</div>
         </div>
+      </div>
+    </section>
 
-    </div>
-</section>
-
-    <!-- Projects Section - Small Cards with Full Images -->
+    <!-- Projects Section -->
     <section id="projects">
       <h2 class="section-title"><i class="fas fa-project-diagram"></i> Featured Projects</h2>
       <div class="projects-grid">
-        
-        <!-- Project 1: Telecom Churn Analysis - Full image in small card -->
+
+        <!-- Project 1 -->
         <div class="project-card">
-          <!-- Image container shows FULL image without cropping -->
           <div class="project-image-container">
             <img src="executive-overview.png" alt="Telecom Churn Dashboard" class="project-image" onclick="openModal(this)" onerror="this.src='https://via.placeholder.com/400x300?text=Telecom+Dashboard'">
           </div>
-          
           <div class="project-header">
             <h3><i class="fas fa-chart-line"></i> Telecom Customer Churn Analysis</h3>
             <p>Complete end-to-end churn analysis with revenue impact</p>
@@ -1847,7 +1827,6 @@ h1 {
               <span class="metric"><i class="fas fa-chart-line"></i> Retention: 85.45%</span>
             </div>
           </div>
-          
           <div class="project-preview">
             <div class="preview-title"><i class="fas fa-chart-simple"></i> KEY METRICS</div>
             <div class="data-row"><span><i class="fas fa-users"></i> Total Customers</span> <span class="highlight">2,666</span></div>
@@ -1855,20 +1834,17 @@ h1 {
             <div class="data-row"><span><i class="fas fa-dollar-sign"></i> Avg Monthly Charge</span> <span class="highlight">158.26K</span></div>
             <div class="data-row"><span><i class="fas fa-phone"></i> Avg Service Calls</span> <span class="highlight">1.56</span></div>
           </div>
-
           <div class="project-footer">
             <a href="https://app.powerbi.com/view?r=eyJrIjoiNGM0OGMxN2UtMjdjYy00YzRkLWE5NTMtNzRhMDAyZjJkODZkIiwidCI6IjNkMGE5Y2FiLTQzYzYtNDlkNi1iODZjLTFiMTZjNGQwMjYzNSJ9&pageName=40ed3e03483196c0b5e2" target="_blank" class="btn btn-primary"><i class="fas fa-tachometer-alt"></i> Live Dashboard</a>
             <a href="telecom-details.html" class="btn btn-outline"><i class="fas fa-info-circle"></i> Details</a>
           </div>
         </div>
 
-        <!-- Project 2: Enterprise Sales Dashboard - Full image in small card -->
+        <!-- Project 2 -->
         <div class="project-card">
-          <!-- Image container shows FULL image without cropping -->
           <div class="project-image-container">
             <img src="Enterprise-Dashboard.png" alt="Enterprise Sales Dashboard" class="project-image" onclick="openModal(this)" onerror="this.src='https://via.placeholder.com/400x300?text=Enterprise+Dashboard'">
           </div>
-          
           <div class="project-header">
             <h3><i class="fas fa-chart-bar"></i> Enterprise Sales & Profitability Dashboard</h3>
             <p>Comprehensive sales analytics with revenue tracking</p>
@@ -1878,902 +1854,378 @@ h1 {
               <span class="metric"><i class="fas fa-arrow-up"></i> Total Profit: +15.3%</span>
             </div>
           </div>
-          
           <div class="project-preview">
             <div class="preview-title"><i class="fas fa-chart-pie"></i> REVENUE BREAKDOWN</div>
             <div class="data-row"><span><i class="fas fa-box"></i> Home</span> <span class="highlight">$4.76M</span></div>
-            <div class="revenue-bar"><div class="bar-fill" style="width: 75%"></div></div>
+            <div class="revenue-bar"><div class="bar-fill" style="width:75%"></div></div>
             <div class="data-row"><span><i class="fas fa-box"></i> Books</span> <span class="highlight">$4.55M</span></div>
-            <div class="revenue-bar"><div class="bar-fill" style="width: 65%"></div></div>
+            <div class="revenue-bar"><div class="bar-fill" style="width:65%"></div></div>
             <div class="data-row"><span><i class="fas fa-box"></i> Electronics</span> <span class="highlight">$3.66M</span></div>
-            <div class="revenue-bar"><div class="bar-fill" style="width: 40%"></div></div>
+            <div class="revenue-bar"><div class="bar-fill" style="width:40%"></div></div>
           </div>
-
           <div class="project-footer">
             <a href="https://app.powerbi.com/view?r=eyJrIjoiYmM4ZmJmMzMtNTE5Yi00NzIxLTlkNTItOWRiNmVkNTQwMDU3IiwidCI6IjNkMGE5Y2FiLTQzYzYtNDlkNi1iODZjLTFiMTZjNGQwMjYzNSJ9" target="_blank" class="btn btn-primary"><i class="fas fa-tachometer-alt"></i> Live Dashboard</a>
             <a href="sales-details.html" class="btn btn-outline"><i class="fas fa-info-circle"></i> Details</a>
           </div>
         </div>
-<!-- Project 2: HR Analytics - Employee Attrition Intelligence -->
-<div class="project-card">
-  <div class="project-image-container">
-    <img src="Overview.png" alt="HR Analytics Attrition Dashboard" class="project-image" onclick="openModal(this)" onerror="this.src='https://via.placeholder.com/400x300?text=HR+Attrition+Dashboard'">
-  </div>
-  
-  <div class="project-header">
-    <h3><i class="fas fa-users"></i> HR Analytics: Employee Attrition Intelligence</h3>
-    <p>4‑page prescriptive retention framework with SQL, Python, Power BI & DAX</p>
-    <div class="metrics-badge">
-      <span class="metric"><i class="fas fa-chart-line"></i> Attrition: 16.1%</span>
-      <span class="metric"><i class="fas fa-exclamation-triangle"></i> High-Risk: 10.4%</span>
-      <span class="metric"><i class="fas fa-clock"></i> Early Exit: 41%</span>
-    </div>
-  </div>
-  
-  <div class="project-preview">
-    <div class="preview-title"><i class="fas fa-chart-simple"></i> KEY INSIGHTS</div>
-    <div class="data-row"><span><i class="fas fa-clock"></i> Overtime Attrition</span> <span class="highlight">30.5% (3× higher)</span></div>
-    <div class="data-row"><span><i class="fas fa-calendar"></i> First 2 Years Exits</span> <span class="highlight">41% of total</span></div>
-    <div class="data-row"><span><i class="fas fa-chart-line"></i> Sales Rep Attrition</span> <span class="highlight">39.8%</span></div>
-    <div class="data-row"><span><i class="fas fa-trophy"></i> Retention Multiplier</span> <span class="highlight">1.29x (No Overtime)</span></div>
-  </div>
 
-  <div class="project-footer">
-    <a href="https://app.powerbi.com/view?r=eyJrIjoiOWJiNTE4MzgtMDY2ZS00MzMyLWFhYjEtMzQyNGQxY2VkZWZlIiwidCI6IjNkMGE5Y2FiLTQzYzYtNDlkNi1iODZjLTFiMTZjNGQwMjYzNSJ9&pageName=b81ffae9177e924195ab" target="_blank" class="btn btn-primary"><i class="fas fa-tachometer-alt"></i> Live Dashboard</a>
-    <a href="hr-analytics-details.html" class="btn btn-outline"><i class="fas fa-info-circle"></i> Details</a>
-  </div>
-</div>
-<!-- Project 3: E-Commerce Sales & Profit Intelligence -->
-<div class="project-card">
-  <div class="project-image-container">
-    <img src="page1_sales_overview.png" alt="E-Commerce Sales Dashboard" class="project-image" onclick="openModal(this)" onerror="this.src='https://via.placeholder.com/400x300?text=E-Commerce+Dashboard'">
-  </div>
+        <!-- Project 3 -->
+        <div class="project-card">
+          <div class="project-image-container">
+            <img src="Overview.png" alt="HR Analytics" class="project-image" onclick="openModal(this)" onerror="this.src='https://via.placeholder.com/400x300?text=HR+Attrition+Dashboard'">
+          </div>
+          <div class="project-header">
+            <h3><i class="fas fa-users"></i> HR Analytics: Employee Attrition Intelligence</h3>
+            <p>4-page prescriptive retention framework with SQL, Python, Power BI & DAX</p>
+            <div class="metrics-badge">
+              <span class="metric"><i class="fas fa-chart-line"></i> Attrition: 16.1%</span>
+              <span class="metric"><i class="fas fa-exclamation-triangle"></i> High-Risk: 10.4%</span>
+              <span class="metric"><i class="fas fa-clock"></i> Early Exit: 41%</span>
+            </div>
+          </div>
+          <div class="project-preview">
+            <div class="preview-title"><i class="fas fa-chart-simple"></i> KEY INSIGHTS</div>
+            <div class="data-row"><span><i class="fas fa-clock"></i> Overtime Attrition</span> <span class="highlight">30.5% (3× higher)</span></div>
+            <div class="data-row"><span><i class="fas fa-calendar"></i> First 2 Years Exits</span> <span class="highlight">41% of total</span></div>
+            <div class="data-row"><span><i class="fas fa-chart-line"></i> Sales Rep Attrition</span> <span class="highlight">39.8%</span></div>
+            <div class="data-row"><span><i class="fas fa-trophy"></i> Retention Multiplier</span> <span class="highlight">1.29x (No Overtime)</span></div>
+          </div>
+          <div class="project-footer">
+            <a href="https://app.powerbi.com/view?r=eyJrIjoiOWJiNTE4MzgtMDY2ZS00MzMyLWFhYjEtMzQyNGQxY2VkZWZlIiwidCI6IjNkMGE5Y2FiLTQzYzYtNDlkNi1iODZjLTFiMTZjNGQwMjYzNSJ9&pageName=b81ffae9177e924195ab" target="_blank" class="btn btn-primary"><i class="fas fa-tachometer-alt"></i> Live Dashboard</a>
+            <a href="hr-analytics-details.html" class="btn btn-outline"><i class="fas fa-info-circle"></i> Details</a>
+          </div>
+        </div>
 
-  <div class="project-header">
-    <h3><i class="fas fa-shopping-cart"></i> Amazon E-Commerce Sales Analytics Dashboard</h3>
-    <p>End-to-end profitability analysis with Power BI, SQL, DAX & data modeling</p>
+        <!-- Project 4 -->
+        <div class="project-card">
+          <div class="project-image-container">
+            <img src="page1_sales_overview.png" alt="E-Commerce" class="project-image" onclick="openModal(this)" onerror="this.src='https://via.placeholder.com/400x300?text=E-Commerce+Dashboard'">
+          </div>
+          <div class="project-header">
+            <h3><i class="fas fa-shopping-cart"></i> Amazon E-Commerce Sales Analytics Dashboard</h3>
+            <p>End-to-end profitability analysis with Power BI, SQL, DAX & data modeling</p>
+            <div class="metrics-badge">
+              <span class="metric"><i class="fas fa-rupee-sign"></i> ₹78.59M Revenue</span>
+              <span class="metric"><i class="fas fa-chart-line"></i> ₹25.76M Profit</span>
+              <span class="metric"><i class="fas fa-percent"></i> 32.78% Margin</span>
+            </div>
+          </div>
+          <div class="project-preview">
+            <div class="preview-title"><i class="fas fa-chart-simple"></i> KEY INSIGHTS</div>
+            <div class="data-row"><span><i class="fas fa-layer-group"></i> Top Category Driver</span><span class="highlight">Set dominates revenue & profit</span></div>
+            <div class="data-row"><span><i class="fas fa-arrow-down"></i> Profit Leakage</span><span class="highlight">₹8M+ loss from returns</span></div>
+            <div class="data-row"><span><i class="fas fa-truck"></i> Fulfillment Impact</span><span class="highlight">3x profit difference (FBA vs Merchant)</span></div>
+            <div class="data-row"><span><i class="fas fa-lightbulb"></i> Key Insight</span><span class="highlight">Operations > Sales for profitability</span></div>
+          </div>
+          <div class="project-footer">
+            <a href="https://app.powerbi.com/view?r=eyJrIjoiNTgwYTI5NzUtOTBiOC00ODZiLWFjOGYtMjNhOTE3OTc5OGM4IiwidCI6IjNkMGE5Y2FiLTQzYzYtNDlkNi1iODZjLTFiMTZjNGQwMjYzNSJ9" target="_blank" class="btn btn-primary"><i class="fas fa-tachometer-alt"></i> Live Dashboard</a>
+            <a href="ecommerce-details.html" class="btn btn-outline"><i class="fas fa-info-circle"></i> Details</a>
+          </div>
+        </div>
 
-    <div class="metrics-badge">
-      <span class="metric"><i class="fas fa-rupee-sign"></i> ₹78.59M Revenue</span>
-      <span class="metric"><i class="fas fa-chart-line"></i> ₹25.76M Profit</span>
-      <span class="metric"><i class="fas fa-percent"></i> 32.78% Margin</span>
-      <span class="metric"><i class="fas fa-rotate"></i> 42.22% ROI</span>
-    </div>
-  </div>
+        <!-- Project 5 -->
+        <div class="project-card">
+          <div class="project-image-container">
+            <img src="1_overview.png" alt="Credit Risk" class="project-image" onclick="openModal(this)" onerror="this.src='https://via.placeholder.com/400x300?text=Credit+Risk+Dashboard'">
+          </div>
+          <div class="project-header">
+            <h3><i class="fas fa-shield-alt"></i> Credit Risk & Loan Portfolio Analysis</h3>
+            <p>Analyzing default trends, risk segments & lending behavior using Power BI, DAX & data modeling</p>
+            <div class="metrics-badge">
+              <span class="metric"><i class="fas fa-users"></i> 32.6K Customers</span>
+              <span class="metric"><i class="fas fa-rupee-sign"></i> ₹312.4M Portfolio</span>
+              <span class="metric"><i class="fas fa-percent"></i> 21.82% Default Rate</span>
+            </div>
+          </div>
+          <div class="project-preview">
+            <div class="preview-title"><i class="fas fa-chart-simple"></i> KEY INSIGHTS</div>
+            <div class="data-row"><span><i class="fas fa-arrow-down"></i> High Risk Segment</span><span class="highlight">Low Income + High LTI</span></div>
+            <div class="data-row"><span><i class="fas fa-house-user"></i> Customer Risk</span><span class="highlight">~73% defaults from renters</span></div>
+            <div class="data-row"><span><i class="fas fa-exclamation-triangle"></i> Loan Purpose</span><span class="highlight">Debt consolidation highest risk</span></div>
+            <div class="data-row"><span><i class="fas fa-lightbulb"></i> Key Insight</span><span class="highlight">High LTI (>30%) sharply increases risk</span></div>
+          </div>
+          <div class="project-footer">
+            <a href="https://app.powerbi.com/view?r=eyJrIjoiNTgwYTI5NzUtOTBiOC00ODZiLWFjOGYtMjNhOTE3OTc5OGM4IiwidCI6IjNkMGE5Y2FiLTQzYzYtNDlkNi1iODZjLTFiMTZjNGQwMjYzNSJ9" target="_blank" class="btn btn-primary"><i class="fas fa-tachometer-alt"></i> Live Dashboard</a>
+            <a href="bank_details.html" class="btn btn-outline"><i class="fas fa-info-circle"></i> Details</a>
+          </div>
+        </div>
 
-  <div class="project-preview">
-    <div class="preview-title"><i class="fas fa-chart-simple"></i> KEY INSIGHTS</div>
+        <!-- Project 6 -->
+        <div class="project-card">
+          <div class="project-image-container">
+            <img src="Executive.png" alt="Healthcare Analytics" class="project-image" onclick="openModal(this)" onerror="this.src='https://via.placeholder.com/400x300?text=Healthcare+Analytics'">
+          </div>
+          <div class="project-header">
+            <h3><i class="fas fa-hospital-alt"></i> Healthcare Operations & Patient Flow Analysis</h3>
+            <p>Analyzing patient flow, clinical outcomes & revenue using Power BI, SQL, Python & DAX</p>
+            <div class="metrics-badge">
+              <span class="metric"><i class="fas fa-users"></i> 55.5K Patients</span>
+              <span class="metric"><i class="fas fa-rupee-sign"></i> ₹1,417.4M Revenue</span>
+              <span class="metric"><i class="fas fa-ambulance"></i> 32.92% Emergency Rate</span>
+            </div>
+          </div>
+          <div class="project-preview">
+            <div class="preview-title"><i class="fas fa-chart-simple"></i> KEY INSIGHTS</div>
+            <div class="data-row"><span><i class="fas fa-disease"></i> Top Revenue Condition</span><span class="highlight">Diabetes — ₹238.5M</span></div>
+            <div class="data-row"><span><i class="fas fa-house-user"></i> Patient Segment Risk</span><span class="highlight">Seniors cost significantly more</span></div>
+            <div class="data-row"><span><i class="fas fa-exclamation-triangle"></i> Admission Pattern</span><span class="highlight">Emergency/Elective/Urgent 33/33/33</span></div>
+            <div class="data-row"><span><i class="fas fa-lightbulb"></i> Key Insight</span><span class="highlight">Volume — not complexity — drives revenue</span></div>
+          </div>
+          <div class="project-footer">
+            <a href="https://app.powerbi.com/view?r=eyJrIjoiOWFhZmIwMjItZmRiZi00YTU5LTgxMDktMzg4MGFhYzFmOTBmIiwidCI6IjNkMGE5Y2FiLTQzYzYtNDlkNi1iODZjLTFiMTZjNGQwMjYzNSJ9" target="_blank" class="btn btn-primary"><i class="fas fa-tachometer-alt"></i> Live Dashboard</a>
+            <a href="healthcare_details.html" class="btn btn-outline"><i class="fas fa-info-circle"></i> Details</a>
+          </div>
+        </div>
 
-    <div class="data-row">
-      <span><i class="fas fa-layer-group"></i> Top Category Driver</span>
-      <span class="highlight">Set dominates revenue & profit</span>
-    </div>
+        <!-- Project 7 -->
+        <div class="project-card">
+          <div class="project-image-container">
+            <img src="hotel_overview.png" alt="SmartHotel Analytics" class="project-image" onclick="openModal(this)" onerror="this.src='https://via.placeholder.com/400x300?text=SmartHotel+Analytics'">
+          </div>
+          <div class="project-header">
+            <h3><i class="fas fa-hotel"></i> SmartHotel Booking Cancellation Prediction</h3>
+            <p>Hotel booking analytics focused on cancellation prediction using Power BI, Python, SQL & DAX</p>
+            <div class="metrics-badge">
+              <span class="metric"><i class="fas fa-calendar-check"></i> 119K Reservations</span>
+              <span class="metric"><i class="fas fa-ban"></i> 37.04% Cancellation</span>
+              <span class="metric"><i class="fas fa-dollar-sign"></i> 101.83 ADR</span>
+            </div>
+          </div>
+          <div class="project-preview">
+            <div class="preview-title"><i class="fas fa-chart-simple"></i> KEY INSIGHTS</div>
+            <div class="data-row"><span><i class="fas fa-exclamation-circle"></i> Cancellation Risk</span><span class="highlight">Online TA led cancellations</span></div>
+            <div class="data-row"><span><i class="fas fa-bed"></i> Room Demand</span><span class="highlight">Room Type A dominated</span></div>
+            <div class="data-row"><span><i class="fas fa-chart-line"></i> ADR Trend</span><span class="highlight">ADR peaked in summer</span></div>
+            <div class="data-row"><span><i class="fas fa-lightbulb"></i> Revenue Insight</span><span class="highlight">Risk detection reduced losses</span></div>
+          </div>
+          <div class="project-footer">
+            <a href="https://app.powerbi.com/view?r=eyJrIjoiNjFhY2ZmODYtM2EwNS00ODY1LWI0ZmYtNGE0ZjQ4MDVhMzFhIiwidCI6IjNkMGE5Y2FiLTQzYzYtNDlkNi1iODZjLTFiMTZjNGQwMjYzNSJ9&pageName=7ad97d2800f7d19c1186" target="_blank" class="btn btn-primary"><i class="fas fa-chart-pie"></i> Live Dashboard</a>
+            <a href="hotel_details.html" class="btn btn-outline"><i class="fas fa-info-circle"></i> Details</a>
+          </div>
+        </div>
 
-    <div class="data-row">
-      <span><i class="fas fa-arrow-down"></i> Profit Leakage</span>
-      <span class="highlight">₹8M+ loss from returns & cancellations</span>
-    </div>
+        <!-- Project 8 -->
+        <div class="project-card">
+          <div class="project-image-container">
+            <img src="Tech_overview.png" alt="Securitisation Risk" class="project-image" onclick="openModal(this)" onerror="this.src='https://via.placeholder.com/400x300?text=Securitisation+Risk+Dashboard'">
+          </div>
+          <div class="project-header">
+            <h3><i class="fas fa-university"></i> Securitisation Risk Intelligence Dashboard</h3>
+            <p>IFRS9 credit risk monitoring for an auto loan portfolio using Power BI, DAX & data modelling</p>
+            <div class="metrics-badge">
+              <span class="metric"><i class="fas fa-rupee-sign"></i> ₹317.8M Portfolio</span>
+              <span class="metric"><i class="fas fa-percent"></i> 6.6% Default Rate</span>
+              <span class="metric"><i class="fas fa-exclamation-circle"></i> ₹11.7M ECL</span>
+            </div>
+          </div>
+          <div class="project-preview">
+            <div class="preview-title"><i class="fas fa-chart-simple"></i> KEY INSIGHTS</div>
+            <div class="data-row"><span><i class="fas fa-shield-alt"></i> Portfolio Quality</span><span class="highlight">86% loans in IFRS9 Stage 1</span></div>
+            <div class="data-row"><span><i class="fas fa-car"></i> Asset Exposure</span><span class="highlight">SUVs highest portfolio share</span></div>
+            <div class="data-row"><span><i class="fas fa-exclamation-triangle"></i> Risk Alert</span><span class="highlight">Stage 3 drives highest ECL</span></div>
+            <div class="data-row"><span><i class="fas fa-lightbulb"></i> Key Insight</span><span class="highlight">Avg CIBIL 739.2 — above average</span></div>
+          </div>
+          <div class="project-footer">
+            <a href="https://app.powerbi.com/view?r=eyJrIjoiODk1OGQ4ZmItNTJjZS00ZjE1LTk0NTEtNDNjNmI3MDVlZTU4IiwidCI6IjNkMGE5Y2FiLTQzYzYtNDlkNi1iODZjLTFiMTZjNGQwMjYzNSJ9&pageName=1470d13bac5bc6ad4da9" target="_blank" class="btn btn-primary"><i class="fas fa-tachometer-alt"></i> Live Dashboard</a>
+            <a href="securitisation_details.html" class="btn btn-outline"><i class="fas fa-info-circle"></i> Details</a>
+          </div>
+        </div>
 
-    <div class="data-row">
-      <span><i class="fas fa-truck"></i> Fulfillment Impact</span>
-      <span class="highlight">3x profit difference (FBA vs Merchant)</span>
-    </div>
-
-    <div class="data-row">
-      <span><i class="fas fa-lightbulb"></i> Key Insight</span>
-      <span class="highlight">Operations > Sales for profitability</span>
-    </div>
-  </div>
-
-  <div class="project-footer">
-    <a href="https://app.powerbi.com/view?r=eyJrIjoiNTgwYTI5NzUtOTBiOC00ODZiLWFjOGYtMjNhOTE3OTc5OGM4IiwidCI6IjNkMGE5Y2FiLTQzYzYtNDlkNi1iODZjLTFiMTZjNGQwMjYzNSJ9" target="_blank" class="btn btn-primary">
-      <i class="fas fa-tachometer-alt"></i> Live Dashboard
-    </a>
-
-    <a href="ecommerce-details.html" class="btn btn-outline">
-      <i class="fas fa-info-circle"></i> Details
-    </a>
-  </div>
-</div>
-<!-- Project: Credit Risk & Loan Portfolio Analysis -->
-<div class="project-card">
-  <div class="project-image-container">
-    <img src="1_overview.png" alt="Credit Risk Dashboard" class="project-image" onclick="openModal(this)" onerror="this.src='https://via.placeholder.com/400x300?text=Credit+Risk+Dashboard'">
-  </div>
-
-  <div class="project-header">
-    <h3><i class="fas fa-shield-alt"></i> Credit Risk & Loan Portfolio Analysis Dashboard</h3>
-    <p>Analyzing default trends, risk segments & lending behavior using Power BI, DAX & data modeling</p>
-
-    <div class="metrics-badge">
-      <span class="metric"><i class="fas fa-users"></i> 32.6K Customers</span>
-      <span class="metric"><i class="fas fa-rupee-sign"></i> ₹312.4M Portfolio</span>
-      <span class="metric"><i class="fas fa-percent"></i> 21.82% Default Rate</span>
-      <span class="metric"><i class="fas fa-chart-line"></i> ₹77M Risk Exposure</span>
-    </div>
-  </div>
-
-  <div class="project-preview">
-    <div class="preview-title"><i class="fas fa-chart-simple"></i> KEY INSIGHTS</div>
-
-    <div class="data-row">
-      <span><i class="fas fa-arrow-down"></i> High Risk Segment</span>
-      <span class="highlight">Low Income + High LTI drives defaults</span>
-    </div>
-
-    <div class="data-row">
-      <span><i class="fas fa-house-user"></i> Customer Risk</span>
-      <span class="highlight">~73% defaults from renters</span>
-    </div>
-
-    <div class="data-row">
-      <span><i class="fas fa-exclamation-triangle"></i> Loan Purpose Risk</span>
-      <span class="highlight">Debt consolidation highest default rate</span>
-    </div>
-
-    <div class="data-row">
-      <span><i class="fas fa-lightbulb"></i> Key Insight</span>
-      <span class="highlight">High LTI (>30%) sharply increases risk</span>
-    </div>
-  </div>
-
-  <div class="project-footer">
-    <a href="https://app.powerbi.com/view?r=eyJrIjoiNTgwYTI5NzUtOTBiOC00ODZiLWFjOGYtMjNhOTE3OTc5OGM4IiwidCI6IjNkMGE5Y2FiLTQzYzYtNDlkNi1iODZjLTFiMTZjNGQwMjYzNSJ9" target="_blank" class="btn btn-primary">
-      <i class="fas fa-tachometer-alt"></i> Live Dashboard
-    </a>
-
-    <a href="bank_details.html" class="btn btn-outline">
-      <i class="fas fa-info-circle"></i> Details
-    </a>
-  </div>
-</div>
-<!-- Project: Healthcare Operations & Patient Flow Analysis -->
-<div class="project-card">
-  <div class="project-image-container">
-    <img src="Executive.png" alt="Healthcare Analytics Dashboard" class="project-image" onclick="openModal(this)" onerror="this.src='https://via.placeholder.com/400x300?text=Healthcare+Analytics+Dashboard'">
-  </div>
-  <div class="project-header">
-    <h3><i class="fas fa-hospital-alt"></i> Healthcare Operations & Patient Flow Analysis</h3>
-    <p>Analyzing patient flow, clinical outcomes & revenue intelligence using Power BI, SQL, Python & DAX</p>
-    <div class="metrics-badge">
-      <span class="metric"><i class="fas fa-users"></i> 55.5K Patients</span>
-      <span class="metric"><i class="fas fa-rupee-sign"></i> ₹1,417.4M Revenue</span>
-      <span class="metric"><i class="fas fa-ambulance"></i> 32.92% Emergency Rate</span>
-      <span class="metric"><i class="fas fa-vial"></i> 33.56% Abnormal Results</span>
-    </div>
-  </div>
-  <div class="project-preview">
-    <div class="preview-title"><i class="fas fa-chart-simple"></i> KEY INSIGHTS</div>
-    <div class="data-row">
-      <span><i class="fas fa-disease"></i> Top Revenue Condition</span>
-      <span class="highlight">Diabetes drives highest billing at ₹238.5M</span>
-    </div>
-    <div class="data-row">
-      <span><i class="fas fa-house-user"></i> Patient Segment Risk</span>
-      <span class="highlight">Seniors cost significantly more per visit</span>
-    </div>
-    <div class="data-row">
-      <span><i class="fas fa-exclamation-triangle"></i> Admission Pattern</span>
-      <span class="highlight">Emergency/Elective/Urgent split exactly 33/33/33</span>
-    </div>
-    <div class="data-row">
-      <span><i class="fas fa-lightbulb"></i> Key Insight</span>
-      <span class="highlight">Volume — not complexity — drives revenue</span>
-    </div>
-  </div>
-  <div class="project-footer">
-    <a href="https://app.powerbi.com/view?r=eyJrIjoiOWFhZmIwMjItZmRiZi00YTU5LTgxMDktMzg4MGFhYzFmOTBmIiwidCI6IjNkMGE5Y2FiLTQzYzYtNDlkNi1iODZjLTFiMTZjNGQwMjYzNSJ9" target="_blank" class="btn btn-primary">
-      <i class="fas fa-tachometer-alt"></i> Live Dashboard
-    </a>
-    <a href="healthcare_details.html" class="btn btn-outline">
-      <i class="fas fa-info-circle"></i> Details
-    </a>
-  </div>
-</div>
-<!-- Project: SmartHotel Booking Cancellation Prediction -->
-<div class="project-card">
-
-  <div class="project-image-container">
-    <img src="hotel_overview.png" 
-         alt="SmartHotel Analytics Dashboard" 
-         class="project-image" 
-         onclick="openModal(this)" 
-         onerror="this.src='https://via.placeholder.com/400x300?text=SmartHotel+Analytics'">
-  </div>
-
-  <div class="project-header">
-
-    <h3>
-      <i class="fas fa-hotel"></i> 
-      SmartHotel Booking Cancellation Prediction
-    </h3>
-
-    <p>
-     <p>
-  Hotel booking analytics project focused on cancellation prediction, pricing trends, 
-  reservation intelligence, and customer behavior using Power BI, Python, SQL & DAX.
-</p>
-    </p>
-
-    <div class="metrics-badge">
-
-      <span class="metric">
-        <i class="fas fa-calendar-check"></i> 
-        119K Reservations
-      </span>
-
-      <span class="metric">
-        <i class="fas fa-ban"></i> 
-        37.04% Cancellation Rate
-      </span>
-
-      <span class="metric">
-        <i class="fas fa-dollar-sign"></i> 
-        101.83 ADR
-      </span>
-
-      <span class="metric">
-        <i class="fas fa-users"></i> 
-        235K Guests
-      </span>
-
-      <span class="metric">
-        <i class="fas fa-user-check"></i> 
-        3.19% Repeat Guests
-      </span>
-
-    </div>
-
-  </div>
-
-  <div class="project-preview">
-
-    <div class="preview-title">
-      <i class="fas fa-chart-simple"></i> KEY INSIGHTS
-    </div>
-
-    <div class="data-row">
-      <span><i class="fas fa-exclamation-circle"></i> Cancellation Risk</span>
-      <span class="highlight">Online TA led cancellations</span>
-    </div>
-
-    <div class="data-row">
-      <span><i class="fas fa-bed"></i> Room Demand</span>
-      <span class="highlight">Room Type A dominated bookings</span>
-    </div>
-
-    <div class="data-row">
-      <span><i class="fas fa-chart-line"></i> ADR Trend</span>
-      <span class="highlight">ADR peaked in summer</span>
-    </div>
-
-    <div class="data-row">
-      <span><i class="fas fa-users"></i> Guest Segment</span>
-      <span class="highlight">Transient guests led reservations</span>
-    </div>
-
-    <div class="data-row">
-      <span><i class="fas fa-lightbulb"></i> Revenue Insight</span>
-      <span class="highlight">Risk detection reduced losses</span>
-    </div>
-
-  </div>
-
-  <div class="project-footer">
-
-    <a href="https://app.powerbi.com/view?r=eyJrIjoiNjFhY2ZmODYtM2EwNS00ODY1LWI0ZmYtNGE0ZjQ4MDVhMzFhIiwidCI6IjNkMGE5Y2FiLTQzYzYtNDlkNi1iODZjLTFiMTZjNGQwMjYzNSJ9&pageName=7ad97d2800f7d19c1186" target="_blank" class="btn btn-primary">
-      <i class="fas fa-chart-pie"></i> Live Dashboard
-    </a>
-
-    <a href="hotel_details.html" class="btn btn-outline">
-      <i class="fas fa-info-circle"></i> Details
-    </a>
-
-  </div>
-
-</div>
-<!-- Project: Securitisation Risk Intelligence Dashboard -->
-<div class="project-card">
-  <div class="project-image-container">
-    <img src="Tech_overview.png" alt="Securitisation Risk Intelligence Dashboard" class="project-image" onclick="openModal(this)" onerror="this.src='https://via.placeholder.com/400x300?text=Securitisation+Risk+Dashboard'">
-  </div>
-  <div class="project-header">
-    <h3><i class="fas fa-university"></i> Securitisation Risk Intelligence Dashboard</h3>
-    <p>End-to-end IFRS9 credit risk monitoring for an auto loan portfolio using Power BI, DAX & data modelling — backed by an 8-page project report</p>
-    <div class="metrics-badge">
-      <span class="metric"><i class="fas fa-rupee-sign"></i> ₹317.8M Portfolio</span>
-      <span class="metric"><i class="fas fa-file-alt"></i> 500 Loans</span>
-      <span class="metric"><i class="fas fa-percent"></i> 6.6% Default Rate</span>
-      <span class="metric"><i class="fas fa-exclamation-circle"></i> ₹11.7M ECL</span>
-    </div>
-  </div>
-  <div class="project-preview">
-    <div class="preview-title"><i class="fas fa-chart-simple"></i> KEY INSIGHTS</div>
-    <div class="data-row">
-      <span><i class="fas fa-shield-alt"></i> Portfolio Quality</span>
-      <span class="highlight">86% loans in IFRS9 Stage 1 — strong credit health</span>
-    </div>
-    <div class="data-row">
-      <span><i class="fas fa-car"></i> Asset Exposure</span>
-      <span class="highlight">SUVs contribute highest portfolio balance share</span>
-    </div>
-    <div class="data-row">
-      <span><i class="fas fa-exclamation-triangle"></i> Risk Alert</span>
-      <span class="highlight">Stage 3 drives highest ECL despite lowest exposure</span>
-    </div>
-    <div class="data-row">
-      <span><i class="fas fa-lightbulb"></i> Key Insight</span>
-      <span class="highlight">Avg CIBIL 739.2 — above-average borrower creditworthiness</span>
-    </div>
-  </div>
-  <div class="project-footer">
-    <a href="https://app.powerbi.com/view?r=eyJrIjoiODk1OGQ4ZmItNTJjZS00ZjE1LTk0NTEtNDNjNmI3MDVlZTU4IiwidCI6IjNkMGE5Y2FiLTQzYzYtNDlkNi1iODZjLTFiMTZjNGQwMjYzNSJ9&pageName=1470d13bac5bc6ad4da9" target="_blank" class="btn btn-primary">
-      <i class="fas fa-tachometer-alt"></i> Live Dashboard
-    </a>
-    <a href="securitisation_details.html" class="btn btn-outline">
-      <i class="fas fa-info-circle"></i> Details
-    </a>
-  </div>
-</div>
+      </div>
     </section>
+
+    <!-- Internships Section -->
     <section id="internships" class="internships-section">
-
-    <div class="section-header">
-        <span class="section-tag">
-            <i class="fas fa-briefcase"></i> EXPERIENCE
-        </span>
-
+      <div class="section-header">
+        <span class="section-tag"><i class="fas fa-briefcase"></i> EXPERIENCE</span>
         <h2>Internships</h2>
+        <p>Hands-on experience through internships and real-world projects.</p>
+      </div>
 
-        <p>
-            Hands-on experience through internships and real-world projects.
-        </p>
-    </div>
-
-    <div class="timeline">
+      <div class="timeline">
 
         <!-- Internship 1 -->
-
         <div class="timeline-item">
-
-            <div class="timeline-dot"></div>
-
-            <div class="internship-card">
-
-                <div class="internship-grid">
-
-                    <!-- LEFT -->
-
-                    <div class="left-section">
-
-                        <div class="company-header">
-
-                            <div class="company-logo">
-                                <img src="edunet-logo.png" alt="Edunet">
-                            </div>
-
-                            <div class="company-info">
-
-                                <h3>AI Intern</h3>
-
-                                <h4>
-                                    Edunet Foundation
-                                    <i class="fas fa-check-circle verified"></i>
-                                </h4>
-
-                                <div class="meta-info">
-                                    <span>
-                                        <i class="far fa-calendar"></i>
-                                        May 2026 – Present
-                                    </span>
-
-                                    <span>
-                                        <i class="fas fa-map-marker-alt"></i>
-                                        Remote
-                                    </span>
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <!-- Stats -->
-
-                        <div class="stats-grid">
-
-                            <div class="stat-box">
-                                <i class="far fa-folder-open"></i>
-                                <h5>3+</h5>
-                                <p>Projects</p>
-                            </div>
-
-                            <div class="stat-box">
-                                <i class="far fa-clock"></i>
-                                <h5>120+</h5>
-                                <p>Hours Worked</p>
-                            </div>
-
-                            <div class="stat-box">
-                                <i class="far fa-star"></i>
-                                <h5>AI & ML</h5>
-                                <p>Domain</p>
-                            </div>
-
-                        </div>
-
-                        <!-- Skills -->
-
-                        <div class="skills-row">
-
-                            <span>Python</span>
-                            <span>Scikit-learn</span>
-                            <span>Machine Learning</span>
-                            <span>Data Analysis</span>
-
-                        </div>
-
+          <div class="timeline-dot"></div>
+          <div class="internship-card">
+            <div class="internship-grid">
+              <div class="left-section">
+                <div class="company-header">
+                  <div class="company-logo"><img src="edunet-logo.png" alt="Edunet"></div>
+                  <div class="company-info">
+                    <h3>AI Intern</h3>
+                    <h4>Edunet Foundation <i class="fas fa-check-circle verified"></i></h4>
+                    <div class="meta-info">
+                      <span><i class="far fa-calendar"></i> May 2026 – Present</span>
+                      <span><i class="fas fa-map-marker-alt"></i> Remote</span>
                     </div>
-
-                    <!-- RIGHT -->
-
-                    <div class="right-section">
-
-                        <h5 class="highlight-title">
-                            <i class="fas fa-chart-line"></i>
-                            Key Highlights
-                        </h5>
-
-                        <ul class="highlight-list">
-                            <li>Developed machine learning models using Scikit-learn and Python.</li>
-                            <li>Performed data preprocessing and feature engineering.</li>
-                            <li>Evaluated and optimized model performance.</li>
-                        </ul>
-
-                        <div class="credential-row">
-
-                            <span class="credential-label">
-                                Credential ID:
-                            </span>
-
-                            <span class="credential-id">
-                                EDUNET-AI-2026
-                            </span>
-
-                        </div>
-
-<div class="action-buttons">
-    <a href="edunet-certificate.pdf"
-       target="_blank"
-       class="btn-outline">
-
-        <i class="far fa-file-alt"></i>
-        Certificate
-
-    </a>
-
-    <a href="edunet-certificate.pdf"
-       target="_blank"
-       class="btn-primary">
-
-        <i class="fas fa-shield-alt"></i>
-        Offer Letter
-
-    </a>
-
-                        </div>
-
-                    </div>
-
+                  </div>
                 </div>
-
+                <div class="stats-grid" style="grid-template-columns:repeat(3,1fr);margin-top:30px;">
+                  <div class="stat-box"><i class="far fa-folder-open"></i><h5>3+</h5><p>Projects</p></div>
+                  <div class="stat-box"><i class="far fa-clock"></i><h5>120+</h5><p>Hours</p></div>
+                  <div class="stat-box"><i class="far fa-star"></i><h5>AI & ML</h5><p>Domain</p></div>
+                </div>
+                <div class="skills-row">
+                  <span>Python</span><span>Scikit-learn</span><span>Machine Learning</span><span>Data Analysis</span>
+                </div>
+              </div>
+              <div class="right-section">
+                <h5 class="highlight-title"><i class="fas fa-chart-line"></i> Key Highlights</h5>
+                <ul class="highlight-list">
+                  <li>Developed machine learning models using Scikit-learn and Python.</li>
+                  <li>Performed data preprocessing and feature engineering.</li>
+                  <li>Evaluated and optimized model performance.</li>
+                </ul>
+                <div class="credential-row">
+                  <span class="credential-label">Credential ID:</span>
+                  <span class="credential-id">EDUNET-AI-2026</span>
+                </div>
+                <div class="action-buttons">
+                  <a href="edunet-certificate.pdf" target="_blank" class="btn-outline"><i class="far fa-file-alt"></i> Certificate</a>
+                  <a href="edunet-certificate.pdf" target="_blank" class="btn-primary"><i class="fas fa-shield-alt"></i> Offer Letter</a>
+                </div>
+              </div>
             </div>
-
+          </div>
         </div>
 
         <!-- Internship 2 -->
-
         <div class="timeline-item">
-
-            <div class="timeline-dot"></div>
-
-            <div class="internship-card">
-
-                <div class="internship-grid">
-
-                    <div class="left-section">
-
-                        <div class="company-header">
-
-                            <div class="company-logo">
-                                <img src="cognifyz-logo.png" alt="Cognifyz">
-                            </div>
-
-                            <div class="company-info">
-
-                                <h3>Data Analytics Intern</h3>
-
-                                <h4>
-                                    Cognifyz Technologies
-                                    <i class="fas fa-check-circle verified"></i>
-                                </h4>
-
-                                <div class="meta-info">
-
-                                    <span>
-                                        <i class="far fa-calendar"></i>
-                                        May 2026 – Present
-                                    </span>
-
-                                    <span>
-                                        <i class="fas fa-map-marker-alt"></i>
-                                        Remote
-                                    </span>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="stats-grid">
-
-                            <div class="stat-box">
-                                <i class="far fa-folder-open"></i>
-                                <h5>4+</h5>
-                                <p>Projects</p>
-                            </div>
-
-                            <div class="stat-box">
-                                <i class="far fa-clock"></i>
-                                <h5>100+</h5>
-                                <p>Hours Worked</p>
-                            </div>
-
-                            <div class="stat-box">
-                                <i class="far fa-star"></i>
-                                <h5>Analytics</h5>
-                                <p>Domain</p>
-                            </div>
-
-                        </div>
-
-                        <div class="skills-row">
-
-                            <span>Python</span>
-                            <span>Pandas</span>
-                            <span>SQL</span>
-                            <span>Power BI</span>
-                            <span>Data Visualization</span>
-
-                        </div>
-
+          <div class="timeline-dot"></div>
+          <div class="internship-card">
+            <div class="internship-grid">
+              <div class="left-section">
+                <div class="company-header">
+                  <div class="company-logo"><img src="cognifyz-logo.png" alt="Cognifyz"></div>
+                  <div class="company-info">
+                    <h3>Data Analytics Intern</h3>
+                    <h4>Cognifyz Technologies <i class="fas fa-check-circle verified"></i></h4>
+                    <div class="meta-info">
+                      <span><i class="far fa-calendar"></i> May 2026 – Present</span>
+                      <span><i class="fas fa-map-marker-alt"></i> Remote</span>
                     </div>
-
-                    <div class="right-section">
-
-                        <h5 class="highlight-title">
-                            <i class="fas fa-chart-line"></i>
-                            Key Highlights
-                        </h5>
-
-                        <ul class="highlight-list">
-                            <li>Conducted exploratory data analysis (EDA).</li>
-                            <li>Created dashboards and visualizations.</li>
-                            <li>Generated business insights from datasets.</li>
-                        </ul>
-
-                        <div class="credential-row">
-
-                            <span class="credential-label">
-                                Credential ID:
-                            </span>
-
-                            <span class="credential-id">
-                                COGNIFYZ-DA-2026
-                            </span>
-
-                        </div>
-
-<div class="action-buttons">
-    <a href="cognifyz-certificate.pdf"
-       target="_blank"
-       class="btn-outline">
-
-        <i class="far fa-file-alt"></i>
-        Certificate
-
-    </a>
-
-    <a href="cognifyz-certificate.pdf"
-       target="_blank"
-       class="btn-primary">
-
-        <i class="fas fa-file-signature"></i>
-        Offer Letter
-
-    </a>
-
-</div>
-
-                    </div>
-
+                  </div>
                 </div>
-
+                <div class="stats-grid" style="grid-template-columns:repeat(3,1fr);margin-top:30px;">
+                  <div class="stat-box"><i class="far fa-folder-open"></i><h5>4+</h5><p>Projects</p></div>
+                  <div class="stat-box"><i class="far fa-clock"></i><h5>100+</h5><p>Hours</p></div>
+                  <div class="stat-box"><i class="far fa-star"></i><h5>Analytics</h5><p>Domain</p></div>
+                </div>
+                <div class="skills-row">
+                  <span>Python</span><span>Pandas</span><span>SQL</span><span>Power BI</span><span>Data Visualization</span>
+                </div>
+              </div>
+              <div class="right-section">
+                <h5 class="highlight-title"><i class="fas fa-chart-line"></i> Key Highlights</h5>
+                <ul class="highlight-list">
+                  <li>Conducted exploratory data analysis (EDA).</li>
+                  <li>Created dashboards and visualizations.</li>
+                  <li>Generated business insights from datasets.</li>
+                </ul>
+                <div class="credential-row">
+                  <span class="credential-label">Credential ID:</span>
+                  <span class="credential-id">COGNIFYZ-DA-2026</span>
+                </div>
+                <div class="action-buttons">
+                  <a href="cognifyz-certificate.pdf" target="_blank" class="btn-outline"><i class="far fa-file-alt"></i> Certificate</a>
+                  <a href="cognifyz-certificate.pdf" target="_blank" class="btn-primary"><i class="fas fa-file-signature"></i> Offer Letter</a>
+                </div>
+              </div>
             </div>
-
+          </div>
         </div>
 
-    </div>
+      </div>
 
-    <!-- Footer Banner -->
-
-    <div class="certificate-banner">
-
+      <div class="certificate-banner">
         <div class="banner-left">
-
-            <i class="fas fa-award banner-icon"></i>
-
-            <div>
-                <h4>Verified Internship Credentials</h4>
-                <p>
-                    All certificates are issued by the respective organizations.
-                </p>
-            </div>
-
+          <i class="fas fa-award banner-icon"></i>
+          <div>
+            <h4>Verified Internship Credentials</h4>
+            <p>All certificates are issued by the respective organizations.</p>
+          </div>
         </div>
+        <a href="certificates.html" class="view-all-btn">View All Certificates <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </section>
 
-        <a href="certificates.html" class="view-all-btn">
-            View All Certificates
-            <i class="fas fa-arrow-right"></i>
-        </a>
-
-    </div>
-      </section>
     <!-- Certifications Section -->
     <section id="certifications">
       <h2 class="section-title"><i class="fas fa-certificate"></i> Certifications & Achievements</h2>
-      
       <div class="cert-showcase">
 
-<!-- ========================= -->
-<!-- IBM Data Visualization Using Python -->
-<!-- ========================= -->
-
-<div class="cert-card">
-
-  <div class="cert-badge verified">
-    <i class="fas fa-certificate"></i> Verified Credential
-  </div>
-
-  <div class="cert-inner">
-
-    <!-- Left Section -->
-    <div class="cert-left">
-
-      <div class="cert-preview">
-        <img src="IBM_Data_Visualization_Python.png"
-             alt="IBM Data Visualization Using Python Certificate">
-      </div>
-
-      <div class="cert-buttons">
-
-        <a href="IBM-Data-Visualization-Python.pdf"
-           target="_blank"
-           class="btn-view">
-
-          <i class="fas fa-file-pdf"></i>
-          View Full Certificate
-
-        </a>
-
-        <a href="https://www.credly.com/badges/31791955-f851-49fb-8e30-12edc46c6e17/public_url"
-           target="_blank"
-           class="btn-verify">
-
-          <i class="fas fa-check-circle"></i>
-          Verify Credential
-
-        </a>
-
-      </div>
-
-    </div>
-
-    <!-- Right Section -->
-    <div class="cert-info">
-
-      <h3>IBM | Data Visualization Using Python</h3>
-
-      <p class="issuer">
-        <i class="fas fa-building"></i>
-        IBM
-      </p>
-
-      <p class="date">
-        <i class="far fa-calendar-alt"></i>
-        Issued May 07, 2026
-      </p>
-
-      <p class="description">
-        Earned IBM's industry-recognized certification in Data Visualization Using Python, mastering the art of transforming raw datasets into compelling visual narratives. Developed hands-on expertise in Matplotlib, Pandas, and Python-based graphical analysis - building the analytical storytelling skills needed to drive real-world business decisions
-
-through data.
-      </p>
-
-      <div class="skills">
-
-        <span>
-          <i class="fab fa-python"></i>
-          Python
-        </span>
-
-        <span>
-          <i class="fas fa-chart-line"></i>
-          Data Visualization
-        </span>
-
-        <span>
-          <i class="fas fa-chart-bar"></i>
-          Matplotlib
-        </span>
-
-        <span>
-          <i class="fas fa-database"></i>
-          Data Analysis
-        </span>
-
-        <span>
-          <i class="fas fa-table"></i>
-          Pandas
-        </span>
-
-        <span>
-          <i class="fas fa-lightbulb"></i>
-          Analytical Thinking
-        </span>
-
-      </div>
-
-      <div class="cert-id">
-        Credential ID: 31791955-f851-49fb-8e30-12edc46c6e17
-      </div>
-
-    </div>
-
-  </div>
-
-</div>
-
-
-
-<!-- ========================= -->
-<!-- IBM Data Analytics for Sustainability -->
-<!-- ========================= -->
-
-<div class="cert-card">
-
-  <div class="cert-badge verified">
-    <i class="fas fa-certificate"></i> Verified Credential
-  </div>
-
-  <div class="cert-inner">
-
-    <!-- Left Section -->
-    <div class="cert-left">
-
-      <div class="cert-preview">
-        <img src="IBM_Data_Analytics_Sustainability.png"
-             alt="IBM Data Analytics for Sustainability Certificate">
-      </div>
-
-      <div class="cert-buttons">
-
-        <a href="IBM-Data-Analytics-Sustainability.pdf"
-           target="_blank"
-           class="btn-view">
-
-          <i class="fas fa-file-pdf"></i>
-          View Full Certificate
-
-        </a>
-
-        <a href="https://www.credly.com/badges/abd51cbc-f613-4166-8919-16639c33514b/public_url"
-           target="_blank"
-           class="btn-verify">
-
-          <i class="fas fa-check-circle"></i>
-          Verify Credential
-
-        </a>
-
-      </div>
-
-    </div>
-
-    <!-- Right Section -->
-    <div class="cert-info">
-
-      <h3>IBM | Data Analytics for Sustainability</h3>
-
-      <p class="issuer">
-        <i class="fas fa-building"></i>
-        IBM SkillsBuild
-      </p>
-
-      <p class="date">
-        <i class="far fa-calendar-alt"></i>
-        Issued May 08, 2026
-      </p>
-
-      <p class="description">
-        Completed IBM SkillsBuild's certification in Data Analytics for Sustainability, honing advanced skills in data interpretation, trend analysis, and sustainability-focused reporting. Applied data-driven methodologies to tackle complex environmental and business challenges — bridging the gap between analytical insight and impactful, responsible decision-making.
-      </p>
-
-      <div class="skills">
-
-        <span>
-          <i class="fas fa-chart-line"></i>
-          Data Analytics
-        </span>
-
-        <span>
-          <i class="fas fa-database"></i>
-          Data Analysis
-        </span>
-
-        <span>
-          <i class="fas fa-lightbulb"></i>
-          Analytical Thinking
-        </span>
-
-        <span>
-          <i class="fas fa-leaf"></i>
-          Sustainability Analytics
-        </span>
-
-        <span>
-          <i class="fas fa-chart-pie"></i>
-          Business Insights
-        </span>
-
-        <span>
-          <i class="fas fa-table"></i>
-          Reporting
-        </span>
-
-      </div>
-
-      <div class="cert-id">
-        Credential ID: abd51cbc-f613-4166-8919-16639c33514b
-      </div>
-
-    </div>
-
-  </div>
-
-</div>
-        <!-- IBM Data Analyst Capstone -->
+        <!-- IBM Data Visualization -->
+        <div class="cert-card">
+          <div class="cert-badge"><i class="fas fa-certificate"></i> Verified Credential</div>
+          <div class="cert-inner">
+            <div class="cert-left">
+              <div class="cert-preview"><img src="IBM_Data_Visualization_Python.png" alt="IBM Data Visualization Using Python Certificate"></div>
+              <div class="cert-buttons">
+                <a href="IBM-Data-Visualization-Python.pdf" target="_blank" class="btn-view"><i class="fas fa-file-pdf"></i> View Full Certificate</a>
+                <a href="https://www.credly.com/badges/31791955-f851-49fb-8e30-12edc46c6e17/public_url" target="_blank" class="btn-verify"><i class="fas fa-check-circle"></i> Verify Credential</a>
+              </div>
+            </div>
+            <div class="cert-info">
+              <h3>IBM | Data Visualization Using Python</h3>
+              <p class="issuer"><i class="fas fa-building"></i> IBM</p>
+              <p class="date"><i class="far fa-calendar-alt"></i> Issued May 07, 2026</p>
+              <p class="description">Earned IBM's industry-recognized certification in Data Visualization Using Python, mastering the art of transforming raw datasets into compelling visual narratives with Matplotlib, Pandas, and Python-based graphical analysis.</p>
+              <div class="skills">
+                <span><i class="fab fa-python"></i> Python</span>
+                <span><i class="fas fa-chart-line"></i> Data Visualization</span>
+                <span><i class="fas fa-chart-bar"></i> Matplotlib</span>
+                <span><i class="fas fa-database"></i> Data Analysis</span>
+                <span><i class="fas fa-table"></i> Pandas</span>
+              </div>
+              <div class="cert-id">Credential ID: 31791955-f851-49fb-8e30-12edc46c6e17</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- IBM Data Analytics for Sustainability -->
+        <div class="cert-card">
+          <div class="cert-badge"><i class="fas fa-certificate"></i> Verified Credential</div>
+          <div class="cert-inner">
+            <div class="cert-left">
+              <div class="cert-preview"><img src="IBM_Data_Analytics_Sustainability.png" alt="IBM Data Analytics for Sustainability Certificate"></div>
+              <div class="cert-buttons">
+                <a href="IBM-Data-Analytics-Sustainability.pdf" target="_blank" class="btn-view"><i class="fas fa-file-pdf"></i> View Full Certificate</a>
+                <a href="https://www.credly.com/badges/abd51cbc-f613-4166-8919-16639c33514b/public_url" target="_blank" class="btn-verify"><i class="fas fa-check-circle"></i> Verify Credential</a>
+              </div>
+            </div>
+            <div class="cert-info">
+              <h3>IBM | Data Analytics for Sustainability</h3>
+              <p class="issuer"><i class="fas fa-building"></i> IBM SkillsBuild</p>
+              <p class="date"><i class="far fa-calendar-alt"></i> Issued May 08, 2026</p>
+              <p class="description">Completed IBM SkillsBuild's certification in Data Analytics for Sustainability, honing advanced skills in data interpretation, trend analysis, and sustainability-focused reporting.</p>
+              <div class="skills">
+                <span><i class="fas fa-chart-line"></i> Data Analytics</span>
+                <span><i class="fas fa-leaf"></i> Sustainability Analytics</span>
+                <span><i class="fas fa-lightbulb"></i> Analytical Thinking</span>
+                <span><i class="fas fa-chart-pie"></i> Business Insights</span>
+              </div>
+              <div class="cert-id">Credential ID: abd51cbc-f613-4166-8919-16639c33514b</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- IBM Capstone -->
         <div class="cert-card">
           <div class="cert-badge"><i class="fas fa-trophy"></i> Most Valuable</div>
           <div class="cert-inner">
             <div class="cert-left">
-              <div class="cert-preview">
-                <img src="IBM_Data_Analyst.png" alt="IBM Certificate">
-              </div>
+              <div class="cert-preview"><img src="IBM_Data_Analyst.png" alt="IBM Certificate"></div>
               <div class="cert-buttons">
-                <a href="ibm-certificate.pdf" target="_blank" class="btn-view">
-                  <i class="fas fa-file-pdf"></i> View Full Certificate
-                </a>
-                <a href="https://coursera.org/verify/A7G49EPP821F" target="_blank" class="btn-verify">
-                  <i class="fas fa-check-circle"></i> Verify Certificate
-                </a>
+                <a href="ibm-certificate.pdf" target="_blank" class="btn-view"><i class="fas fa-file-pdf"></i> View Full Certificate</a>
+                <a href="https://coursera.org/verify/A7G49EPP821F" target="_blank" class="btn-verify"><i class="fas fa-check-circle"></i> Verify Certificate</a>
               </div>
             </div>
             <div class="cert-info">
               <h3>IBM Data Analyst Capstone Project</h3>
               <p class="issuer"><i class="fas fa-building"></i> IBM | Coursera</p>
               <p class="date"><i class="far fa-calendar-alt"></i> January 31, 2026</p>
-              <p class="description">Comprehensive capstone project demonstrating end‑to‑end data analysis skills including data cleaning, SQL, Python, and dashboard creation.</p>
+              <p class="description">Comprehensive capstone project demonstrating end-to-end data analysis skills including data cleaning, SQL, Python, and dashboard creation.</p>
               <div class="skills">
                 <span><i class="fas fa-chart-line"></i> Data Analysis</span>
                 <span><i class="fas fa-database"></i> SQL</span>
@@ -2785,21 +2237,15 @@ through data.
           </div>
         </div>
 
-        <!-- HackerRank SQL (Advanced) Certificate -->
+        <!-- HackerRank SQL -->
         <div class="cert-card">
           <div class="cert-badge silver"><i class="fas fa-code"></i> Advanced SQL</div>
           <div class="cert-inner">
             <div class="cert-left">
-              <div class="cert-preview">
-                <img src="hackerrank-sql-certificate.png" alt="HackerRank SQL Advanced Certificate">
-              </div>
+              <div class="cert-preview"><img src="hackerrank-sql-certificate.png" alt="HackerRank SQL Advanced Certificate"></div>
               <div class="cert-buttons">
-                <a href="sql_advanced-certificate.pdf" target="_blank" class="btn-view">
-                  <i class="fas fa-file-pdf"></i> View Full Certificate
-                </a>
-                <a href="https://www.hackerrank.com/certificates/2080940260AE" target="_blank" class="btn-verify">
-                  <i class="fas fa-check-circle"></i> Verify Certificate
-                </a>
+                <a href="sql_advanced-certificate.pdf" target="_blank" class="btn-view"><i class="fas fa-file-pdf"></i> View Full Certificate</a>
+                <a href="https://www.hackerrank.com/certificates/2080940260AE" target="_blank" class="btn-verify"><i class="fas fa-check-circle"></i> Verify Certificate</a>
               </div>
             </div>
             <div class="cert-info">
@@ -2818,28 +2264,22 @@ through data.
           </div>
         </div>
 
-        <!-- J.P. Morgan Quantitative Research -->
+        <!-- JP Morgan -->
         <div class="cert-card">
           <div class="cert-badge silver"><i class="fas fa-building"></i> Industry Recognition</div>
           <div class="cert-inner">
             <div class="cert-left">
-              <div class="cert-preview">
-                <img src="JP_Morgan.png" alt="J.P. Morgan Certificate">
-              </div>
+              <div class="cert-preview"><img src="JP_Morgan.png" alt="J.P. Morgan Certificate"></div>
               <div class="cert-buttons">
-                <a href="jpmorgan-certificate.pdf" target="_blank" class="btn-view">
-                  <i class="fas fa-file-pdf"></i> View Full Certificate
-                </a>
-                <a href="https://www.theforage.com/completion-certificates/Sj7temL583QAYpHXD/bWqaecPDbYAwSDqJy_Sj7temL583QAYpHXD_6972b7a0feaf7f1cb1370905_1769126536371_completion_certificate.pdf" target="_blank" class="btn-verify">
-                  <i class="fas fa-check-circle"></i> Verify Certificate
-                </a>
+                <a href="jpmorgan-certificate.pdf" target="_blank" class="btn-view"><i class="fas fa-file-pdf"></i> View Full Certificate</a>
+                <a href="https://www.theforage.com/completion-certificates/Sj7temL583QAYpHXD/bWqaecPDbYAwSDqJy_Sj7temL583QAYpHXD_6972b7a0feaf7f1cb1370905_1769126536371_completion_certificate.pdf" target="_blank" class="btn-verify"><i class="fas fa-check-circle"></i> Verify Certificate</a>
               </div>
             </div>
             <div class="cert-info">
               <h3>J.P. Morgan | Quantitative Research Job Simulation</h3>
               <p class="issuer"><i class="fas fa-building"></i> JPMorgan Chase & Co. | Forage</p>
               <p class="date"><i class="far fa-calendar-alt"></i> January 2026</p>
-              <p class="description">Virtual experience program simulating real‑world quantitative research tasks: financial data analysis, commodity pricing, credit risk.</p>
+              <p class="description">Virtual experience program simulating real-world quantitative research tasks: financial data analysis, commodity pricing, credit risk.</p>
               <div class="skills">
                 <span><i class="fas fa-chart-line"></i> Financial Analysis</span>
                 <span><i class="fas fa-shield-alt"></i> Credit Risk</span>
@@ -2851,91 +2291,67 @@ through data.
           </div>
         </div>
 
-        <!-- Python Libraries for Data Science -->
+        <!-- Python Libraries -->
         <div class="cert-card">
           <div class="cert-badge bronze"><i class="fas fa-laptop-code"></i> Technical Skill</div>
           <div class="cert-inner">
             <div class="cert-left">
-              <div class="cert-preview">
-                <img src="Python_Libraries.png" alt="Python Libraries Certificate">
-              </div>
+              <div class="cert-preview"><img src="Python_Libraries.png" alt="Python Libraries Certificate"></div>
               <div class="cert-buttons">
-                <a href="python-certificate.pdf" target="_blank" class="btn-view">
-                  <i class="fas fa-file-pdf"></i> View Full Certificate
-                </a>
-                <a href="https://www.simplilearn.com/skillup-certificate-landing?token=eyJjb3Vyc2VfaWQiOiIxNzUyIiwiY2VydGlmaWNhdGVfdXJsIjoiaHR0cHM6XC9cL2NlcnRpZmljYXRlcy5zaW1wbGljZG4ubmV0XC9zaGFyZVwvOTkyNDA4MV8xMDEzNTIzMF8xNzcyNzE3ODIyNzQ1LnBuZyIsInVzZXJuYW1lIjoiTU9IRCBGQUlKIn0%3D&utm_source=shared-certificate&utm_medium=lms&utm_campaign=shared-certificate-promotion&referrer=https%3A%2F%2Flms.simplilearn.com%2Fcourses%2F4242%2FPython-Libraries-for-Data-Science%2Fcertificate%2Fdownload-skillup&%24web_only=true&_branch_match_id=1564270053704371691&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXL87MLcjJ1EssKNDLyczL1k%2FVTw8zLSp190tPN0yyrytKTUstKsrMS49PKsovL04tsvUBqkpN8cwDAEepPBFBAAAA" target="_blank" class="btn-verify">
-                  <i class="fas fa-check-circle"></i> Verify Certificate
-                </a>
+                <a href="python-certificate.pdf" target="_blank" class="btn-view"><i class="fas fa-file-pdf"></i> View Full Certificate</a>
+                <a href="https://www.simplilearn.com/skillup-certificate-landing?token=eyJjb3Vyc2VfaWQiOiIxNzUyIiwiY2VydGlmaWNhdGVfdXJsIjoiaHR0cHM6XC9cL2NlcnRpZmljYXRlcy5zaW1wbGljZG4ubmV0XC9zaGFyZVwvOTkyNDA4MV8xMDEzNTIzMF8xNzcyNzE3ODIyNzQ1LnBuZyIsInVzZXJuYW1lIjoiTU9IRCBGQUlKIn0%3D" target="_blank" class="btn-verify"><i class="fas fa-check-circle"></i> Verify Certificate</a>
               </div>
             </div>
             <div class="cert-info">
               <h3>Python Libraries for Data Science</h3>
               <p class="issuer"><i class="fas fa-graduation-cap"></i> Simplilearn SkillUp</p>
               <p class="date"><i class="far fa-calendar-alt"></i> March 5, 2026</p>
-              <p class="description">Mastered essential Python libraries: NumPy, Pandas, Matplotlib, Scikit‑learn for data analysis and visualization.</p>
+              <p class="description">Mastered essential Python libraries: NumPy, Pandas, Matplotlib, Scikit-learn for data analysis and visualization.</p>
               <div class="skills">
                 <span><i class="fas fa-calculator"></i> NumPy</span>
                 <span><i class="fas fa-table"></i> Pandas</span>
                 <span><i class="fas fa-chart-line"></i> Matplotlib</span>
-                <span><i class="fas fa-brain"></i> Scikit‑learn</span>
+                <span><i class="fas fa-brain"></i> Scikit-learn</span>
               </div>
               <div class="cert-id">Certification Code: 9924081</div>
             </div>
           </div>
         </div>
+
       </div>
     </section>
 
-    <!-- Open for Opportunities -->
-<section id="contact" class="cta-box">
-  <div class="cta-content">
-    
-    <h2>🚀 Open to Opportunities</h2>
-    
-    <p class="subtitle">
-      Helping businesses turn data into <b>actionable insights</b> using 
-      <b>SQL, Python & Power BI</b>
-    </p>
+    <!-- CTA / Contact -->
+    <section id="contact" class="cta-box">
+      <div class="cta-content">
+        <h2>🚀 Open to Opportunities</h2>
+        <p class="subtitle">Helping businesses turn data into <b>actionable insights</b> using <b>SQL, Python & Power BI</b></p>
+        <p class="status"><b>Open to Data Analyst roles</b> | Immediate Joiner</p>
+        <div class="highlights">
+          <p>✔ 12+ Data Projects</p>
+          <p>✔ SQL | Python | Power BI</p>
+          <p>✔ Focused on Business Insights</p>
+        </div>
+        <div class="buttons">
+          <a href="mailto:mohdfaij.data@gmail.com" class="btn primary"><i class="fas fa-envelope"></i> Hire Me</a>
+          <a href="https://linkedin.com/in/mohdfaij-data" target="_blank" class="btn secondary"><i class="fab fa-linkedin"></i> LinkedIn</a>
+        </div>
+        <div class="availability">🟢 Available for Work</div>
+      </div>
+    </section>
 
-    <p class="status">
-      <b>Open to Data Analyst roles</b> | Immediate Joiner
-    </p>
-
-    <div class="highlights">
-      <p>✔ 3+ Data Projects</p>
-      <p>✔ SQL | Python | Power BI</p>
-      <p>✔ Focused on Business Insights</p>
-    </div>
-
-    <div class="buttons">
-      <a href="mailto:mohdfaij.data@gmail.com" class="btn primary">
-        <i class="fas fa-envelope"></i> Hire Me
-      </a>
-
-      <a href="https://linkedin.com/in/mohdfaij-data" target="_blank" class="btn secondary">
-        <i class="fab fa-linkedin"></i> LinkedIn
-      </a>
-    </div>
-
-    <div class="availability">
-      🟢 Available for Work
-    </div>
-
-  </div>
-</section>
-
-<!-- WhatsApp Floating -->
-<a href="https://wa.me/+916387151848" target="_blank" class="whatsapp">
-  <i class="fab fa-whatsapp"></i>
-</a>
   </main>
+
+  <!-- WhatsApp Floating -->
+  <a href="https://wa.me/+916387151848" target="_blank" class="whatsapp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
 
   <footer class="footer">
     <p><i class="far fa-copyright"></i> 2026 Mohd Faij • Data Analyst • All Rights Reserved</p>
   </footer>
 
   <script>
-    // Modal functionality for image zoom
     const modal = document.getElementById('modal');
     const modalImg = document.getElementById('modalImg');
 
@@ -2952,21 +2368,15 @@ through data.
       document.body.style.overflow = '';
     }
 
-    // Close modal with Escape key
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modal.style.display === 'flex') {
-        closeModal();
-      }
+      if (e.key === 'Escape' && modal.style.display === 'flex') closeModal();
     });
 
-    // Smooth scrolling for navigation
-    document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth' });
-        }
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
       });
     });
   </script>
