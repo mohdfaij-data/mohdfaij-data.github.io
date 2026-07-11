@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>VinStock — Stock Analysis & Screening Platform | Project Details – Mohd Faij</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #16a34a;
+      --primary-dark: #0e7c37;
+      --primary-light: rgba(22, 163, 74, 0.12);
+      --primary-mid: rgba(22, 163, 74, 0.22);
+      --secondary: #3b82f6;
+      --secondary-dark: #2563eb;
+      --secondary-light: rgba(59, 130, 246, 0.12);
+      --accent: #16a34a;
+      --accent-light: rgba(22, 163, 74, 0.1);
+      --dark: #0a0d14;
+      --text: #2d3748;
+      --muted: #718096;
+      --border: rgba(22, 163, 74, 0.2);
+      --border-blue: rgba(59, 130, 246, 0.2);
+      --bg: #f7f9f7;
+      --card-bg: rgba(255,255,255,0.95);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: linear-gradient(160deg, #f5fdf7 0%, #f0f6fe 50%, #f7f9f7 100%);
+      color: var(--dark);
+      font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: -120px; right: -120px;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(22,163,74,0.08) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    body::after {
+      content: '';
+      position: fixed;
+      bottom: -100px; left: -100px;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem 2rem 4rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 2rem;
+      color: var(--dark);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 0.55rem 1.1rem;
+      background: white;
+      border-radius: 40px;
+      border: 1.5px solid var(--border);
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(22,163,74,0.1);
+    }
+    .back-link:hover {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+      transform: translateX(-5px);
+      box-shadow: 0 8px 20px rgba(22,163,74,0.3);
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--primary);
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 0.78rem;
+      padding: 0.35rem 1rem;
+      border-radius: 30px;
+      margin-bottom: 1rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      box-shadow: 0 4px 12px rgba(22,163,74,0.35);
+    }
+
+    h1 {
+      font-size: 2.9rem;
+      font-weight: 800;
+      color: #0a0d14;
+      letter-spacing: -0.025em;
+      margin-bottom: 0.75rem;
+      line-height: 1.15;
+    }
+    h1 span {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .project-meta {
+      color: var(--muted);
+      font-size: 1rem;
+      border-left: 4px solid var(--primary);
+      padding-left: 1.2rem;
+      margin-top: 0.5rem;
+      max-width: 860px;
+      line-height: 1.65;
+    }
+
+    .pipeline-strip {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin: 2rem 0;
+      background: white;
+      border-radius: 1.2rem;
+      padding: 1.2rem 1.8rem;
+      border: 1.5px solid var(--border);
+      box-shadow: 0 4px 20px rgba(22,163,74,0.08);
+      overflow-x: auto;
+    }
+    .pipeline-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      flex: 1;
+      min-width: 90px;
+      text-align: center;
+    }
+    .pipeline-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      background: var(--primary-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary-dark);
+      font-size: 1.1rem;
+      border: 1.5px solid var(--border);
+      transition: all 0.3s ease;
+    }
+    .pipeline-step:hover .pipeline-icon {
+      background: var(--primary);
+      color: #ffffff;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 16px rgba(22,163,74,0.3);
+    }
+    .pipeline-label {
+      font-size: 0.79rem;
+      font-weight: 700;
+      color: #1e293b;
+    }
+    .pipeline-sub {
+      font-size: 0.69rem;
+      color: var(--muted);
+    }
+    .pipeline-arrow {
+      color: var(--primary);
+      font-size: 1rem;
+      padding: 0 0.5rem;
+      flex-shrink: 0;
+      opacity: 0.7;
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+      margin: 2.5rem 0;
+    }
+    .metric-card {
+      background: white;
+      padding: 1.6rem 1.2rem;
+      border-radius: 1.4rem;
+      text-align: center;
+      border: 1.5px solid var(--border);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+      transition: all 0.35s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .metric-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+      border-radius: 1.4rem 1.4rem 0 0;
+    }
+    .metric-card.blue-card::before {
+      background: linear-gradient(90deg, var(--secondary), var(--secondary-dark));
+    }
+    .metric-card:hover {
+      transform: translateY(-7px);
+      border-color: var(--primary);
+      box-shadow: 0 18px 36px rgba(22,163,74,0.15);
+    }
+    .metric-card.blue-card:hover {
+      border-color: var(--secondary);
+      box-shadow: 0 18px 36px rgba(59,130,246,0.15);
+    }
+    .metric-value {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #0a0d14;
+      line-height: 1.2;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .metric-value.green { color: var(--primary-dark); }
+    .metric-value.blue   { color: var(--secondary-dark); }
+    .metric-card p {
+      color: var(--muted);
+      font-weight: 500;
+      margin-top: 0.4rem;
+      font-size: 0.85rem;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin: 2.5rem 0;
+    }
+    .btn {
+      padding: 0.8rem 1.8rem;
+      border-radius: 60px;
+      text-decoration: none;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      transition: all 0.3s ease;
+      font-size: 0.92rem;
+      letter-spacing: 0.01em;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 6px 16px rgba(22,163,74,0.35);
+    }
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(22,163,74,0.45);
+    }
+    .btn-secondary {
+      background: var(--secondary);
+      color: white;
+      box-shadow: 0 6px 16px rgba(59,130,246,0.3);
+    }
+    .btn-secondary:hover {
+      background: var(--secondary-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(59,130,246,0.4);
+    }
+    .btn-outline {
+      border: 2px solid #0a0d14;
+      color: #0a0d14;
+      background: white;
+    }
+    .btn-outline:hover {
+      background: #0a0d14;
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    .section-title {
+      font-size: 1.7rem;
+      font-weight: 800;
+      margin: 2.5rem 0 1.5rem;
+      position: relative;
+      display: inline-block;
+      color: #0a0d14;
+    }
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 50px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      border-radius: 4px;
+    }
+
+    .dashboard-gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.8rem;
+      margin: 2rem 0;
+    }
+    .dashboard-card {
+      background: white;
+      border-radius: 1.4rem;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+      transition: all 0.4s ease;
+      cursor: pointer;
+      border: 1.5px solid transparent;
+    }
+    .dashboard-card.featured { grid-column: 1 / -1; }
+    .dashboard-card:hover {
+      transform: translateY(-9px);
+      box-shadow: 0 24px 44px rgba(22,163,74,0.15);
+      border-color: var(--primary);
+    }
+    .dashboard-card-img {
+      position: relative;
+      overflow: hidden;
+      background: #f5fdf7;
+    }
+    .dashboard-card-img img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+    .dashboard-card:hover .dashboard-card-img img { transform: scale(1.04); }
+    .zoom-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(22,163,74,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      backdrop-filter: blur(2px);
+    }
+    .dashboard-card:hover .zoom-overlay { opacity: 1; }
+    .zoom-icon {
+      background: var(--primary);
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: #ffffff;
+      box-shadow: 0 4px 16px rgba(22,163,74,0.4);
+    }
+    .dashboard-card .caption {
+      padding: 1rem 1.2rem;
+      text-align: center;
+      font-weight: 700;
+      background: white;
+      color: #1e293b;
+      font-size: 0.88rem;
+      border-top: 1.5px solid rgba(22,163,74,0.12);
+    }
+    .caption-badge {
+      display: inline-block;
+      background: var(--primary);
+      color: #ffffff;
+      font-size: 0.7rem;
+      font-weight: 800;
+      padding: 0.15rem 0.6rem;
+      border-radius: 20px;
+      margin-left: 0.5rem;
+      vertical-align: middle;
+      letter-spacing: 0.04em;
+    }
+
+    .insight-box {
+      background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+      padding: 2rem;
+      border-radius: 1.4rem;
+      margin: 2rem 0;
+      border-left: 5px solid var(--primary);
+      box-shadow: 0 8px 24px rgba(22,163,74,0.12);
+    }
+    .insight-box h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.9rem;
+      color: #0a0d14;
+      font-weight: 800;
+    }
+    .insight-box p {
+      color: var(--text);
+      line-height: 1.7;
+      margin-bottom: 0.5rem;
+    }
+
+    .alert-box {
+      background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+      padding: 1.6rem 2rem;
+      border-radius: 1.4rem;
+      margin: 1.5rem 0;
+      border-left: 5px solid var(--secondary);
+      box-shadow: 0 8px 20px rgba(59,130,246,0.1);
+    }
+    .alert-box h3 {
+      font-size: 1.1rem;
+      color: #0a0d14;
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 800;
+    }
+    .alert-box ul { list-style: none; padding: 0; }
+    .alert-box ul li {
+      color: var(--text);
+      font-size: 0.93rem;
+      padding: 0.3rem 0 0.3rem 1.6rem;
+      position: relative;
+    }
+    .alert-box ul li:before {
+      content: '⚡';
+      position: absolute;
+      left: 0;
+      color: var(--secondary-dark);
+      font-size: 0.85rem;
+    }
+
+    .insights-list {
+      background: white;
+      border-radius: 1.4rem;
+      padding: 1.6rem 1.8rem;
+      margin: 1.5rem 0;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+      border: 1.5px solid var(--border);
+    }
+    .insights-list li {
+      margin-bottom: 0.8rem;
+      padding-left: 1.5rem;
+      position: relative;
+      color: var(--text);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    .insights-list li:before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--primary-dark);
+      font-weight: bold;
+    }
+
+    .findings-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.2rem;
+      margin: 1.5rem 0;
+    }
+    .finding-card {
+      background: white;
+      border-radius: 1.2rem;
+      padding: 1.4rem 1.6rem;
+      border: 1.5px solid var(--border);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+      transition: all 0.3s ease;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .finding-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px rgba(22,163,74,0.15);
+      border-color: var(--primary);
+    }
+    .finding-card.blue-card:hover {
+      box-shadow: 0 12px 28px rgba(59,130,246,0.15);
+      border-color: var(--secondary);
+    }
+    .finding-num {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+      border: 1.5px solid var(--border);
+    }
+    .finding-num.blue {
+      background: var(--secondary-light);
+      color: var(--secondary-dark);
+      border-color: var(--border-blue);
+    }
+    .finding-body h4 {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 0.35rem;
+    }
+    .finding-body p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+    .finding-stat {
+      display: inline-block;
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      font-weight: 700;
+      font-size: 0.8rem;
+      padding: 0.2rem 0.7rem;
+      border-radius: 20px;
+      margin-top: 0.5rem;
+    }
+    .finding-stat.blue {
+      background: var(--secondary-light);
+      color: var(--secondary-dark);
+    }
+
+    .risk-segment {
+      background: white;
+      border-radius: 1.4rem;
+      padding: 1.8rem;
+      margin: 1.5rem 0;
+      box-shadow: 0 6px 20px rgba(22,163,74,0.1);
+      border: 1.5px solid var(--border);
+    }
+    .risk-segment h3 {
+      color: #0a0d14;
+      font-size: 1.1rem;
+      margin-bottom: 1.2rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 2px solid var(--primary-light);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 800;
+    }
+    .risk-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.55rem 0;
+      border-bottom: 1px solid #f1f5f9;
+      font-size: 0.9rem;
+    }
+    .risk-row:last-child { border-bottom: none; }
+    .risk-row .label { color: var(--muted); font-weight: 500; }
+    .risk-row .value { color: #0a0d14; font-weight: 700; }
+    .risk-highlight {
+      display: flex;
+      gap: 2rem;
+      margin-top: 1.4rem;
+      padding-top: 1.4rem;
+      border-top: 1.5px dashed rgba(22,163,74,0.4);
+    }
+    .risk-highlight .rh-item { flex: 1; text-align: center; }
+    .risk-highlight .rh-val {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+    }
+    .risk-highlight .rh-val.blue { color: var(--secondary-dark); }
+    .risk-highlight .rh-label { font-size: 0.8rem; color: var(--muted); margin-top: 0.3rem; font-weight: 500; }
+
+    .stats-banner {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      background: linear-gradient(135deg, #0a0d14 0%, #10241a 100%);
+      border-radius: 1.4rem;
+      overflow: hidden;
+      margin: 2rem 0;
+      box-shadow: 0 12px 36px rgba(10,13,20,0.2);
+      border: 1.5px solid rgba(22,163,74,0.15);
+    }
+    .stat-banner-item {
+      padding: 1.7rem 1.2rem;
+      text-align: center;
+      border-right: 1px solid rgba(255,255,255,0.06);
+      position: relative;
+      transition: background 0.3s ease;
+    }
+    .stat-banner-item:last-child { border-right: none; }
+    .stat-banner-item:hover { background: rgba(22,163,74,0.06); }
+    .stat-banner-item::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 20%; right: 20%;
+      height: 2px;
+      background: var(--primary);
+      border-radius: 2px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .stat-banner-item:hover::before { opacity: 1; }
+    .stat-banner-val {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1.2;
+    }
+    .stat-banner-val.blue { color: var(--secondary); }
+    .stat-banner-label {
+      font-size: 0.76rem;
+      color: rgba(255,255,255,0.5);
+      margin-top: 0.35rem;
+      font-weight: 500;
+    }
+
+    .rec-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+      margin: 1.5rem 0;
+    }
+    .rec-card {
+      background: white;
+      border-radius: 1.2rem;
+      padding: 1.4rem;
+      border-top: 4px solid var(--primary);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+    }
+    .rec-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px rgba(22,163,74,0.14);
+    }
+    .rec-card.blue-top {
+      border-top-color: var(--secondary);
+    }
+    .rec-card.blue-top:hover {
+      box-shadow: 0 12px 28px rgba(59,130,246,0.14);
+    }
+    .rec-card h4 {
+      font-size: 0.92rem;
+      font-weight: 800;
+      color: #1e293b;
+      margin-bottom: 0.6rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      line-height: 1.4;
+    }
+    .rec-num {
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.8rem;
+      flex-shrink: 0;
+    }
+    .rec-num.blue { background: var(--secondary-light); color: var(--secondary-dark); }
+    .rec-card p {
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.65;
+      margin-bottom: 0.8rem;
+    }
+    .impact-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+    }
+    .impact-tag.blue { background: var(--secondary-light); color: var(--secondary-dark); }
+
+    .code-tabs {
+      display: flex;
+      gap: 0.3rem;
+      border-bottom: 2px solid #e2e8f0;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .tab-btn {
+      background: none;
+      border: none;
+      padding: 0.75rem 1.6rem;
+      font-weight: 700;
+      cursor: pointer;
+      color: var(--muted);
+      transition: all 0.2s;
+      font-size: 0.9rem;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .tab-btn.active {
+      color: var(--primary-dark);
+      border-bottom: 2px solid var(--primary);
+      margin-bottom: -2px;
+    }
+    .code-content { display: none; border-radius: 1rem; overflow: hidden; }
+    .code-content.active {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    pre {
+      background: #0d1b17;
+      color: #cdd9e5;
+      padding: 1.5rem;
+      overflow-x: auto;
+      margin: 0;
+      font-size: 0.84rem;
+      font-family: 'Monaco','Courier New',monospace;
+      line-height: 1.6;
+    }
+    .kw  { color: #4ade80; }
+    .fn  { color: #60a5fa; }
+    .str { color: #fbbf24; }
+    .cm  { color: #64748b; font-style: italic; }
+    .num { color: #fda4af; }
+
+    footer {
+      text-align: center;
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1.5px solid rgba(22,163,74,0.15);
+      color: var(--muted);
+    }
+    footer a {
+      color: var(--primary-dark);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    footer a:hover { text-decoration: underline; }
+
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.94);
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+    }
+    .modal-content { position: relative; max-width: 90%; max-height: 90%; }
+    .modal img {
+      max-width: 100%;
+      max-height: 90vh;
+      border-radius: 1rem;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+    }
+    .close-modal {
+      position: absolute;
+      top: -44px;
+      right: 0;
+      color: var(--primary);
+      font-size: 2rem;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .container { padding: 1rem; }
+      h1 { font-size: 1.9rem; }
+      .dashboard-gallery { grid-template-columns: 1fr; gap: 1.2rem; }
+      .dashboard-card.featured { grid-column: auto; }
+      .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+      .rec-grid { grid-template-columns: 1fr; }
+      .findings-grid { grid-template-columns: 1fr; }
+      .btn-group { flex-direction: column; }
+      .btn { justify-content: center; }
+      .risk-highlight { flex-direction: column; gap: 1rem; }
+      .stats-banner { grid-template-columns: repeat(2, 1fr); }
+      .pipeline-strip { gap: 0.3rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <a href="index.html#projects" class="back-link"><i class="fas fa-arrow-left"></i> Back to All Projects</a>
+
+  <!-- Hero -->
+  <div class="hero-section" style="margin-bottom:2.5rem;">
+    <div class="hero-badge"><i class="fas fa-chart-line"></i> Full-Stack FinTech Platform</div>
+    <h1>📈 VinStock — Stock Analysis &<br><span>Screening Platform</span></h1>
+    <div class="project-meta">A full-stack investing platform built with Python, Flask & a cache-backed data pipeline — covering live market data, fundamental analysis, a custom screener, a proprietary composite scoring model, and per-user watchlists across a curated ~184-stock NSE universe.</div>
+  </div>
+
+  <!-- Pipeline Strip -->
+  <div class="pipeline-strip">
+    <div class="pipeline-step">
+      <div class="pipeline-icon"><i class="fas fa-satellite-dish"></i></div>
+      <div class="pipeline-label">yfinance</div>
+      <div class="pipeline-sub">Live Market Data</div>
+    </div>
+    <div class="pipeline-arrow"><i class="fas fa-chevron-right"></i></div>
+    <div class="pipeline-step">
+      <div class="pipeline-icon"><i class="fab fa-python"></i></div>
+      <div class="pipeline-label">Python</div>
+      <div class="pipeline-sub">Data Processing</div>
+    </div>
+    <div class="pipeline-arrow"><i class="fas fa-chevron-right"></i></div>
+    <div class="pipeline-step">
+      <div class="pipeline-icon"><i class="fas fa-database"></i></div>
+      <div class="pipeline-label">Cache Table</div>
+      <div class="pipeline-sub">Refreshed Screener Data</div>
+    </div>
+    <div class="pipeline-arrow"><i class="fas fa-chevron-right"></i></div>
+    <div class="pipeline-step">
+      <div class="pipeline-icon"><i class="fas fa-flask"></i></div>
+      <div class="pipeline-label">Flask</div>
+      <div class="pipeline-sub">Backend & Routing</div>
+    </div>
+    <div class="pipeline-arrow"><i class="fas fa-chevron-right"></i></div>
+    <div class="pipeline-step">
+      <div class="pipeline-icon"><i class="fas fa-star"></i></div>
+      <div class="pipeline-label">VinStock Score</div>
+      <div class="pipeline-sub">Composite Model</div>
+    </div>
+    <div class="pipeline-arrow"><i class="fas fa-chevron-right"></i></div>
+    <div class="pipeline-step">
+      <div class="pipeline-icon"><i class="fas fa-desktop"></i></div>
+      <div class="pipeline-label">Web App</div>
+      <div class="pipeline-sub">Screener, Watchlist & Accounts</div>
+    </div>
+  </div>
+
+  <!-- Metrics -->
+  <div class="metrics-grid">
+    <div class="metric-card">
+      <div class="metric-value green">184</div>
+      <p><i class="fas fa-building"></i> NSE Stocks Covered</p>
+    </div>
+    <div class="metric-card">
+      <div class="metric-value green">15+</div>
+      <p><i class="fas fa-calculator"></i> Fundamental Metrics Tracked</p>
+    </div>
+    <div class="metric-card">
+      <div class="metric-value green">20</div>
+      <p><i class="fas fa-sitemap"></i> Hand-Curated Peer Groups</p>
+    </div>
+    <div class="metric-card blue-card">
+      <div class="metric-value blue">Prebuilt +</div>
+      <p><i class="fas fa-filter"></i> Custom Screener Engine</p>
+    </div>
+    <div class="metric-card blue-card">
+      <div class="metric-value blue">Cache-Backed</div>
+      <p><i class="fas fa-bolt"></i> Screener Performance</p>
+    </div>
+    <div class="metric-card">
+      <div class="metric-value green">Full CRUD</div>
+      <p><i class="fas fa-list-check"></i> Per-User Watchlists</p>
+    </div>
+  </div>
+
+  <!-- Buttons -->
+  <div class="btn-group">
+    <a href="#" target="_blank" class="btn btn-primary"><i class="fas fa-tachometer-alt"></i> Launch Live Demo</a>
+    <a href="#" target="_blank" class="btn btn-secondary"><i class="fab fa-github"></i> Explore GitHub Repo</a>
+    <a href="#" class="btn btn-outline"><i class="fas fa-info-circle"></i> Read the About Page</a>
+  </div>
+
+  <!-- Gallery -->
+  <div class="section-title">📸 Product Gallery <span style="font-size:0.85rem;font-weight:500;color:#718096;">(Click any image to zoom)</span></div>
+  <div class="dashboard-gallery">
+    <div class="dashboard-card featured" onclick="openModal('home-screen.png')">
+      <div class="dashboard-card-img">
+        <img src="home-screen.png" alt="VinStock Home Screen" onerror="this.src='https://via.placeholder.com/1200x600/13131f/16a34a?text=VinStock+Home'">
+        <div class="zoom-overlay"><div class="zoom-icon"><i class="fas fa-search-plus"></i></div></div>
+      </div>
+      <div class="caption">
+        <i class="fas fa-home"></i> Home — Search, Quick Analyze & Curated Screens
+        <span class="caption-badge">START HERE</span>
+      </div>
+    </div>
+    <div class="dashboard-card" onclick="openModal('screener-view.png')">
+      <div class="dashboard-card-img">
+        <img src="screener-view.png" alt="VinStock Screener" onerror="this.src='https://via.placeholder.com/700x460/13131f/16a34a?text=Screener+View'">
+        <div class="zoom-overlay"><div class="zoom-icon"><i class="fas fa-search-plus"></i></div></div>
+      </div>
+      <div class="caption"><i class="fas fa-filter"></i> Screener — Prebuilt & Custom Screens Over Cached Fundamentals</div>
+    </div>
+    <div class="dashboard-card" onclick="openModal('stock-detail.png')">
+      <div class="dashboard-card-img">
+        <img src="stock-detail.png" alt="VinStock Stock Detail Page" onerror="this.src='https://via.placeholder.com/700x460/13131f/16a34a?text=Stock+Detail+Page'">
+        <div class="zoom-overlay"><div class="zoom-icon"><i class="fas fa-search-plus"></i></div></div>
+      </div>
+      <div class="caption"><i class="fas fa-chart-bar"></i> Stock Detail — Fundamentals, Financial Statements & VinStock Score</div>
+    </div>
+    <div class="dashboard-card" onclick="openModal('about-section.png')">
+      <div class="dashboard-card-img">
+        <img src="about-section.png" alt="VinStock About / Developer Section" onerror="this.src='https://via.placeholder.com/700x460/13131f/16a34a?text=About+the+Developer'">
+        <div class="zoom-overlay"><div class="zoom-icon"><i class="fas fa-search-plus"></i></div></div>
+      </div>
+      <div class="caption"><i class="fas fa-user"></i> About — The Developer Behind VinStock</div>
+    </div>
+  </div>
+
+  <!-- Stats Banner -->
+  <div class="stats-banner">
+    <div class="stat-banner-item">
+      <div class="stat-banner-val">184</div>
+      <div class="stat-banner-label">Stocks in Curated NSE Universe</div>
+    </div>
+    <div class="stat-banner-item">
+      <div class="stat-banner-val">15+</div>
+      <div class="stat-banner-label">Ratios & Metrics per Stock</div>
+    </div>
+    <div class="stat-banner-item blue">
+      <div class="stat-banner-val blue">1</div>
+      <div class="stat-banner-label">Composite VinStock Score</div>
+    </div>
+    <div class="stat-banner-item">
+      <div class="stat-banner-val">20</div>
+      <div class="stat-banner-label">Hand-Curated Peer Groups</div>
+    </div>
+  </div>
+
+  <!-- The Insight That Changed Everything -->
+  <div class="insight-box">
+    <h3><i class="fas fa-lightbulb" style="color:var(--primary-dark);"></i> Why VinStock Exists</h3>
+    <p>Frustrated by needing to switch between a dozen different tools just to check a P/E ratio, chart a 5-year revenue trend, and screen for value stocks, I set out to build a single platform that <strong>consolidates everything a retail investor actually needs</strong> — live prices, fundamentals, financial statements, a screener, and a composite scoring model — in one place.</p>
+    <p>The project was also a deliberate way to demonstrate <strong>full-stack ownership</strong>: from database and cache design, to backend API and screener logic, to a clean, usable frontend — all backed by a genuine, practical understanding of financial analysis and valuation.</p>
+  </div>
+
+  <!-- Architecture / Design Decision Highlight -->
+  <div class="section-title">🎯 Core Design Decision: Screener Performance</div>
+  <div class="risk-segment">
+    <h3><i class="fas fa-crosshairs" style="color:var(--primary-dark);"></i> Screens run against a refreshed cache table, not live API calls per request</h3>
+    <div class="risk-row"><span class="label">Data Source</span><span class="value">yfinance (live pull, scheduled refresh)</span></div>
+    <div class="risk-row"><span class="label">Screener Query Path</span><span class="value">Cached fundamentals table</span></div>
+    <div class="risk-row"><span class="label">Universe Size</span><span class="value">~184 curated NSE stocks</span></div>
+    <div class="risk-row"><span class="label">Screen Types</span><span class="value">Prebuilt + user-defined custom screens</span></div>
+    <div class="risk-row"><span class="label">Data Honesty Policy</span><span class="value">Approximated fields explicitly labeled in UI</span></div>
+    <div class="risk-highlight">
+      <div class="rh-item">
+        <div class="rh-val">Fast</div>
+        <div class="rh-label">Screener Response — No Per-Request API Calls</div>
+      </div>
+      <div class="rh-item">
+        <div class="rh-val blue">Reliable</div>
+        <div class="rh-label">Shielded From yfinance Rate Limits & Downtime</div>
+      </div>
+      <div class="rh-item">
+        <div class="rh-val blue">Transparent</div>
+        <div class="rh-label">Every Approximation Labeled, Nothing Silently Faked</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Key Findings / Features -->
+  <div class="section-title">🔍 Core Feature Breakdown</div>
+  <div class="findings-grid">
+    <div class="finding-card">
+      <div class="finding-num">1</div>
+      <div class="finding-body">
+        <h4>Live Market & Fundamental Data</h4>
+        <p>Pulls live price and fundamental data for the curated NSE universe via yfinance, covering everything from EPS and Beta to 52-week highs and lows.</p>
+        <span class="finding-stat">15+ Metrics per Stock</span>
+      </div>
+    </div>
+    <div class="finding-card">
+      <div class="finding-num">2</div>
+      <div class="finding-body">
+        <h4>Full Financial Statement Access</h4>
+        <p>Revenue, Net Profit, Operating Profit, EBITDA, Cash Flow, Balance Sheet, Assets, Liabilities and Shareholders' Equity — surfaced directly on each stock page.</p>
+        <span class="finding-stat">9 Statement Line Items</span>
+      </div>
+    </div>
+    <div class="finding-card blue-card">
+      <div class="finding-num blue">3</div>
+      <div class="finding-body">
+        <h4>Prebuilt + Custom Screener</h4>
+        <p>Investors can run curated screens like "Low on 10-year average earnings" or build their own — all evaluated against a refreshed cache table for speed.</p>
+        <span class="finding-stat blue">Cache-Backed, Not Live-Per-Request</span>
+      </div>
+    </div>
+    <div class="finding-card blue-card">
+      <div class="finding-num blue">4</div>
+      <div class="finding-body">
+        <h4>The VinStock Score</h4>
+        <p>A composite score that summarizes financial strength across multiple fundamental indicators into a single, digestible rating for fast comparison.</p>
+        <span class="finding-stat blue">Composite Financial Strength Rating</span>
+      </div>
+    </div>
+    <div class="finding-card">
+      <div class="finding-num">5</div>
+      <div class="finding-body">
+        <h4>Company Intelligence & Peer Groups</h4>
+        <p>Sector/industry classification, business summaries, and hand-curated peer groups for ~20 major stocks to support relative valuation.</p>
+        <span class="finding-stat">20 Curated Peer Groups</span>
+      </div>
+    </div>
+    <div class="finding-card">
+      <div class="finding-num">6</div>
+      <div class="finding-body">
+        <h4>Accounts & Personal Watchlists</h4>
+        <p>Email + password registration and login, with full CRUD per-user watchlists so investors can track the companies they actually care about.</p>
+        <span class="finding-stat">Full CRUD Watchlists</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Alert Box -->
+  <div class="alert-box">
+    <h3><i class="fas fa-bolt" style="color:var(--secondary-dark);"></i> Transparency by Design</h3>
+    <ul>
+      <li>Screens that rely on approximated (rather than historically exact) data are explicitly labeled in the UI, with a clear explanation of exactly what data is missing</li>
+      <li>Nothing is silently faked or interpolated without disclosure — a deliberate trust-first design principle for a financial tool</li>
+      <li>Cache refresh design keeps the screener fast and available even when the underlying market data source is rate-limited or briefly unavailable</li>
+    </ul>
+  </div>
+
+  <!-- Code Tabs -->
+  <div class="section-title">⚙️ Code & Technical Implementation</div>
+  <div class="code-tabs">
+    <button class="tab-btn active" data-tab="flask"><i class="fas fa-flask"></i> Flask</button>
+    <button class="tab-btn" data-tab="python"><i class="fab fa-python"></i> Python / Data</button>
+    <button class="tab-btn" data-tab="sql"><i class="fas fa-database"></i> Screener Logic</button>
+  </div>
+
+  <div id="flask" class="code-content active">
+    <pre><span class="cm"># app/routes/screener.py — Screener route served from the fundamentals cache</span>
+<span class="kw">from</span> flask <span class="kw">import</span> Blueprint, request, jsonify
+<span class="kw">from</span> app.services.screener_engine <span class="kw">import</span> run_screen
+<span class="kw">from</span> app.models <span class="kw">import</span> StockCache
+
+screener_bp = Blueprint(<span class="str">'screener'</span>, __name__)
+
+<span class="fn">@screener_bp.route</span>(<span class="str">'/api/screener/run'</span>, methods=[<span class="str">'POST'</span>])
+<span class="kw">def</span> <span class="fn">run_custom_screen</span>():
+    filters = request.json.get(<span class="str">'filters'</span>, [])
+    <span class="cm"># Never hits yfinance directly — queries the refreshed cache table</span>
+    results = run_screen(StockCache.query, filters)
+    <span class="kw">return</span> jsonify({
+        <span class="str">'count'</span>: <span class="fn">len</span>(results),
+        <span class="str">'stocks'</span>: [r.to_dict() <span class="kw">for</span> r <span class="kw">in</span> results],
+        <span class="str">'cache_refreshed_at'</span>: StockCache.last_refresh_time()
+    })
+
+<span class="fn">@screener_bp.route</span>(<span class="str">'/api/stock/&lt;ticker&gt;/score'</span>, methods=[<span class="str">'GET'</span>])
+<span class="kw">def</span> <span class="fn">get_vinstock_score</span>(ticker):
+    <span class="kw">from</span> app.services.scoring <span class="kw">import</span> compute_vinstock_score
+    stock = StockCache.query.filter_by(ticker=ticker).first_or_404()
+    <span class="kw">return</span> jsonify(compute_vinstock_score(stock))</pre>
+  </div>
+
+  <div id="python" class="code-content">
+    <pre><span class="cm"># jobs/refresh_cache.py — Scheduled cache refresh from yfinance</span>
+<span class="kw">import</span> yfinance <span class="kw">as</span> yf
+<span class="kw">import</span> pandas <span class="kw">as</span> pd
+<span class="kw">from</span> app.models <span class="kw">import</span> StockCache, db
+
+NSE_UNIVERSE = load_curated_tickers()  <span class="cm"># ~184 stocks</span>
+
+<span class="kw">def</span> <span class="fn">refresh_fundamentals</span>():
+    <span class="kw">for</span> ticker <span class="kw">in</span> NSE_UNIVERSE:
+        info = yf.Ticker(<span class="fn">f</span><span class="str">"{ticker}.NS"</span>).info
+        row = StockCache.query.filter_by(ticker=ticker).first() <span class="kw">or</span> StockCache(ticker=ticker)
+
+        row.pe_ratio    = info.get(<span class="str">'trailingPE'</span>)
+        row.pb_ratio    = info.get(<span class="str">'priceToBook'</span>)
+        row.roe         = info.get(<span class="str">'returnOnEquity'</span>)
+        row.roce        = compute_roce(info)
+        row.market_cap  = info.get(<span class="str">'marketCap'</span>)
+        row.debt_equity = info.get(<span class="str">'debtToEquity'</span>)
+        row.beta        = info.get(<span class="str">'beta'</span>)
+        row.is_approximated = <span class="fn">flag_missing_fields</span>(info)
+        row.last_refresh_time = pd.Timestamp.utcnow()
+
+        db.session.add(row)
+    db.session.commit()
+
+<span class="kw">def</span> <span class="fn">compute_vinstock_score</span>(stock):
+    <span class="cm"># Composite score across weighted fundamental indicators</span>
+    weights = {<span class="str">'roe'</span>: <span class="num">0.25</span>, <span class="str">'roce'</span>: <span class="num">0.25</span>, <span class="str">'debt_equity'</span>: <span class="num">-0.2</span>,
+               <span class="str">'peg'</span>: <span class="num">-0.15</span>, <span class="str">'dividend_yield'</span>: <span class="num">0.15</span>}
+    <span class="kw">return</span> <span class="fn">round</span>(<span class="fn">sum</span>(normalize(stock, k) * w <span class="kw">for</span> k, w <span class="kw">in</span> weights.items()), <span class="num">2</span>)</pre>
+  </div>
+
+  <div id="sql" class="code-content">
+    <pre><span class="cm">-- Example prebuilt screen: "Low on 10-year average earnings"</span>
+<span class="kw">SELECT</span>
+    ticker,
+    company_name,
+    pe_ratio,
+    ten_yr_avg_eps,
+    current_eps,
+    is_approximated
+<span class="kw">FROM</span> stock_cache
+<span class="kw">WHERE</span> current_eps &lt; ten_yr_avg_eps
+  <span class="kw">AND</span> pe_ratio &lt; sector_avg_pe
+<span class="kw">ORDER BY</span> pe_ratio <span class="kw">ASC</span>;
+
+<span class="cm">-- Peer group comparison used on the stock detail page</span>
+<span class="kw">SELECT</span>
+    s.ticker,
+    s.company_name,
+    s.pe_ratio,
+    s.roe,
+    s.market_cap
+<span class="kw">FROM</span> stock_cache s
+<span class="kw">JOIN</span> peer_groups pg <span class="kw">ON</span> s.ticker = pg.ticker
+<span class="kw">WHERE</span> pg.group_id = (
+    <span class="kw">SELECT</span> group_id <span class="kw">FROM</span> peer_groups <span class="kw">WHERE</span> ticker = <span class="str">:selected_ticker</span>
+)
+<span class="kw">ORDER BY</span> s.market_cap <span class="kw">DESC</span>;</pre>
+  </div>
+
+  <!-- Strategic Recommendations / Roadmap -->
+  <div class="section-title">🎯 Product Roadmap</div>
+  <div class="rec-grid">
+    <div class="rec-card">
+      <h4><span class="rec-num">1</span> Expand the NSE Universe</h4>
+      <p>Grow coverage beyond the current ~184-stock curated universe toward the broader NSE-listed market, with automated tiering for smaller-cap names.</p>
+      <span class="impact-tag"><i class="fas fa-expand"></i> Broader Market Coverage</span>
+    </div>
+    <div class="rec-card">
+      <h4><span class="rec-num">2</span> Deepen the VinStock Score</h4>
+      <p>Add sector-relative normalization and backtested weighting to the composite score, so the rating adapts to industry-specific fundamentals.</p>
+      <span class="impact-tag"><i class="fas fa-star-half-stroke"></i> Smarter Scoring Model</span>
+    </div>
+    <div class="rec-card blue-top">
+      <h4><span class="rec-num blue">3</span> Automate Peer Group Curation</h4>
+      <p>Move from hand-curated peer groups for ~20 stocks toward a semi-automated sector/industry clustering approach that scales to the full universe.</p>
+      <span class="impact-tag blue"><i class="fas fa-sitemap"></i> Scalable Peer Analysis</span>
+    </div>
+    <div class="rec-card">
+      <h4><span class="rec-num">4</span> Screener Alerting</h4>
+      <p>Let users save a custom screen and get notified when a new stock enters or exits the result set, turning the screener into an ongoing monitoring tool.</p>
+      <span class="impact-tag"><i class="fas fa-bell"></i> Proactive Monitoring</span>
+    </div>
+    <div class="rec-card">
+      <h4><span class="rec-num">5</span> Portfolio Tracking</h4>
+      <p>Extend beyond watchlists into full portfolio tracking with cost basis, realized/unrealized gains, and portfolio-level VinStock Score aggregation.</p>
+      <span class="impact-tag"><i class="fas fa-wallet"></i> Full Portfolio View</span>
+    </div>
+    <div class="rec-card blue-top">
+      <h4><span class="rec-num blue">6</span> Public API Layer</h4>
+      <p>Expose a read-only API over the cached fundamentals and screener engine, letting other tools or spreadsheets query VinStock's curated data directly.</p>
+      <span class="impact-tag blue"><i class="fas fa-plug"></i> Developer Access</span>
+    </div>
+  </div>
+
+  <!-- Tools & Stack -->
+  <div class="section-title">🛠️ Tools & Tech Stack</div>
+  <div class="insights-list">
+    <ul style="list-style:none;">
+      <li><i class="fab fa-python" style="color:var(--primary-dark);margin-right:0.5rem;"></i><strong>Python & Flask</strong> — Core backend, routing, screener engine, and scoring logic</li>
+      <li><i class="fas fa-satellite-dish" style="color:var(--primary-dark);margin-right:0.5rem;"></i><strong>yfinance</strong> — Live price and fundamental data source for the ~184-stock NSE universe</li>
+      <li><i class="fas fa-database" style="color:var(--secondary-dark);margin-right:0.5rem;"></i><strong>Cache Table Design</strong> — Scheduled refresh pipeline so screens query cached data, not live API calls per request</li>
+      <li><i class="fas fa-filter" style="color:var(--secondary-dark);margin-right:0.5rem;"></i><strong>Custom Screener Engine</strong> — Prebuilt and user-defined screens evaluated against fundamentals in the cache</li>
+      <li><i class="fas fa-star" style="color:var(--primary-dark);margin-right:0.5rem;"></i><strong>VinStock Score</strong> — Proprietary composite model summarizing financial strength across multiple indicators</li>
+      <li><i class="fas fa-user-lock" style="color:var(--secondary-dark);margin-right:0.5rem;"></i><strong>Accounts & Watchlists</strong> — Email/password auth with full CRUD per-user watchlists</li>
+    </ul>
+  </div>
+
+  <!-- Project Resources -->
+  <div class="section-title">📚 Full Project Resources</div>
+  <div class="insights-list">
+    <ul style="list-style:none;">
+      <li><i class="fas fa-tachometer-alt" style="color:var(--primary-dark);margin-right:0.5rem;"></i><a href="#" target="_blank">Live VinStock Demo</a></li>
+      <li><i class="fab fa-github" style="color:var(--primary-dark);margin-right:0.5rem;"></i><a href="#" target="_blank">GitHub Repository (Flask app, screener engine, README)</a></li>
+      <li><i class="fas fa-info-circle" style="color:var(--secondary-dark);margin-right:0.5rem;"></i><a href="about-section.png" target="_blank">About the Developer</a></li>
+    </ul>
+  </div>
+
+  <footer>
+    <p>Built by <strong>Mohd Faij</strong> | B.Com Graduate — Finance & Business Analytics</p>
+    <p style="margin-top:0.5rem;">
+      <a href="https://github.com/mohdfaij-data" target="_blank"><i class="fab fa-github"></i> GitHub</a> &nbsp;|&nbsp;
+      <a href="https://linkedin.com/in/mohdfaij-data" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+    </p>
+  </footer>
+</div>
+
+<!-- Modal -->
+<div id="modal" class="modal" onclick="closeModal()">
+  <div class="modal-content">
+    <img id="modalImg" src="" alt="VinStock Preview">
+    <div class="close-modal"><i class="fas fa-times-circle"></i></div>
+  </div>
+</div>
+
+<script>
+  function openModal(src) {
+    document.getElementById('modal').style.display = 'flex';
+    document.getElementById('modalImg').src = src;
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    document.getElementById('modal').style.display = 'none';
+    document.getElementById('modalImg').src = '';
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = btn.dataset.tab;
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.code-content').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(target).classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
