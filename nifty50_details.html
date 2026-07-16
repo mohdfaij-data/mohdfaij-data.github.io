@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIFTY 50 Stock Market Analytics - Mohd Faij</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #4f46e5;
+            --primary-light: #818cf8;
+            --primary-soft: #eef2ff;
+            --secondary: #0f172a;
+            --text: #334155;
+            --muted: #64748b;
+            --border: #e2e8f0;
+            --bg: #f8fafc;
+            --white: #ffffff;
+            --red: #ef4444;
+            --amber: #f59e0b;
+            --green: #10b981;
+            --shadow-sm: 0 4px 12px rgba(0,0,0,0.05);
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --shadow-lg: 0 20px 40px rgba(79,70,229,0.12);
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--secondary);
+            font-family: 'Inter', system-ui, sans-serif;
+            line-height: 1.6;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem 1.5rem; }
+
+        /* ── BACK BUTTON ── */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: gap 0.2s;
+        }
+        .back-btn:hover { gap: 0.75rem; }
+
+        /* ── HERO ── */
+        .hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #312e81 100%);
+            border-radius: 2rem;
+            padding: 3.5rem 3rem;
+            margin-bottom: 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -80px; right: -80px;
+            width: 350px; height: 350px;
+            background: radial-gradient(circle, rgba(129,140,248,0.15), transparent 70%);
+            pointer-events: none;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -60px; left: -60px;
+            width: 250px; height: 250px;
+            background: radial-gradient(circle, rgba(16,185,129,0.10), transparent 70%);
+            pointer-events: none;
+        }
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: rgba(129,140,248,0.15);
+            border: 1px solid rgba(129,140,248,0.3);
+            color: #a5b4fc;
+            padding: 0.3rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 1.25rem;
+        }
+        .hero h1 {
+            font-size: clamp(1.6rem, 3vw, 2.4rem);
+            font-weight: 800;
+            color: #fff;
+            line-height: 1.2;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.02em;
+        }
+        .hero h1 span { color: #a5b4fc; }
+        .hero-sub {
+            color: #94a3b8;
+            font-size: 1rem;
+            max-width: 640px;
+            margin-bottom: 2rem;
+        }
+        .hero-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+        .hero-badge {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+            color: #cbd5e1;
+            padding: 0.3rem 0.9rem;
+            border-radius: 9999px;
+            font-size: 0.78rem;
+            font-weight: 500;
+        }
+        .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .btn-hero-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.75rem;
+            background: var(--primary);
+            color: white;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 8px 20px rgba(79,70,229,0.35);
+            border: none;
+            cursor: pointer;
+        }
+        .btn-hero-primary:hover { background: #4338ca; transform: translateY(-2px); }
+        .btn-hero-outline {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.75rem;
+            border: 1.5px solid rgba(255,255,255,0.2);
+            color: #e2e8f0;
+            border-radius: 9999px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s;
+            background: none;
+            cursor: pointer;
+        }
+        .btn-hero-outline:hover { background: rgba(255,255,255,0.08); }
+
+        /* ── SIGNATURE: LIVE TICKER STRIP ── */
+        .ticker-wrap {
+            background: #020617;
+            border-radius: 0 0 1.25rem 1.25rem;
+            margin: 0 0 2rem 0;
+            padding: 0.85rem 0;
+            overflow: hidden;
+            position: relative;
+            border-top: 1px solid #1e293b;
+        }
+        .ticker-wrap::before, .ticker-wrap::after {
+            content: '';
+            position: absolute;
+            top: 0; bottom: 0;
+            width: 60px;
+            z-index: 2;
+            pointer-events: none;
+        }
+        .ticker-wrap::before { left: 0; background: linear-gradient(90deg, #020617, transparent); }
+        .ticker-wrap::after { right: 0; background: linear-gradient(270deg, #020617, transparent); }
+        .ticker-track {
+            display: flex;
+            gap: 2.5rem;
+            white-space: nowrap;
+            animation: ticker-scroll 32s linear infinite;
+            width: max-content;
+        }
+        .ticker-wrap:hover .ticker-track { animation-play-state: paused; }
+        @keyframes ticker-scroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+        .ticker-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #cbd5e1;
+        }
+        .ticker-item .sym { color: #64748b; font-weight: 500; }
+        .ticker-item.up { color: #34d399; }
+        .ticker-item.down { color: #f87171; }
+
+        /* ── KPI GRID ── */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .kpi-card {
+            background: var(--white);
+            border-radius: 1.25rem;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+            transition: all 0.25s;
+        }
+        .kpi-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: rgba(79,70,229,0.2); }
+        .kpi-icon { font-size: 1.4rem; color: var(--primary); margin-bottom: 0.5rem; }
+        .kpi-value { font-size: 1.55rem; font-weight: 800; color: var(--primary); line-height: 1; margin-bottom: 0.35rem; }
+        .kpi-value.red { color: var(--red); }
+        .kpi-value.green { color: var(--green); }
+        .kpi-value.amber { color: var(--amber); }
+        .kpi-label { font-size: 0.7rem; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+
+        /* ── DASHBOARD SHOWCASE ── */
+        .dashboard-showcase {
+            background: var(--white);
+            border-radius: 1.5rem;
+            padding: 0.5rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            border: 1px solid var(--border);
+        }
+        .dashboard-tabs {
+            display: flex;
+            padding: 0.75rem 0.75rem 0;
+            border-bottom: 1px solid var(--border);
+            overflow-x: auto;
+            gap: 0;
+        }
+        .dash-tab {
+            padding: 0.6rem 1.1rem;
+            font-size: 0.78rem;
+            font-weight: 500;
+            color: var(--muted);
+            border: none;
+            background: none;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            white-space: nowrap;
+            transition: all 0.2s;
+            font-family: 'Inter', sans-serif;
+        }
+        .dash-tab:hover { color: var(--primary); }
+        .dash-tab.active { color: var(--primary); border-bottom-color: var(--primary); font-weight: 600; }
+        .dash-img-wrap { padding: 0.75rem; }
+        .dash-img-wrap img {
+            width: 100%;
+            border-radius: 0.75rem;
+            display: block;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .dash-img-wrap img:hover { transform: scale(1.005); }
+        .dash-panel { display: none; }
+        .dash-panel.active { display: block; }
+
+        /* ── SECTION ── */
+        .section {
+            background: var(--white);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+        }
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--primary-soft);
+        }
+        .section-title i { color: var(--primary); }
+
+        /* ── INSIGHTS ── */
+        .insights-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+        .insight-card {
+            background: var(--bg);
+            border-radius: 1rem;
+            padding: 1.25rem;
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--primary);
+            transition: all 0.2s;
+        }
+        .insight-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+        .insight-card.red { border-left-color: var(--red); }
+        .insight-card.amber { border-left-color: var(--amber); }
+        .insight-card.green { border-left-color: var(--green); }
+        .insight-num { font-size: 0.68rem; font-weight: 600; color: var(--primary); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.4rem; }
+        .insight-card.red .insight-num { color: var(--red); }
+        .insight-card.amber .insight-num { color: var(--amber); }
+        .insight-card.green .insight-num { color: var(--green); }
+        .insight-title { font-size: 0.9rem; font-weight: 700; color: var(--secondary); margin-bottom: 0.4rem; }
+        .insight-body { font-size: 0.82rem; color: var(--text); margin-bottom: 0.6rem; line-height: 1.5; }
+        .insight-action { font-size: 0.75rem; color: var(--primary); font-weight: 500; padding-top: 0.5rem; border-top: 1px solid var(--border); }
+
+        /* ── MATRIX TABLE ── */
+        .matrix-wrap { overflow-x: auto; }
+        .risk-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+        .risk-table th { background: var(--primary-soft); color: var(--primary); font-weight: 600; padding: 0.75rem 1rem; text-align: left; font-size: 0.75rem; letter-spacing: 0.04em; text-transform: uppercase; }
+        .risk-table th:not(:first-child) { text-align: center; }
+        .risk-table td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--border); color: var(--text); }
+        .risk-table td:not(:first-child) { text-align: center; font-weight: 500; font-size: 0.8rem; }
+        .risk-table tr:hover td { background: #fafafa; }
+        .risk-table tr:last-child td { background: var(--primary-soft); font-weight: 700; color: var(--secondary); }
+        .cell-red { color: var(--red) !important; font-weight: 700 !important; }
+        .cell-amber { color: var(--amber) !important; }
+        .cell-green { color: var(--green) !important; }
+
+        /* ── TIMELINE GRID (replaces monthly grid) ── */
+        .monthly-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0.75rem; }
+        .month-card {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            padding: 0.9rem 0.5rem;
+            text-align: center;
+            transition: all 0.2s;
+        }
+        .month-card:hover { background: var(--primary-soft); border-color: rgba(79,70,229,0.2); transform: translateY(-2px); }
+        .month-card.peak { background: #fef2f2; border-color: #fca5a5; }
+        .month-card.peak .month-val { color: var(--red); }
+        .month-card.recover { background: #ecfdf5; border-color: #6ee7b7; }
+        .month-card.recover .month-val { color: var(--green); }
+        .month-name { font-size: 0.68rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.35rem; }
+        .month-val { font-size: 0.85rem; font-weight: 700; color: var(--primary); }
+        .month-note { font-size: 0.6rem; color: var(--muted); margin-top: 0.2rem; }
+
+        /* ── BARS ── */
+        .bar-list { display: flex; flex-direction: column; gap: 0.85rem; }
+        .bar-item { display: grid; grid-template-columns: 130px 1fr 90px; align-items: center; gap: 0.75rem; }
+        .bar-label { font-size: 0.8rem; font-weight: 500; color: var(--text); }
+        .bar-track { height: 10px; background: #f1f5f9; border-radius: 9999px; overflow: hidden; }
+        .bar-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--primary-light)); border-radius: 9999px; }
+        .bar-fill.red { background: linear-gradient(90deg, #ef4444, #f87171); }
+        .bar-fill.amber { background: linear-gradient(90deg, #f59e0b, #fcd34d); }
+        .bar-fill.green { background: linear-gradient(90deg, #10b981, #34d399); }
+        .bar-val { font-size: 0.8rem; font-weight: 700; color: var(--primary); text-align: right; }
+        .bar-val.red { color: var(--red); }
+        .bar-val.green { color: var(--green); }
+
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+
+        /* ── CODE SECTION ── */
+        .code-section {
+            background: #0f172a;
+            border-radius: 1.5rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid #1e293b;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        .code-section-title {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #e2e8f0;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid #1e293b;
+        }
+        .code-section-title i { color: var(--primary-light); }
+        .code-tabs {
+            display: flex;
+            gap: 0;
+            border-bottom: 1px solid #1e293b;
+            margin-bottom: 1.25rem;
+            overflow-x: auto;
+        }
+        .code-tab {
+            padding: 0.55rem 1.1rem;
+            font-size: 0.78rem;
+            font-weight: 500;
+            color: #64748b;
+            border: none;
+            background: none;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            white-space: nowrap;
+            transition: all 0.2s;
+            font-family: 'Inter', sans-serif;
+        }
+        .code-tab:hover { color: #94a3b8; }
+        .code-tab.active { color: #a5b4fc; border-bottom-color: #818cf8; }
+        .code-panel { display: none; }
+        .code-panel.active { display: block; }
+        .code-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #475569;
+            margin-bottom: 0.5rem;
+            margin-top: 1.25rem;
+        }
+        .code-label:first-child { margin-top: 0; }
+        .code-block {
+            background: #020617;
+            border: 1px solid #1e293b;
+            border-radius: 0.75rem;
+            padding: 1.25rem 1.5rem;
+            position: relative;
+            overflow-x: auto;
+        }
+        .code-block pre {
+            font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+            font-size: 0.78rem;
+            line-height: 1.75;
+            color: #e2e8f0;
+            white-space: pre;
+            margin: 0;
+        }
+        .kw { color: #c084fc; }
+        .fn { color: #60a5fa; }
+        .str { color: #34d399; }
+        .cm { color: #475569; font-style: italic; }
+        .nb { color: #f59e0b; }
+        .op { color: #94a3b8; }
+        .tbl { color: #fb923c; }
+        .copy-code-btn {
+            position: absolute;
+            top: 0.6rem;
+            right: 0.6rem;
+            background: #1e293b;
+            border: 1px solid #334155;
+            color: #64748b;
+            padding: 0.25rem 0.7rem;
+            border-radius: 0.4rem;
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: 'Inter', sans-serif;
+        }
+        .copy-code-btn:hover { background: #334155; color: #e2e8f0; }
+
+        /* ── RISK & HEALTH SCORING ENGINE ── */
+        .ml-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+        .ml-pipeline { background: var(--bg); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; }
+        .pipeline-step { display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.75rem 0; border-bottom: 1px dashed var(--border); }
+        .pipeline-step:last-child { border-bottom: none; }
+        .step-icon { width: 32px; height: 32px; border-radius: 50%; background: var(--primary-soft); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 0.8rem; flex-shrink: 0; margin-top: 2px; }
+        .step-label { font-size: 0.78rem; font-weight: 600; color: var(--secondary); margin-bottom: 0.2rem; }
+        .step-desc { font-size: 0.72rem; color: var(--muted); line-height: 1.4; }
+
+        .gauge-zone-wrap { display: flex; flex-direction: column; gap: 0.6rem; }
+        .gauge-track { position: relative; height: 22px; border-radius: 9999px; overflow: hidden; background: #f1f5f9; display: flex; }
+        .gauge-zone { height: 100%; }
+        .gauge-zone.z-red { background: #fecaca; width: 40%; }
+        .gauge-zone.z-amber { background: #fde68a; width: 30%; }
+        .gauge-zone.z-green { background: #a7f3d0; width: 30%; }
+        .gauge-marker {
+            position: absolute;
+            top: -6px;
+            width: 4px;
+            height: 34px;
+            background: var(--secondary);
+            border-radius: 4px;
+            left: 41%;
+        }
+        .gauge-marker::after {
+            content: '41 / 100';
+            position: absolute;
+            top: -22px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.68rem;
+            font-weight: 700;
+            color: var(--secondary);
+            white-space: nowrap;
+        }
+        .gauge-legend { display: flex; justify-content: space-between; font-size: 0.68rem; color: var(--muted); font-weight: 500; }
+
+        /* ── TOOLS ── */
+        .tools-wrap { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px dashed var(--border); }
+        .tool-badge {
+            background: var(--primary-soft);
+            color: var(--primary);
+            padding: 0.4rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: 1px solid rgba(79,70,229,0.15);
+            transition: all 0.2s;
+        }
+        .tool-badge:hover { background: var(--primary); color: white; transform: translateY(-1px); }
+        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
+        .feature-item { display: flex; align-items: center; gap: 0.65rem; padding: 0.75rem; background: var(--bg); border-radius: 0.7rem; border: 1px solid var(--border); font-size: 0.82rem; font-weight: 500; color: var(--text); transition: all 0.2s; }
+        .feature-item:hover { background: var(--primary-soft); border-color: rgba(79,70,229,0.2); transform: translateY(-1px); }
+        .feature-item i { color: var(--primary); font-size: 0.9rem; width: 18px; text-align: center; }
+
+        /* ── PILLARS ── */
+        .pillars-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+        .pillar-card { background: var(--bg); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; transition: all 0.2s; }
+        .pillar-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-sm); }
+        .pillar-num { font-size: 2rem; font-weight: 800; color: rgba(79,70,229,0.12); line-height: 1; margin-bottom: 0.5rem; }
+        .pillar-title { font-size: 0.9rem; font-weight: 700; color: var(--secondary); margin-bottom: 0.75rem; }
+        .pillar-list { list-style: none; padding: 0; }
+        .pillar-list li { font-size: 0.78rem; color: var(--text); padding: 0.35rem 0; border-bottom: 1px solid var(--border); display: flex; gap: 0.5rem; }
+        .pillar-list li::before { content: '→'; color: var(--primary); flex-shrink: 0; }
+        .pillar-list li:last-child { border-bottom: none; }
+
+        /* ── AUTHOR FOOTER CARD ── */
+        .author-card {
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 60%, #312e81 100%);
+            border-radius: 2rem;
+            padding: 3rem 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .author-card::before {
+            content: '';
+            position: absolute;
+            top: -60px; right: -60px;
+            width: 280px; height: 280px;
+            background: radial-gradient(circle, rgba(129,140,248,0.12), transparent 70%);
+            pointer-events: none;
+        }
+        .author-avatar {
+            width: 80px; height: 80px;
+            border-radius: 50%;
+            border: 3px solid rgba(129,140,248,0.4);
+            margin: 0 auto 1rem;
+            overflow: hidden;
+            background: #1e293b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .author-avatar img { width: 100%; height: 100%; object-fit: cover; }
+        .author-avatar i { font-size: 2.5rem; color: #a5b4fc; }
+        .author-name { font-size: 1.6rem; font-weight: 800; color: #fff; margin-bottom: 0.3rem; letter-spacing: -0.02em; }
+        .author-role { font-size: 0.9rem; color: #a5b4fc; font-weight: 500; margin-bottom: 0.25rem; }
+        .author-tagline { font-size: 0.82rem; color: #64748b; margin-bottom: 2rem; }
+        .author-links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        .author-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.65rem 1.5rem;
+            border-radius: 9999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .link-linkedin { background: #0a66c2; color: white; box-shadow: 0 6px 20px rgba(10,102,194,0.35); }
+        .link-linkedin:hover { background: #0958a8; transform: translateY(-2px); box-shadow: 0 10px 28px rgba(10,102,194,0.45); }
+        .link-github { background: rgba(255,255,255,0.08); border: 1.5px solid rgba(255,255,255,0.15); color: #e2e8f0; }
+        .link-github:hover { background: rgba(255,255,255,0.15); transform: translateY(-2px); }
+        .link-email { background: var(--primary); color: white; box-shadow: 0 6px 20px rgba(79,70,229,0.35); }
+        .link-email:hover { background: #4338ca; transform: translateY(-2px); }
+
+        /* ── MODAL ── */
+        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.92); justify-content: center; align-items: center; z-index: 1000; cursor: pointer; }
+        .modal img { max-width: 95%; max-height: 95%; border-radius: 0.75rem; }
+
+        /* ── FOOTER ── */
+        footer { text-align: center; padding: 1.5rem 0; color: var(--muted); font-size: 0.88rem; border-top: 1px solid var(--border); }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 1024px) {
+            .kpi-grid { grid-template-columns: repeat(3, 1fr); }
+            .insights-grid { grid-template-columns: repeat(2, 1fr); }
+            .monthly-grid { grid-template-columns: repeat(4, 1fr); }
+            .features-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+            .insights-grid, .two-col, .ml-grid, .pillars-grid { grid-template-columns: 1fr; }
+            .monthly-grid { grid-template-columns: repeat(3, 1fr); }
+            .features-grid { grid-template-columns: 1fr; }
+            .hero { padding: 2.5rem 1.5rem; border-radius: 1.25rem; }
+            .bar-item { grid-template-columns: 95px 1fr 65px; }
+            .author-card { padding: 2rem 1.5rem; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .ticker-track { animation: none; }
+        }
+    </style>
+</head>
+<body>
+
+<div id="modal" class="modal" onclick="closeModal()">
+    <img id="modalImg" src="" alt="Dashboard Preview">
+</div>
+
+<div class="container">
+    <a href="index.html#projects" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Portfolio</a>
+
+    <!-- ══ HERO ══ -->
+    <div class="hero">
+        <div class="hero-tag"><i class="fas fa-chart-line"></i> Power BI · SQL · Python · DAX · Power Query</div>
+        <h1>NIFTY 50 Stock Market <span>Analytics</span><br/> & Executive Risk Intelligence</h1>
+        <p class="hero-sub">Turning 20+ years of NIFTY 50 trading history into a decision-grade view of sector growth, stock volatility, and market health — across 52 stocks and 8,036 trading days (2000–2021).</p>
+        <div class="hero-badges">
+            <span class="hero-badge"><i class="fas fa-layer-group"></i> 52 Stocks Tracked</span>
+            <span class="hero-badge"><i class="fas fa-calendar-alt"></i> 8,036 Trading Days</span>
+            <span class="hero-badge"><i class="fas fa-arrow-trend-up"></i> 104.4K% Market Return</span>
+            <span class="hero-badge"><i class="fas fa-exchange-alt"></i> 470.4K Total Trades</span>
+            <span class="hero-badge"><i class="fas fa-table-columns"></i> 3 Dashboards</span>
+        </div>
+        <div class="hero-actions">
+            <a href="YOUR_POWERBI_LINK" target="_blank" class="btn-hero-primary"><i class="fas fa-tachometer-alt"></i> Open Live Dashboard</a>
+            <button class="btn-hero-outline" onclick="switchDash(2); document.querySelector('.dashboard-showcase').scrollIntoView({behavior:'smooth'});"><i class="fas fa-lightbulb"></i> View Executive Insights</button>
+        </div>
+    </div>
+
+    <!-- ══ SIGNATURE: LIVE TICKER ══ -->
+    <div class="ticker-wrap">
+        <div class="ticker-track">
+            <span class="ticker-item up"><span class="sym">SHREECEM</span> ▲ 43,005.0%</span>
+            <span class="ticker-item up"><span class="sym">EICHERMOT</span> ▲ 4,857.3%</span>
+            <span class="ticker-item up"><span class="sym">MARUTI</span> ▲ 3,829.2%</span>
+            <span class="ticker-item up"><span class="sym">INDUSINDBK</span> ▲ 3,129.5%</span>
+            <span class="ticker-item up"><span class="sym">BAJAJFINSV</span> ▲ 2,068.9%</span>
+            <span class="ticker-item up"><span class="sym">TITAN</span> ▲ 858.0%</span>
+            <span class="ticker-item down"><span class="sym">COALINDIA</span> ▼ -61.16%</span>
+            <span class="ticker-item down"><span class="sym">CIPLA</span> ▼ -37.53%</span>
+            <span class="ticker-item"><span class="sym">AUTOMOBILE SECTOR</span> ▲ 13.12K%</span>
+            <span class="ticker-item"><span class="sym">HEALTH SCORE</span> 41 / 100</span>
+            <!-- duplicate for seamless loop -->
+            <span class="ticker-item up"><span class="sym">SHREECEM</span> ▲ 43,005.0%</span>
+            <span class="ticker-item up"><span class="sym">EICHERMOT</span> ▲ 4,857.3%</span>
+            <span class="ticker-item up"><span class="sym">MARUTI</span> ▲ 3,829.2%</span>
+            <span class="ticker-item up"><span class="sym">INDUSINDBK</span> ▲ 3,129.5%</span>
+            <span class="ticker-item up"><span class="sym">BAJAJFINSV</span> ▲ 2,068.9%</span>
+            <span class="ticker-item up"><span class="sym">TITAN</span> ▲ 858.0%</span>
+            <span class="ticker-item down"><span class="sym">COALINDIA</span> ▼ -61.16%</span>
+            <span class="ticker-item down"><span class="sym">CIPLA</span> ▼ -37.53%</span>
+            <span class="ticker-item"><span class="sym">AUTOMOBILE SECTOR</span> ▲ 13.12K%</span>
+            <span class="ticker-item"><span class="sym">HEALTH SCORE</span> 41 / 100</span>
+        </div>
+    </div>
+
+    <div style="height:2rem"></div>
+
+    <!-- ══ KPI STRIP ══ -->
+    <div class="kpi-grid">
+        <div class="kpi-card"><div class="kpi-icon"><i class="fas fa-layer-group"></i></div><div class="kpi-value">52</div><div class="kpi-label">Total Stocks</div></div>
+        <div class="kpi-card"><div class="kpi-icon"><i class="fas fa-calendar-alt"></i></div><div class="kpi-value">8,036</div><div class="kpi-label">Trading Days</div></div>
+        <div class="kpi-card"><div class="kpi-icon"><i class="fas fa-arrow-trend-up"></i></div><div class="kpi-value green">104.4K%</div><div class="kpi-label">Total Market Return</div></div>
+        <div class="kpi-card"><div class="kpi-icon"><i class="fas fa-wave-square"></i></div><div class="kpi-value">1.27K</div><div class="kpi-label">Average VWAP</div></div>
+        <div class="kpi-card"><div class="kpi-icon"><i class="fas fa-chart-column"></i></div><div class="kpi-value amber">2.58K</div><div class="kpi-label">Annual Variability</div></div>
+        <div class="kpi-card"><div class="kpi-icon"><i class="fas fa-arrow-up"></i></div><div class="kpi-value green">33.48K</div><div class="kpi-label">Highest Trading Price</div></div>
+        <div class="kpi-card"><div class="kpi-icon"><i class="fas fa-arrow-down"></i></div><div class="kpi-value red">8.50</div><div class="kpi-label">Lowest Trading Price</div></div>
+        <div class="kpi-card"><div class="kpi-icon"><i class="fas fa-exchange-alt"></i></div><div class="kpi-value">470.4K</div><div class="kpi-label">Total Trades</div></div>
+        <div class="kpi-card"><div class="kpi-icon"><i class="fas fa-heart-pulse"></i></div><div class="kpi-value amber">41/100</div><div class="kpi-label">Stock Health Score</div></div>
+        <div class="kpi-card"><div class="kpi-icon"><i class="fas fa-water"></i></div><div class="kpi-value">3.0M</div><div class="kpi-label">Avg Trading Volume</div></div>
+    </div>
+
+    <!-- ══ DASHBOARD SHOWCASE ══ -->
+    <div class="dashboard-showcase">
+        <div class="dashboard-tabs">
+            <button class="dash-tab active" onclick="switchDash(0)">01 · Market Overview</button>
+            <button class="dash-tab" onclick="switchDash(1)">02 · Sector & Stock Analysis</button>
+            <button class="dash-tab" onclick="switchDash(2)">03 · Executive Insights</button>
+        </div>
+        <div class="dash-img-wrap">
+            <div class="dash-panel active" id="dp0"><img src="Home.png" alt="Market Overview" onclick="openModal(this)" onerror="this.src='https://via.placeholder.com/1200x600/0f172a/818cf8?text=Market+Overview'"></div>
+            <div class="dash-panel" id="dp1"><img src="Analysiss.png" alt="Sector & Stock Analysis" onclick="openModal(this)" onerror="this.src='https://via.placeholder.com/1200x600/0f172a/818cf8?text=Sector+%26+Stock+Analysis'"></div>
+            <div class="dash-panel" id="dp2"><img src="Insightsreport.png" alt="Executive Insights" onclick="openModal(this)" onerror="this.src='https://via.placeholder.com/1200x600/0f172a/818cf8?text=Executive+Insights'"></div>
+        </div>
+    </div>
+
+    <!-- ══ 6 INSIGHTS ══ -->
+    <div class="section">
+        <div class="section-title"><i class="fas fa-lightbulb"></i> 6 Critical Findings</div>
+        <div class="insights-grid">
+            <div class="insight-card green"><div class="insight-num">Insight 01</div><div class="insight-title">Automobile Leads Growth</div><div class="insight-body">The Automobile sector delivered a 13.12K% total return — more than double Banking (5.94K%), the next-best performer — making it the dominant long-term growth driver.</div><div class="insight-action">→ Weight sector exposure toward proven growth leaders</div></div>
+            <div class="insight-card green"><div class="insight-num">Insight 02</div><div class="insight-title">SHREECEM: Standout Performer</div><div class="insight-body">SHREECEM returned an extraordinary 43,005% over the period, the single highest of any stock in the dataset, followed by EICHERMOT (4,857.3%) and MARUTI (3,829.2%).</div><div class="insight-action">→ Long-term holding periods captured the largest gains</div></div>
+            <div class="insight-card red"><div class="insight-num">Insight 03</div><div class="insight-title">COVID-19 Market Shock (2020)</div><div class="insight-body">Trading volume and prices dropped sharply around 2020 as lockdowns and investor panic triggered a global sell-off, visible as a sudden spike-and-fall in the volume trend.</div><div class="insight-action">→ Flag macro shock periods before drawing conclusions from volatility metrics</div></div>
+            <div class="insight-card"><div class="insight-num">Insight 04</div><div class="insight-title">Strong Recovery Post-Crash</div><div class="insight-body">Despite the 2020 crash, the market recovered strongly in the following years, reinforcing that NIFTY 50 volatility has historically been a short-term phenomenon.</div><div class="insight-action">→ Favor buy-and-hold strategies over panic-selling during shocks</div></div>
+            <div class="insight-card amber"><div class="insight-num">Insight 05</div><div class="insight-title">Elevated Current Risk Level</div><div class="insight-body">The Overall Stock Health Score sits at 41/100, in the weaker zone, while Annual Variability of 2.58K confirms wide price swings across stocks are still common.</div><div class="insight-action">→ Apply volatility filters before short-term entries</div></div>
+            <div class="insight-card"><div class="insight-num">Insight 06</div><div class="insight-title">Liquidity Concentration</div><div class="insight-body">TATAMOTORS (107.4bn) and SBIN (106.5bn) alone account for nearly 40% of total trading volume, showing liquidity is concentrated in a handful of large-cap names.</div><div class="insight-action">→ Monitor concentration risk when relying on index-wide liquidity</div></div>
+        </div>
+    </div>
+
+    <!-- ══ SECTOR PERFORMANCE MATRIX ══ -->
+    <div class="section">
+        <div class="section-title"><i class="fas fa-table-cells"></i> Sector Performance Matrix — Total Return</div>
+        <div class="matrix-wrap">
+            <table class="risk-table">
+                <thead><tr><th>Sector</th><th>Total Return</th><th>Growth Tier</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Automobile</strong></td><td class="cell-green">13.12K%</td><td class="cell-green">Leader ⭐</td></tr>
+                    <tr><td>Banking</td><td class="cell-green">5.94K%</td><td class="cell-green">Strong</td></tr>
+                    <tr><td>FMCG</td><td>2.20K%</td><td class="cell-amber">Moderate</td></tr>
+                    <tr><td>Financial Services</td><td>2.07K%</td><td class="cell-amber">Moderate</td></tr>
+                    <tr><td>Cement</td><td>1.33K%</td><td class="cell-amber">Moderate</td></tr>
+                    <tr><td>Consumer Goods</td><td>0.86K%</td><td class="cell-red">Slow</td></tr>
+                    <tr><td>Oil &amp; Gas</td><td>0.83K%</td><td class="cell-red">Slow</td></tr>
+                    <tr><td>Metals</td><td class="cell-red">0.23K%</td><td class="cell-red">Slowest</td></tr>
+                    <tr><td><strong>TOTAL MARKET</strong></td><td><strong>104.4K%</strong></td><td><strong>—</strong></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- ══ MARKET TIMELINE ══ -->
+    <div class="section">
+        <div class="section-title"><i class="fas fa-chart-area"></i> Market Volume Timeline — 2000 to 2021</div>
+        <div class="monthly-grid">
+            <div class="month-card"><div class="month-name">2000</div><div class="month-val">~0bn</div><div class="month-note">Baseline</div></div>
+            <div class="month-card"><div class="month-name">2005</div><div class="month-val">3bn</div><div class="month-note">Early growth</div></div>
+            <div class="month-card"><div class="month-name">2008</div><div class="month-val">11bn</div><div class="month-note">Rising</div></div>
+            <div class="month-card"><div class="month-name">2012</div><div class="month-val">21bn</div><div class="month-note">Steady climb</div></div>
+            <div class="month-card"><div class="month-name">2016</div><div class="month-val">29bn</div><div class="month-note">Accelerating</div></div>
+            <div class="month-card"><div class="month-name">2018</div><div class="month-val">36bn</div><div class="month-note">Momentum builds</div></div>
+            <div class="month-card"><div class="month-name">2019</div><div class="month-val">51bn</div><div class="month-note">Near-peak</div></div>
+            <div class="month-card peak"><div class="month-name">2020</div><div class="month-val">52bn</div><div class="month-note">⚠ COVID Peak</div></div>
+            <div class="month-card recover"><div class="month-name">2021</div><div class="month-val">29bn</div><div class="month-note">✓ Correction</div></div>
+        </div>
+    </div>
+
+    <!-- ══ TOP RETURNS + MOST TRADED ══ -->
+    <div class="two-col">
+        <div class="section" style="margin-bottom:0">
+            <div class="section-title"><i class="fas fa-trophy"></i> Top Performing Stocks by Return</div>
+            <div class="bar-list">
+                <div class="bar-item"><span class="bar-label">SHREECEM</span><div class="bar-track"><div class="bar-fill green" style="width:100%"></div></div><span class="bar-val green">43,005.0%</span></div>
+                <div class="bar-item"><span class="bar-label">EICHERMOT</span><div class="bar-track"><div class="bar-fill green" style="width:11%"></div></div><span class="bar-val green">4,857.3%</span></div>
+                <div class="bar-item"><span class="bar-label">MARUTI</span><div class="bar-track"><div class="bar-fill green" style="width:9%"></div></div><span class="bar-val green">3,829.2%</span></div>
+                <div class="bar-item"><span class="bar-label">INDUSINDBK</span><div class="bar-track"><div class="bar-fill green" style="width:7%"></div></div><span class="bar-val green">3,129.5%</span></div>
+                <div class="bar-item"><span class="bar-label">BAJAJFINSV</span><div class="bar-track"><div class="bar-fill green" style="width:5%"></div></div><span class="bar-val green">2,068.9%</span></div>
+                <div class="bar-item"><span class="bar-label">TITAN</span><div class="bar-track"><div class="bar-fill green" style="width:2%"></div></div><span class="bar-val green">858.0%</span></div>
+            </div>
+            <div style="margin-top:1.25rem;padding:0.85rem 1rem;background:#ecfdf5;border-radius:0.75rem;border:1px solid #6ee7b7;">
+                <p style="font-size:0.8rem;color:#065f46;font-weight:500;"><i class="fas fa-circle-info"></i> SHREECEM's return so far outpaces the rest of the list that it's plotted on a compressed scale — the next five stocks are genuinely strong performers in their own right.</p>
+            </div>
+        </div>
+        <div class="section" style="margin-bottom:0">
+            <div class="section-title"><i class="fas fa-water"></i> Most Traded Stocks by Volume</div>
+            <div class="bar-list">
+                <div class="bar-item"><span class="bar-label">TATAMOTORS</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><span class="bar-val">107.4bn</span></div>
+                <div class="bar-item"><span class="bar-label">SBIN</span><div class="bar-track"><div class="bar-fill" style="width:99%"></div></div><span class="bar-val">106.5bn</span></div>
+                <div class="bar-item"><span class="bar-label">ICICIBANK</span><div class="bar-track"><div class="bar-fill" style="width:81%"></div></div><span class="bar-val">87.3bn</span></div>
+                <div class="bar-item"><span class="bar-label">HINDALCO</span><div class="bar-track"><div class="bar-fill" style="width:71%"></div></div><span class="bar-val">76.1bn</span></div>
+                <div class="bar-item"><span class="bar-label">RELIANCE</span><div class="bar-track"><div class="bar-fill" style="width:59%"></div></div><span class="bar-val">62.9bn</span></div>
+                <div class="bar-item"><span class="bar-label">POWERGRID</span><div class="bar-track"><div class="bar-fill" style="width:55%"></div></div><span class="bar-val">59.2bn</span></div>
+            </div>
+            <div style="margin-top:1.25rem;background:var(--primary-soft);border:1px solid rgba(79,70,229,0.15);border-radius:0.75rem;padding:1rem;">
+                <p style="font-size:0.82rem;color:var(--primary);font-weight:600;">Top 2 stocks alone (TATAMOTORS + SBIN) account for nearly 40% of total observed trading volume.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ RISK & HEALTH SCORING ENGINE ══ -->
+    <div class="section">
+        <div class="section-title"><i class="fas fa-gauge-high"></i> Stock Health & Risk Scoring Engine</div>
+        <div class="ml-grid">
+            <div class="ml-pipeline">
+                <div class="pipeline-step"><div class="step-icon"><i class="fas fa-database"></i></div><div><div class="step-label">Data Inputs</div><div class="step-desc">Open · High · Low · Close · Volume · Deliverable Volume · VWAP per stock, per trading day</div></div></div>
+                <div class="pipeline-step"><div class="step-icon"><i class="fas fa-cogs"></i></div><div><div class="step-label">Volatility Calculation</div><div class="step-desc">Annual Variability derived from price range dispersion across each stock's trading history</div></div></div>
+                <div class="pipeline-step"><div class="step-icon"><i class="fas fa-sitemap"></i></div><div><div class="step-label">Composite Scoring (DAX)</div><div class="step-desc">Variability, VWAP stability, and volume consistency blended into a single 0–100 health index</div></div></div>
+                <div class="pipeline-step"><div class="step-icon"><i class="fas fa-gauge"></i></div><div><div class="step-label">Health Score Output</div><div class="step-desc">Rendered live on the dashboard gauge, updating as sector and symbol filters change</div></div></div>
+            </div>
+            <div>
+                <div style="font-size:0.82rem;font-weight:600;color:var(--secondary);margin-bottom:0.75rem;">Current Reading: Overall Stock Health Score</div>
+                <div class="gauge-zone-wrap">
+                    <div class="gauge-track">
+                        <div class="gauge-zone z-red"></div>
+                        <div class="gauge-zone z-amber"></div>
+                        <div class="gauge-zone z-green"></div>
+                        <div class="gauge-marker"></div>
+                    </div>
+                    <div class="gauge-legend"><span>0 · Weak</span><span>40 · Caution</span><span>70 · Healthy</span><span>100 · Strong</span></div>
+                </div>
+                <div style="margin-top:1.5rem;background:#fef2f2;border:1px solid #fca5a5;border-radius:0.75rem;padding:1rem;">
+                    <p style="font-size:0.78rem;color:#991b1b;font-weight:600;margin-bottom:0.3rem;"><i class="fas fa-triangle-exclamation"></i> Reading the Score</p>
+                    <p style="font-size:0.76rem;color:#7f1d1d;line-height:1.6;">At 41/100, the market sits just inside the caution zone — strong historical returns, but current volatility keeps the composite score below the "healthy" threshold.</p>
+                </div>
+                <div style="margin-top:1rem;background:var(--primary-soft);border:1px solid rgba(79,70,229,0.15);border-radius:0.75rem;padding:1rem;">
+                    <p style="font-size:0.82rem;color:var(--primary);font-weight:600;">Annual Variability of 2.58K confirms the price swings driving this score are real and ongoing, not a one-time event.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ CODE SECTION ══ -->
+    <div class="code-section">
+        <div class="code-section-title"><i class="fas fa-code"></i> Code Samples — SQL · DAX · Python</div>
+        <div class="code-tabs">
+            <button class="code-tab active" onclick="switchCode(0)"><i class="fas fa-database"></i> SQL Queries</button>
+            <button class="code-tab" onclick="switchCode(1)"><i class="fas fa-chart-pie"></i> DAX Measures</button>
+            <button class="code-tab" onclick="switchCode(2)"><i class="fab fa-python"></i> Python (EDA & Volatility)</button>
+        </div>
+
+        <!-- SQL -->
+        <div class="code-panel active" id="cp0">
+            <div class="code-label">1. Sector-wise Total Return</div>
+            <div class="code-block">
+                <button class="copy-code-btn" onclick="copyCode(this)">Copy</button>
+                <pre><span class="cm">-- Total return per sector, ranked highest to lowest</span>
+<span class="kw">SELECT</span>
+    sector,
+    <span class="fn">COUNT</span>(<span class="kw">DISTINCT</span> symbol) <span class="kw">AS</span> total_stocks,
+    <span class="fn">ROUND</span>(
+        <span class="fn">SUM</span>((close_price <span class="op">-</span> open_price) <span class="op">/</span> open_price) <span class="op">* 100.0</span>, <span class="nb">2</span>
+    ) <span class="kw">AS</span> total_return_pct
+<span class="kw">FROM</span> <span class="tbl">nifty50_prices</span>
+<span class="kw">GROUP BY</span> sector
+<span class="kw">ORDER BY</span> total_return_pct <span class="kw">DESC</span>;</pre>
+            </div>
+
+            <div class="code-label">2. Volume Weighted Average Price (VWAP) by Symbol</div>
+            <div class="code-block">
+                <button class="copy-code-btn" onclick="copyCode(this)">Copy</button>
+                <pre><span class="cm">-- VWAP and annual variability per symbol</span>
+<span class="kw">SELECT</span>
+    symbol,
+    <span class="fn">ROUND</span>(
+        <span class="fn">SUM</span>(close_price <span class="op">*</span> volume) <span class="op">/</span> <span class="fn">SUM</span>(volume), <span class="nb">2</span>
+    ) <span class="kw">AS</span> vwap,
+    <span class="fn">ROUND</span>(
+        (<span class="fn">MAX</span>(high_price) <span class="op">-</span> <span class="fn">MIN</span>(low_price)) <span class="op">/</span> <span class="fn">AVG</span>(close_price) <span class="op">* 100.0</span>, <span class="nb">2</span>
+    ) <span class="kw">AS</span> annual_variability
+<span class="kw">FROM</span> <span class="tbl">nifty50_prices</span>
+<span class="kw">GROUP BY</span> symbol
+<span class="kw">ORDER BY</span> annual_variability <span class="kw">DESC</span>;</pre>
+            </div>
+
+            <div class="code-label">3. Trading Volume Concentration by Symbol</div>
+            <div class="code-block">
+                <button class="copy-code-btn" onclick="copyCode(this)">Copy</button>
+                <pre><span class="cm">-- Share of total market volume per symbol</span>
+<span class="kw">SELECT</span>
+    symbol,
+    <span class="fn">SUM</span>(volume) <span class="kw">AS</span> total_volume,
+    <span class="fn">ROUND</span>(
+        <span class="fn">SUM</span>(volume) <span class="op">* 100.0</span> <span class="op">/</span> <span class="fn">SUM</span>(<span class="fn">SUM</span>(volume)) <span class="kw">OVER</span> (), <span class="nb">2</span>
+    ) <span class="kw">AS</span> volume_share_pct
+<span class="kw">FROM</span> <span class="tbl">nifty50_prices</span>
+<span class="kw">GROUP BY</span> symbol
+<span class="kw">ORDER BY</span> total_volume <span class="kw">DESC</span>
+<span class="kw">LIMIT</span> <span class="nb">10</span>;</pre>
+            </div>
+        </div>
+
+        <!-- DAX -->
+        <div class="code-panel" id="cp1">
+            <div class="code-label">1. Core KPI Measures</div>
+            <div class="code-block">
+                <button class="copy-code-btn" onclick="copyCode(this)">Copy</button>
+                <pre><span class="cm">-- Total Market Return</span>
+<span class="tbl">Total Market Return</span> <span class="op">=</span>
+<span class="fn">DIVIDE</span>(
+    <span class="fn">SUM</span>(<span class="tbl">'NiftyPrices'</span>[close_price]) <span class="op">-</span> <span class="fn">SUM</span>(<span class="tbl">'NiftyPrices'</span>[open_price]),
+    <span class="fn">SUM</span>(<span class="tbl">'NiftyPrices'</span>[open_price]),
+    <span class="nb">0</span>
+) <span class="op">*</span> <span class="nb">100</span>
+
+<span class="cm">-- Average VWAP</span>
+<span class="tbl">Avg VWAP</span> <span class="op">=</span>
+<span class="fn">DIVIDE</span>(
+    <span class="fn">SUMX</span>(<span class="tbl">'NiftyPrices'</span>, <span class="tbl">'NiftyPrices'</span>[close_price] <span class="op">*</span> <span class="tbl">'NiftyPrices'</span>[volume]),
+    <span class="fn">SUM</span>(<span class="tbl">'NiftyPrices'</span>[volume]),
+    <span class="nb">0</span>
+)
+
+<span class="cm">-- Annual Variability</span>
+<span class="tbl">Annual Variability</span> <span class="op">=</span>
+<span class="fn">DIVIDE</span>(
+    <span class="fn">MAX</span>(<span class="tbl">'NiftyPrices'</span>[high_price]) <span class="op">-</span> <span class="fn">MIN</span>(<span class="tbl">'NiftyPrices'</span>[low_price]),
+    <span class="fn">AVERAGE</span>(<span class="tbl">'NiftyPrices'</span>[close_price]),
+    <span class="nb">0</span>
+) <span class="op">*</span> <span class="nb">100</span></pre>
+            </div>
+
+            <div class="code-label">2. Composite Stock Health Score</div>
+            <div class="code-block">
+                <button class="copy-code-btn" onclick="copyCode(this)">Copy</button>
+                <pre><span class="cm">-- Overall Stock Health Score (0-100 composite)</span>
+<span class="tbl">Stock Health Score</span> <span class="op">=</span>
+<span class="kw">VAR</span> _volatilityScore <span class="op">=</span>
+    <span class="nb">100</span> <span class="op">-</span> <span class="fn">MIN</span>([<span class="tbl">Annual Variability</span>] <span class="op">/</span> <span class="nb">30</span>, <span class="nb">100</span>)
+<span class="kw">VAR</span> _liquidityScore <span class="op">=</span>
+    <span class="fn">MIN</span>(<span class="fn">DIVIDE</span>(<span class="fn">SUM</span>(<span class="tbl">'NiftyPrices'</span>[volume]), <span class="nb">500000000</span>, <span class="nb">0</span>) <span class="op">*</span> <span class="nb">100</span>, <span class="nb">100</span>)
+<span class="kw">VAR</span> _returnScore <span class="op">=</span>
+    <span class="fn">MIN</span>([<span class="tbl">Total Market Return</span>] <span class="op">/</span> <span class="nb">500</span>, <span class="nb">100</span>)
+<span class="kw">RETURN</span>
+    <span class="fn">ROUND</span>(
+        (_volatilityScore <span class="op">*</span> <span class="nb">0.4</span>) <span class="op">+</span> (_liquidityScore <span class="op">*</span> <span class="nb">0.3</span>) <span class="op">+</span> (_returnScore <span class="op">*</span> <span class="nb">0.3</span>),
+        <span class="nb">0</span>
+    )</pre>
+            </div>
+
+            <div class="code-label">3. Year-over-Year Volume Change</div>
+            <div class="code-block">
+                <button class="copy-code-btn" onclick="copyCode(this)">Copy</button>
+                <pre><span class="cm">-- Year-over-Year trading volume growth</span>
+<span class="tbl">Volume YoY %</span> <span class="op">=</span>
+<span class="kw">VAR</span> _currentYear <span class="op">=</span> <span class="fn">SUM</span>(<span class="tbl">'NiftyPrices'</span>[volume])
+<span class="kw">VAR</span> _prevYear <span class="op">=</span>
+    <span class="fn">CALCULATE</span>(
+        <span class="fn">SUM</span>(<span class="tbl">'NiftyPrices'</span>[volume]),
+        <span class="fn">DATEADD</span>(<span class="tbl">'DateTable'</span>[Date], <span class="op">-</span><span class="nb">1</span>, <span class="fn">YEAR</span>)
+    )
+<span class="kw">RETURN</span>
+    <span class="fn">DIVIDE</span>(_currentYear <span class="op">-</span> _prevYear, _prevYear, <span class="nb">0</span>)</pre>
+            </div>
+        </div>
+
+        <!-- PYTHON -->
+        <div class="code-panel" id="cp2">
+            <div class="code-label">1. Exploratory Data Analysis</div>
+            <div class="code-block">
+                <button class="copy-code-btn" onclick="copyCode(this)">Copy</button>
+                <pre><span class="kw">import</span> pandas <span class="kw">as</span> pd
+<span class="kw">import</span> matplotlib.pyplot <span class="kw">as</span> plt
+<span class="kw">import</span> seaborn <span class="kw">as</span> sns
+
+<span class="cm"># Load dataset</span>
+df <span class="op">=</span> pd.<span class="fn">read_csv</span>(<span class="str">'nifty50_all_stocks.csv'</span>, parse_dates<span class="op">=</span>[<span class="str">'date'</span>])
+
+<span class="cm"># Basic overview</span>
+<span class="fn">print</span>(df.<span class="fn">shape</span>)          <span class="cm"># (rows, columns)</span>
+<span class="fn">print</span>(df[<span class="str">'symbol'</span>].<span class="fn">nunique</span>()) <span class="cm"># 52 unique stocks</span>
+
+<span class="cm"># Sector-wise total return</span>
+df[<span class="str">'return_pct'</span>] <span class="op">=</span> (df[<span class="str">'close'</span>] <span class="op">-</span> df[<span class="str">'open'</span>]) <span class="op">/</span> df[<span class="str">'open'</span>] <span class="op">* 100</span>
+sector_return <span class="op">=</span> (
+    df.<span class="fn">groupby</span>(<span class="str">'sector'</span>)[<span class="str">'return_pct'</span>]
+    .<span class="fn">sum</span>()
+    .<span class="fn">sort_values</span>(ascending<span class="op">=</span><span class="kw">False</span>)
+)
+<span class="fn">print</span>(sector_return)
+
+<span class="cm"># Historical volume trend, 2000-2021</span>
+fig, ax <span class="op">=</span> plt.<span class="fn">subplots</span>(figsize<span class="op">=</span>(<span class="nb">10</span>, <span class="nb">5</span>))
+df.<span class="fn">groupby</span>(df[<span class="str">'date'</span>].dt.year)[<span class="str">'volume'</span>].<span class="fn">sum</span>().<span class="fn">plot</span>(
+    ax<span class="op">=</span>ax, color<span class="op">=</span><span class="str">'#4f46e5'</span>, linewidth<span class="op">=</span><span class="nb">2</span>
+)
+ax.<span class="fn">set_title</span>(<span class="str">'NIFTY 50 Trading Volume, 2000-2021'</span>)
+plt.<span class="fn">tight_layout</span>()
+plt.<span class="fn">show</span>()</pre>
+            </div>
+
+            <div class="code-label">2. Volatility & Health Score Calculation</div>
+            <div class="code-block">
+                <button class="copy-code-btn" onclick="copyCode(this)">Copy</button>
+                <pre><span class="cm"># Annual variability per stock</span>
+volatility <span class="op">=</span> (
+    df.<span class="fn">groupby</span>(<span class="str">'symbol'</span>)
+    .<span class="fn">agg</span>(
+        high_max<span class="op">=</span>(<span class="str">'high'</span>, <span class="str">'max'</span>),
+        low_min<span class="op">=</span>(<span class="str">'low'</span>, <span class="str">'min'</span>),
+        close_avg<span class="op">=</span>(<span class="str">'close'</span>, <span class="str">'mean'</span>)
+    )
+)
+volatility[<span class="str">'annual_variability'</span>] <span class="op">=</span> (
+    (volatility[<span class="str">'high_max'</span>] <span class="op">-</span> volatility[<span class="str">'low_min'</span>]) <span class="op">/</span> volatility[<span class="str">'close_avg'</span>] <span class="op">* 100</span>
+)
+
+<span class="cm"># Normalize into a 0-100 composite health score</span>
+<span class="kw">def</span> <span class="fn">health_score</span>(row):
+    vol_score <span class="op">=</span> <span class="fn">max</span>(<span class="nb">0</span>, <span class="nb">100</span> <span class="op">-</span> row[<span class="str">'annual_variability'</span>] <span class="op">/</span> <span class="nb">30</span>)
+    liq_score <span class="op">=</span> <span class="fn">min</span>(<span class="nb">100</span>, row[<span class="str">'volume_share'</span>] <span class="op">*</span> <span class="nb">10</span>)
+    <span class="kw">return</span> <span class="fn">round</span>(vol_score <span class="op">*</span> <span class="nb">0.6</span> <span class="op">+</span> liq_score <span class="op">*</span> <span class="nb">0.4</span>, <span class="nb">1</span>)
+
+volatility[<span class="str">'health_score'</span>] <span class="op">=</span> volatility.<span class="fn">apply</span>(health_score, axis<span class="op">=</span><span class="nb">1</span>)</pre>
+            </div>
+
+            <div class="code-label">3. COVID-19 Drawdown & Recovery Analysis</div>
+            <div class="code-block">
+                <button class="copy-code-btn" onclick="copyCode(this)">Copy</button>
+                <pre><span class="cm"># Isolate the 2020 crash and recovery window</span>
+covid_window <span class="op">=</span> df[
+    (df[<span class="str">'date'</span>] <span class="op">&gt;=</span> <span class="str">'2020-01-01'</span>) <span class="op">&amp;</span> (df[<span class="str">'date'</span>] <span class="op">&lt;=</span> <span class="str">'2021-12-31'</span>)
+]
+
+peak_volume <span class="op">=</span> covid_window[<span class="str">'volume'</span>].<span class="fn">max</span>()
+trough_date <span class="op">=</span> covid_window.<span class="fn">loc</span>[covid_window[<span class="str">'close'</span>].<span class="fn">idxmin</span>(), <span class="str">'date'</span>]
+drawdown_pct <span class="op">=</span> (
+    (covid_window[<span class="str">'close'</span>].<span class="fn">max</span>() <span class="op">-</span> covid_window[<span class="str">'close'</span>].<span class="fn">min</span>())
+    <span class="op">/</span> covid_window[<span class="str">'close'</span>].<span class="fn">max</span>() <span class="op">* 100</span>
+)
+
+<span class="fn">print</span>(<span class="str">f"Peak volume: {peak_volume:,.0f}"</span>)
+<span class="fn">print</span>(<span class="str">f"Trough date: {trough_date.date()}"</span>)
+<span class="fn">print</span>(<span class="str">f"Max drawdown: {drawdown_pct:.2f}%"</span>)</pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ STRATEGIC PILLARS ══ -->
+    <div class="section">
+        <div class="section-title"><i class="fas fa-chess"></i> Strategic Insight Pillars</div>
+        <div class="pillars-grid">
+            <div class="pillar-card"><div class="pillar-num">01</div><div class="pillar-title">Manage Volatility & Risk</div><ul class="pillar-list"><li>Watch Annual Variability before short-term entries</li><li>Track the Health Score gauge as a market-wide temperature check</li><li>Flag macro shock periods separately from routine volatility</li><li>Favor lower-variability stocks for defensive allocation</li></ul></div>
+            <div class="pillar-card"><div class="pillar-num">02</div><div class="pillar-title">Capture Sector Growth</div><ul class="pillar-list"><li>Automobile and Banking led two decades of growth</li><li>SHREECEM-class outliers reward long holding periods</li><li>Re-evaluate sector weights as return leadership shifts</li><li>Track FMCG and Financial Services as steady mid-tier growth</li></ul></div>
+            <div class="pillar-card"><div class="pillar-num">03</div><div class="pillar-title">Improve Liquidity Awareness</div><ul class="pillar-list"><li>TATAMOTORS and SBIN dominate observed trading volume</li><li>Avoid over-reliance on a small set of high-volume names</li><li>Cross-check VWAP against closing price for entry timing</li><li>Diversify across sectors with lower trading concentration</li></ul></div>
+        </div>
+    </div>
+
+    <!-- ══ TOOLS & FEATURES ══ -->
+    <div class="section">
+        <div class="section-title"><i class="fas fa-tools"></i> Tools & Technologies</div>
+        <div class="tools-wrap">
+            <span class="tool-badge">Power BI</span>
+            <span class="tool-badge">DAX</span>
+            <span class="tool-badge">SQL</span>
+            <span class="tool-badge">PostgreSQL</span>
+            <span class="tool-badge">Python</span>
+            <span class="tool-badge">Pandas</span>
+            <span class="tool-badge">NumPy</span>
+            <span class="tool-badge">Matplotlib / Seaborn</span>
+            <span class="tool-badge">Power Query (M)</span>
+            <span class="tool-badge">Data Modeling</span>
+        </div>
+        <div class="section-title" style="margin-top:0.25rem;"><i class="fas fa-star"></i> Key Features</div>
+        <div class="features-grid">
+            <div class="feature-item"><i class="fas fa-gauge-high"></i> Live Stock Health Score gauge</div>
+            <div class="feature-item"><i class="fas fa-chart-line"></i> 20-year historical price & volume trend</div>
+            <div class="feature-item"><i class="fas fa-table"></i> Sector performance matrix</div>
+            <div class="feature-item"><i class="fas fa-icicles"></i> Sector-wise trading volume treemap</div>
+            <div class="feature-item"><i class="fas fa-circle-dot"></i> Deliverable volume vs. variability bubble chart</div>
+            <div class="feature-item"><i class="fas fa-sliders-h"></i> Dynamic sector / symbol filters</div>
+            <div class="feature-item"><i class="fas fa-chart-simple"></i> OHLC open-high-low-close summary</div>
+            <div class="feature-item"><i class="fas fa-virus"></i> COVID-19 crash & recovery timeline</div>
+            <div class="feature-item"><i class="fas fa-lightbulb"></i> 6-insight executive strategy page</div>
+        </div>
+    </div>
+
+    <!-- ══ AUTHOR CARD ══ -->
+    <div class="author-card">
+        <div class="author-avatar">
+            <img src="1775452156751.png" alt="Mohd Faij"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+            <i class="fas fa-user" style="display:none"></i>
+        </div>
+        <div class="author-name">Mohd Faij</div>
+        <div class="author-role">Data Analyst</div>
+        <div class="author-tagline">SQL · Excel · Power BI · Python · Turning Data into Business Insights</div>
+        <div class="author-links">
+            <a href="https://linkedin.com/in/mohdfaij-data" target="_blank" class="author-link link-linkedin">
+                <i class="fab fa-linkedin"></i> Connect on LinkedIn
+            </a>
+            <a href="https://github.com/mohdfaij-data" target="_blank" class="author-link link-github">
+                <i class="fab fa-github"></i> View on GitHub
+            </a>
+            <a href="mailto:mohdfaij.data@gmail.com" class="author-link link-email">
+                <i class="fas fa-envelope"></i> Hire Me
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 Mohd Faij · Data Analyst · NIFTY 50 Stock Market Analytics Project</p>
+    </footer>
+</div>
+
+<script>
+    const modal = document.getElementById('modal');
+    const modalImg = document.getElementById('modalImg');
+
+    function openModal(img) {
+        if (!img?.src) return;
+        modal.style.display = 'flex';
+        modalImg.src = img.src;
+        document.body.style.overflow = 'hidden';
+    }
+    function closeModal() {
+        modal.style.display = 'none';
+        modalImg.src = '';
+        document.body.style.overflow = '';
+    }
+    function switchDash(n) {
+        for (let i = 0; i < 3; i++) {
+            document.getElementById('dp' + i).classList.toggle('active', i === n);
+            document.querySelectorAll('.dash-tab')[i].classList.toggle('active', i === n);
+        }
+    }
+    function switchCode(n) {
+        for (let i = 0; i < 3; i++) {
+            document.getElementById('cp' + i).classList.toggle('active', i === n);
+            document.querySelectorAll('.code-tab')[i].classList.toggle('active', i === n);
+        }
+    }
+    function copyCode(btn) {
+        const pre = btn.nextElementSibling;
+        navigator.clipboard.writeText(pre.innerText).then(() => {
+            btn.textContent = 'Copied!';
+            setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
+        });
+    }
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.style.display === 'flex') closeModal();
+    });
+</script>
+</body>
+</html>
