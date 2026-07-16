@@ -266,6 +266,15 @@
         .dash-img-wrap img:hover { transform: scale(1.005); }
         .dash-panel { display: none; }
         .dash-panel.active { display: block; }
+        .dash-caption {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+            padding: 0.9rem 0.4rem 0.3rem;
+        }
+        .dash-caption i { color: var(--primary); font-size: 0.95rem; margin-top: 2px; }
+        .dash-caption-title { font-size: 0.88rem; font-weight: 700; color: var(--secondary); margin-bottom: 0.2rem; }
+        .dash-caption-body { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
 
         /* ── SECTION ── */
         .section {
@@ -618,7 +627,7 @@
             <span class="hero-badge"><i class="fas fa-calendar-alt"></i> 8,036 Trading Days</span>
             <span class="hero-badge"><i class="fas fa-arrow-trend-up"></i> 104.4K% Market Return</span>
             <span class="hero-badge"><i class="fas fa-exchange-alt"></i> 470.4K Total Trades</span>
-            <span class="hero-badge"><i class="fas fa-table-columns"></i> 3 Dashboards</span>
+            <span class="hero-badge"><i class="fas fa-table-columns"></i> 3 Dashboards: Home · Analysis · Insights</span>
         </div>
         <div class="hero-actions">
             <a href="YOUR_POWERBI_LINK" target="_blank" class="btn-hero-primary"><i class="fas fa-tachometer-alt"></i> Open Live Dashboard</a>
@@ -677,9 +686,36 @@
             <button class="dash-tab" onclick="switchDash(2)">03 · Executive Insights</button>
         </div>
         <div class="dash-img-wrap">
-            <div class="dash-panel active" id="dp0"><img src="Home.png" alt="Market Overview" onclick="openModal(this)" onerror="this.src='https://via.placeholder.com/1200x600/0f172a/818cf8?text=Market+Overview'"></div>
-            <div class="dash-panel" id="dp1"><img src="Analysiss.png" alt="Sector & Stock Analysis" onclick="openModal(this)" onerror="this.src='https://via.placeholder.com/1200x600/0f172a/818cf8?text=Sector+%26+Stock+Analysis'"></div>
-            <div class="dash-panel" id="dp2"><img src="Insightsreport.png" alt="Executive Insights" onclick="openModal(this)" onerror="this.src='https://via.placeholder.com/1200x600/0f172a/818cf8?text=Executive+Insights'"></div>
+            <div class="dash-panel active" id="dp0">
+                <img src="Home.png" alt="Market Overview" onclick="openModal(this)" onerror="this.src='https://via.placeholder.com/1200x600/0f172a/818cf8?text=Market+Overview'">
+                <div class="dash-caption">
+                    <i class="fas fa-house"></i>
+                    <div>
+                        <div class="dash-caption-title">Home — Market Overview</div>
+                        <div class="dash-caption-body">Total stocks, trading days, average closing price, highest market price, average trading volume, and total trades at a glance — plus the 20-year historical closing price vs. trading volume trend, top stocks by average closing price, trading volume by stock, volume distribution donut, and top performing stocks by total return.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="dash-panel" id="dp1">
+                <img src="Analysiss.png" alt="Sector & Stock Analysis" onclick="openModal(this)" onerror="this.src='https://via.placeholder.com/1200x600/0f172a/818cf8?text=Sector+%26+Stock+Analysis'">
+                <div class="dash-caption">
+                    <i class="fas fa-chart-pie"></i>
+                    <div>
+                        <div class="dash-caption-title">Analysis — Sector & Stock Performance</div>
+                        <div class="dash-caption-body">Total market return, average VWAP, annual variability, and highest/lowest trading prices, alongside sector-wise total return, the Overall Stock Health Score gauge, a full stock performance summary table, OHLC price summary, deliverable volume vs. annual variability bubble chart, and sector-wise trading volume treemap.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="dash-panel" id="dp2">
+                <img src="Insightsreport.png" alt="Executive Insights" onclick="openModal(this)" onerror="this.src='https://via.placeholder.com/1200x600/0f172a/818cf8?text=Executive+Insights'">
+                <div class="dash-caption">
+                    <i class="fas fa-lightbulb"></i>
+                    <div>
+                        <div class="dash-caption-title">Insights — Executive Strategic Report</div>
+                        <div class="dash-caption-body">A stakeholder-ready summary covering market growth overview, sector performance, trading volume leaders, top performing stocks, the 2020 COVID-19 crash & recovery, stock health & risk, and six key executive takeaways — built to stand on its own without opening the interactive dashboard.</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
